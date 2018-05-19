@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="sunshine:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/sunshine_war_exploded</output-path>
+    <output-path>$PROJECT_DIR$/target</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -34,6 +34,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.3.13.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.3.13.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.3.13.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-data-redis:2.0.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.data:spring-data-redis:1.8.9.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.data:spring-data-keyvalue:1.2.9.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.data:spring-data-commons:1.13.9.RELEASE" />
@@ -82,7 +83,7 @@
           <element id="library" level="project" name="Maven: com.github.jsqlparser:jsqlparser:1.0" />
           <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.4" />
           <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
-          <element id="library" level="project" name="Maven: redis.clients:jedis:2.8.2" />
+          <element id="library" level="project" name="Maven: redis.clients:jedis:2.9.0" />
           <element id="library" level="project" name="Maven: org.apache.commons:commons-pool2:2.4.3" />
           <element id="library" level="project" name="Maven: args4j:args4j:2.33" />
           <element id="library" level="project" name="Maven: org.apache.solr:solr-solrj:6.6.0" />
@@ -123,11 +124,12 @@
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:6.0.6" />
           <element id="library" level="project" name="Maven: com.squareup.okhttp3:okhttp:3.6.0" />
           <element id="library" level="project" name="Maven: com.squareup.okio:okio:1.11.0" />
+          <element id="library" level="project" name="Maven: javax.xml.bind:jaxb-api:2.2.3" />
+          <element id="library" level="project" name="Maven: javax.xml.stream:stax-api:1.0-2" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
           <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-core:8.5.23" />
-          <element id="library" level="project" name="Maven: redis.clients:jedis:2.9.0" />
         </element>
       </element>
-      <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-data-redis:2.0.2.RELEASE" />
       <element id="javaee-facet-resources" facet="sunshine/web/Web" />
     </root>
   </artifact>
