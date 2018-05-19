@@ -11,6 +11,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import team.stephen.sunshine.model.User;
 import team.stephen.sunshine.service.UserService;
+import team.stephen.sunshine.util.LogRecod;
 
 import javax.annotation.Resource;
 
@@ -28,6 +29,7 @@ public class CustomShiroRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 //        System.out.println("权限配置-->MyShiroRealm.doGetAuthorizationInfo()");
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+        LogRecod.print("授权");
         User userInfo = (User) principals.getPrimaryPrincipal();
 //        for (SysRole role : userInfo.getRoleList()) {
 //            authorizationInfo.addRole(role.getRole());
@@ -45,6 +47,7 @@ public class CustomShiroRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token)
             throws AuthenticationException {
 //        System.out.println("MyShiroRealm.doGetAuthenticationInfo()");
+        LogRecod.print("验证");
         //获取用户的输入的账号.
         String userNo = (String) token.getPrincipal();
 //        System.out.println(token.getCredentials());
@@ -55,6 +58,7 @@ public class CustomShiroRealm extends AuthorizingRealm {
         if (userInfo == null) {
             return null;
         }
+        LogRecod.print(userInfo.getUserName());
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 userInfo, //用户名
                 userInfo.getPassword(), //密码

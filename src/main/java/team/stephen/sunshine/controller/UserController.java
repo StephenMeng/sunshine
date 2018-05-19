@@ -11,4 +11,8 @@ public class UserController extends BaseController {
     public Response info(){
         return Response.success("info");
     }
+    @RequestMapping("ok")
+    public Response userCheck(){
+        return Response.success("ok");
+    }
 }

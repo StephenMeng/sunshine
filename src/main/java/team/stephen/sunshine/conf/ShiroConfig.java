@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver;
+import team.stephen.sunshine.constant.WebConfig;
 import team.stephen.sunshine.security.CustomSessionManager;
 import team.stephen.sunshine.security.CustomShiroRealm;
 
@@ -26,14 +27,7 @@ import java.util.Map;
  */
 @Configuration
 public class ShiroConfig {
-    @Value("${spring.redis.shiro.host}")
-    private String host;
-    @Value("${spring.redis.shiro.port}")
-    private int port;
-    @Value("${spring.redis.shiro.timeout}")
-    private int timeout;
-    @Value("${spring.redis.shiro.password}")
-    private String password;
+    private int timeout = 0;
 
     @Bean
     public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
@@ -51,9 +45,9 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/login", "anon");
         filterChainDefinitionMap.put("/**", "authc");
         //配置shiro默认登录界面地址，前后端分离中登录界面跳转应由前端路由控制，后台仅返回json数据
-        shiroFilterFactoryBean.setLoginUrl("/unauth");
+        shiroFilterFactoryBean.setLoginUrl("/tologin");
         // 登录成功后要跳转的链接
-//        shiroFilterFactoryBean.setSuccessUrl("/index");
+        shiroFilterFactoryBean.setSuccessUrl("/user/ok");
         //未授权界面;
 //        shiroFilterFactoryBean.setUnauthorizedUrl("/403");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
@@ -111,8 +105,8 @@ public class ShiroConfig {
      */
     public RedisManager redisManager() {
         RedisManager redisManager = new RedisManager();
-        redisManager.setHost(host);
-        redisManager.setPort(port);
+        redisManager.setHost(WebConfig.REDIS_URL);
+        redisManager.setPort(WebConfig.REDIS_PORT);
         redisManager.setExpire(1800);// 配置缓存过期时间
 //        redisManager.setTimeout(timeout);
 //        redisManager.setPassword(password);
