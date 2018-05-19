@@ -20,8 +20,6 @@ public class UserDto {
     private String email;
     @ApiModelProperty(value = "角色")
     private String userRole;
-    @ApiModelProperty(value = "密码")
-    private String password;
 
     public Integer getUserId() {
         return userId;
@@ -63,11 +61,4 @@ public class UserDto {
         this.userRole = userRole;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

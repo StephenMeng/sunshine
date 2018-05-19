@@ -11,8 +11,8 @@ import team.stephen.sunshine.constant.WebConfig;
 @Configuration
 public class SolrConfiguration {
     @Bean
-    public HttpSolrClient httpSolrClient(){
-        HttpSolrClient solrClient=new HttpSolrClient(WebConfig.SOLR_URL);
-        return  solrClient;
+    public HttpSolrClient httpSolrClient() {
+        return new HttpSolrClient.Builder(WebConfig.SOLR_ARTICLE_URL)
+                .build();
     }
 }
