@@ -1,41 +1,51 @@
 package team.stephen.sunshine.controller;
 
-import org.apache.juli.logging.Log;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import team.stephen.sunshine.service.UserService;
+import springfox.documentation.annotations.ApiIgnore;
+import team.stephen.sunshine.service.user.UserService;
 import team.stephen.sunshine.util.LogRecod;
 import team.stephen.sunshine.util.Response;
 
 import javax.servlet.http.HttpServletRequest;
 
+@Api(value = "登录操作接口")
 @Controller
 public class LoginController {
     @Autowired
     private UserService userService;
-
+    @ApiIgnore
     @RequestMapping("toLogin")
     public ModelAndView toLogin(String userName, String password, HttpServletRequest request) {
         return new ModelAndView("login");
     }
-
-    @RequestMapping("tologin")
+    @ApiOperation(value = "发起登录请求", httpMethod = "GET", response = Response.class)
+    @RequestMapping(value = "tologin",method = RequestMethod.GET)
     @ResponseBody
     public Response tologin() {
         return Response.success("tologin");
     }
 
-    @RequestMapping("login")
+    @ApiOperation(value = "登录", httpMethod = "POST", response = Response.class)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userName", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "password", required = true, dataType = "String", paramType = "query")})
+    @RequestMapping(value = "login",method = RequestMethod.POST)
     @ResponseBody
-    public Response login(@RequestParam(value = "userName", required = false) String userName,
-                          @RequestParam(value = "password", required = false) String password,
+    public Response login(@RequestParam(value = "userName") String userName,
+                          @RequestParam(value = "password") String password,
                           HttpServletRequest request) {
         UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
         //获取当前的Subject
@@ -74,8 +84,8 @@ public class LoginController {
             return Response.error(400, "login failed", "login failed");
         }
     }
-
-    @RequestMapping("logout")
+    @ApiOperation(value = "注销", httpMethod = "GET", response = Response.class)
+    @RequestMapping(value = "logout",method = RequestMethod.GET)
     @ResponseBody
     public Response logout(HttpServletRequest request) {
         //使用权限管理工具进行用户的退出，跳出登录，给出提示信息

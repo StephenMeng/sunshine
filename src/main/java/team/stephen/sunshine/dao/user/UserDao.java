@@ -1,8 +1,8 @@
-package team.stephen.sunshine.dao;
+package team.stephen.sunshine.dao.user;
 
 
 import org.apache.ibatis.annotations.Mapper;
-import team.stephen.sunshine.model.User;
+import team.stephen.sunshine.model.user.User;
 import team.stephen.sunshine.util.BaseDao;
 
 /**

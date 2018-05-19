@@ -9,15 +9,21 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
-import team.stephen.sunshine.model.User;
-import team.stephen.sunshine.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import team.stephen.sunshine.model.user.User;
+import team.stephen.sunshine.service.common.CacheService;
+import team.stephen.sunshine.service.common.PermissionService;
+import team.stephen.sunshine.service.user.UserService;
 import team.stephen.sunshine.util.LogRecod;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 public class CustomShiroRealm extends AuthorizingRealm {
-    @Resource
+    @Autowired
     private UserService userService;
+    @Autowired
+    private PermissionService permissionService;
 
     /**
      * 授权
@@ -30,13 +36,10 @@ public class CustomShiroRealm extends AuthorizingRealm {
 //        System.out.println("权限配置-->MyShiroRealm.doGetAuthorizationInfo()");
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         LogRecod.print("授权");
-        User userInfo = (User) principals.getPrimaryPrincipal();
-//        for (SysRole role : userInfo.getRoleList()) {
-//            authorizationInfo.addRole(role.getRole());
-//            for (SysPermission p : role.getPermissions()) {
-//                authorizationInfo.addStringPermission(p.getPermission());
-//            }
-//        }
+        LogRecod.print(principals.getPrimaryPrincipal());
+        String userNo = (String) principals.getPrimaryPrincipal();
+        List<String> roles = permissionService.getUserRoles(userNo);
+        authorizationInfo.addRoles(roles);
         return authorizationInfo;
     }
 
@@ -46,26 +49,19 @@ public class CustomShiroRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token)
             throws AuthenticationException {
-//        System.out.println("MyShiroRealm.doGetAuthenticationInfo()");
         LogRecod.print("验证");
         //获取用户的输入的账号.
         String userNo = (String) token.getPrincipal();
 //        System.out.println(token.getCredentials());
         //通过username从数据库中查找 User对象，如果找到，没找到.
         //实际项目中，这里可以根据实际情况做缓存，如果不做，Shiro自己也是有时间间隔机制，2分钟内不会重复执行该方法
-        User userInfo = userService.findByUserNo(userNo);
-//        System.out.println("----->>userInfo="+userInfo);
-        if (userInfo == null) {
+        User user = userService.getUserByUserNo(userNo);
+        if (user == null) {
             return null;
         }
-        LogRecod.print(userInfo.getUserName());
-        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
-                userInfo, //用户名
-                userInfo.getPassword(), //密码
-                ByteSource.Util.bytes(userInfo.getUserName()),//salt=username+salt
-                getName()  //realm name
-        );
-        return authenticationInfo;
+        return new SimpleAuthenticationInfo(user.getUserNo(),
+                user.getPassword(),
+                ByteSource.Util.bytes(user.getUserNo()), getName());
     }
 
 }

@@ -1,25 +1,26 @@
-package team.stephen.sunshine.model;
+package team.stephen.sunshine.dto;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "sunshine_user")
-public class User {
-    @Id
-    @Column(name = "user_id")
+@ApiModel(description = "用户实体类")
+public class UserDto {
+    @ApiModelProperty(value = "用戶ID")
     private Integer userId;
-    @Column(name = "user_no")
+    @ApiModelProperty(value = "用户学号")
     private String userNo;
-    @Column(name = "user_name")
+    @ApiModelProperty(value = "用户名")
     private String userName;
-    @Column(name = "email")
+    @ApiModelProperty(value = "邮箱")
     private String email;
-    @Column(name = "user_role")
+    @ApiModelProperty(value = "角色")
     private String userRole;
-    @Column(name = "password")
+    @ApiModelProperty(value = "密码")
     private String password;
 
     public Integer getUserId() {

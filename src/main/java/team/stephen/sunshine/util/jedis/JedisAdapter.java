@@ -16,32 +16,18 @@ public class JedisAdapter {
 
     public String set(final String key, final String value) {
         JedisTemplate template = new JedisTemplate();
-        return template.execute(new JedisCallBack<String>() {
-            @Override
-            public String handle(Jedis jedis) {
-                return jedis.set(key, value);
-            }
-        });
+        return template.execute(jedis -> jedis.set(key, value));
     }
 
     public String get(final String key) {
         JedisTemplate template = new JedisTemplate();
-        return template.execute(new JedisCallBack<String>() {
-            @Override
-            public String handle(Jedis jedis) {
-                return jedis.get(key);
-            }
-        });
+        return template.execute(jedis -> jedis.get(key));
     }
+
 
     public boolean exists(String key) {
         JedisTemplate template = new JedisTemplate();
-        return template.execute(new JedisCallBack<Boolean>() {
-            @Override
-            public Boolean handle(Jedis jedis) {
-                return jedis.exists(key);
-            }
-        });
+        return template.execute(jedis -> jedis.exists(key));
     }
 
     class JedisTemplate {
