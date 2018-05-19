@@ -9,6 +9,7 @@ import org.apache.solr.common.SolrDocumentList;
 import org.apache.solr.common.SolrInputDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import team.stephen.sunshine.model.article.Article;
 import team.stephen.sunshine.service.common.SolrService;
 import team.stephen.sunshine.util.LogRecod;
 
@@ -18,11 +19,11 @@ import java.util.List;
 @Service
 public class SolrServiceImpl implements SolrService {
     @Autowired
-    private HttpSolrClient solrClient;
+    private HttpSolrClient articleSolrClient;
 
-    private static final String ARTICLE_ID = "article_id";
-    private static final String ARTICLE_CONTENT = "article_content";
-    private static final String ARTICLE_TAG = "article_tag";
+    private static final String ARTICLE_ID = "articleId";
+    private static final String ARTICLE_CONTENT = "articleContent";
+    private static final String ARTICLE_TAG = "articleTag";
 
     /**
      * 往索引库添加文档
@@ -30,6 +31,7 @@ public class SolrServiceImpl implements SolrService {
      * @throws IOException
      * @throws SolrServerException
      */
+    @Override
     public void addDoc(Long articleId, String articleContent, String atricleTag) {
         //构造一篇文档
         SolrInputDocument document = new SolrInputDocument();
@@ -39,8 +41,8 @@ public class SolrServiceImpl implements SolrService {
         document.addField(ARTICLE_TAG, atricleTag);
         //获得一个solr服务端的请求，去提交  ,选择具体的某一个solr core
         try {
-            solrClient.add(document);
-            solrClient.commit();
+            articleSolrClient.add(document);
+            articleSolrClient.commit();
         } catch (SolrServerException | IOException e) {
             e.printStackTrace();
         }
@@ -50,11 +52,12 @@ public class SolrServiceImpl implements SolrService {
     /**
      * 根据id从索引库删除文档
      */
+    @Override
     public void deleteDocumentById(Long id) throws Exception {
         //删除文档
-        solrClient.deleteByQuery("article_id:" + id);
+        articleSolrClient.deleteByQuery("ARTICLE_ID:" + id);
         //删除所有的索引
-        solrClient.commit();
+        articleSolrClient.commit();
     }
 
     /**
@@ -62,6 +65,7 @@ public class SolrServiceImpl implements SolrService {
      *
      * @throws Exception
      */
+    @Override
     public void querySolr(String qString) {
         SolrQuery query = new SolrQuery();
         //下面设置solr查询参数
@@ -69,53 +73,44 @@ public class SolrServiceImpl implements SolrService {
         query.set("q", qString);//相关查询，比如某条数据某个字段含有周、星、驰三个字  将会查询出来 ，这个作用适用于联想查询
 
         //参数fq, 给query增加过滤查询条件
-        query.addFilterQuery("id:[0 TO 9]");//id为0-4
+//        query.addFilterQuery("id:[0 TO 9]");//id为0-4
 
         //给query增加布尔过滤条件
         //query.addFilterQuery("description:演员");  //description字段中含有“演员”两字的数据
 
         //参数df,给query设置默认搜索域
-        query.set("df", "name");
+//        query.set("df", "name");
 
         //参数sort,设置返回结果的排序规则
-        query.setSort("id", SolrQuery.ORDER.desc);
+        query.setSort(ARTICLE_ID, SolrQuery.ORDER.desc);
 
         //设置分页参数
         query.setStart(0);
-        query.setRows(10);//每一页多少值
-
-        //参数hl,设置高亮
-        query.setHighlight(true);
-        //设置高亮的字段
-        query.addHighlightField("name");
-        //设置高亮的样式
-        query.setHighlightSimplePre("<font color='red'>");
-        query.setHighlightSimplePost("</font>");
+        //每一页多少值
+        query.setRows(10);
 
         //获取查询结果
         QueryResponse response = null;
         try {
-            response = solrClient.query(query);
-        } catch (SolrServerException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+            response = articleSolrClient.query(query);
+        } catch (SolrServerException | IOException e) {
             e.printStackTrace();
         }
         //两种结果获取：得到文档集合或者实体对象
 
         //查询得到文档的集合
-        SolrDocumentList solrDocumentList = response.getResults();
-        System.out.println("通过文档集合获取查询的结果");
-        System.out.println("查询结果的总数量：" + solrDocumentList.getNumFound());
-        //遍历列表
-        for (SolrDocument doc : solrDocumentList) {
-            System.out.println("id:" + doc.get("id") + "   name:" + doc.get("name") + "    description:" + doc.get("description"));
-        }
+//        SolrDocumentList solrDocumentList = response.getResults();
+//        System.out.println("通过文档集合获取查询的结果");
+//        System.out.println("查询结果的总数量：" + solrDocumentList.getNumFound());
+//        //遍历列表
+//        for (SolrDocument doc : solrDocumentList) {
+//            System.out.println("ARTICLE_ID:" + doc.get("i") + "   articleTag:" + doc.get("articleTag") + "    articleContent:" + doc.get("articleContent"));
+//        }
 
         //得到实体对象
-        List<String> tmpLists = response.getBeans(String.class);
+        List<Article> tmpLists = response.getBeans(Article.class);
         if (tmpLists != null && tmpLists.size() > 0) {
-            LogRecod.info(tmpLists);
+            LogRecod.print(tmpLists);
         }
     }
 }

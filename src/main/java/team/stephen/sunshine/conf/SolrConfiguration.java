@@ -6,7 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import team.stephen.sunshine.constant.WebConfig;
 
 /**
- * Created by stephen on 2017/7/15.
+ * @author stephen
+ * @date 2017/7/15
  */
 @Configuration
 public class SolrConfiguration {

@@ -60,4 +60,13 @@ public class SolrServiceTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void testQuery() {
+        try {
+            solrService.querySolr("articleContent:配置");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
