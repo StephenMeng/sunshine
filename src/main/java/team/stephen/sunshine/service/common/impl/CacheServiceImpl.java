@@ -4,18 +4,18 @@ import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import team.stephen.sunshine.constant.JedisConst;
-import team.stephen.sunshine.dto.UserDto;
+import team.stephen.sunshine.dto.user.UserDto;
 import team.stephen.sunshine.model.user.User;
 import team.stephen.sunshine.service.common.CacheService;
 import team.stephen.sunshine.service.common.DtoTransformService;
 import team.stephen.sunshine.service.user.UserService;
 import team.stephen.sunshine.util.StringUtils;
-import team.stephen.sunshine.util.jedis.JedisAdapter;
+import team.stephen.sunshine.service.jedis.JedisService;
 
 @Service
 public class CacheServiceImpl implements CacheService {
     @Autowired
-    private JedisAdapter jedisAdapter;
+    private JedisService jedisService;
     @Autowired
     private UserService userService;
     @Autowired
@@ -27,7 +27,7 @@ public class CacheServiceImpl implements CacheService {
             return null;
         }
         String idKey = String.format(JedisConst.USER_INFO_ID, userId);
-        String userStr = jedisAdapter.get(idKey);
+        String userStr = jedisService.get(idKey);
         if (!StringUtils.isNull(userStr)) {
             return JSONObject.parseObject(userStr, UserDto.class);
         }
@@ -48,7 +48,7 @@ public class CacheServiceImpl implements CacheService {
             return null;
         }
         String key = String.format(JedisConst.USER_INFO_NO, userNo);
-        String userStr = jedisAdapter.get(key);
+        String userStr = jedisService.get(key);
         if (!StringUtils.isNull(userStr)) {
             return JSONObject.parseObject(userStr, UserDto.class);
         }
@@ -68,8 +68,8 @@ public class CacheServiceImpl implements CacheService {
         }
         String idKey = String.format(JedisConst.USER_INFO_ID, userDto.getUserId());
         String noKey = String.format(JedisConst.USER_INFO_NO, userDto.getUserNo());
-        jedisAdapter.set(idKey, JSONObject.toJSONString(userDto));
-        jedisAdapter.set(noKey, JSONObject.toJSONString(userDto));
+        jedisService.set(idKey, JSONObject.toJSONString(userDto));
+        jedisService.set(noKey, JSONObject.toJSONString(userDto));
         return true;
     }
 }

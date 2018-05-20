@@ -1,7 +1,6 @@
 package team.stephen.sunshine.service.common;
 
-import team.stephen.sunshine.dto.UserDto;
-import team.stephen.sunshine.model.user.User;
+import team.stephen.sunshine.dto.user.UserDto;
 
 public interface CacheService {
     UserDto findUserDtoByUserId(Integer userId);

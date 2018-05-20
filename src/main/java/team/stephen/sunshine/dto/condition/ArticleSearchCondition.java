@@ -1,77 +1,35 @@
-package team.stephen.sunshine.model.article;
+package team.stephen.sunshine.dto.condition;
 
-import org.apache.solr.client.solrj.beans.Field;
-import team.stephen.sunshine.util.RandomIDUtil;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.util.Date;
 
 /**
- * @author stephen meng
- * @date 2018/5/19
+ * article的搜索条件
  */
-@Entity
-@Table(name = "sunshine_article")
-public class Article {
-    @Id
-    @Column(name = "article_id")
-    @Field("articleId")
+public class ArticleSearchCondition {
     private Long articleId;
-    @Column(name = "article_link_id")
     private String articleLinkId;
-    @Column(name = "article_title")
     private String articleTitle;
-    @Column(name = "article_abstract")
     private String articleAbstract;
-    @Column(name = "article_tag")
-    @Field("articleTag")
     private String articleTag;
-    @Column(name = "article_author")
     private Integer articleAuthor;
-    @Column(name = "article_comment_count")
     private Integer articleCommentCount;
-    @Column(name = "article_view_count")
     private Integer articleViewCount;
-    @Column(name = "article_content")
-    @Field("articleContent")
     private String articleContent;
-    @Column(name = "article_link")
     private String articleLink;
-    @Column(name = "article_had_been_published")
     private Boolean articleHadBeenPublished;
-    @Column(name = "article_is_published")
     private Boolean articleIsPublished;
-    @Column(name = "article_put_top")
     private Boolean articlePutTop;
-    @Column(name = "article_create_date")
-    private Date articleCreateDate;
-    @Column(name = "article_update_date")
-    private Date articleUpdateDate;
-    @Column(name = "article_view_pwd")
+    private Date createDateStart;
+    private Date createDateEnd;
+    private Date updateDateStart;
+    private Date updateDateEnd;
     private String articleViewPwd;
 
-    public static Article getNewDefaultInstance() {
-        Article article = new Article();
-        article.setArticleTitle("第三篇文档");
-        article.setArticleLinkId(RandomIDUtil.randomID(16));
-        article.setArticleAuthor(1);
-        article.setArticleLink(" ");
-        article.setArticleUpdateDate(new Date());
-        article.setArticleCreateDate(new Date());
-        article.setArticleAbstract("abstract");
-        article.setArticleCommentCount(0);
-        article.setArticleContent("SpringBoot学习笔记（五）：配置redis");
-        article.setArticleHadBeenPublished(false);
-        article.setArticleIsPublished(false);
-        article.setArticleViewCount(0);
-        article.setArticlePutTop(false);
-        article.setArticleTag("stephen");
-        article.setArticleViewPwd("pwd");
-        return article;
-    }
+    private Integer pageNum;
+    private Integer pageSize;
+
+    private String sort;
+    private Boolean desc;
 
     public Long getArticleId() {
         return articleId;
@@ -177,20 +135,36 @@ public class Article {
         this.articlePutTop = articlePutTop;
     }
 
-    public Date getArticleCreateDate() {
-        return articleCreateDate;
+    public Date getCreateDateStart() {
+        return createDateStart;
     }
 
-    public void setArticleCreateDate(Date articleCreateDate) {
-        this.articleCreateDate = articleCreateDate;
+    public void setCreateDateStart(Date createDateStart) {
+        this.createDateStart = createDateStart;
     }
 
-    public Date getArticleUpdateDate() {
-        return articleUpdateDate;
+    public Date getCreateDateEnd() {
+        return createDateEnd;
     }
 
-    public void setArticleUpdateDate(Date articleUpdateDate) {
-        this.articleUpdateDate = articleUpdateDate;
+    public void setCreateDateEnd(Date createDateEnd) {
+        this.createDateEnd = createDateEnd;
+    }
+
+    public Date getUpdateDateStart() {
+        return updateDateStart;
+    }
+
+    public void setUpdateDateStart(Date updateDateStart) {
+        this.updateDateStart = updateDateStart;
+    }
+
+    public Date getUpdateDateEnd() {
+        return updateDateEnd;
+    }
+
+    public void setUpdateDateEnd(Date updateDateEnd) {
+        this.updateDateEnd = updateDateEnd;
     }
 
     public String getArticleViewPwd() {
@@ -199,5 +173,37 @@ public class Article {
 
     public void setArticleViewPwd(String articleViewPwd) {
         this.articleViewPwd = articleViewPwd;
+    }
+
+    public Integer getPageNum() {
+        return pageNum;
+    }
+
+    public void setPageNum(Integer pageNum) {
+        this.pageNum = pageNum;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public String getSort() {
+        return sort;
+    }
+
+    public void setSort(String sort) {
+        this.sort = sort;
+    }
+
+    public Boolean getDesc() {
+        return desc;
+    }
+
+    public void setDesc(Boolean desc) {
+        this.desc = desc;
     }
 }

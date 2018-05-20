@@ -5,7 +5,7 @@ import com.github.pagehelper.PageInfo;
 import java.util.List;
 
 public class PageUtil {
-    public static <T> PageInfo<T> transferListToPageInfo(List<T> papers, Long total, Integer pageNo, Integer pageSize) {
+    public static <T> PageInfo<T> listToPageInfo(List<T> papers, Long total, Integer pageNo, Integer pageSize) {
         PageInfo<T> pageInfo = new PageInfo<T>(papers);
         initPageInfo(pageInfo, total, pageNo, pageSize);
         return pageInfo;

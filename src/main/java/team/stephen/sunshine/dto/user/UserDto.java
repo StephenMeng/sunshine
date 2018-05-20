@@ -1,4 +1,4 @@
-package team.stephen.sunshine.dto;
+package team.stephen.sunshine.dto.user;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

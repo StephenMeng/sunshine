@@ -1,5 +1,6 @@
 package team.stephen.sunshine.util;
 
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.apache.http.HttpHost;
@@ -24,11 +25,49 @@ public class HttpUtils {
     public static final String DEFAULT_CHARSET = "utf-8";
 
     public static String okrHttpGet(String url) throws IOException {
+        return okrHttpGet(url, null);
+    }
+
+    public static String okrHttpGet(String url, Map<String, String> header) throws IOException {
         OkHttpClient httpClient = new OkHttpClient();
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
+        Request.Builder builder = new Request.Builder().url(url);
+        if (header != null) {
+            addHeader(header, builder);
+        }
+        Request request = builder.build();
         return httpClient.newCall(request).execute().body().string();
+    }
+
+    public static String okrHttpPost(String url, Map<String, String> body) throws IOException {
+        return okrHttpPost(url, null, body);
+    }
+
+    public static String okrHttpPost(String url, Map<String, String> header, Map<String, String> body) throws IOException {
+        //创建OkHttpClient对象。
+        OkHttpClient httpClient = new OkHttpClient();
+        //创建表单请求体
+        FormBody.Builder formBody = new FormBody.Builder();
+        if (body != null && body.size() > 0) {
+            addPostBody(body, formBody);
+        }
+        Request.Builder builder = new Request.Builder().url(url).post(formBody.build());
+        if (header != null && body.size() > 0) {
+            addHeader(header, builder);
+        }
+        Request request = builder.build();
+        return httpClient.newCall(request).execute().body().string();
+    }
+
+    private static void addHeader(Map<String, String> header, Request.Builder builder) {
+        for (Map.Entry<String, String> entry : header.entrySet()) {
+            builder.addHeader(entry.getKey(), entry.getValue());
+        }
+    }
+
+    private static void addPostBody(Map<String, String> body, FormBody.Builder formBody) {
+        for (Map.Entry<String, String> entry : body.entrySet()) {
+            formBody.add(entry.getKey(), entry.getValue());//传递键值对参数
+        }
     }
 
     public static HttpResponse httpGet(String url) throws IOException {

@@ -1,4 +1,4 @@
-package team.stephen.sunshine.constant;
+package team.stephen.sunshine.constant.enu;
 
 public enum ResultEnum {
     PARAMETER_WRONG(400, "参数错误", "Bad Parameter");

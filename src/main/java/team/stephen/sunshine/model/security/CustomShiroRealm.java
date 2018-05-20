@@ -1,4 +1,4 @@
-package team.stephen.sunshine.security;
+package team.stephen.sunshine.model.security;
 
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -11,12 +11,10 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import team.stephen.sunshine.model.user.User;
-import team.stephen.sunshine.service.common.CacheService;
 import team.stephen.sunshine.service.common.PermissionService;
 import team.stephen.sunshine.service.user.UserService;
 import team.stephen.sunshine.util.LogRecod;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 public class CustomShiroRealm extends AuthorizingRealm {
