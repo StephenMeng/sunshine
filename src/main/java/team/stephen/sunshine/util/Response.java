@@ -1,7 +1,7 @@
 package team.stephen.sunshine.util;
 
 
-import team.stephen.sunshine.constant.ResultEnum;
+import team.stephen.sunshine.constant.enu.ResultEnum;
 
 /**
  * Created by stephen on 2017/7/15.

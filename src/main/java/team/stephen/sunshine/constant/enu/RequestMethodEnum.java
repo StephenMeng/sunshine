@@ -1,4 +1,4 @@
-package team.stephen.sunshine.constant;
+package team.stephen.sunshine.constant.enu;
 
 public enum RequestMethodEnum {
     GET("get"),
