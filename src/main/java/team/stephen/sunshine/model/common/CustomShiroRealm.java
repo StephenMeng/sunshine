@@ -1,4 +1,4 @@
-package team.stephen.sunshine.model.security;
+package team.stephen.sunshine.model.common;
 
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;

@@ -17,7 +17,7 @@ import team.stephen.sunshine.service.article.ArticleService;
 import team.stephen.sunshine.service.book.BookService;
 import team.stephen.sunshine.service.common.DtoTransformService;
 import team.stephen.sunshine.service.common.SolrService;
-import team.stephen.sunshine.service.crawler.CrawlerService;
+import team.stephen.sunshine.service.common.CrawlerService;
 
 import java.io.IOException;
 import java.util.HashMap;

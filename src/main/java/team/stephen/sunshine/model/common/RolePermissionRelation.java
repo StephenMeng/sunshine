@@ -1,4 +1,4 @@
-package team.stephen.sunshine.model.permission;
+package team.stephen.sunshine.model.common;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

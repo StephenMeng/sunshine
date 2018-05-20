@@ -10,7 +10,6 @@ import team.stephen.sunshine.service.common.CacheService;
 import team.stephen.sunshine.service.common.DtoTransformService;
 import team.stephen.sunshine.service.user.UserService;
 import team.stephen.sunshine.util.StringUtils;
-import team.stephen.sunshine.service.jedis.JedisService;
 
 @Service
 public class CacheServiceImpl implements CacheService {

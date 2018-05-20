@@ -1,13 +1,14 @@
 package team.stephen.sunshine.exception;
 
 /**
- * Created by stephen on 2018/3/16.
+ * @author stephen
+ * @date 2018/3/16
  */
 
-public class SolrQueryException extends Exception {
+public class WrongClassTypeException extends Exception {
     private String msg;
 
-    public SolrQueryException(String msg) {
+    public WrongClassTypeException(String msg) {
         super(msg);
         setMsg(msg);
     }

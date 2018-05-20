@@ -1,8 +1,8 @@
-package team.stephen.sunshine.service.crawler.impl;
+package team.stephen.sunshine.service.common.impl;
 
 import org.springframework.stereotype.Service;
 import team.stephen.sunshine.model.crawler.Parser;
-import team.stephen.sunshine.service.crawler.CrawlerService;
+import team.stephen.sunshine.service.common.CrawlerService;
 import team.stephen.sunshine.util.HttpUtils;
 
 import java.io.IOException;

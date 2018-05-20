@@ -1,4 +1,4 @@
-package team.stephen.sunshine.service.jedis;
+package team.stephen.sunshine.service.common.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

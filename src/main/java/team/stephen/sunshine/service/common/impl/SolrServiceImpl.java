@@ -9,7 +9,7 @@ import org.apache.solr.common.SolrInputDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import team.stephen.sunshine.dto.condition.ArticleSearchCondition;
-import team.stephen.sunshine.exception.SolrQueryException;
+import team.stephen.sunshine.exception.NullParamException;
 import team.stephen.sunshine.model.article.Article;
 import team.stephen.sunshine.service.common.SearchConditionService;
 import team.stephen.sunshine.service.common.SolrService;
@@ -19,9 +19,7 @@ import team.stephen.sunshine.util.PageUtil;
 import java.io.IOException;
 import java.util.List;
 
-import static team.stephen.sunshine.constant.solr.Field.ARTICLE_CONTENT;
-import static team.stephen.sunshine.constant.solr.Field.ARTICLE_ID;
-import static team.stephen.sunshine.constant.solr.Field.ARTICLE_TAG;
+import static team.stephen.sunshine.constant.solr.Field.*;
 
 @Service
 public class SolrServiceImpl implements SolrService {
@@ -72,11 +70,11 @@ public class SolrServiceImpl implements SolrService {
      * @throws Exception
      */
     @Override
-    public PageInfo<Article> queryArticle(ArticleSearchCondition condition) throws SolrQueryException, IOException, SolrServerException {
+    public PageInfo<Article> queryArticle(ArticleSearchCondition condition) throws IOException, SolrServerException, NullParamException {
         SolrQuery query;
         try {
             query = searchConditionService.articleConditionToSolrQuery(condition);
-        } catch (SolrQueryException e) {
+        } catch (NullParamException e) {
             throw e;
         }
         //获取查询结果

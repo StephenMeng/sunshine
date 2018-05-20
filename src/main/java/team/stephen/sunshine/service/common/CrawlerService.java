@@ -1,4 +1,4 @@
-package team.stephen.sunshine.service.crawler;
+package team.stephen.sunshine.service.common;
 
 
 import team.stephen.sunshine.model.crawler.Parser;

@@ -4,7 +4,7 @@ import org.apache.solr.client.solrj.SolrQuery;
 import org.springframework.stereotype.Service;
 import team.stephen.sunshine.constant.solr.Field;
 import team.stephen.sunshine.dto.condition.ArticleSearchCondition;
-import team.stephen.sunshine.exception.SolrQueryException;
+import team.stephen.sunshine.exception.NullParamException;
 import team.stephen.sunshine.service.common.SearchConditionService;
 import team.stephen.sunshine.util.StringUtils;
 
@@ -14,9 +14,9 @@ import static team.stephen.sunshine.constant.solr.Field.ARTICLE_TAG;
 @Service
 public class SearchConditionServiceImpl implements SearchConditionService {
     @Override
-    public SolrQuery articleConditionToSolrQuery(ArticleSearchCondition articleSearchCondition) throws SolrQueryException {
+    public SolrQuery articleConditionToSolrQuery(ArticleSearchCondition articleSearchCondition) throws NullParamException {
         if (articleSearchCondition == null) {
-            throw new SolrQueryException("articleSearchCondition is null");
+            throw new NullParamException("articleSearchCondition is null");
         }
         SolrQuery query = new SolrQuery();
         StringBuilder sb = parseQ(articleSearchCondition);

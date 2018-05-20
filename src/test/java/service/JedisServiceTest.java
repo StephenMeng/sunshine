@@ -1,26 +1,18 @@
 package service;
 
 
-import com.github.pagehelper.PageInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import sun.rmi.runtime.Log;
 import team.stephen.sunshine.Application;
 import team.stephen.sunshine.constant.JedisConst;
-import team.stephen.sunshine.dto.condition.ArticleSearchCondition;
-import team.stephen.sunshine.model.article.Article;
-import team.stephen.sunshine.service.article.ArticleService;
-import team.stephen.sunshine.service.common.SolrService;
-import team.stephen.sunshine.service.jedis.JedisService;
+import team.stephen.sunshine.service.common.impl.JedisService;
 import team.stephen.sunshine.util.LogRecod;
-import team.stephen.sunshine.util.RandomIDUtil;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)

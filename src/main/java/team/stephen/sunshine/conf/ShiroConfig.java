@@ -13,8 +13,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver;
-import team.stephen.sunshine.model.security.CustomSessionManager;
-import team.stephen.sunshine.model.security.CustomShiroRealm;
+import team.stephen.sunshine.model.common.CustomSessionManager;
+import team.stephen.sunshine.model.common.CustomShiroRealm;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
