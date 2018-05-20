@@ -113,4 +113,9 @@ public class SolrServiceImpl implements SolrService {
             LogRecod.print(tmpLists);
         }
     }
+
+    @Override
+    public void addArticle(Article article) {
+        addDoc(article.getArticleId(), article.getArticleContent(), article.getArticleTag());
+    }
 }

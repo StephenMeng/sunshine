@@ -167,5 +167,6 @@
     <orderEntry type="library" name="Maven: javax.xml.bind:jaxb-api:2.2.3" level="project" />
     <orderEntry type="library" name="Maven: javax.xml.stream:stax-api:1.0-2" level="project" />
     <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
+    <orderEntry type="library" name="Maven: com.hankcs:hanlp:portable-1.2.8" level="project" />
   </component>
 </module>

@@ -1,5 +1,7 @@
 package team.stephen.sunshine.model.article;
 
+import team.stephen.sunshine.util.RandomIDUtil;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -46,6 +48,26 @@ public class Article {
     private Date articleUpdateDate;
     @Column(name = "article_view_pwd")
     private String articleViewPwd;
+
+    public static Article getNewDefaultInstance() {
+        Article article = new Article();
+        article.setArticleTitle("第三篇文档");
+        article.setArticleLinkId(RandomIDUtil.randomID(16));
+        article.setArticleAuthor(1);
+        article.setArticleLink(" ");
+        article.setArticleUpdateDate(new Date());
+        article.setArticleCreateDate(new Date());
+        article.setArticleAbstract("abstract");
+        article.setArticleCommentCount(0);
+        article.setArticleContent("SpringBoot学习笔记（五）：配置redis");
+        article.setArticleHadBeenPublished(false);
+        article.setArticleIsPublished(false);
+        article.setArticleViewCount(0);
+        article.setArticlePutTop(false);
+        article.setArticleTag("stephen");
+        article.setArticleViewPwd("pwd");
+        return article;
+    }
 
     public Long getArticleId() {
         return articleId;

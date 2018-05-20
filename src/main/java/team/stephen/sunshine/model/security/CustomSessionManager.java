@@ -1,4 +1,4 @@
-package team.stephen.sunshine.security;
+package team.stephen.sunshine.model.security;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.web.servlet.ShiroHttpServletRequest;
