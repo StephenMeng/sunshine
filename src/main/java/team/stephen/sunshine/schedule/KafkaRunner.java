@@ -20,7 +20,7 @@ public class KafkaRunner implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        consume(Lists.newArrayList(Topic.EMAIL.getName(), Topic.LOG.getName()));
+//        consume(Lists.newArrayList(Topic.EMAIL.getName(), Topic.LOG.getName()));
     }
 
     private void consume(List<String> topics) {
