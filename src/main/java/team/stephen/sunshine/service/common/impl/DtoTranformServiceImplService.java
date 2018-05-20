@@ -2,7 +2,7 @@ package team.stephen.sunshine.service.common.impl;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.stereotype.Service;
-import team.stephen.sunshine.dto.UserDto;
+import team.stephen.sunshine.dto.user.UserDto;
 import team.stephen.sunshine.model.user.User;
 import team.stephen.sunshine.service.common.DtoTransformService;
 

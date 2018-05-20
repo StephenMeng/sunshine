@@ -8,8 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import team.stephen.sunshine.Application;
-import team.stephen.sunshine.dto.UserDto;
-import team.stephen.sunshine.service.common.CacheService;
 import team.stephen.sunshine.service.common.PermissionService;
 import team.stephen.sunshine.util.LogRecod;
 

@@ -40,8 +40,8 @@ public class LoginController {
 
     @ApiOperation(value = "登录", httpMethod = "POST", response = Response.class)
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "userName", required = true, dataType = "String", paramType = "query"),
-            @ApiImplicitParam(name = "password", required = true, dataType = "String", paramType = "query")})
+            @ApiImplicitParam(name = "userName", required = true, dataType = "String", paramType = "queryArticle"),
+            @ApiImplicitParam(name = "password", required = true, dataType = "String", paramType = "queryArticle")})
     @RequestMapping(value = "login",method = RequestMethod.POST)
     @ResponseBody
     public Response login(@RequestParam(value = "userName") String userName,

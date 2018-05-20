@@ -13,9 +13,9 @@ import java.util.Map;
 public class CrawlerServiceImpl implements CrawlerService {
 
     @Override
-    public List<Object> get(String url, Parser parser) throws IOException {
+    public List get(String url, Parser parser) throws IOException {
         String html = HttpUtils.okrHttpGet(url);
-        return null;
+        return parser.parse(html);
     }
 
     @Override
@@ -25,15 +25,14 @@ public class CrawlerServiceImpl implements CrawlerService {
     }
 
     @Override
-    public List<Object> post(String url, Map<String, String> postBody, Parser parser) throws IOException {
+    public List post(String url, Map<String, String> postBody, Parser parser) throws IOException {
         String html = HttpUtils.okrHttpPost(url, postBody);
-        return null;
+        return parser.parse(html);
     }
 
     @Override
-    public List<Object> post(String url, Map<String, String> header, Map<String, String> postBody, Parser parser) throws IOException {
+    public List post(String url, Map<String, String> header, Map<String, String> postBody, Parser parser) throws IOException {
         String html = HttpUtils.okrHttpPost(url, header, postBody);
-
-        return null;
+        return parser.parse(html);
     }
 }
