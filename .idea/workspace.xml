@@ -7,80 +7,350 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25c4afe5-eed6-45bd-860d-b58b2f8d26cf" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__nz_net_ultraq_thymeleaf_thymeleaf_layout_dialect_1_4_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ognl_ognl_3_0_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_groovy_groovy_2_4_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_thymeleaf_1_5_9_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_thymeleaf_2_1_6_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_thymeleaf_spring4_2_1_6_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_unbescape_unbescape_1_1_0_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/mail/test.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/constant/SessionAttr.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/FileController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/FileUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/MailConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/GloableConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/GloableConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/ShiroConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/ShiroConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/IndexController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/MessageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/dao/article/ArticleDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/dao/article/ArticleDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/dao/book/BookDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/dao/book/BookDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/dao/permission/RolePermissionRelationDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/dao/permission/RolePermissionRelationDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/dao/permission/UserRoleRelationDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/dao/permission/UserRoleRelationDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/dao/user/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/dao/user/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/interceptor/AccessLogInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/interceptor/AccessLogInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/article/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/article/Article.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/common/CustomShiroRealm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/common/CustomShiroRealm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/crawler/impl/CSDNParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/crawler/impl/CSDNParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/schedule/KafkaRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/schedule/KafkaRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/article/impl/ArticleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/article/impl/ArticleServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/MailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/MailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/CacheServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/CacheServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/CrawlerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/CrawlerServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/JedisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/JedisService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/KafkaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/KafkaServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/MailServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/MailServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/SearchConditionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/SearchConditionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/SolrServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/SolrServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/user/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/user/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/BaseDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/BaseDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/CodeUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/CodeUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/DateUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/element/DateUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/DoubleUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/element/DoubleUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/HttpUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/HttpUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/LogRecod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/LogRecod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/MapUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/element/MapUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/PageUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/PageUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/RandomIDUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/RandomIDUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/Response.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/SecurityUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/SecurityUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/StringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/element/StringUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/TimeFormateUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/element/TimeFormateUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/service/ArticleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/service/ArticleServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/service/BookServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/service/BookServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/service/CacheServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/service/CacheServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/service/JedisServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/service/JedisServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/service/MailServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/service/MailServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/service/PermissionServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/service/PermissionServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/service/SolrServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/service/SolrServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sunshine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/sunshine.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/conf/JedisConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/conf/JedisConfiguration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/user/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/user/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/log4j.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/mapper/UserDao.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/mybatis-config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/css/main-9789385b5b7deee2ccbe.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/js/jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/js/main-9789385b5b7deee2ccbe.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/css/layui.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/css/layui.mobile.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/css/modules/code.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/css/modules/laydate/default/laydate.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/css/modules/layer/default/icon-ext.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/css/modules/layer/default/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/css/modules/layer/default/layer.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/css/modules/layer/default/loading-0.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/css/modules/layer/default/loading-1.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/css/modules/layer/default/loading-2.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/font/iconfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/font/iconfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/font/iconfont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/font/iconfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/0.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/1.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/10.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/11.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/12.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/13.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/14.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/15.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/16.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/17.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/18.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/19.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/2.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/20.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/21.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/22.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/23.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/24.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/25.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/26.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/27.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/28.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/29.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/3.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/30.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/31.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/32.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/33.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/34.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/35.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/36.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/37.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/38.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/39.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/4.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/40.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/41.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/42.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/43.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/44.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/45.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/46.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/47.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/48.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/49.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/5.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/50.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/51.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/52.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/53.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/54.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/55.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/56.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/57.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/58.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/59.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/6.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/60.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/61.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/62.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/63.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/64.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/65.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/66.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/67.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/68.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/69.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/7.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/70.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/71.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/8.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/images/face/9.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/lay/modules/carousel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/lay/modules/code.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/lay/modules/element.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/lay/modules/flow.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/lay/modules/form.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/lay/modules/jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/lay/modules/laydate.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/lay/modules/layedit.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/lay/modules/layer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/lay/modules/laypage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/lay/modules/laytpl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/lay/modules/mobile.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/lay/modules/table.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/lay/modules/tree.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/lay/modules/upload.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/lay/modules/util.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/layui.all.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/static/layui/layui.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/Application.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/ServletInitialer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/conf/JedisConfiguration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/conf/ShiroConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/conf/SolrConfiguration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/conf/SwaggerConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/conf/WebAppConfiguration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/constant/JedisConst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/constant/ResultEnum.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/constant/WebConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/controller/BaseController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/controller/IndexController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/controller/LoginController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/controller/UserController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/dao/article/ArticleDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/dao/permission/RolePermissionRelationDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/dao/permission/UserRoleRelationDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/dao/user/UserDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/dto/UserDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/exception/ErrorException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/interceptor/AccessLogInterceptor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/interceptor/LoginInterceptor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/model/article/Article.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/model/permission/RolePermissionRelation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/model/user/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/model/user/UserRoleRelation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/schedule/Jobs.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/security/CustomSessionManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/security/CustomShiroRealm.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/service/article/ArticleService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/service/article/impl/ArticleServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/service/common/CacheService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/service/common/DtoTransformService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/service/common/PermissionService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/service/common/SolrService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/service/common/impl/CacheServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/service/common/impl/DtoTranformServiceImplService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/service/common/impl/PermissionServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/service/common/impl/SolrServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/service/user/UserService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/service/user/impl/UserServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/util/BaseDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/util/CodeUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/util/DateUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/util/DoubleUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/util/HttpUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/util/LogRecod.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/util/MapUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/util/PageUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/util/RandomIDUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/util/Response.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/util/SecurityUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/util/StringUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/util/TimeFormateUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/util/jedis/JedisAdapter$JedisCallBack.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/util/jedis/JedisAdapter$JedisTemplate.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/util/jedis/JedisAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/team/stephen/sunshine/util/typehandler/ListTypeHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/templates/detail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/templates/entity.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/templates/error.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/templates/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/templates/tag.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/classes/tool-box.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/activation-1.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/animal-sniffer-annotations-1.14.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/args4j-2.33.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/byte-buddy-1.7.9.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/checker-compat-qual-2.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/classmate-1.3.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/commons-beanutils-1.9.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/commons-collections-3.2.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/commons-io-2.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/commons-lang3-3.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/commons-math3-3.4.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/commons-pool2-2.4.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/error_prone_annotations-2.1.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/fastjson-1.2.35.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/guava-23.6-jre.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/hibernate-validator-5.3.6.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/httpclient-4.5.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/httpcore-4.4.8.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/httpmime-4.5.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/j2objc-annotations-1.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/jackson-annotations-2.8.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/jackson-core-2.8.10.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/jackson-databind-2.8.10.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/javassist-3.21.0-GA.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/jaxb-api-2.2.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/jboss-logging-3.3.1.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/jcl-over-slf4j-1.7.25.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/jedis-2.9.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/jsoup-1.10.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/jsqlparser-1.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/jsr305-1.3.9.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/jul-to-slf4j-1.7.25.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/lettuce-core-5.0.4.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/log4j-1.2.17.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/log4j-over-slf4j-1.7.25.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/logback-classic-1.1.11.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/logback-core-1.1.11.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/mapper-3.4.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/mapper-spring-boot-autoconfigure-1.1.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/mapper-spring-boot-starter-1.1.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/mapstruct-1.2.0.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/mybatis-3.4.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/mybatis-spring-1.3.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/mybatis-spring-boot-autoconfigure-1.1.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/mybatis-spring-boot-starter-1.1.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/mysql-connector-java-6.0.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/netty-buffer-4.1.24.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/netty-codec-4.1.24.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/netty-common-4.1.24.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/netty-handler-4.1.24.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/netty-resolver-4.1.24.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/netty-transport-4.1.24.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/noggit-0.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/okhttp-3.6.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/okio-1.11.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/pagehelper-5.0.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/pagehelper-spring-boot-autoconfigure-1.1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/pagehelper-spring-boot-starter-1.1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/persistence-api-1.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/reactive-streams-1.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/reactor-core-2.0.8.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/reflections-0.9.11.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/shiro-cache-1.4.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/shiro-config-core-1.4.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/shiro-config-ogdl-1.4.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/shiro-core-1.4.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/shiro-crypto-cipher-1.4.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/shiro-crypto-core-1.4.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/shiro-crypto-hash-1.4.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/shiro-event-1.4.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/shiro-lang-1.4.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/shiro-redis-2.4.2-RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/shiro-spring-1.4.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/shiro-web-1.4.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/slf4j-api-1.7.25.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/snakeyaml-1.17.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/solr-solrj-6.6.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/spring-aop-4.3.13.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/spring-beans-4.3.13.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/spring-boot-1.5.9.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/spring-boot-autoconfigure-1.5.9.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/spring-boot-starter-1.5.9.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/spring-boot-starter-data-redis-2.0.2.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/spring-boot-starter-jdbc-1.5.9.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/spring-boot-starter-logging-1.5.9.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/spring-boot-starter-tomcat-1.5.9.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/spring-boot-starter-web-1.5.9.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/spring-context-4.3.13.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/spring-context-support-4.3.13.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/spring-core-4.3.13.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/spring-data-commons-1.13.9.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/spring-data-keyvalue-1.2.9.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/spring-data-redis-1.8.9.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/spring-expression-4.3.13.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/spring-jdbc-4.3.13.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/spring-oxm-4.3.13.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/spring-plugin-core-1.2.0.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/spring-plugin-metadata-1.2.0.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/spring-tx-4.3.13.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/spring-web-4.3.13.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/spring-webmvc-4.3.13.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/springfox-core-2.8.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/springfox-schema-2.8.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/springfox-spi-2.8.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/springfox-spring-web-2.8.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/springfox-swagger-common-2.8.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/springfox-swagger-ui-2.8.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/springfox-swagger2-2.8.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/stax-api-1.0-2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/stax2-api-3.1.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/swagger-annotations-1.5.14.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/swagger-models-1.5.14.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/tomcat-annotations-api-8.5.23.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/tomcat-embed-core-8.5.23.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/tomcat-embed-el-8.5.23.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/tomcat-embed-websocket-8.5.23.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/tomcat-jdbc-8.5.23.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/tomcat-juli-8.5.23.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/validation-api-1.1.0.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/woodstox-core-asl-4.4.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/lib/zookeeper-3.4.10.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WEB-INF/web.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/conf/ShiroConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/conf/ShiroConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/conf/SolrConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/conf/SolrConfiguration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/conf/WebAppConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/conf/WebAppConfiguration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/controller/BaseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/controller/BaseController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/controller/IndexController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/controller/IndexController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/controller/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/dao/article/ArticleDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/dao/article/ArticleDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/dao/permission/RolePermissionRelationDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/dao/permission/RolePermissionRelationDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/dao/permission/UserRoleRelationDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/dao/permission/UserRoleRelationDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/dao/user/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/dao/user/UserDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/interceptor/AccessLogInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/interceptor/AccessLogInterceptor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/interceptor/AccessLogInterceptor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/interceptor/LoginInterceptor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/model/article/Article.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/model/article/Article.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/schedule/Jobs.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/article/impl/ArticleServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/article/impl/ArticleServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/CacheService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/CacheService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/DtoTransformService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/DtoTransformService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/SolrService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/SolrService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/CacheServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/CacheServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/DtoTranformServiceImplService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/DtoTranformServiceImplService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/PermissionServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/PermissionServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/SolrServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/SolrServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/BaseDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/HttpUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/LogRecod.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/SecurityUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/SecurityUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/user/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/user/impl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/CodeUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/DateUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/DoubleUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/MapUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/PageUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/RandomIDUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/Response.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/SecurityUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/StringUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/TimeFormateUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/sunshine.war" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/kafka/CacheServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/kafka/CacheServiceTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/service/PermissionServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/service/PermissionServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/service/ArticleServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/service/ArticleServiceTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/service/SolrServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/service/SolrServiceTest.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -117,41 +387,108 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GloableConfig.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/GloableConfig.java">
+      <file leaf-file-name="FileUtils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/FileUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="6" column="48" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="48" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JedisConfiguration.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/JedisConfiguration.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="18" column="49" lean-forward="true" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="KafkaConfig.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/KafkaConfig.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ShiroConfig.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/ShiroConfig.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="71" column="40" selection-start-line="71" selection-start-column="40" selection-end-line="71" selection-end-column="40" />
+            <state relative-caret-position="484">
+              <caret line="29" column="39" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/FileController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="528">
+              <caret line="40" column="24" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/UserController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="132">
+              <caret line="29" column="41" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="41" />
+              <folding>
+                <element signature="e#1040#1041#0" expanded="true" />
+                <element signature="e#1090#1091#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessageController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/MessageController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1188">
+              <caret line="68" column="70" selection-start-line="68" selection-start-column="70" selection-end-line="68" selection-end-column="70" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IndexController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/IndexController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="132">
+              <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/LoginController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1386">
+              <caret line="88" selection-start-line="88" selection-end-line="88" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserDto.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/user/UserDto.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="13" selection-start-line="13" selection-end-line="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ShiroConfig.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/ShiroConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="594">
+              <caret line="47" column="59" selection-start-line="47" selection-start-column="59" selection-end-line="47" selection-end-column="59" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/BaseController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="15" column="41" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SessionAttr.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/constant/SessionAttr.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="66">
+              <caret line="3" column="47" selection-start-line="3" selection-start-column="47" selection-end-line="3" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -161,10 +498,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -188,18 +525,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/jedis/JedisService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/JedisConfiguration.java" />
-        <option value="$PROJECT_DIR$/src/test/java/service/JedisServiceTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/message/KafkaService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/message/impl/KafkaServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/CrawlerService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/CrawlerServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/JedisService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/KafkaConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/Init.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/InitConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/Jobs.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/schedule/Jobs.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/common/RolePermissionRelation.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/common/CustomShiroRealm.java" />
@@ -225,7 +550,6 @@
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/schedule/KafkaRunner.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/MailUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/GloableConfig.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/mail/test.html" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/MailTemplateUtils.java" />
@@ -238,7 +562,20 @@
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/element/TimeFormateUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/PageUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/RandomIDUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/WebAppConfiguration.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/IOServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/IOService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/GloableConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/IndexController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/FileController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/FileUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/constant/SessionAttr.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/BaseController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/LoginController.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/ShiroConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/user/UserDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/UserController.java" />
       </list>
     </option>
   </component>
@@ -311,8 +648,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -362,57 +697,69 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="sunshine" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="constant" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sunshine" type="b2602c69:ProjectViewProjectNode" />
               <item name="sunshine" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sunshine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sunshine" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sunshine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sunshine" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="mail" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sunshine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sunshine" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sunshine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sunshine" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="sunshine" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sunshine" type="b2602c69:ProjectViewProjectNode" />
               <item name="sunshine" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="sunshine" type="462c0819:PsiDirectoryNode" />
               <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sunshine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sunshine" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="sunshine" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sunshine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sunshine" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="sunshine" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="dto" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sunshine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sunshine" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="sunshine" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="dto" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sunshine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sunshine" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -736,7 +1083,8 @@
       <workItem from="1526750768196" duration="1058000" />
       <workItem from="1526789435659" duration="17636000" />
       <workItem from="1526878883688" duration="2578000" />
-      <workItem from="1526881595443" duration="313000" />
+      <workItem from="1526881595443" duration="5105000" />
+      <workItem from="1526897464046" duration="183000" />
     </task>
     <task id="LOCAL-00001" summary="权限表">
       <created>1526715745170</created>
@@ -787,7 +1135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1526839982375</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="调整项目包结构">
+      <created>1526882094790</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1526882094790</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -823,7 +1178,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63341000" />
+    <option name="totallyTimeSpent" value="68316000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -848,8 +1203,9 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3997195" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3997195" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.32959327" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="bottom" id="Java Enterprise" order="7" />
@@ -858,19 +1214,18 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.47685835" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18830334" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19087404" />
       <window_info anchor="right" id="Bean Validation" order="3" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.32959327" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="right" id="Coverage" order="4" side_tool="true" weight="0.32969153" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32960895" />
+      <window_info anchor="right" id="Coverage" order="4" side_tool="true" weight="0.32969153" />
     </layout>
     <layout-to-restore>
       <window_info id="Designer" order="3" />
@@ -920,7 +1275,8 @@
     <MESSAGE value="article solr查询服务" />
     <MESSAGE value="消息队列 kafka支持" />
     <MESSAGE value="发送邮件 todo" />
-    <option name="LAST_COMMIT_MESSAGE" value="发送邮件 todo" />
+    <MESSAGE value="调整项目包结构" />
+    <option name="LAST_COMMIT_MESSAGE" value="调整项目包结构" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -928,90 +1284,10 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/KafkaService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/user/UserDto.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/common/SubHistoryLog.java" />
-    <entry file="file://$PROJECT_DIR$/src/test/java/service/KafkaServiceTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/exception/ErrorException.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/SearchConditionService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="58" selection-start-line="4" selection-start-column="58" selection-end-line="4" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/SearchConditionServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="20" column="42" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/SolrServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="77" column="19" selection-start-line="77" selection-start-column="19" selection-end-line="77" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/SolrService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/exception/SolrQueryException.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/exception/WrongClassTypeException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/exception/NullParamException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/common/HistoryLog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.3.13.RELEASE/spring-beans-4.3.13.RELEASE.jar!/org/springframework/beans/factory/support/BeanDefinitionResource.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="34" column="23" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.3.13.RELEASE/spring-core-4.3.13.RELEASE.jar!/org/springframework/core/io/InputStreamSource.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="11" column="25" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/common/Email.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="611">
-          <caret line="69" column="37" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
+        <state relative-caret-position="220">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
     </entry>
@@ -1093,17 +1369,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/schedule/KafkaRunner.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/schedule/KafkaRunner.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="814">
           <caret line="54" column="39" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/mail/test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
@@ -1111,13 +1380,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="616">
           <caret line="41" column="36" selection-start-line="41" selection-start-column="36" selection-end-line="41" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="902">
-          <caret line="41" column="45" selection-start-line="41" selection-start-column="45" selection-end-line="41" selection-end-column="45" />
         </state>
       </provider>
     </entry>
@@ -1133,9 +1395,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
           <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1143,13 +1402,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/MessageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="68" column="70" selection-start-line="68" selection-start-column="70" selection-end-line="68" selection-end-column="70" />
         </state>
       </provider>
     </entry>
@@ -1223,13 +1475,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/GloableConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="48" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/JedisConfiguration.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="223">
@@ -1237,13 +1482,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/MailConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="38" lean-forward="true" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/MailConfig.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/KafkaConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
@@ -1251,12 +1490,139 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/ShiroConfig.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/SolrConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/SwaggerConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/WebAppConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="15" column="32" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="423">
-          <caret line="71" column="40" selection-start-line="71" selection-start-column="40" selection-end-line="71" selection-end-column="40" />
+          <caret line="41" column="45" selection-start-line="41" selection-start-column="45" selection-end-line="41" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/IOService.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/IOServiceImpl.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/mail/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="37" lean-forward="true" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/GloableConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="49" lean-forward="true" selection-start-line="6" selection-start-column="49" selection-end-line="6" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/FileUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="29" column="39" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/constant/SessionAttr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="47" selection-start-line="3" selection-start-column="47" selection-end-line="3" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/IndexController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/MessageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1188">
+          <caret line="68" column="70" selection-start-line="68" selection-start-column="70" selection-end-line="68" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/BaseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="15" column="41" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/FileController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="40" column="24" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/conf/ShiroConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="47" column="59" selection-start-line="47" selection-start-column="59" selection-end-line="47" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1386">
+          <caret line="88" selection-start-line="88" selection-end-line="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/user/UserDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="29" column="41" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="41" />
+          <folding>
+            <element signature="e#1040#1041#0" expanded="true" />
+            <element signature="e#1090#1091#0" expanded="true" />
           </folding>
         </state>
       </provider>

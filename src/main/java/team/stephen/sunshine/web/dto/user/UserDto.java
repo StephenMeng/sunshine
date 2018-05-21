@@ -3,8 +3,15 @@ package team.stephen.sunshine.web.dto.user;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.io.Serializable;
+
+/**
+ * @author stephen
+ */
 @ApiModel(description = "用户实体类")
-public class UserDto {
+public class UserDto implements Serializable {
+    private static final long serialVersionUID = 1216491852961950902L;
+
     @ApiModelProperty(value = "用戶ID")
     private Integer userId;
     @ApiModelProperty(value = "用户学号")
