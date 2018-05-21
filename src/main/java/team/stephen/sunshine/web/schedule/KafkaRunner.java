@@ -31,13 +31,13 @@ public class KafkaRunner implements CommandLineRunner {
     private MailService mailService;
 
     private Executor emailExecutor;
-    private static final int corePoolSize = 10;
-    private static final int maximumPoolSize = 20;
-    private static final int keeAliveTime = 30;
+    private static final int CORE_POOL_SIZE = 10;
+    private static final int MAXIMUM_POOL_SIZE = 20;
+    private static final int KEE_ALIVE_TIME = 30;
 
     @Override
     public void run(String... strings) {
-        emailExecutor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keeAliveTime,
+        emailExecutor = new ThreadPoolExecutor(CORE_POOL_SIZE, MAXIMUM_POOL_SIZE, KEE_ALIVE_TIME,
                 TimeUnit.MINUTES, new SynchronousQueue<>(), new DefaultThreadFactory(Topic.EMAIL.getName()));
         consume(Lists.newArrayList(Topic.EMAIL.getName(), Topic.LOG.getName()));
     }

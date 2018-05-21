@@ -1,7 +1,6 @@
 package team.stephen.sunshine.controller;
 
 import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import team.stephen.sunshine.util.common.FileUtils;
-import team.stephen.sunshine.util.common.LogRecod;
 import team.stephen.sunshine.util.common.Response;
 
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +16,10 @@ import java.io.IOException;
 
 import static team.stephen.sunshine.conf.GloableConfig.AVATAR_URI;
 
+/**
+ * @author stephen
+ * @date 2018/5/21
+ */
 @RestController
 @RequestMapping("file")
 public class FileController {
