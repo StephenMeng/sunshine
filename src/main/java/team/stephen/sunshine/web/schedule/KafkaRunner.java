@@ -39,7 +39,7 @@ public class KafkaRunner implements CommandLineRunner {
     public void run(String... strings) {
         emailExecutor = new ThreadPoolExecutor(CORE_POOL_SIZE, MAXIMUM_POOL_SIZE, KEE_ALIVE_TIME,
                 TimeUnit.MINUTES, new SynchronousQueue<>(), new DefaultThreadFactory(Topic.EMAIL.getName()));
-        consume(Lists.newArrayList(Topic.EMAIL.getName(), Topic.LOG.getName()));
+//        consume(Lists.newArrayList(Topic.EMAIL.getName(), Topic.LOG.getName()));
     }
 
     private void consume(List<String> topics) {
