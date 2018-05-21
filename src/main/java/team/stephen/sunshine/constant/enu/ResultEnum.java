@@ -1,6 +1,8 @@
 package team.stephen.sunshine.constant.enu;
 
 /**
+ * Response 返回参数
+ *
  * @author stephen
  * @date 2018/5/21
  */
