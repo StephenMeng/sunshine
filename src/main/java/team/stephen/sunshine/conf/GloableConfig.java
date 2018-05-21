@@ -11,4 +11,5 @@ public class GloableConfig {
     public static final String REDIS_URL = "localhost";
     public static final Integer REDIS_PORT = 6379;
 
+    public static final String AVATAR_URI = "C:\\Dev\\resource\\avatar";
 }

@@ -1,19 +1,22 @@
 package team.stephen.sunshine.controller;
 
 import io.swagger.annotations.ApiOperation;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import team.stephen.sunshine.dto.user.UserDto;
 import team.stephen.sunshine.model.user.User;
 import team.stephen.sunshine.service.common.DtoTransformService;
 import team.stephen.sunshine.service.user.UserService;
-import team.stephen.sunshine.util.Response;
+import team.stephen.sunshine.util.common.Response;
+import team.stephen.sunshine.web.dto.user.UserDto;
 
+/**
+ * @author stephen
+ * @date 2018/5/21
+ */
 @RestController
 @RequestMapping("user")
 public class UserController extends BaseController {
@@ -24,8 +27,7 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "info", method = RequestMethod.GET)
     public Response info() {
-        org.apache.shiro.subject.Subject currentUser = SecurityUtils.getSubject();
-        return Response.success(currentUser.hasRole("admin"));
+        return Response.success(getUser());
     }
 
     @RequestMapping(value = "ok", method = RequestMethod.GET)

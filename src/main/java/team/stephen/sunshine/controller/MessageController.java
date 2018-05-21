@@ -10,7 +10,11 @@ import team.stephen.sunshine.exception.WrongClassTypeException;
 import team.stephen.sunshine.model.common.Email;
 import team.stephen.sunshine.model.common.HistoryLog;
 import team.stephen.sunshine.service.common.KafkaService;
-import team.stephen.sunshine.util.Response;
+import team.stephen.sunshine.service.common.MailService;
+import team.stephen.sunshine.util.common.Response;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Stephen
@@ -20,6 +24,8 @@ import team.stephen.sunshine.util.Response;
 public class MessageController extends BaseController {
     @Autowired
     private KafkaService kafkaService;
+    @Autowired
+    private MailService mailService;
 
     @RequestMapping(value = "produce", method = RequestMethod.GET)
     public Response produce() {
@@ -55,7 +61,9 @@ public class MessageController extends BaseController {
             email.setToAddress(address);
             email.setCcAddress(cc);
             email.setSubject("测试： kafka  html邮件");
-            email.setContent(sb.toString());
+            Map<String, Object> content = new HashMap<>();
+            content.put("name", email.getToAddress());
+            email.setContent(mailService.template("mail/test", content));
             try {
                 kafkaService.produce(Topic.EMAIL, email);
             } catch (WrongClassTypeException | NullParamException e) {

@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import team.stephen.sunshine.Application;
-import team.stephen.sunshine.dto.book.BookDto;
+import team.stephen.sunshine.web.dto.book.BookDto;
 import team.stephen.sunshine.model.article.Article;
 import team.stephen.sunshine.model.book.Book;
 import team.stephen.sunshine.model.crawler.impl.CSDNParser;

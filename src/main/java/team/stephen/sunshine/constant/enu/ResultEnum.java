@@ -1,7 +1,22 @@
 package team.stephen.sunshine.constant.enu;
 
+/**
+ * Response 返回参数
+ *
+ * @author stephen
+ * @date 2018/5/21
+ */
+
 public enum ResultEnum {
-    PARAMETER_WRONG(400, "参数错误", "Bad Parameter");
+    /**
+     * 参数错误
+     */
+    PARAMETER_WRONG(400, "参数错误", "Bad Parameter"),
+    /**
+     * 缺少访问权限
+     */
+    AUTHORIZE_WRONG(500, "无访问权限", "Request Denied");
+
     private Integer code;
     private String msgCn;
     private String msgEn;

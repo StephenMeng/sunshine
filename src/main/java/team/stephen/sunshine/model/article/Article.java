@@ -1,7 +1,7 @@
 package team.stephen.sunshine.model.article;
 
 import org.apache.solr.client.solrj.beans.Field;
-import team.stephen.sunshine.util.RandomIDUtil;
+import team.stephen.sunshine.util.common.RandomIDUtil;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

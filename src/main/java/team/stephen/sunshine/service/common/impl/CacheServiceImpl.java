@@ -4,12 +4,12 @@ import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import team.stephen.sunshine.constant.JedisConst;
-import team.stephen.sunshine.dto.user.UserDto;
+import team.stephen.sunshine.web.dto.user.UserDto;
 import team.stephen.sunshine.model.user.User;
 import team.stephen.sunshine.service.common.CacheService;
 import team.stephen.sunshine.service.common.DtoTransformService;
 import team.stephen.sunshine.service.user.UserService;
-import team.stephen.sunshine.util.StringUtils;
+import team.stephen.sunshine.util.element.StringUtils;
 
 @Service
 public class CacheServiceImpl implements CacheService {

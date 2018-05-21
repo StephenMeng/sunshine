@@ -10,7 +10,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import team.stephen.sunshine.Application;
 import team.stephen.sunshine.constant.JedisConst;
 import team.stephen.sunshine.service.common.impl.JedisService;
-import team.stephen.sunshine.util.LogRecod;
+import team.stephen.sunshine.util.common.LogRecod;
 
 import java.util.ArrayList;
 import java.util.List;

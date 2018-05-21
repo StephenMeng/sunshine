@@ -1,15 +1,13 @@
 package team.stephen.sunshine.model.crawler.impl;
 
 import com.google.common.base.Joiner;
-import com.google.common.collect.Lists;
 import com.hankcs.hanlp.HanLP;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import team.stephen.sunshine.model.article.Article;
 import team.stephen.sunshine.model.crawler.Parser;
-import team.stephen.sunshine.util.LogRecod;
+import team.stephen.sunshine.util.common.LogRecod;
 
 import java.util.ArrayList;
 import java.util.List;

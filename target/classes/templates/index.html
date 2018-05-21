@@ -1,11 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-    <meta charset="utf-8">
-    <title>任务列表</title>
-    <link href="../css/main-9789385b5b7deee2ccbe.css" rel="stylesheet"></head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+</head>
 <body>
-<div id='root'>
-</div>
-<script type="text/javascript" src="../js/main-9789385b5b7deee2ccbe.js"></script></body>
+<form action="http://localhost:8080/file/update" method="POST" enctype="multipart/form-data">
+    <p>单文件上传：</p><br/>
+    <input type="file" name="file1"/>
+    <input type="submit" value = "上传"/>
+</form>
+<form method="POST" enctype="multipart/form-data"
+      action="http://localhost:8080/testUploadFiles">
+    <p>多文件上传：</p>
+    <p>文件1：<input type="file" name="file" /></p>
+    <p>文件2：<input type="file" name="file" /></p>
+    <p><input type="submit" value="上传" /></p>
+</form>
+<a href="http://localhost:8080/testDownload">下载</a>
+</body>
 </html>

@@ -8,14 +8,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import team.stephen.sunshine.Application;
-import team.stephen.sunshine.constant.JedisConst;
+import team.stephen.sunshine.exception.NullParamException;
 import team.stephen.sunshine.model.common.Email;
 import team.stephen.sunshine.service.common.MailService;
-import team.stephen.sunshine.service.common.impl.JedisService;
-import team.stephen.sunshine.util.LogRecod;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.mail.MessagingException;
+import java.util.HashMap;
+import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
@@ -38,8 +37,14 @@ public class MailServiceTest {
         email.setToAddress(address);
         email.setCcAddress(cc);
         email.setSubject("测试：html邮件");
-        email.setContent(sb.toString());
-        mailService.sendMail(email);
+        Map<String, Object> content = new HashMap<>();
+        content.put("name", email.getToAddress());
+        email.setContent(mailService.template("test", content));
+        try {
+            mailService.sendMail(email);
+        } catch (NullParamException | MessagingException e) {
+            e.printStackTrace();
+        }
     }
 
 }

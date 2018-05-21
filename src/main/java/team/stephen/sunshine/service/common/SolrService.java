@@ -2,7 +2,7 @@ package team.stephen.sunshine.service.common;
 
 import com.github.pagehelper.PageInfo;
 import org.apache.solr.client.solrj.SolrServerException;
-import team.stephen.sunshine.dto.condition.ArticleSearchCondition;
+import team.stephen.sunshine.web.dto.condition.ArticleSearchCondition;
 import team.stephen.sunshine.exception.NullParamException;
 import team.stephen.sunshine.model.article.Article;
 

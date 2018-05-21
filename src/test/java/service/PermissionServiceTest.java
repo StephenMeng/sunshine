@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import team.stephen.sunshine.Application;
 import team.stephen.sunshine.service.common.PermissionService;
-import team.stephen.sunshine.util.LogRecod;
+import team.stephen.sunshine.util.common.LogRecod;
 
 import java.util.List;
 

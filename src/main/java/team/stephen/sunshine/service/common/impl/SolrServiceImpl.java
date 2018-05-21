@@ -8,13 +8,13 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrInputDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import team.stephen.sunshine.dto.condition.ArticleSearchCondition;
+import team.stephen.sunshine.web.dto.condition.ArticleSearchCondition;
 import team.stephen.sunshine.exception.NullParamException;
 import team.stephen.sunshine.model.article.Article;
 import team.stephen.sunshine.service.common.SearchConditionService;
 import team.stephen.sunshine.service.common.SolrService;
-import team.stephen.sunshine.util.LogRecod;
-import team.stephen.sunshine.util.PageUtil;
+import team.stephen.sunshine.util.common.LogRecod;
+import team.stephen.sunshine.util.common.PageUtil;
 
 import java.io.IOException;
 import java.util.List;
