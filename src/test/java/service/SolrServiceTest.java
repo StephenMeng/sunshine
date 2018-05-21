@@ -1,7 +1,6 @@
 package service;
 
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,16 +9,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import team.stephen.sunshine.Application;
-import team.stephen.sunshine.constant.solr.Field;
-import team.stephen.sunshine.dto.condition.ArticleSearchCondition;
+import team.stephen.sunshine.web.dto.condition.ArticleSearchCondition;
 import team.stephen.sunshine.model.article.Article;
 import team.stephen.sunshine.service.article.ArticleService;
 import team.stephen.sunshine.service.common.SolrService;
-import team.stephen.sunshine.util.LogRecod;
-import team.stephen.sunshine.util.RandomIDUtil;
+import team.stephen.sunshine.util.common.LogRecod;
+import team.stephen.sunshine.util.common.RandomIDUtil;
 
 import java.util.Date;
-import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)

@@ -2,7 +2,7 @@ package team.stephen.sunshine.model.crawler.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import team.stephen.sunshine.dto.book.BookDto;
+import team.stephen.sunshine.web.dto.book.BookDto;
 import team.stephen.sunshine.model.crawler.Parser;
 
 import java.util.List;

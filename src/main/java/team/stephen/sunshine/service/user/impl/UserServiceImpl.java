@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import team.stephen.sunshine.dao.user.UserDao;
 import team.stephen.sunshine.model.user.User;
 import team.stephen.sunshine.service.user.UserService;
-import team.stephen.sunshine.util.StringUtils;
+import team.stephen.sunshine.util.element.StringUtils;
 
 @Service
 public class UserServiceImpl implements UserService {

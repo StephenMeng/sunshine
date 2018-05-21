@@ -8,9 +8,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import team.stephen.sunshine.Application;
-import team.stephen.sunshine.dto.user.UserDto;
+import team.stephen.sunshine.web.dto.user.UserDto;
 import team.stephen.sunshine.service.common.CacheService;
-import team.stephen.sunshine.util.LogRecod;
+import team.stephen.sunshine.util.common.LogRecod;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)

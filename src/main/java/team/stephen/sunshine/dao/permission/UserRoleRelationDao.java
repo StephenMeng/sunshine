@@ -3,7 +3,7 @@ package team.stephen.sunshine.dao.permission;
 
 import org.apache.ibatis.annotations.Mapper;
 import team.stephen.sunshine.model.user.UserRoleRelation;
-import team.stephen.sunshine.util.BaseDao;
+import team.stephen.sunshine.util.common.BaseDao;
 
 /**
  * 用户和用户角色关系dao

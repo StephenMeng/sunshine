@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import team.stephen.sunshine.model.user.User;
 import team.stephen.sunshine.service.common.PermissionService;
 import team.stephen.sunshine.service.user.UserService;
-import team.stephen.sunshine.util.LogRecod;
+import team.stephen.sunshine.util.common.LogRecod;
 
 import java.util.List;
 

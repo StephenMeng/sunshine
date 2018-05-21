@@ -10,7 +10,7 @@ import team.stephen.sunshine.constant.enu.Topic;
 import team.stephen.sunshine.exception.NullParamException;
 import team.stephen.sunshine.exception.WrongClassTypeException;
 import team.stephen.sunshine.service.common.KafkaService;
-import team.stephen.sunshine.util.LogRecod;
+import team.stephen.sunshine.util.common.LogRecod;
 
 /**
  * @author Stephen

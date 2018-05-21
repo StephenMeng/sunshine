@@ -3,10 +3,10 @@ package team.stephen.sunshine.service.common.impl;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.springframework.stereotype.Service;
 import team.stephen.sunshine.constant.solr.Field;
-import team.stephen.sunshine.dto.condition.ArticleSearchCondition;
+import team.stephen.sunshine.web.dto.condition.ArticleSearchCondition;
 import team.stephen.sunshine.exception.NullParamException;
 import team.stephen.sunshine.service.common.SearchConditionService;
-import team.stephen.sunshine.util.StringUtils;
+import team.stephen.sunshine.util.element.StringUtils;
 
 import static team.stephen.sunshine.constant.solr.Field.ARTICLE_CONTENT;
 import static team.stephen.sunshine.constant.solr.Field.ARTICLE_TAG;

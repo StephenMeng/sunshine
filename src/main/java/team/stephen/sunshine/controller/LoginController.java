@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import springfox.documentation.annotations.ApiIgnore;
 import team.stephen.sunshine.service.user.UserService;
-import team.stephen.sunshine.util.LogRecod;
-import team.stephen.sunshine.util.Response;
+import team.stephen.sunshine.util.common.LogRecod;
+import team.stephen.sunshine.util.common.Response;
 
 import javax.servlet.http.HttpServletRequest;
 

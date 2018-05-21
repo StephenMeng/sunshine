@@ -70,6 +70,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
         <!--util-->
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -164,6 +168,7 @@
             <artifactId>kafka-clients</artifactId>
             <version>1.1.0</version>
         </dependency>
+
     </dependencies>
     <build>
         <plugins>

@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import team.stephen.sunshine.dto.user.UserDto;
+import team.stephen.sunshine.web.dto.user.UserDto;
 import team.stephen.sunshine.model.user.User;
 import team.stephen.sunshine.service.common.DtoTransformService;
 import team.stephen.sunshine.service.user.UserService;
-import team.stephen.sunshine.util.Response;
+import team.stephen.sunshine.util.common.Response;
 
 @RestController
 @RequestMapping("user")

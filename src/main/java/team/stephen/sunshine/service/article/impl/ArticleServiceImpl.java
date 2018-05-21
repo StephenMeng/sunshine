@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import team.stephen.sunshine.dao.article.ArticleDao;
 import team.stephen.sunshine.model.article.Article;
 import team.stephen.sunshine.service.article.ArticleService;
-import team.stephen.sunshine.util.StringUtils;
+import team.stephen.sunshine.util.element.StringUtils;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {

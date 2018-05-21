@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import team.stephen.sunshine.interceptor.AccessLogInterceptor;
+import team.stephen.sunshine.web.interceptor.AccessLogInterceptor;
 
 /**
  * Created by stephen on 2017/7/15.

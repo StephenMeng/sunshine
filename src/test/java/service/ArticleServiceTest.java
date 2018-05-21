@@ -10,7 +10,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import team.stephen.sunshine.Application;
 import team.stephen.sunshine.model.article.Article;
 import team.stephen.sunshine.service.article.ArticleService;
-import team.stephen.sunshine.util.RandomIDUtil;
+import team.stephen.sunshine.util.common.RandomIDUtil;
 
 import java.util.Date;
 
