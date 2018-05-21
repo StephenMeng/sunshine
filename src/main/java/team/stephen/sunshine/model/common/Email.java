@@ -1,42 +1,121 @@
 package team.stephen.sunshine.model.common;
 
-import org.springframework.mail.SimpleMailMessage;
+import java.io.InputStream;
 
 public class Email {
 
     /**
-     * @FieldName fromAddress 邮件发送者的地址
+     * fromAddress 邮件发送者的地址
      */
     private String fromAddress;
 
     /**
-     * @FieldName toAddress 邮件接收者的地址
+     * toAddress 邮件接收者的地址
      */
     private String toAddress;
 
     /**
-     * @FieldName ccAddress 抄送地址
+     * ccAddress 抄送地址
      */
-    private String ccAddress;
+    private String[] ccAddress;
 
     /**
-     * @FieldName scAddress 密送地址
+     * scAddress 密送地址
      */
     private String scAddress;
 
 
     /**
-     * @FieldName subject 邮件主题
+     * subject 邮件主题
      */
     private String subject;
 
     /**
-     * @FieldName content 邮件的文本内容
+     * content 邮件的文本内容
      */
     private String content;
 
     /**
-     * @FieldName attachFileNames 邮件附件的文件名
+     * attachFileNames 邮件附件的文件名
      */
     private String[] attachFileNames;
+
+    /**
+     * 附件的inputStream
+     */
+    private InputStream[] attachFileInputStream;
+
+    private Boolean isHtml;
+
+    public String getFromAddress() {
+        return fromAddress;
+    }
+
+    public void setFromAddress(String fromAddress) {
+        this.fromAddress = fromAddress;
+    }
+
+    public String getToAddress() {
+        return toAddress;
+    }
+
+    public void setToAddress(String toAddress) {
+        this.toAddress = toAddress;
+    }
+
+    public String[] getCcAddress() {
+        return ccAddress;
+    }
+
+    public void setCcAddress(String[] ccAddress) {
+        this.ccAddress = ccAddress;
+    }
+
+    public String getScAddress() {
+        return scAddress;
+    }
+
+    public void setScAddress(String scAddress) {
+        this.scAddress = scAddress;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String[] getAttachFileNames() {
+        return attachFileNames;
+    }
+
+    public void setAttachFileNames(String[] attachFileNames) {
+        this.attachFileNames = attachFileNames;
+    }
+
+    public InputStream[] getAttachFileInputStream() {
+        return attachFileInputStream;
+    }
+
+    public void setAttachFileInputStream(InputStream[] attachFileInputStream) {
+        this.attachFileInputStream = attachFileInputStream;
+    }
+
+    public Boolean getHtml() {
+        return isHtml;
+    }
+
+    public void setHtml(Boolean html) {
+        isHtml = html;
+    }
 }

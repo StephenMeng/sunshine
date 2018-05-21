@@ -19,8 +19,8 @@ import team.stephen.sunshine.model.common.CustomShiroRealm;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static team.stephen.sunshine.conf.HostConfig.REDIS_PORT;
-import static team.stephen.sunshine.conf.HostConfig.REDIS_URL;
+import static team.stephen.sunshine.conf.GloableConfig.REDIS_PORT;
+import static team.stephen.sunshine.conf.GloableConfig.REDIS_URL;
 
 
 /**

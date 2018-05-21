@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 public class SolrConfiguration {
     @Bean
     public HttpSolrClient httpSolrClient() {
-        return new HttpSolrClient.Builder(HostConfig.SOLR_ARTICLE_URL)
+        return new HttpSolrClient.Builder(GloableConfig.SOLR_ARTICLE_URL)
                 .build();
     }
 }

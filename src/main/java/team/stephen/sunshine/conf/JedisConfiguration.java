@@ -7,9 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
-import static team.stephen.sunshine.conf.HostConfig.REDIS_PORT;
-import static team.stephen.sunshine.conf.HostConfig.REDIS_URL;
-
 /**
  * Created by stephen on 2017/7/15.
  */

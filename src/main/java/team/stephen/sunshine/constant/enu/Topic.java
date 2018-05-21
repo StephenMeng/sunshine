@@ -1,9 +1,14 @@
 package team.stephen.sunshine.constant.enu;
 
+import team.stephen.sunshine.model.common.Email;
 import team.stephen.sunshine.model.common.HistoryLog;
 
+/**
+ * @author Stephen
+ */
+
 public enum Topic {
-    EMAIL("email", null),
+    EMAIL("email", Email.class),
     LOG("log", HistoryLog.class);
     private String name;
     private Class cls;
