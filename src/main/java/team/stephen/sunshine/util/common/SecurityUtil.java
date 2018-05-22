@@ -1,5 +1,8 @@
 package team.stephen.sunshine.util.common;
 
+import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.util.ByteSource;
+import team.stephen.sunshine.model.user.User;
 import team.stephen.sunshine.util.common.LogRecod;
 
 import java.security.MessageDigest;
@@ -37,5 +40,10 @@ public class SecurityUtil {
     private static String byteToHexString(byte b) {
         int number = b & 0xff;
         return Integer.toHexString(number);
+    }
+
+    public static String getEncodedPassword(String rawPassword, String salt) {
+        return new SimpleHash("md5", rawPassword,
+                ByteSource.Util.bytes(salt), 2).toString();
     }
 }

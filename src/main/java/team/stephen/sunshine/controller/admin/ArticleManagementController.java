@@ -38,7 +38,7 @@ import static team.stephen.sunshine.constant.AricleConst.ARTICLE_LINK_ID_LENGTH;
  */
 @RequestMapping("admin/article")
 @RestController
-public class ArticleController extends BaseController {
+public class ArticleManagementController extends BaseController {
     @Autowired
     private DtoTransformService dtoTransformService;
     @Autowired

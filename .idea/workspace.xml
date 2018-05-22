@@ -7,23 +7,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25c4afe5-eed6-45bd-860d-b58b2f8d26cf" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/UserManagementController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/base/BaseUserDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/user/SignInUserDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/user/UpdateUserDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/ArticleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/ArticleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/FrontManageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/FrontManageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/constant/enu/ResultEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/constant/enu/ResultEnum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/constant/solr/Field.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/constant/solr/Field.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/model/article/Article.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/model/article/Article.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/article/ArticleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/article/ArticleService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/article/impl/ArticleServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/article/impl/ArticleServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/SolrService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/SolrService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/SearchConditionServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/SearchConditionServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/ArticleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/ArticleManagementController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/FrontManageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/FrontManagementController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/member/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/member/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/user/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/user/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/SecurityUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/SecurityUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/user/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/user/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/interceptor/LoginInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/interceptor/LoginInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/layui/font/iconfont.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/layui/font/iconfont.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/controller/BaseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/controller/BaseController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/model/user/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/model/user/User.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/SolrServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/SolrServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/common/Response.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/common/Response.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/element/StringUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/element/StringUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/service/ArticleServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/service/ArticleServiceTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/service/CrawlerServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/service/CrawlerServiceTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/service/SolrServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/service/SolrServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/user/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/user/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/user/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/user/impl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/common/SecurityUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/common/SecurityUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/web/dto/user/UserDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/web/dto/user/UserDto.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -59,99 +66,122 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FrontManageController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/FrontManageController.java">
+      <file leaf-file-name="UserManagementController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/UserManagementController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="839">
-              <caret line="159" column="58" selection-start-line="159" selection-start-column="58" selection-end-line="159" selection-end-column="58" />
+            <state relative-caret-position="295">
+              <caret line="72" column="9" lean-forward="true" selection-start-line="72" selection-start-column="9" selection-end-line="72" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#7907#8687#0" />
+                <element signature="e#3594#3595#0" expanded="true" />
+                <element signature="e#3675#3676#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ArticleController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/ArticleController.java">
+      <file leaf-file-name="ArticleManagementController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/ArticleManagementController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="553">
-              <caret line="137" column="32" lean-forward="true" selection-start-line="137" selection-start-column="32" selection-end-line="137" selection-end-column="32" />
+            <state relative-caret-position="289">
+              <caret line="113" column="34" lean-forward="true" selection-start-line="107" selection-start-column="6" selection-end-line="113" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#6569#6570#0" expanded="true" />
-                <element signature="e#6629#6630#0" expanded="true" />
-                <element signature="e#6968#6969#0" expanded="true" />
-                <element signature="e#7029#7030#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ResultEnum.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/constant/enu/ResultEnum.java">
+      <file leaf-file-name="BaseUserDto.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/base/BaseUserDto.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="23" column="61" selection-start-line="23" selection-start-column="61" selection-end-line="23" selection-end-column="61" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SolrServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/SolrServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="29" column="3" lean-forward="true" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
+            <state relative-caret-position="69">
+              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3570#3571#0" expanded="true" />
-                <element signature="e#3604#3605#0" expanded="true" />
+                <element signature="e#431#432#0" expanded="true" />
+                <element signature="e#460#461#0" expanded="true" />
+                <element signature="e#504#505#0" expanded="true" />
+                <element signature="e#540#541#0" expanded="true" />
+                <element signature="e#575#576#0" expanded="true" />
+                <element signature="e#606#607#0" expanded="true" />
+                <element signature="e#654#655#0" expanded="true" />
+                <element signature="e#694#695#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DtoTranformServiceImplService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/DtoTranformServiceImplService.java">
+      <file leaf-file-name="UserServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/user/impl/UserServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="129" column="9" lean-forward="true" selection-start-line="129" selection-start-column="9" selection-end-line="129" selection-end-column="9" />
+            <state relative-caret-position="98">
+              <caret line="32" column="36" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
+              <folding>
+                <element signature="e#1383#1384#0" expanded="true" />
+                <element signature="e#1407#1408#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SolrDocumentList.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/solr/solr-solrj/6.6.0/solr-solrj-6.6.0.jar!/org/apache/solr/common/SolrDocumentList.class">
+      <file leaf-file-name="UserDto.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/user/UserDto.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="9" column="60" selection-start-line="9" selection-start-column="48" selection-end-line="9" selection-end-column="60" />
+            <state relative-caret-position="198">
+              <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SolrService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/SolrService.java">
+      <file leaf-file-name="SignInUserDto.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/user/SignInUserDto.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="286">
-              <caret line="49" column="16" lean-forward="true" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
+              <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#726#727#0" expanded="true" />
+                <element signature="e#768#769#0" expanded="true" />
+                <element signature="e#802#803#0" expanded="true" />
+                <element signature="e#837#838#0" expanded="true" />
+                <element signature="e#868#869#0" expanded="true" />
+                <element signature="e#916#917#0" expanded="true" />
+                <element signature="e#956#957#0" expanded="true" />
+                <element signature="e#988#989#0" expanded="true" />
+                <element signature="e#1016#1017#0" expanded="true" />
+                <element signature="e#1058#1059#0" expanded="true" />
+                <element signature="e#1092#1093#0" expanded="true" />
+                <element signature="e#1130#1131#0" expanded="true" />
+                <element signature="e#1164#1165#0" expanded="true" />
+                <element signature="e#1218#1219#0" expanded="true" />
+                <element signature="e#1264#1265#0" expanded="true" />
+                <element signature="e#1299#1300#0" expanded="true" />
+                <element signature="e#1330#1331#0" expanded="true" />
+                <element signature="e#1378#1379#0" expanded="true" />
+                <element signature="e#1418#1419#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SearchConditionServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/SearchConditionServiceImpl.java">
+      <file leaf-file-name="UpdateUserDto.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/user/UpdateUserDto.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="57" column="105" selection-start-line="57" selection-start-column="105" selection-end-line="57" selection-end-column="105" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Field.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/constant/solr/Field.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+            <state relative-caret-position="91">
+              <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#353#354#0" expanded="true" />
+                <element signature="e#376#377#0" expanded="true" />
+                <element signature="e#414#415#0" expanded="true" />
+                <element signature="e#443#444#0" expanded="true" />
+                <element signature="e#488#489#0" expanded="true" />
+                <element signature="e#524#525#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -177,6 +207,7 @@
       <find>private</find>
       <find>APIMODEL</find>
       <find>ARTICLE_CONTENT</find>
+      <find>userid</find>
     </findStrings>
     <replaceStrings>
       <replace>articleid</replace>
@@ -192,19 +223,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/front/Column.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/front/impl/ColumnServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/front/FrontArticleDto.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/front/IndexController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/condition/ArticleSearchCondition.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/PageUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/member/UserController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/member/MessageController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/front/ChannelService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/front/StandartChannelDto.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/front/StandardChannelDto.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/front/ColumnService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/front/impl/ChannelServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/test/java/service/FrontServiceTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/front/StandardColumnDto.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/FrontMngController.java" />
@@ -243,6 +261,19 @@
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/SolrServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/ArticleController.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/FrontManageController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/ArticleManagementController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/FrontManagementController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/BaseController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/user/UserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/base/BaseUserDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/user/UserDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/user/User.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/SecurityUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/user/impl/UserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/member/UserController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/user/SignInUserDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/user/UpdateUserDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/UserManagementController.java" />
       </list>
     </option>
   </component>
@@ -375,16 +406,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="sunshine" type="462c0819:PsiDirectoryNode" />
-              <item name="exception" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sunshine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sunshine" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="sunshine" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sunshine" type="b2602c69:ProjectViewProjectNode" />
@@ -404,17 +426,6 @@
               <item name="sunshine" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="dto" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sunshine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sunshine" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="sunshine" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="dto" type="462c0819:PsiDirectoryNode" />
-              <item name="article" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sunshine" type="b2602c69:ProjectViewProjectNode" />
@@ -436,7 +447,7 @@
               <item name="sunshine" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="dto" type="462c0819:PsiDirectoryNode" />
-              <item name="front" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sunshine" type="b2602c69:ProjectViewProjectNode" />
@@ -864,7 +875,14 @@
       <option name="project" value="LOCAL" />
       <updated>1526975093510</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="文章的增删改查">
+      <created>1526975340260</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1526975340260</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -900,7 +918,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97021000" />
+    <option name="totallyTimeSpent" value="101053000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -922,10 +940,10 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info id="Structure" order="1" sideWeight="0.18241759" side_tool="true" visible="true" weight="0.19087404" />
+      <window_info id="Structure" order="1" sideWeight="0.18241759" side_tool="true" weight="0.19087404" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.36185133" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.36185133" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Messages" order="7" weight="0.32959327" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
@@ -936,7 +954,7 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.47685835" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32959327" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8175824" visible="true" weight="0.19087404" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8175824" visible="true" weight="0.19087404" />
       <window_info anchor="right" id="Bean Validation" order="3" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32959327" />
@@ -1058,130 +1076,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="52" />
+      <option name="time" value="59" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/front/Column.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="17" column="2" lean-forward="true" selection-start-line="17" selection-start-column="2" selection-end-line="28" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/front/StandardColumnDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="9" column="29" lean-forward="true" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-          <folding>
-            <element signature="e#363#364#0" expanded="true" />
-            <element signature="e#394#395#0" expanded="true" />
-            <element signature="e#443#444#0" expanded="true" />
-            <element signature="e#483#484#0" expanded="true" />
-            <element signature="e#520#521#0" expanded="true" />
-            <element signature="e#552#553#0" expanded="true" />
-            <element signature="e#603#604#0" expanded="true" />
-            <element signature="e#645#646#0" expanded="true" />
-            <element signature="e#681#682#0" expanded="true" />
-            <element signature="e#713#714#0" expanded="true" />
-            <element signature="e#763#764#0" expanded="true" />
-            <element signature="e#805#806#0" expanded="true" />
-            <element signature="e#844#845#0" expanded="true" />
-            <element signature="e#879#880#0" expanded="true" />
-            <element signature="e#935#936#0" expanded="true" />
-            <element signature="e#983#984#0" expanded="true" />
-            <element signature="e#1022#1023#0" expanded="true" />
-            <element signature="e#1057#1058#0" expanded="true" />
-            <element signature="e#1113#1114#0" expanded="true" />
-            <element signature="e#1161#1162#0" expanded="true" />
-            <element signature="e#1196#1197#0" expanded="true" />
-            <element signature="e#1226#1227#0" expanded="true" />
-            <element signature="e#1273#1274#0" expanded="true" />
-            <element signature="e#1311#1312#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/front/StandardChannelDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-          <folding>
-            <element signature="e#370#371#0" expanded="true" />
-            <element signature="e#402#403#0" expanded="true" />
-            <element signature="e#453#454#0" expanded="true" />
-            <element signature="e#495#496#0" expanded="true" />
-            <element signature="e#532#533#0" expanded="true" />
-            <element signature="e#565#566#0" expanded="true" />
-            <element signature="e#617#618#0" expanded="true" />
-            <element signature="e#661#662#0" expanded="true" />
-            <element signature="e#701#702#0" expanded="true" />
-            <element signature="e#737#738#0" expanded="true" />
-            <element signature="e#795#796#0" expanded="true" />
-            <element signature="e#845#846#0" expanded="true" />
-            <element signature="e#885#886#0" expanded="true" />
-            <element signature="e#921#922#0" expanded="true" />
-            <element signature="e#979#980#0" expanded="true" />
-            <element signature="e#1029#1030#0" expanded="true" />
-            <element signature="e#1066#1067#0" expanded="true" />
-            <element signature="e#1098#1099#0" expanded="true" />
-            <element signature="e#1149#1150#0" expanded="true" />
-            <element signature="e#1191#1192#0" expanded="true" />
-            <element signature="e#1226#1227#0" expanded="true" />
-            <element signature="e#1256#1257#0" expanded="true" />
-            <element signature="e#1303#1304#0" expanded="true" />
-            <element signature="e#1341#1342#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/DtoTransformService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/ParamCheckServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="15" column="55" selection-start-line="15" selection-start-column="55" selection-end-line="15" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#452#453#0" expanded="true" />
-            <element signature="e#492#493#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/ParamCheckService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/exception/WrongParamException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="15" column="18" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
-          <folding>
-            <element signature="e#287#288#0" expanded="true" />
-            <element signature="e#313#314#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/book/Book.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-528">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/common/CustomSessionManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="134">
@@ -1210,13 +1108,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/user/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/user/UserRoleRelation.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
@@ -1228,23 +1119,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="214">
           <caret line="22" column="33" lean-forward="true" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/member/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-173">
-          <caret line="21" column="30" lean-forward="true" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/user/UserDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="8" column="18" lean-forward="true" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1595,27 +1469,159 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/ArticleController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/BaseController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="553">
-          <caret line="137" column="32" lean-forward="true" selection-start-line="137" selection-start-column="32" selection-end-line="137" selection-end-column="32" />
+        <state relative-caret-position="119">
+          <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/user/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/user/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="12" column="26" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="26" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6569#6570#0" expanded="true" />
-            <element signature="e#6629#6630#0" expanded="true" />
-            <element signature="e#6968#6969#0" expanded="true" />
-            <element signature="e#7029#7030#0" expanded="true" />
+            <element signature="e#1633#1634#0" expanded="true" />
+            <element signature="e#1667#1668#0" expanded="true" />
+            <element signature="e#1721#1722#0" expanded="true" />
+            <element signature="e#1767#1768#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/FrontManageController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/user/impl/UserServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="839">
-          <caret line="159" column="58" selection-start-line="159" selection-start-column="58" selection-end-line="159" selection-end-column="58" />
+        <state relative-caret-position="98">
+          <caret line="32" column="36" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
+          <folding>
+            <element signature="e#1383#1384#0" expanded="true" />
+            <element signature="e#1407#1408#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/SecurityUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="46" column="42" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/FrontManagementController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-261">
+          <caret line="39" column="52" lean-forward="true" selection-start-line="39" selection-start-column="52" selection-end-line="39" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7907#8687#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/user/UserDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/member/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="43" column="25" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/base/BaseUserDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#431#432#0" expanded="true" />
+            <element signature="e#460#461#0" expanded="true" />
+            <element signature="e#504#505#0" expanded="true" />
+            <element signature="e#540#541#0" expanded="true" />
+            <element signature="e#575#576#0" expanded="true" />
+            <element signature="e#606#607#0" expanded="true" />
+            <element signature="e#654#655#0" expanded="true" />
+            <element signature="e#694#695#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/user/SignInUserDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#726#727#0" expanded="true" />
+            <element signature="e#768#769#0" expanded="true" />
+            <element signature="e#802#803#0" expanded="true" />
+            <element signature="e#837#838#0" expanded="true" />
+            <element signature="e#868#869#0" expanded="true" />
+            <element signature="e#916#917#0" expanded="true" />
+            <element signature="e#956#957#0" expanded="true" />
+            <element signature="e#988#989#0" expanded="true" />
+            <element signature="e#1016#1017#0" expanded="true" />
+            <element signature="e#1058#1059#0" expanded="true" />
+            <element signature="e#1092#1093#0" expanded="true" />
+            <element signature="e#1130#1131#0" expanded="true" />
+            <element signature="e#1164#1165#0" expanded="true" />
+            <element signature="e#1218#1219#0" expanded="true" />
+            <element signature="e#1264#1265#0" expanded="true" />
+            <element signature="e#1299#1300#0" expanded="true" />
+            <element signature="e#1330#1331#0" expanded="true" />
+            <element signature="e#1378#1379#0" expanded="true" />
+            <element signature="e#1418#1419#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/user/UpdateUserDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#353#354#0" expanded="true" />
+            <element signature="e#376#377#0" expanded="true" />
+            <element signature="e#414#415#0" expanded="true" />
+            <element signature="e#443#444#0" expanded="true" />
+            <element signature="e#488#489#0" expanded="true" />
+            <element signature="e#524#525#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/ArticleManagementController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="113" column="34" lean-forward="true" selection-start-line="107" selection-start-column="6" selection-end-line="113" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/UserManagementController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="72" column="9" lean-forward="true" selection-start-line="72" selection-start-column="9" selection-end-line="72" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3594#3595#0" expanded="true" />
+            <element signature="e#3675#3676#0" expanded="true" />
           </folding>
         </state>
       </provider>

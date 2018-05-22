@@ -37,7 +37,7 @@ import static team.stephen.sunshine.util.element.StringUtils.EMPTY;
  */
 @RequestMapping("admin/front")
 @RestController
-public class FrontManageController extends BaseController {
+public class FrontManagementController extends BaseController {
     @Autowired
     private ChannelService channelService;
     @Autowired
