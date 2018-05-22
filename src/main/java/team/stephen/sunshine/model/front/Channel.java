@@ -15,6 +15,8 @@ public class Channel {
     @Id
     @Column(name = "channel_id")
     private Integer channelId;
+    @Column(name = "channel_uri")
+    private String channelUri;
     @Column(name = "channel_name_cn")
     private String channelNameCn;
     @Column(name = "channel_name_en")
@@ -30,6 +32,14 @@ public class Channel {
 
     public void setChannelId(Integer channelId) {
         this.channelId = channelId;
+    }
+
+    public String getChannelUri() {
+        return channelUri;
+    }
+
+    public void setChannelUri(String channelUri) {
+        this.channelUri = channelUri;
     }
 
     public String getChannelNameCn() {

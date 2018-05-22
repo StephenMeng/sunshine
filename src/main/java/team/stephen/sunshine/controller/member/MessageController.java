@@ -1,10 +1,11 @@
-package team.stephen.sunshine.controller;
+package team.stephen.sunshine.controller.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import team.stephen.sunshine.constant.enu.Topic;
+import team.stephen.sunshine.controller.BaseController;
 import team.stephen.sunshine.exception.NullParamException;
 import team.stephen.sunshine.exception.WrongClassTypeException;
 import team.stephen.sunshine.model.common.Email;
@@ -20,7 +21,7 @@ import java.util.Map;
  * @author Stephen
  */
 @RestController
-@RequestMapping("message")
+@RequestMapping("member/message")
 public class MessageController extends BaseController {
     @Autowired
     private KafkaService kafkaService;

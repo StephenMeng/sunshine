@@ -5,18 +5,18 @@ package team.stephen.sunshine.web.dto.front;
  * @author Stephen
  * @date 2018/05/21 23:49
  */
-public class ChannelDto {
-    private Integer channelId;
+public class FrontChannelDto {
+    private String channelUri;
     private String channelNameCn;
     private String channelNameEn;
     private Boolean hasColumn;
 
-    public Integer getChannelId() {
-        return channelId;
+    public String getChannelUri() {
+        return channelUri;
     }
 
-    public void setChannelId(Integer channelId) {
-        this.channelId = channelId;
+    public void setChannelUri(String channelUri) {
+        this.channelUri = channelUri;
     }
 
     public String getChannelNameCn() {

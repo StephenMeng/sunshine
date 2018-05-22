@@ -19,6 +19,8 @@ public class Column {
     private Integer columnId;
     @javax.persistence.Column(name = "channel_id")
     private Integer channelId;
+    @javax.persistence.Column(name = "column_uri")
+    private String columnUri;
     @javax.persistence.Column(name = "column_name_cn")
     private String columnNameCn;
     @javax.persistence.Column(name = "column_name_en")
@@ -32,6 +34,14 @@ public class Column {
 
     public void setColumnId(Integer columnId) {
         this.columnId = columnId;
+    }
+
+    public String getColumnUri() {
+        return columnUri;
+    }
+
+    public void setColumnUri(String columnUri) {
+        this.columnUri = columnUri;
     }
 
     public Integer getChannelId() {

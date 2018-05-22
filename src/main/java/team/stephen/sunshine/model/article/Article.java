@@ -22,6 +22,10 @@ public class Article {
     private Long articleId;
     @Column(name = "article_link_id")
     private String articleLinkId;
+    @Column(name = "channel_id")
+    private Integer channelId;
+    @Column(name = "column_id")
+    private Integer columnId;
     @Column(name = "article_title")
     private String articleTitle;
     @Column(name = "article_abstract")
@@ -87,6 +91,22 @@ public class Article {
 
     public void setArticleLinkId(String articleLinkId) {
         this.articleLinkId = articleLinkId;
+    }
+
+    public Integer getChannelId() {
+        return channelId;
+    }
+
+    public void setChannelId(Integer channelId) {
+        this.channelId = channelId;
+    }
+
+    public Integer getColumnId() {
+        return columnId;
+    }
+
+    public void setColumnId(Integer columnId) {
+        this.columnId = columnId;
     }
 
     public String getArticleTitle() {

@@ -1,4 +1,4 @@
-package team.stephen.sunshine.controller;
+package team.stephen.sunshine.controller.member;
 
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import team.stephen.sunshine.controller.BaseController;
 import team.stephen.sunshine.model.user.User;
 import team.stephen.sunshine.service.common.DtoTransformService;
 import team.stephen.sunshine.service.user.UserService;

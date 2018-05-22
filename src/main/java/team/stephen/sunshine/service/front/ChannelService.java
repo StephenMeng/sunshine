@@ -19,4 +19,6 @@ public interface ChannelService {
     int delete(int channelId);
 
     int restore(int channelId);
+
+    Channel selectOne(Channel condition);
 }

@@ -1,4 +1,4 @@
-package team.stephen.sunshine.controller;
+package team.stephen.sunshine.controller.common;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import springfox.documentation.annotations.ApiIgnore;
 import team.stephen.sunshine.constant.SessionAttr;
+import team.stephen.sunshine.controller.BaseController;
 import team.stephen.sunshine.service.common.CacheService;
 import team.stephen.sunshine.service.user.UserService;
 import team.stephen.sunshine.util.common.LogRecod;

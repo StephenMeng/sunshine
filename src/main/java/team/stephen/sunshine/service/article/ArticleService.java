@@ -1,5 +1,6 @@
 package team.stephen.sunshine.service.article;
 
+import com.github.pagehelper.Page;
 import team.stephen.sunshine.model.article.Article;
 
 public interface ArticleService {
@@ -11,4 +12,7 @@ public interface ArticleService {
 
     int updateSelective(Article article);
 
+    Page<Article> select(Article articleCondition);
+
+    Article selectOne(Article articleCondition);
 }

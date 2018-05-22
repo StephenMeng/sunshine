@@ -4,26 +4,26 @@ package team.stephen.sunshine.web.dto.front;
  * @author Stephen
  * @date 2018/05/21 23:50
  */
-public class ColumnDto {
-    private Integer columnId;
-    private Integer channelId;
+public class FrontColumnDto {
+    private String columnUri;
+    private String channelUri;
     private String columnNameCn;
     private String columnNameEn;
 
-    public Integer getColumnId() {
-        return columnId;
+    public String getColumnUri() {
+        return columnUri;
     }
 
-    public void setColumnId(Integer columnId) {
-        this.columnId = columnId;
+    public void setColumnUri(String columnUri) {
+        this.columnUri = columnUri;
     }
 
-    public Integer getChannelId() {
-        return channelId;
+    public String getChannelUri() {
+        return channelUri;
     }
 
-    public void setChannelId(Integer channelId) {
-        this.channelId = channelId;
+    public void setChannelUri(String channelUri) {
+        this.channelUri = channelUri;
     }
 
     public String getColumnNameCn() {

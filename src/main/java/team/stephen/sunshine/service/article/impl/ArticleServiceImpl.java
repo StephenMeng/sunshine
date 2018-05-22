@@ -1,12 +1,18 @@
 package team.stephen.sunshine.service.article.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import team.stephen.sunshine.dao.article.ArticleDao;
 import team.stephen.sunshine.model.article.Article;
 import team.stephen.sunshine.service.article.ArticleService;
+import team.stephen.sunshine.util.common.LogRecod;
 import team.stephen.sunshine.util.element.StringUtils;
 
+/**
+ * @author stephen
+ */
 @Service
 public class ArticleServiceImpl implements ArticleService {
     @Autowired
@@ -38,5 +44,15 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public int updateSelective(Article article) {
         return articleDao.updateByPrimaryKeySelective(article);
+    }
+
+    @Override
+    public Page<Article> select(Article articleCondition) {
+        return (Page<Article>) articleDao.select(articleCondition);
+    }
+
+    @Override
+    public Article selectOne(Article articleCondition) {
+        return articleDao.selectOne(articleCondition);
     }
 }

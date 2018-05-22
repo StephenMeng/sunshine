@@ -56,4 +56,9 @@ public class ChannelServiceImpl implements ChannelService {
         channel.setDeleted(false);
         return updateSelective(channel);
     }
+
+    @Override
+    public Channel selectOne(Channel condition) {
+        return channelDao.selectOne(condition);
+    }
 }

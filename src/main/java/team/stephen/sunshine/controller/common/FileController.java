@@ -1,4 +1,4 @@
-package team.stephen.sunshine.controller;
+package team.stephen.sunshine.controller.common;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
