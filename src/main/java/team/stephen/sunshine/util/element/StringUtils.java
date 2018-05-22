@@ -1,6 +1,8 @@
 package team.stephen.sunshine.util.element;
 
 public class StringUtils {
+    public static final String EMPTY = "";
+
     public static boolean isNull(String str) {
         return str == null || str.equals("") || str.equals("null");
     }

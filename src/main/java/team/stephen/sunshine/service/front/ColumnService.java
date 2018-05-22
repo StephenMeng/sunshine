@@ -1,6 +1,7 @@
 package team.stephen.sunshine.service.front;
 
 import com.github.pagehelper.Page;
+import team.stephen.sunshine.model.front.Channel;
 import team.stephen.sunshine.model.front.Column;
 
 /**
@@ -19,4 +20,6 @@ public interface ColumnService {
     int delete(int columnId);
 
     int restore(int columnId);
+
+    Column selectOne(Column condition);
 }

@@ -8,14 +8,28 @@ package team.stephen.sunshine.constant.enu;
  */
 
 public enum ResultEnum {
+    OK(200, "OK", "OK"),
+
+    CLIENT_ERROR(400, "客户端错误", "Client Error"),
+
     /**
      * 参数错误
      */
-    PARAMETER_WRONG(400, "参数错误", "Bad Parameter"),
+    PARAMETER_ERROR(401, "参数错误", "Bad Parameter"),
+
+    /**
+     * 空参数错误
+     */
+    NULL_PARAMETER(402, "参数为空！", "Null Parameter"),
+    NO_RESOURCE_FOUND(403,"没有找到资源" ,"Empty Resource Found" ),
+
     /**
      * 缺少访问权限
      */
-    AUTHORIZE_WRONG(500, "无访问权限", "Request Denied");
+    SERVER_WRONG(500,"服务器错误","Server Wrong"),
+
+    AUTHORIZE_ERROR(501,"无访问权限","Request Denied");
+
 
     private Integer code;
     private String msgCn;

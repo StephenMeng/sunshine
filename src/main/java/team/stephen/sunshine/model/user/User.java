@@ -21,6 +21,10 @@ public class User {
     private Integer userRole;
     @Column(name = "password")
     private String password;
+    @Column(name = "title")
+    private String title;
+    @Column(name = "mobile_phone")
+    private String mobilePhone;
 
     public Integer getUserId() {
         return userId;
@@ -68,5 +72,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
+
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
     }
 }

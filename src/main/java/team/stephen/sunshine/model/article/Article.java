@@ -22,6 +22,10 @@ public class Article {
     private Long articleId;
     @Column(name = "article_link_id")
     private String articleLinkId;
+    @Column(name = "channel_id")
+    private Integer channelId;
+    @Column(name = "column_id")
+    private Integer columnId;
     @Column(name = "article_title")
     private String articleTitle;
     @Column(name = "article_abstract")
@@ -52,24 +56,23 @@ public class Article {
     private Date articleUpdateDate;
     @Column(name = "article_view_pwd")
     private String articleViewPwd;
+    @Column(name = "private")
+    private Boolean isPrivate;
+    @Column(name = "deleted")
+    private Boolean deleted;
 
     public static Article getNewDefaultInstance() {
         Article article = new Article();
-        article.setArticleTitle("第三篇文档");
         article.setArticleLinkId(RandomIDUtil.randomID(16));
-        article.setArticleAuthor(1);
-        article.setArticleLink(" ");
         article.setArticleUpdateDate(new Date());
         article.setArticleCreateDate(new Date());
-        article.setArticleAbstract("abstract");
         article.setArticleCommentCount(0);
-        article.setArticleContent("SpringBoot学习笔记（五）：配置redis");
         article.setArticleHadBeenPublished(false);
         article.setArticleIsPublished(false);
         article.setArticleViewCount(0);
         article.setArticlePutTop(false);
-        article.setArticleTag("stephen");
-        article.setArticleViewPwd("pwd");
+        article.setDeleted(false);
+        article.setPrivate(false);
         return article;
     }
 
@@ -87,6 +90,22 @@ public class Article {
 
     public void setArticleLinkId(String articleLinkId) {
         this.articleLinkId = articleLinkId;
+    }
+
+    public Integer getChannelId() {
+        return channelId;
+    }
+
+    public void setChannelId(Integer channelId) {
+        this.channelId = channelId;
+    }
+
+    public Integer getColumnId() {
+        return columnId;
+    }
+
+    public void setColumnId(Integer columnId) {
+        this.columnId = columnId;
     }
 
     public String getArticleTitle() {
@@ -199,5 +218,21 @@ public class Article {
 
     public void setArticleViewPwd(String articleViewPwd) {
         this.articleViewPwd = articleViewPwd;
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setPrivate(Boolean aPrivate) {
+        isPrivate = aPrivate;
+    }
+
+    public Boolean getPrivate() {
+        return isPrivate;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 }

@@ -53,7 +53,7 @@ public class CrawlerServiceTest {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                Article tmp = articleService.getArticleByLinkId(article.getArticleLinkId());
+                Article tmp = articleService.selectArticleByLinkId(article.getArticleLinkId());
                 solrService.addArticle(tmp);
 
             });

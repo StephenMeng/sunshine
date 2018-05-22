@@ -1,9 +1,16 @@
 package team.stephen.sunshine.constant.solr;
 
+/**
+ * @author stephen
+ */
+
 public enum Field {
+    ID("id"),
     ARTICLE_ID("articleId"),
     ARTICLE_CONTENT("articleContent"),
-    ARTICLE_TAG("articleTag");
+    ARTICLE_TAG("articleTag"),
+    ARTICLE_PRIVATE("isPrivate"),
+    ARTICLE_DELETED("deleted");
     private String fieldName;
 
     Field(String f) {

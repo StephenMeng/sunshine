@@ -57,4 +57,9 @@ public class ColumnServiceImpl implements ColumnService {
         column.setDeleted(false);
         return updateSelective(column);
     }
+
+    @Override
+    public Column selectOne(Column condition) {
+        return columnDao.selectOne(condition);
+    }
 }

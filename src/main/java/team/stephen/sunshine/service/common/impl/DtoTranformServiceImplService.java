@@ -4,11 +4,15 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.stereotype.Service;
+import team.stephen.sunshine.model.article.Article;
 import team.stephen.sunshine.model.front.Channel;
 import team.stephen.sunshine.model.front.Column;
+import team.stephen.sunshine.web.dto.article.StandardArticleDto;
 import team.stephen.sunshine.web.dto.book.BookDto;
-import team.stephen.sunshine.web.dto.front.ChannelDto;
-import team.stephen.sunshine.web.dto.front.ColumnDto;
+import team.stephen.sunshine.web.dto.front.FrontChannelDto;
+import team.stephen.sunshine.web.dto.front.FrontColumnDto;
+import team.stephen.sunshine.web.dto.front.StandardChannelDto;
+import team.stephen.sunshine.web.dto.front.StandardColumnDto;
 import team.stephen.sunshine.web.dto.user.UserDto;
 import team.stephen.sunshine.model.book.Book;
 import team.stephen.sunshine.model.user.User;
@@ -19,35 +23,38 @@ import java.lang.reflect.InvocationTargetException;
 @Service
 public class DtoTranformServiceImplService implements DtoTransformService {
 
+
     @Override
-    public User userDtoToModel(UserDto userDto) {
+    public User userDtoToModel(UserDto orig) {
+        if (orig == null) {
+            return null;
+        }
         User user = new User();
-        copyProperties(user, userDto);
+        copyProperties(user, orig);
         return user;
     }
 
-    private void copyProperties(Object dest, Object orig) {
-        try {
-            BeanUtils.copyProperties(dest, orig);
-        } catch (IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
-    public UserDto userModelToDto(User user) {
+    public UserDto userModelToDto(User orig) {
+        if (orig == null) {
+            return null;
+        }
         UserDto dto = new UserDto();
-        copyProperties(dto, user);
+        copyProperties(dto, orig);
         return dto;
     }
 
     @Override
-    public Book bookDtoToModel(BookDto bookDto) {
+    public Book bookDtoToModel(BookDto orig) {
+        if (orig == null) {
+            return null;
+        }
         Book book = new Book();
-        copyProperties(book, bookDto);
-        if (bookDto.getTags() != null) {
+        copyProperties(book, orig);
+        if (orig.getTags() != null) {
             try {
-                JSONArray jsonArray = JSONObject.parseArray(bookDto.getTags());
+                JSONArray jsonArray = JSONObject.parseArray(orig.getTags());
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < jsonArray.size(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -62,30 +69,64 @@ public class DtoTranformServiceImplService implements DtoTransformService {
     }
 
     @Override
-    public Channel channelDtoToModel(ChannelDto channelDto) {
+    public Channel channelDtoToModel(FrontChannelDto orig) {
+        if (orig == null) {
+            return null;
+        }
         Channel channel = new Channel();
-        copyProperties(channel, channelDto);
+        copyProperties(channel, orig);
         return channel;
     }
 
     @Override
-    public ChannelDto channelModelToDto(Channel channel) {
-        ChannelDto dto = new ChannelDto();
-        copyProperties(dto, channel);
+    public StandardChannelDto channelModelToDto(Channel orig) {
+        if (orig == null) {
+            return null;
+        }
+        StandardChannelDto dto = new StandardChannelDto();
+        copyProperties(dto, orig);
         return dto;
     }
 
     @Override
-    public Column columnDtoToModel(ColumnDto columnDto) {
+    public Column columnDtoToModel(FrontColumnDto orig) {
+        if (orig == null) {
+            return null;
+        }
         Column column = new Column();
-        copyProperties(column, columnDto);
+        copyProperties(column, orig);
         return column;
     }
 
     @Override
-    public ColumnDto columnModelToDto(Column column) {
-        ColumnDto dto = new ColumnDto();
-        copyProperties(dto, column);
+    public StandardColumnDto columnModelToDto(Column orig) {
+        if (orig == null) {
+            return null;
+        }
+        StandardColumnDto dto = new StandardColumnDto();
+        copyProperties(dto, orig);
         return dto;
+    }
+
+    @Override
+    public StandardArticleDto articleModelToDto(Article orig) {
+        if (orig == null) {
+            return null;
+        }
+        StandardArticleDto dto = new StandardArticleDto();
+        copyProperties(dto, orig);
+        return dto;
+    }
+
+    @Override
+    public void copyProperties(Object dest, Object orig) {
+        if (orig == null) {
+            return;
+        }
+        try {
+            BeanUtils.copyProperties(dest, orig);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
 }

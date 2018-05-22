@@ -1,13 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ArtifactsWorkspaceSettings">
-    <artifacts-to-build>
-      <artifact name="sunshine:war" />
-    </artifacts-to-build>
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="25c4afe5-eed6-45bd-860d-b58b2f8d26cf" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_zxing_core_3_3_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/constant/AricleConst.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/constant/SystemConst.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/constant/enu/AttachmentEnum.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/ArticleManagementController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/FrontManagementController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/UserManagementController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/front/FrontController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/dao/common/AttachmentDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/exception/WrongParamException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/common/Attachment.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/AttachmentService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/AttachmentServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/ParamCheck.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/QRCodeUtils.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/helper/FileHelper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/article/InputArticleDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/article/StandardArticleDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/base/BaseArticleDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/base/BaseChannelDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/base/BaseColumnDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/base/BaseUserDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/front/AdminChannelDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/front/AdminColumnDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/front/FrontArticleDetailDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/front/FrontArticleSimpleDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/front/FrontChannelDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/front/FrontColumnDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/user/SignInUserDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/user/UpdateUserDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ArticleDao.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/controller/IndexController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/controller/LoginController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/controller/MessageController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/controller/UserController.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/constant/enu/ResultEnum.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/constant/enu/ResultEnum.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/constant/solr/Field.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/constant/solr/Field.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/controller/BaseController.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/controller/BaseController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/model/article/Article.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/model/article/Article.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/model/front/Channel.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/model/front/Channel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/model/front/Column.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/model/front/Column.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/model/user/User.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/model/user/User.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/article/ArticleService.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/article/ArticleService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/article/impl/ArticleServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/article/impl/ArticleServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/DtoTransformService.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/DtoTransformService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/SolrService.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/SolrService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/DtoTranformServiceImplService.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/DtoTranformServiceImplService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/SearchConditionServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/SearchConditionServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/SolrServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/SolrServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/front/ChannelService.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/front/ChannelService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/front/ColumnService.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/front/ColumnService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/front/impl/ChannelServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/front/impl/ChannelServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/front/impl/ColumnServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/front/impl/ColumnServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/user/UserService.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/user/UserService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/user/impl/UserServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/user/impl/UserServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/common/PageUtil.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/common/PageUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/common/Response.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/common/Response.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/common/SecurityUtil.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/common/SecurityUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/element/StringUtils.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/element/StringUtils.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/web/dto/condition/ArticleSearchCondition.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/web/dto/condition/ArticleSearchCondition.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/web/dto/user/UserDto.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/web/dto/user/UserDto.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/test-classes/service/ArticleServiceTest.class" afterPath="$PROJECT_DIR$/target/test-classes/service/ArticleServiceTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/test-classes/service/CrawlerServiceTest.class" afterPath="$PROJECT_DIR$/target/test-classes/service/CrawlerServiceTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/test-classes/service/FrontServiceTest.class" afterPath="$PROJECT_DIR$/target/test-classes/service/FrontServiceTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/test-classes/service/SolrServiceTest.class" afterPath="$PROJECT_DIR$/target/test-classes/service/SolrServiceTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/constant/enu/ResultEnum.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/constant/enu/ResultEnum.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/constant/solr/Field.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/constant/solr/Field.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/BaseController.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/BaseController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/article/Article.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/article/Article.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/front/Channel.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/front/Channel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/front/Column.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/front/Column.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/user/User.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/user/User.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/article/ArticleService.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/article/ArticleService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/article/impl/ArticleServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/article/impl/ArticleServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/DtoTransformService.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/DtoTransformService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/SolrService.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/SolrService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/DtoTranformServiceImplService.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/DtoTranformServiceImplService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/SearchConditionServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/SearchConditionServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/SolrServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/SolrServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/front/ChannelService.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/front/ChannelService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/front/ColumnService.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/front/ColumnService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/front/impl/ChannelServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/front/impl/ChannelServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/front/impl/ColumnServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/front/impl/ColumnServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/user/UserService.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/user/UserService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/user/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/user/impl/UserServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/PageUtil.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/PageUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/Response.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/Response.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/SecurityUtil.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/SecurityUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/element/StringUtils.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/element/StringUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/condition/ArticleSearchCondition.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/condition/ArticleSearchCondition.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/user/UserDto.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/user/UserDto.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/interceptor/LoginInterceptor.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/interceptor/LoginInterceptor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/log4j.properties" afterPath="$PROJECT_DIR$/src/main/resources/log4j.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserDao.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserDao.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/layui/font/iconfont.svg" afterPath="$PROJECT_DIR$/src/main/resources/static/layui/font/iconfont.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/service/ArticleServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/service/ArticleServiceTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/service/CrawlerServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/service/CrawlerServiceTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/service/FrontServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/service/FrontServiceTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/service/SolrServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/service/SolrServiceTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sunshine.iml" afterPath="$PROJECT_DIR$/sunshine.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/log4j.properties" afterPath="$PROJECT_DIR$/target/classes/log4j.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mapper/UserDao.xml" afterPath="$PROJECT_DIR$/target/classes/mapper/UserDao.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/layui/font/iconfont.svg" afterPath="$PROJECT_DIR$/target/classes/static/layui/font/iconfont.svg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/constant/SessionAttr.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/constant/SessionConst.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/FileController.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/common/FileController.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/IndexController.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/front/IndexController.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/LoginController.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/common/LoginController.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/MessageController.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/member/MessageController.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/UserController.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/member/UserController.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/front/ChannelDto.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/front/StandardChannelDto.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/front/ColumnDto.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/front/StandardColumnDto.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -23,20 +131,6 @@
       <FILTER>service.*</FILTER>
     </SUITE>
   </component>
-  <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_DATA_SOURCES" value="true" />
-    <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
-    <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <option name="HIDDEN_KINDS">
-      <set />
-    </option>
-    <expand />
-    <select />
-  </component>
   <component name="FavoritesManager">
     <favorites_list name="sunshine" />
   </component>
@@ -46,11 +140,22 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/front/Channel.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="308">
-              <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
+              <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="74" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1277#1278#0" expanded="true" />
-                <element signature="e#1319#1320#0" expanded="true" />
+                <element signature="e#1508#1509#0" expanded="true" />
+                <element signature="e#1550#1551#0" expanded="true" />
+                <marker date="1527000864309" expanded="false" signature="1015:1021" ph=" }" />
+                <marker date="1527000864309" expanded="false" signature="1059:1070" ph=" { " />
+                <marker date="1527000864309" expanded="false" signature="1091:1097" ph=" }" />
+                <marker date="1527000864309" expanded="false" signature="1153:1164" ph=" { " />
+                <marker date="1527000864309" expanded="false" signature="1199:1205" ph=" }" />
+                <marker date="1527000864309" expanded="false" signature="1243:1254" ph=" { " />
+                <marker date="1527000864309" expanded="false" signature="1275:1281" ph=" }" />
+                <marker date="1527000864309" expanded="false" signature="1337:1348" ph=" { " />
+                <marker date="1527000864309" expanded="false" signature="1383:1389" ph=" }" />
+                <marker date="1527000864309" expanded="false" signature="1424:1435" ph=" { " />
+                <marker date="1527000864309" expanded="false" signature="1452:1458" ph=" }" />
               </folding>
             </state>
           </provider>
@@ -60,22 +165,23 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/front/Column.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="362">
-              <caret line="18" column="2" lean-forward="false" selection-start-line="18" selection-start-column="2" selection-end-line="66" selection-end-column="5" />
+              <caret line="18" column="2" lean-forward="false" selection-start-line="18" selection-start-column="2" selection-end-line="76" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1421#1422#0" expanded="true" />
-                <element signature="e#1451#1452#0" expanded="true" />
+                <element signature="e#1662#1663#0" expanded="true" />
+                <element signature="e#1692#1693#0" expanded="true" />
+                <marker date="1527000864311" expanded="false" signature="1104:1110" ph=" }" />
+                <marker date="1527000864311" expanded="false" signature="1145:1156" ph=" { " />
+                <marker date="1527000864311" expanded="false" signature="1173:1179" ph=" }" />
+                <marker date="1527000864311" expanded="false" signature="1228:1239" ph=" { " />
+                <marker date="1527000864311" expanded="false" signature="1266:1272" ph=" }" />
+                <marker date="1527000864311" expanded="false" signature="1309:1320" ph=" { " />
+                <marker date="1527000864311" expanded="false" signature="1340:1346" ph=" }" />
+                <marker date="1527000864311" expanded="false" signature="1400:1411" ph=" { " />
+                <marker date="1527000864311" expanded="false" signature="1444:1450" ph=" }" />
+                <marker date="1527000864311" expanded="false" signature="1487:1498" ph=" { " />
+                <marker date="1527000864311" expanded="false" signature="1518:1524" ph=" }" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ColumnDto.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/front/ColumnDto.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="8" column="30" lean-forward="true" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -84,17 +190,17 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/DtoTransformService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="396">
-              <caret line="25" column="46" lean-forward="true" selection-start-line="25" selection-start-column="46" selection-end-line="25" selection-end-column="46" />
+              <caret line="29" column="46" lean-forward="false" selection-start-line="29" selection-start-column="46" selection-end-line="29" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <file leaf-file-name="UserManagementController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/UserManagementController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="29" column="50" lean-forward="true" selection-start-line="29" selection-start-column="50" selection-end-line="29" selection-end-column="50" />
+            <state relative-caret-position="-1339">
+              <caret line="33" column="13" lean-forward="false" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -103,9 +209,11 @@
       <file leaf-file-name="DtoTranformServiceImplService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/DtoTranformServiceImplService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="88" column="18" lean-forward="false" selection-start-line="88" selection-start-column="18" selection-end-line="88" selection-end-column="18" />
-              <folding />
+            <state relative-caret-position="978">
+              <caret line="107" column="18" lean-forward="false" selection-start-line="107" selection-start-column="18" selection-end-line="107" selection-end-column="18" />
+              <folding>
+                <marker date="1527000864328" expanded="true" signature="3885:3891" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -114,7 +222,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/front/ChannelService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="154">
-              <caret line="10" column="1" lean-forward="false" selection-start-line="10" selection-start-column="1" selection-end-line="20" selection-end-column="31" />
+              <caret line="10" column="1" lean-forward="false" selection-start-line="10" selection-start-column="1" selection-end-line="22" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -126,20 +234,9 @@
         <entry file="file://$PROJECT_DIR$/src/test/java/service/FrontServiceTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="296">
-              <caret line="72" column="22" lean-forward="true" selection-start-line="72" selection-start-column="22" selection-end-line="72" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ChannelDto.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/front/ChannelDto.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-88">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <caret line="57" column="22" lean-forward="false" selection-start-line="57" selection-start-column="22" selection-end-line="57" selection-end-column="22" />
               <folding>
-                <element signature="e#904#905#0" expanded="true" />
-                <element signature="e#946#947#0" expanded="true" />
+                <marker date="1527000864429" expanded="true" signature="1800:1855" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -149,7 +246,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/schedule/KafkaRunner.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
-              <caret line="42" column="5" lean-forward="true" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+              <caret line="42" column="5" lean-forward="false" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -157,31 +254,12 @@
       </file>
     </leaf>
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Enum" />
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>edis</find>
-      <find>HttpSolrClient</find>
-      <find>article_id</find>
-      <find>article_content</find>
-      <find>spring-boot-starter-mail</find>
+      <find>SessionConst</find>
     </findStrings>
-    <replaceStrings>
-      <replace>articleid</replace>
-      <replace>articleContent</replace>
-      <replace>column</replace>
-    </replaceStrings>
   </component>
   <component name="Git.Settings">
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
@@ -240,8 +318,8 @@
         <option value="$PROJECT_DIR$/src/test/java/service/FrontServiceTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/front/ChannelDto.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/front/ColumnDto.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/DtoTransformService.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/DtoTranformServiceImplService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/DtoTransformService.java" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
       </list>
     </option>
@@ -251,62 +329,6 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-      </MavenImportingSettings>
-    </option>
-  </component>
-  <component name="MavenProjectNavigator">
-    <treeState>
-      <expand>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="sunshine" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="sunshine" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="sunshine" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
-        </path>
-      </expand>
-      <select />
-    </treeState>
-  </component>
-  <component name="NodePackageJsonFileManager">
-    <packageJsonPaths />
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="197" />
-    <option name="y" value="17" />
-    <option name="width" value="1400" />
-    <option name="height" value="820" />
-  </component>
-  <component name="ProjectInspectionProfilesVisibleTreeState">
-    <entry key="Project Default">
-      <profile-state>
-        <expanded-state>
-          <State>
-            <id />
-          </State>
-          <State>
-            <id>Ali-Check</id>
-          </State>
-        </expanded-state>
-        <selected-state>
-          <State>
-            <id>AlibabaClassMustHaveAuthor</id>
-          </State>
-        </selected-state>
-      </profile-state>
-    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -342,6 +364,24 @@
             </path>
             <path>
               <item name="sunshine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sunshine" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sunshine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sunshine" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sunshine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sunshine" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sunshine" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
@@ -349,41 +389,6 @@
         </subPane>
       </pane>
     </panes>
-  </component>
-  <component name="PropertiesComponent">
-    <property name="RequestMappingsPanelOrder0" value="0" />
-    <property name="RequestMappingsPanelOrder1" value="1" />
-    <property name="RequestMappingsPanelOrder2" value="2" />
-    <property name="RequestMappingsPanelWidth0" value="75" />
-    <property name="RequestMappingsPanelWidth1" value="75" />
-    <property name="RequestMappingsPanelWidth2" value="75" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="C:/Program Files/Git/bin/git.exe" />
-    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Artifacts" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="fileTemplates" />
-    <property name="ignore_missing_gitignore" value="true" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\DELL\IdeaProjects\sunshine\web" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="service" />
-      <recent name="team.stephen.sunshine.dao.front" />
-      <recent name="team.stephen.sunshine.model.front" />
-      <recent name="team.stephen.sunshine.conf" />
-      <recent name="team.stephen.sunshine.exception" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\DELL\IdeaProjects\sunshine\src\test" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -397,138 +402,19 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.FrontServiceTest.testChannelDelete">
+  <component name="RunManager" selected="Spring Boot.Application">
     <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="team.stephen.sunshine.Application" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <module name="sunshine" />
       <envs />
     </configuration>
-    <configuration name="FrontServiceTest.testChannelAdd" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="sunshine" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="service" />
-      <option name="MAIN_CLASS_NAME" value="service.FrontServiceTest" />
-      <option name="METHOD_NAME" value="testChannelAdd" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-    </configuration>
-    <configuration name="FrontServiceTest.testChannelDelete" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="sunshine" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="service" />
-      <option name="MAIN_CLASS_NAME" value="service.FrontServiceTest" />
-      <option name="METHOD_NAME" value="testChannelDelete" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-    </configuration>
-    <configuration name="FrontServiceTest.testChannelSelect" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="sunshine" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="service" />
-      <option name="MAIN_CLASS_NAME" value="service.FrontServiceTest" />
-      <option name="METHOD_NAME" value="testChannelSelect" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-    </configuration>
-    <configuration name="FrontServiceTest.testChannelUpdate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="sunshine" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="service" />
-      <option name="MAIN_CLASS_NAME" value="service.FrontServiceTest" />
-      <option name="METHOD_NAME" value="testChannelUpdate" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-    </configuration>
-    <configuration name="MailServiceTest.testSendSimpleMail" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="sunshine" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="service" />
-      <option name="MAIN_CLASS_NAME" value="service.MailServiceTest" />
-      <option name="METHOD_NAME" value="testSendSimpleMail" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
@@ -555,7 +441,7 @@
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <option name="TEST_SEARCH_SCOPE">
@@ -564,85 +450,18 @@
       <envs />
       <patterns />
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
       <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="main" />
-      <envs />
+      <predefined_log_file id="idea.log" enabled="true" />
     </configuration>
-    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
-      <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
-      <deployment>
-        <artifact name="sunshine:war exploded">
-          <settings>
-            <option name="CONTEXT_PATH" value="/" />
-          </settings>
-        </artifact>
-      </deployment>
-      <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="_sunshine" />
-      </server-settings>
-      <predefined_log_file id="Tomcat" enabled="true" />
-      <predefined_log_file id="Tomcat Catalina" enabled="true" />
-      <predefined_log_file id="Tomcat Manager" enabled="false" />
-      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
-      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="55123" />
-      </RunnerSettings>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
@@ -657,7 +476,7 @@
       <option name="TEST_OBJECT" value="CLASS" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <option name="OUTPUT_DIRECTORY" />
       <option name="ANNOTATION_TYPE" />
       <option name="ENV_VARIABLES" />
@@ -671,23 +490,6 @@
       <properties />
       <listeners />
     </configuration>
-    <list size="6">
-      <item index="0" class="java.lang.String" itemvalue="Spring Boot.Application" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.MailServiceTest.testSendSimpleMail" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.FrontServiceTest.testChannelAdd" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.FrontServiceTest.testChannelSelect" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.FrontServiceTest.testChannelUpdate" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.FrontServiceTest.testChannelDelete" />
-    </list>
-    <recent_temporary>
-      <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.FrontServiceTest.testChannelDelete" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.FrontServiceTest.testChannelUpdate" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.FrontServiceTest.testChannelSelect" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.FrontServiceTest.testChannelAdd" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.MailServiceTest.testSendSimpleMail" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SbtLocalSettings">
     <option name="externalProjectsViewState">
@@ -696,9 +498,6 @@
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
-  </component>
-  <component name="SvnConfiguration">
-    <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -770,52 +569,18 @@
       <option name="project" value="LOCAL" />
       <updated>1526918281498</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="ws">
+      <created>1527000751590</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1527000751590</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
-  <component name="TestHistory">
-    <history-entry file="FrontServiceTest_testChannelAdd - 2018.05.21 at 23h 42m 40s.xml">
-      <configuration name="FrontServiceTest.testChannelAdd" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FrontServiceTest_testChannelAdd - 2018.05.21 at 23h 43m 26s.xml">
-      <configuration name="FrontServiceTest.testChannelAdd" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FrontServiceTest_testChannelAdd - 2018.05.21 at 23h 44m 01s.xml">
-      <configuration name="FrontServiceTest.testChannelAdd" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FrontServiceTest_testChannelDelete - 2018.05.21 at 23h 48m 32s.xml">
-      <configuration name="FrontServiceTest.testChannelDelete" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FrontServiceTest_testChannelDelete - 2018.05.21 at 23h 48m 57s.xml">
-      <configuration name="FrontServiceTest.testChannelDelete" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FrontServiceTest_testChannelSelect - 2018.05.21 at 23h 45m 49s.xml">
-      <configuration name="FrontServiceTest.testChannelSelect" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FrontServiceTest_testChannelSelect - 2018.05.21 at 23h 46m 15s.xml">
-      <configuration name="FrontServiceTest.testChannelSelect" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FrontServiceTest_testChannelUpdate - 2018.05.21 at 23h 47m 23s.xml">
-      <configuration name="FrontServiceTest.testChannelUpdate" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MailServiceTest_testSendSimpleMail - 2018.05.21 at 09h 34m 15s.xml">
-      <configuration name="MailServiceTest.testSendSimpleMail" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MailServiceTest_testSendSimpleMail - 2018.05.21 at 09h 50m 47s.xml">
-      <configuration name="MailServiceTest.testSendSimpleMail" configurationId="JUnit" />
-    </history-entry>
-  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72225000" />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
+    <option name="totallyTimeSpent" value="72491000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -831,7 +596,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4905028" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -839,7 +604,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14925373" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -940,22 +705,6 @@
       </map>
     </option>
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="权限表" />
-    <MESSAGE value="redis的maven配置" />
-    <MESSAGE value="solr 配置" />
-    <MESSAGE value="爬虫服务" />
-    <MESSAGE value="article solr查询服务" />
-    <MESSAGE value="消息队列 kafka支持" />
-    <MESSAGE value="发送邮件 todo" />
-    <MESSAGE value="调整项目包结构" />
-    <MESSAGE value="basecontroller" />
-    <MESSAGE value="front 页的channel和column服务" />
-    <option name="LAST_COMMIT_MESSAGE" value="front 页的channel和column服务" />
-  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <option name="time" value="36" />
@@ -963,20 +712,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/common/RolePermissionRelation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/common/CustomSessionManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1172,6 +907,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="704">
           <caret line="32" column="21" lean-forward="false" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1236,10 +972,6 @@
             <element signature="imports" expanded="true" />
             <element signature="e#630#631#0" expanded="true" />
             <element signature="e#686#687#0" expanded="true" />
-            <element signature="e#1025#1026#0" expanded="true" />
-            <element signature="e#1074#1075#0" expanded="true" />
-            <element signature="e#1139#1140#0" expanded="true" />
-            <element signature="e#1209#1210#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1268,7 +1000,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/schedule/KafkaRunner.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
-          <caret line="42" column="5" lean-forward="true" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+          <caret line="42" column="5" lean-forward="false" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -1276,7 +1008,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/front/ChannelService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
-          <caret line="10" column="1" lean-forward="false" selection-start-line="10" selection-start-column="1" selection-end-line="20" selection-end-column="31" />
+          <caret line="10" column="1" lean-forward="false" selection-start-line="10" selection-start-column="1" selection-end-line="22" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1286,19 +1018,32 @@
     <entry file="file://$PROJECT_DIR$/src/test/java/service/FrontServiceTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="296">
-          <caret line="72" column="22" lean-forward="true" selection-start-line="72" selection-start-column="22" selection-end-line="72" selection-end-column="22" />
-          <folding />
+          <caret line="57" column="22" lean-forward="false" selection-start-line="57" selection-start-column="22" selection-end-line="57" selection-end-column="22" />
+          <folding>
+            <marker date="1527000864429" expanded="true" signature="1800:1855" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/front/Channel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
-          <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
+          <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="74" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1277#1278#0" expanded="true" />
-            <element signature="e#1319#1320#0" expanded="true" />
+            <element signature="e#1508#1509#0" expanded="true" />
+            <element signature="e#1550#1551#0" expanded="true" />
+            <marker date="1527000864309" expanded="false" signature="1015:1021" ph=" }" />
+            <marker date="1527000864309" expanded="false" signature="1059:1070" ph=" { " />
+            <marker date="1527000864309" expanded="false" signature="1091:1097" ph=" }" />
+            <marker date="1527000864309" expanded="false" signature="1153:1164" ph=" { " />
+            <marker date="1527000864309" expanded="false" signature="1199:1205" ph=" }" />
+            <marker date="1527000864309" expanded="false" signature="1243:1254" ph=" { " />
+            <marker date="1527000864309" expanded="false" signature="1275:1281" ph=" }" />
+            <marker date="1527000864309" expanded="false" signature="1337:1348" ph=" { " />
+            <marker date="1527000864309" expanded="false" signature="1383:1389" ph=" }" />
+            <marker date="1527000864309" expanded="false" signature="1424:1435" ph=" { " />
+            <marker date="1527000864309" expanded="false" signature="1452:1458" ph=" }" />
           </folding>
         </state>
       </provider>
@@ -1307,21 +1052,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-88">
           <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding>
-            <element signature="e#904#905#0" expanded="true" />
-            <element signature="e#946#947#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/front/Column.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="362">
-          <caret line="18" column="2" lean-forward="false" selection-start-line="18" selection-start-column="2" selection-end-line="66" selection-end-column="5" />
+          <caret line="18" column="2" lean-forward="false" selection-start-line="18" selection-start-column="2" selection-end-line="76" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1421#1422#0" expanded="true" />
-            <element signature="e#1451#1452#0" expanded="true" />
+            <element signature="e#1662#1663#0" expanded="true" />
+            <element signature="e#1692#1693#0" expanded="true" />
+            <marker date="1527000864311" expanded="false" signature="1104:1110" ph=" }" />
+            <marker date="1527000864311" expanded="false" signature="1145:1156" ph=" { " />
+            <marker date="1527000864311" expanded="false" signature="1173:1179" ph=" }" />
+            <marker date="1527000864311" expanded="false" signature="1228:1239" ph=" { " />
+            <marker date="1527000864311" expanded="false" signature="1266:1272" ph=" }" />
+            <marker date="1527000864311" expanded="false" signature="1309:1320" ph=" { " />
+            <marker date="1527000864311" expanded="false" signature="1340:1346" ph=" }" />
+            <marker date="1527000864311" expanded="false" signature="1400:1411" ph=" { " />
+            <marker date="1527000864311" expanded="false" signature="1444:1450" ph=" }" />
+            <marker date="1527000864311" expanded="false" signature="1487:1498" ph=" { " />
+            <marker date="1527000864311" expanded="false" signature="1518:1524" ph=" }" />
           </folding>
         </state>
       </provider>
@@ -1336,109 +1089,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/DtoTranformServiceImplService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="88" column="18" lean-forward="false" selection-start-line="88" selection-start-column="18" selection-end-line="88" selection-end-column="18" />
-          <folding />
+        <state relative-caret-position="978">
+          <caret line="107" column="18" lean-forward="false" selection-start-line="107" selection-start-column="18" selection-end-line="107" selection-end-column="18" />
+          <folding>
+            <marker date="1527000864328" expanded="true" signature="3885:3891" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/DtoTransformService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
-          <caret line="25" column="46" lean-forward="true" selection-start-line="25" selection-start-column="46" selection-end-line="25" selection-end-column="46" />
+          <caret line="29" column="46" lean-forward="false" selection-start-line="29" selection-start-column="46" selection-end-line="29" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <last-edited>sunshine:war</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.5" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>Web (sunshine)|Web</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>scala-sdk-2.11.12</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>sunshine</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <last-edited>10</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>Maven: org.springframework.boot:spring-boot-starter-data-redis:2.0.2.RELEASE</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/UserManagementController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1339">
+          <caret line="33" column="13" lean-forward="false" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5296">
+          <caret line="310" column="94" lean-forward="false" selection-start-line="310" selection-start-column="82" selection-end-line="310" selection-end-column="94" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

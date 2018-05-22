@@ -22,7 +22,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 //        User user = new User();
 //        user.setUserId(new Random().nextInt(100));
 //        user.setUserName("stephen");
-//        Holder.setUser(user);
+//        Holder.setUserId(user);
         return true;
     }
 

@@ -23,7 +23,7 @@ public class ChannelServiceImpl implements ChannelService {
     }
 
     @Override
-    public Page<Channel> select(Channel condition, int pageNum, int pageSize) {
+    public Page<Channel> select(Channel condition, Integer pageNum, Integer pageSize) {
         if (condition == null) {
             return null;
         }
@@ -55,5 +55,10 @@ public class ChannelServiceImpl implements ChannelService {
         channel.setChannelId(channelId);
         channel.setDeleted(false);
         return updateSelective(channel);
+    }
+
+    @Override
+    public Channel selectOne(Channel condition) {
+        return channelDao.selectOne(condition);
     }
 }

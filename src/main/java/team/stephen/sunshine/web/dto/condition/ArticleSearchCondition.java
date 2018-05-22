@@ -24,7 +24,8 @@ public class ArticleSearchCondition {
     private Date updateDateStart;
     private Date updateDateEnd;
     private String articleViewPwd;
-
+    private Boolean isPrivate;
+    private Boolean deleted;
     private Integer pageNum;
     private Integer pageSize;
 
@@ -173,6 +174,22 @@ public class ArticleSearchCondition {
 
     public void setArticleViewPwd(String articleViewPwd) {
         this.articleViewPwd = articleViewPwd;
+    }
+
+    public Boolean getPrivate() {
+        return isPrivate;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setPrivate(Boolean aPrivate) {
+        isPrivate = aPrivate;
     }
 
     public Integer getPageNum() {
