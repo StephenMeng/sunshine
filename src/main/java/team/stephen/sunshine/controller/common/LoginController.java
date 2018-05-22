@@ -4,7 +4,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.apache.catalina.Session;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
@@ -16,10 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import springfox.documentation.annotations.ApiIgnore;
-import team.stephen.sunshine.constant.SessionAttr;
+import team.stephen.sunshine.constant.SessionConst;
 import team.stephen.sunshine.controller.BaseController;
 import team.stephen.sunshine.service.common.CacheService;
-import team.stephen.sunshine.service.user.UserService;
 import team.stephen.sunshine.util.common.LogRecod;
 import team.stephen.sunshine.util.common.Response;
 
@@ -87,7 +85,7 @@ public class LoginController extends BaseController {
             LogRecod.info("用户[" + userNo + "]登录认证通过(这里可以进行一些认证通过后的一些系统参数初始化操作)");
             HttpSession session = request.getSession(true);
 
-            session.setAttribute(SessionAttr._USER, cacheService.findUserDtoByUserNo(userNo));
+            session.setAttribute(SessionConst._USER, cacheService.findUserDtoByUserNo(userNo));
             return Response.success("login success");
         } else {
             token.clear();

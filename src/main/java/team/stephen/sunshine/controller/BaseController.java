@@ -1,9 +1,8 @@
 package team.stephen.sunshine.controller;
 
-import io.swagger.annotations.ApiModelProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import team.stephen.sunshine.constant.SessionAttr;
+import team.stephen.sunshine.constant.SessionConst;
 import team.stephen.sunshine.service.common.CacheService;
 import team.stephen.sunshine.web.dto.user.UserDto;
 
@@ -31,7 +30,7 @@ public class BaseController {
     }
 
     public UserDto getUser() {
-        Object value = session.getAttribute(SessionAttr._USER);
+        Object value = session.getAttribute(SessionConst._USER);
         if (!(value instanceof UserDto)) {
             return null;
         }

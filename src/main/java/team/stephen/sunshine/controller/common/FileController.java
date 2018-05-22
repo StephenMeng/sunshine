@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import team.stephen.sunshine.util.common.FileUtils;
+import team.stephen.sunshine.util.common.QRCodeUtils;
 import team.stephen.sunshine.util.common.Response;
 
 import javax.servlet.http.HttpServletResponse;
@@ -36,11 +37,20 @@ public class FileController {
     }
 
     @ApiOperation(value = "下载文件", httpMethod = "POST", response = Response.class)
-    @ApiImplicitParam(name = "path",value = "下载路径", required = true, dataType = "String", paramType = "query")
+    @ApiImplicitParam(name = "path", value = "下载路径", required = true, dataType = "String", paramType = "query")
     @RequestMapping(value = "download", method = RequestMethod.GET)
     public Response download(String path, HttpServletResponse response) {
 //        path = AVATAR_URI + "/" + "sunshine_option.sql";
         FileUtils.download(response, path);
+        return Response.success(true);
+    }
+
+    @ApiOperation(value = "生成二维码", httpMethod = "GET", response = Response.class)
+    @ApiImplicitParam(name = "text", value = "文本信息", required = true, dataType = "String", paramType = "query")
+    @RequestMapping(value = "qr", method = RequestMethod.GET)
+    public Response qrCode(String text, HttpServletResponse response) {
+        text = "http://im.nju.edu.cn";
+        QRCodeUtils.create(text,  response);
         return Response.success(true);
     }
 }
