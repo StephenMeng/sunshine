@@ -21,7 +21,7 @@ import java.util.Map;
  * @author Stephen
  */
 @RestController
-@RequestMapping("member/message")
+@RequestMapping("test/message")
 public class MessageController extends BaseController {
     @Autowired
     private KafkaService kafkaService;

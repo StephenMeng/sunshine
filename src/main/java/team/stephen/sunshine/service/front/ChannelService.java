@@ -10,7 +10,7 @@ import team.stephen.sunshine.model.front.Channel;
 public interface ChannelService {
     Channel selectByChannelId(int id);
 
-    Page<Channel> select(Channel condition, int pageNum, int pageSize);
+    Page<Channel> select(Channel condition, Integer pageNum, Integer pageSize);
 
     int addChannel(Channel channel);
 

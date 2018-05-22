@@ -8,6 +8,7 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrInputDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import team.stephen.sunshine.service.article.ArticleService;
 import team.stephen.sunshine.web.dto.condition.ArticleSearchCondition;
 import team.stephen.sunshine.exception.NullParamException;
 import team.stephen.sunshine.model.article.Article;
@@ -18,6 +19,7 @@ import team.stephen.sunshine.util.common.PageUtil;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static team.stephen.sunshine.constant.solr.Field.*;
 
@@ -27,7 +29,8 @@ public class SolrServiceImpl implements SolrService {
     private HttpSolrClient articleSolrClient;
     @Autowired
     private SearchConditionService searchConditionService;
-
+    @Autowired
+    private ArticleService articleService;
 
     /**
      * 往索引库添加文档
@@ -87,13 +90,9 @@ public class SolrServiceImpl implements SolrService {
         //得到实体对象
         long total = response.getResults().getNumFound();
         List<Article> tmpLists = response.getBeans(Article.class);
-        if (tmpLists != null && tmpLists.size() > 0) {
-            tmpLists.forEach(a -> {
-                LogRecod.print(a.getArticleContent());
-            });
-        }
-        PageInfo<Article> page = PageUtil.listToPageInfo(tmpLists, total, condition.getPageNum(), condition.getPageSize());
-        return page;
+        tmpLists = tmpLists.stream().map(article -> article = articleService.getArticleById(article.getArticleId()))
+                .collect(Collectors.toList());
+        return PageUtil.listToPageInfo(tmpLists, total, condition.getPageNum(), condition.getPageSize());
     }
 
     @Override

@@ -8,6 +8,8 @@ package team.stephen.sunshine.constant.enu;
  */
 
 public enum ResultEnum {
+    OK(200, "OK", "OK"),
+
     CLIENT_ERROR(400, "客户端错误", "Client Error"),
 
     /**

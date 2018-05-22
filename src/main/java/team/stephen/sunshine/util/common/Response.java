@@ -53,4 +53,11 @@ public class Response {
         response.setMsg(msgCn);
         return response;
     }
+
+    public static Response error(ParamCheck check) {
+        Response response = new Response();
+        response.setCode(check.getCode());
+        response.setMsg(check.getMsgCn());
+        return response;
+    }
 }

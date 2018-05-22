@@ -56,6 +56,10 @@ public class Article {
     private Date articleUpdateDate;
     @Column(name = "article_view_pwd")
     private String articleViewPwd;
+    @Column(name = "private")
+    private Boolean isPrivate;
+    @Column(name = "deleted")
+    private Boolean deleted;
 
     public static Article getNewDefaultInstance() {
         Article article = new Article();
@@ -74,6 +78,8 @@ public class Article {
         article.setArticlePutTop(false);
         article.setArticleTag("stephen");
         article.setArticleViewPwd("pwd");
+        article.setDeleted(false);
+        article.setPrivate(false);
         return article;
     }
 
@@ -219,5 +225,21 @@ public class Article {
 
     public void setArticleViewPwd(String articleViewPwd) {
         this.articleViewPwd = articleViewPwd;
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setPrivate(Boolean aPrivate) {
+        isPrivate = aPrivate;
+    }
+
+    public Boolean getPrivate() {
+        return isPrivate;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 }

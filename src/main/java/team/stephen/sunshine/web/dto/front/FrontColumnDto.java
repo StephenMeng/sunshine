@@ -1,45 +1,26 @@
 package team.stephen.sunshine.web.dto.front;
 
+import team.stephen.sunshine.web.dto.base.BaseColumnDto;
+
 /**
  * @author Stephen
  * @date 2018/05/21 23:50
  */
-public class FrontColumnDto {
-    private String columnUri;
-    private String channelUri;
-    private String columnNameCn;
-    private String columnNameEn;
+public class FrontColumnDto extends BaseColumnDto {
+    private FrontChannelDto channel;
 
-    public String getColumnUri() {
-        return columnUri;
+    public FrontColumnDto() {
     }
 
-    public void setColumnUri(String columnUri) {
-        this.columnUri = columnUri;
+    public FrontColumnDto(StandardColumnDto source) {
+        super(source);
     }
 
-    public String getChannelUri() {
-        return channelUri;
+    public FrontChannelDto getChannel() {
+        return channel;
     }
 
-    public void setChannelUri(String channelUri) {
-        this.channelUri = channelUri;
+    public void setChannel(FrontChannelDto channel) {
+        this.channel = channel;
     }
-
-    public String getColumnNameCn() {
-        return columnNameCn;
-    }
-
-    public void setColumnNameCn(String columnNameCn) {
-        this.columnNameCn = columnNameCn;
-    }
-
-    public String getColumnNameEn() {
-        return columnNameEn;
-    }
-
-    public void setColumnNameEn(String columnNameEn) {
-        this.columnNameEn = columnNameEn;
-    }
-
 }

@@ -6,22 +6,27 @@ import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import team.stephen.sunshine.constant.enu.ResultEnum;
+import team.stephen.sunshine.exception.NullParamException;
 import team.stephen.sunshine.model.article.Article;
 import team.stephen.sunshine.model.front.Channel;
 import team.stephen.sunshine.model.front.Column;
 import team.stephen.sunshine.service.article.ArticleService;
 import team.stephen.sunshine.service.common.DtoTransformService;
+import team.stephen.sunshine.service.common.SolrService;
 import team.stephen.sunshine.service.front.ChannelService;
 import team.stephen.sunshine.service.front.ColumnService;
 import team.stephen.sunshine.util.common.PageUtil;
 import team.stephen.sunshine.util.common.Response;
 import team.stephen.sunshine.util.element.StringUtils;
 import team.stephen.sunshine.web.dto.article.StandardArticleDto;
-import team.stephen.sunshine.web.dto.front.FrontChannelDto;
-import team.stephen.sunshine.web.dto.front.FrontColumnDto;
+import team.stephen.sunshine.web.dto.condition.ArticleSearchCondition;
+import team.stephen.sunshine.web.dto.front.*;
+
+import java.io.IOException;
 
 /**
  * 展示页面相关的方法
@@ -40,6 +45,8 @@ public class FrontController {
     private DtoTransformService dtoTransformService;
     @Autowired
     private ArticleService articleService;
+    @Autowired
+    private SolrService solrService;
 
     @ApiOperation(value = "获取频道列表", httpMethod = "GET", response = Response.class)
     @ApiImplicitParams({
@@ -50,9 +57,11 @@ public class FrontController {
                                @RequestParam(name = "pageSize", defaultValue = "0") Integer pageSize) {
         Channel condition = new Channel();
         condition.setDeleted(false);
+        PageHelper.startPage(pageNum, pageSize);
         Page<Channel> channelPage = channelService.select(condition, pageNum, pageSize);
-        Page<FrontChannelDto> dtoPage = PageUtil.transformPage(channelPage, dtoTransformService::channelModelToDto);
-        return Response.success(new PageInfo<>(dtoPage));
+        Page<StandardChannelDto> dtoPage = PageUtil.transformPage(channelPage, dtoTransformService::channelModelToDto);
+        Page<FrontChannelDto> frontChannelDtos = PageUtil.transformPage(dtoPage, FrontChannelDto::new);
+        return Response.success(new PageInfo<>(frontChannelDtos));
     }
 
     @ApiOperation(value = "获取栏目列表", httpMethod = "GET", response = Response.class)
@@ -83,9 +92,10 @@ public class FrontController {
         columnCondition.setChannelId(exist.getChannelId());
         columnCondition.setDeleted(false);
         Page<Column> channelPage = columnService.select(columnCondition, pageNum, pageSize);
-        Page<FrontColumnDto> dtoPage = PageUtil.transformPage(channelPage, dtoTransformService::columnModelToDto);
+        Page<StandardColumnDto> standardColumnDtoPage = PageUtil.transformPage(channelPage, dtoTransformService::columnModelToDto);
+        Page<FrontColumnDto> dtoPage = PageUtil.transformPage(standardColumnDtoPage, FrontColumnDto::new);
         dtoPage.forEach(dto ->
-                dto.setChannelUri(channelUri));
+                dto.setChannel(new FrontChannelDto(exist)));
         return Response.success(new PageInfo<>(dtoPage));
     }
 
@@ -147,5 +157,31 @@ public class FrontController {
         Article article = articleService.selectOne(articleCondition);
         StandardArticleDto dto = dtoTransformService.articleModelToDto(article);
         return Response.success(dto);
+    }
+
+    @ApiOperation(value = "搜索文章", httpMethod = "GET", response = Response.class)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "q", value = "搜索关键词", required = true, dataType = "string", paramType = "query"),
+            @ApiImplicitParam(name = "pageNum", value = "页码", required = true, dataType = "int", paramType = "query"),
+            @ApiImplicitParam(name = "pageSize", value = "数据量，默认10", required = true, dataType = "int", paramType = "query")})
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public Response searchArticle(@RequestParam("q") String q,
+                                  @RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
+                                  @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize) {
+        ArticleSearchCondition condition = new ArticleSearchCondition();
+        condition.setArticleTag(q);
+        condition.setDeleted(false);
+        condition.setPrivate(false);
+        condition.setPageNum(pageNum);
+        condition.setPageSize(pageSize);
+
+        try {
+            PageInfo<Article> pageInfo = solrService.queryArticle(condition);
+            PageInfo<FrontArticleSimpleDto> simpleDtoPageInfo = PageUtil.transformPageInfo(pageInfo, FrontArticleSimpleDto::new);
+            return Response.success(simpleDtoPageInfo);
+        } catch (IOException | SolrServerException | NullParamException e) {
+            e.printStackTrace();
+            return Response.error(ResultEnum.SERVER_WRONG);
+        }
     }
 }

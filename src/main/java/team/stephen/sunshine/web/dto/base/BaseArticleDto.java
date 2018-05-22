@@ -1,5 +1,7 @@
 package team.stephen.sunshine.web.dto.base;
 
+import team.stephen.sunshine.model.article.Article;
+
 import java.util.Date;
 
 /**
@@ -13,6 +15,18 @@ public class BaseArticleDto {
     protected Integer articleAuthor;
     protected String articleLink;
     protected Date articleCreateDate;
+
+    public BaseArticleDto() {
+    }
+
+    public BaseArticleDto(Article source) {
+        setArticleAuthor(source.getArticleAuthor());
+        setArticleCreateDate(source.getArticleCreateDate());
+        setArticleLink(source.getArticleLink());
+        setArticleLinkId(source.getArticleLinkId());
+        setArticleTag(source.getArticleTag());
+        setArticleTitle(source.getArticleTitle());
+    }
 
     public String getArticleLinkId() {
         return articleLinkId;

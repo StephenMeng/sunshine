@@ -23,7 +23,7 @@ public class ChannelServiceImpl implements ChannelService {
     }
 
     @Override
-    public Page<Channel> select(Channel condition, int pageNum, int pageSize) {
+    public Page<Channel> select(Channel condition, Integer pageNum, Integer pageSize) {
         if (condition == null) {
             return null;
         }

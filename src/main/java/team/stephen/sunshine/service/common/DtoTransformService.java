@@ -9,24 +9,27 @@ import team.stephen.sunshine.web.dto.article.StandardArticleDto;
 import team.stephen.sunshine.web.dto.book.BookDto;
 import team.stephen.sunshine.web.dto.front.FrontChannelDto;
 import team.stephen.sunshine.web.dto.front.FrontColumnDto;
+import team.stephen.sunshine.web.dto.front.StandardChannelDto;
+import team.stephen.sunshine.web.dto.front.StandardColumnDto;
 import team.stephen.sunshine.web.dto.user.UserDto;
 
 public interface DtoTransformService {
 
     User userDtoToModel(UserDto userDto);
-
+//
     UserDto userModelToDto(User user);
 
     Book bookDtoToModel(BookDto bookDto);
 
     Channel channelDtoToModel(FrontChannelDto frontChannelDto);
 
-    FrontChannelDto channelModelToDto(Channel channel);
+    StandardChannelDto channelModelToDto(Channel channel);
 
     Column columnDtoToModel(FrontColumnDto frontColumnDto);
 
-    FrontColumnDto columnModelToDto(Column column);
-
+    StandardColumnDto columnModelToDto(Column column);
 
     StandardArticleDto articleModelToDto(Article article);
+
+    void copyProperties(Object dest, Object source);
 }

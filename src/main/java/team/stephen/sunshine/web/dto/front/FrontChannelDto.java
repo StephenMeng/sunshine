@@ -1,45 +1,27 @@
 package team.stephen.sunshine.web.dto.front;
 
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import team.stephen.sunshine.model.front.Channel;
+import team.stephen.sunshine.web.dto.base.BaseChannelDto;
+
 /**
  * @author Stephen
  * @date 2018/05/21 23:49
  */
-public class FrontChannelDto {
-    private String channelUri;
-    private String channelNameCn;
-    private String channelNameEn;
-    private Boolean hasColumn;
+public class FrontChannelDto extends BaseChannelDto {
 
-    public String getChannelUri() {
-        return channelUri;
+    public FrontChannelDto() {
     }
 
-    public void setChannelUri(String channelUri) {
-        this.channelUri = channelUri;
+    public FrontChannelDto(StandardChannelDto source) {
+        super(source);
     }
 
-    public String getChannelNameCn() {
-        return channelNameCn;
-    }
-
-    public void setChannelNameCn(String channelNameCn) {
-        this.channelNameCn = channelNameCn;
-    }
-
-    public String getChannelNameEn() {
-        return channelNameEn;
-    }
-
-    public void setChannelNameEn(String channelNameEn) {
-        this.channelNameEn = channelNameEn;
-    }
-
-    public Boolean getHasColumn() {
-        return hasColumn;
-    }
-
-    public void setHasColumn(Boolean hasColumn) {
-        this.hasColumn = hasColumn;
+    public FrontChannelDto(Channel source) {
+        setChannelUri(source.getChannelUri());
+        setChannelNameEn(source.getChannelNameEn());
+        setChannelNameCn(source.getChannelNameCn());
     }
 }

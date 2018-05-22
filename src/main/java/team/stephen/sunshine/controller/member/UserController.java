@@ -19,7 +19,7 @@ import team.stephen.sunshine.web.dto.user.UserDto;
  * @date 2018/5/21
  */
 @RestController
-@RequestMapping("user")
+@RequestMapping("member/user")
 public class UserController extends BaseController {
     @Autowired
     private UserService userService;

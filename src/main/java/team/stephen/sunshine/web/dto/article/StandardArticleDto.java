@@ -1,5 +1,6 @@
 package team.stephen.sunshine.web.dto.article;
 
+import team.stephen.sunshine.model.article.Article;
 import team.stephen.sunshine.web.dto.base.BaseArticleDto;
 
 import java.util.Date;
@@ -21,6 +22,14 @@ public class StandardArticleDto extends BaseArticleDto {
     private Boolean articlePutTop;
     private Date articleUpdateDate;
     private String articleViewPwd;
+
+    public StandardArticleDto() {
+        super();
+    }
+
+    public StandardArticleDto(Article source) {
+        super(source);
+    }
 
     public Long getArticleId() {
         return articleId;

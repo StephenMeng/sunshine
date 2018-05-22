@@ -11,6 +11,8 @@ import team.stephen.sunshine.web.dto.article.StandardArticleDto;
 import team.stephen.sunshine.web.dto.book.BookDto;
 import team.stephen.sunshine.web.dto.front.FrontChannelDto;
 import team.stephen.sunshine.web.dto.front.FrontColumnDto;
+import team.stephen.sunshine.web.dto.front.StandardChannelDto;
+import team.stephen.sunshine.web.dto.front.StandardColumnDto;
 import team.stephen.sunshine.web.dto.user.UserDto;
 import team.stephen.sunshine.model.book.Book;
 import team.stephen.sunshine.model.user.User;
@@ -77,11 +79,11 @@ public class DtoTranformServiceImplService implements DtoTransformService {
     }
 
     @Override
-    public FrontChannelDto channelModelToDto(Channel orig) {
+    public StandardChannelDto channelModelToDto(Channel orig) {
         if (orig == null) {
             return null;
         }
-        FrontChannelDto dto = new FrontChannelDto();
+        StandardChannelDto dto = new StandardChannelDto();
         copyProperties(dto, orig);
         return dto;
     }
@@ -97,11 +99,11 @@ public class DtoTranformServiceImplService implements DtoTransformService {
     }
 
     @Override
-    public FrontColumnDto columnModelToDto(Column orig) {
+    public StandardColumnDto columnModelToDto(Column orig) {
         if (orig == null) {
             return null;
         }
-        FrontColumnDto dto = new FrontColumnDto();
+        StandardColumnDto dto = new StandardColumnDto();
         copyProperties(dto, orig);
         return dto;
     }
@@ -116,7 +118,8 @@ public class DtoTranformServiceImplService implements DtoTransformService {
         return dto;
     }
 
-    private void copyProperties(Object dest, Object orig) {
+    @Override
+    public void copyProperties(Object dest, Object orig) {
         if (orig == null) {
             return;
         }

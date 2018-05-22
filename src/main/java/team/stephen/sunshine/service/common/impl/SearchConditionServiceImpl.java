@@ -8,8 +8,7 @@ import team.stephen.sunshine.exception.NullParamException;
 import team.stephen.sunshine.service.common.SearchConditionService;
 import team.stephen.sunshine.util.element.StringUtils;
 
-import static team.stephen.sunshine.constant.solr.Field.ARTICLE_CONTENT;
-import static team.stephen.sunshine.constant.solr.Field.ARTICLE_TAG;
+import static team.stephen.sunshine.constant.solr.Field.*;
 
 @Service
 public class SearchConditionServiceImpl implements SearchConditionService {
@@ -38,14 +37,14 @@ public class SearchConditionServiceImpl implements SearchConditionService {
                     articleSearchCondition.getDesc() != null && !articleSearchCondition.getDesc()
                             ? SolrQuery.ORDER.asc : SolrQuery.ORDER.desc);
         }
-        if (articleSearchCondition.getPageSize() == null || articleSearchCondition.getPageSize() < 0) {
+        if (articleSearchCondition.getPageSize() == null || articleSearchCondition.getPageSize() <= 0) {
             articleSearchCondition.setPageSize(10);
         }
-        if (articleSearchCondition.getPageNum() == null || articleSearchCondition.getPageNum() < 0) {
-            articleSearchCondition.setPageNum(0);
+        if (articleSearchCondition.getPageNum() == null || articleSearchCondition.getPageNum() <= 0) {
+            articleSearchCondition.setPageNum(1);
         }
         int pageSize = articleSearchCondition.getPageSize();
-        int pageNum = articleSearchCondition.getPageNum() * pageSize;
+        int pageNum = (articleSearchCondition.getPageNum() - 1) * pageSize;
         //设置分页参数
         query.setStart(pageNum);
         //每一页多少值
@@ -63,6 +62,18 @@ public class SearchConditionServiceImpl implements SearchConditionService {
                 sb.append(" AND ");
             }
             sb.append(ARTICLE_TAG.getFieldName()).append(":").append(articleSearchCondition.getArticleTag());
+        }
+        if (articleSearchCondition.getPrivate() != null) {
+            if (StringUtils.isNotBlank(sb.toString())) {
+                sb.append(" AND ");
+            }
+            sb.append(ARTICLE_PRIVATE.getFieldName()).append(":").append(articleSearchCondition.getPrivate());
+        }
+        if (articleSearchCondition.getDeleted() != null) {
+            if (StringUtils.isNotBlank(sb.toString())) {
+                sb.append(" AND ");
+            }
+            sb.append(ARTICLE_DELETED.getFieldName()).append(":").append(articleSearchCondition.getDeleted());
         }
         return sb;
     }
