@@ -7,48 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25c4afe5-eed6-45bd-860d-b58b2f8d26cf" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/dao/front/ChannelDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/dao/front/ColumnDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/front/Channel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/front/Column.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/front/ChannelService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/front/ColumnService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/front/impl/ChannelServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/front/impl/ColumnServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/front/ChannelDto.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/front/ColumnDto.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/service/FrontServiceTest.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/conf/MailConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/dto/book/BookDto.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/dto/condition/ArticleSearchCondition.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/dto/user/UserDto.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/schedule/KafkaRunner$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/schedule/KafkaRunner.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/conf/GloableConfig.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/conf/GloableConfig.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/constant/enu/ResultEnum.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/constant/enu/ResultEnum.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/controller/MessageController.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/controller/MessageController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/controller/UserController.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/controller/UserController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/dao/book/BookDao.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/dao/book/BookDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/model/common/CustomShiroRealm.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/model/common/CustomShiroRealm.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/model/crawler/impl/CSDNParser.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/model/crawler/impl/CSDNParser.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/model/crawler/impl/DouBanBookParser.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/model/crawler/impl/DouBanBookParser.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/MailService.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/MailService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/SearchConditionService.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/SearchConditionService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/CrawlerServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/CrawlerServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/JedisService$JedisTemplate.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/JedisService$JedisTemplate.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/JedisService.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/JedisService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/KafkaServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/KafkaServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/MailServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/MailServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/SearchConditionServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/service/common/impl/SearchConditionServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/test-classes/service/BookServiceTest.class" afterPath="$PROJECT_DIR$/target/test-classes/service/BookServiceTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/test-classes/service/CrawlerServiceTest.class" afterPath="$PROJECT_DIR$/target/test-classes/service/CrawlerServiceTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/test-classes/service/JedisServiceTest.class" afterPath="$PROJECT_DIR$/target/test-classes/service/JedisServiceTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/test-classes/service/MailServiceTest.class" afterPath="$PROJECT_DIR$/target/test-classes/service/MailServiceTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/DtoTransformService.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/DtoTransformService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/DtoTranformServiceImplService.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/DtoTranformServiceImplService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/schedule/KafkaRunner.java" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/schedule/KafkaRunner.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -124,8 +83,8 @@
       <file leaf-file-name="DtoTransformService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/DtoTransformService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="19" column="53" lean-forward="true" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
+            <state relative-caret-position="274">
+              <caret line="25" column="46" lean-forward="true" selection-start-line="25" selection-start-column="46" selection-end-line="25" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -823,7 +782,7 @@
       <workItem from="1526748527354" duration="321000" />
       <workItem from="1526750768196" duration="1058000" />
       <workItem from="1526789435659" duration="17636000" />
-      <workItem from="1526917309395" duration="882000" />
+      <workItem from="1526917309395" duration="1584000" />
     </task>
     <task id="LOCAL-00001" summary="权限表">
       <created>1526715745170</created>
@@ -874,7 +833,14 @@
       <option name="project" value="LOCAL" />
       <updated>1526839982375</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="front 页的channel和column服务">
+      <created>1526918281497</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1526918281498</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -910,7 +876,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71505000" />
+    <option name="totallyTimeSpent" value="72207000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -923,6 +889,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -944,7 +911,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14925373" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14925373" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1032,7 +999,8 @@
     <MESSAGE value="发送邮件 todo" />
     <MESSAGE value="调整项目包结构" />
     <MESSAGE value="basecontroller" />
-    <option name="LAST_COMMIT_MESSAGE" value="basecontroller" />
+    <MESSAGE value="front 页的channel和column服务" />
+    <option name="LAST_COMMIT_MESSAGE" value="front 页的channel和column服务" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1281,6 +1249,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="10" column="7" lean-forward="false" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1434,8 +1405,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/DtoTransformService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="19" column="53" lean-forward="true" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
+        <state relative-caret-position="274">
+          <caret line="25" column="46" lean-forward="true" selection-start-line="25" selection-start-column="46" selection-end-line="25" selection-end-column="46" />
           <folding />
         </state>
       </provider>
