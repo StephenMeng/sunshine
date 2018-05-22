@@ -54,7 +54,13 @@ public class SearchConditionServiceImpl implements SearchConditionService {
 
     private StringBuilder parseQ(ArticleSearchCondition articleSearchCondition) {
         StringBuilder sb = new StringBuilder();
+        if (articleSearchCondition.getArticleId() != null) {
+            sb.append(ARTICLE_ID.getFieldName()).append(":").append(articleSearchCondition.getArticleId());
+        }
         if (StringUtils.isNotNull(articleSearchCondition.getArticleContent())) {
+            if (StringUtils.isNotBlank(sb.toString())) {
+                sb.append(" AND ");
+            }
             sb.append(ARTICLE_CONTENT.getFieldName()).append(":").append(articleSearchCondition.getArticleContent());
         }
         if (StringUtils.isNotNull(articleSearchCondition.getArticleTag())) {

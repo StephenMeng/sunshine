@@ -5,6 +5,7 @@ package team.stephen.sunshine.constant.solr;
  */
 
 public enum Field {
+    ID("id"),
     ARTICLE_ID("articleId"),
     ARTICLE_CONTENT("articleContent"),
     ARTICLE_TAG("articleTag"),

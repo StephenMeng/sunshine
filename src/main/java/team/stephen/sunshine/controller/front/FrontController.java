@@ -143,7 +143,7 @@ public class FrontController {
         articleCondition.setColumnId(existColumn.getColumnId());
 
         PageHelper.startPage(pageNum, pageSize);
-        Page<Article> articlePage = articleService.select(articleCondition);
+        Page<Article> articlePage = articleService.select(articleCondition, pageNum, pageSize);
         Page<StandardArticleDto> standardArticleDtoPage = PageUtil.transformPage(articlePage, dtoTransformService::articleModelToDto);
         return Response.success(new PageInfo<>(standardArticleDtoPage));
     }

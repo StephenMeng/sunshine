@@ -63,21 +63,14 @@ public class Article {
 
     public static Article getNewDefaultInstance() {
         Article article = new Article();
-        article.setArticleTitle("第三篇文档");
         article.setArticleLinkId(RandomIDUtil.randomID(16));
-        article.setArticleAuthor(1);
-        article.setArticleLink(" ");
         article.setArticleUpdateDate(new Date());
         article.setArticleCreateDate(new Date());
-        article.setArticleAbstract("abstract");
         article.setArticleCommentCount(0);
-        article.setArticleContent("SpringBoot学习笔记（五）：配置redis");
         article.setArticleHadBeenPublished(false);
         article.setArticleIsPublished(false);
         article.setArticleViewCount(0);
         article.setArticlePutTop(false);
-        article.setArticleTag("stephen");
-        article.setArticleViewPwd("pwd");
         article.setDeleted(false);
         article.setPrivate(false);
         return article;

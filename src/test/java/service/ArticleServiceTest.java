@@ -50,7 +50,7 @@ public class ArticleServiceTest {
 
     @Test
     public void testSelectOne() {
-        Article article=articleService.getArticleById(1L);
+        Article article=articleService.selectArticleById(1L);
         assert article!=null;
     }
 }

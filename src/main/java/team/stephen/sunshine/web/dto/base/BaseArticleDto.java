@@ -1,5 +1,7 @@
 package team.stephen.sunshine.web.dto.base;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import team.stephen.sunshine.model.article.Article;
 
 import java.util.Date;
@@ -8,13 +10,20 @@ import java.util.Date;
  * @author stephen
  * @date 2018/5/22
  */
+@ApiModel(description = "article 实体类")
 public class BaseArticleDto {
-    protected String articleLinkId;
+    @ApiModelProperty(value = "题名")
     protected String articleTitle;
+    @ApiModelProperty(value = "标签")
     protected String articleTag;
+    @ApiModelProperty(value = "作者")
     protected Integer articleAuthor;
+    @ApiModelProperty(value = "链接")
     protected String articleLink;
+    @ApiModelProperty(value = "创建日期")
     protected Date articleCreateDate;
+    @ApiModelProperty(value = "linkId")
+    protected String articleLinkId;
 
     public BaseArticleDto() {
     }
@@ -23,17 +32,8 @@ public class BaseArticleDto {
         setArticleAuthor(source.getArticleAuthor());
         setArticleCreateDate(source.getArticleCreateDate());
         setArticleLink(source.getArticleLink());
-        setArticleLinkId(source.getArticleLinkId());
         setArticleTag(source.getArticleTag());
         setArticleTitle(source.getArticleTitle());
-    }
-
-    public String getArticleLinkId() {
-        return articleLinkId;
-    }
-
-    public void setArticleLinkId(String articleLinkId) {
-        this.articleLinkId = articleLinkId;
     }
 
     public String getArticleTitle() {
@@ -74,5 +74,13 @@ public class BaseArticleDto {
 
     public void setArticleCreateDate(Date articleCreateDate) {
         this.articleCreateDate = articleCreateDate;
+    }
+
+    public String getArticleLinkId() {
+        return articleLinkId;
+    }
+
+    public void setArticleLinkId(String articleLinkId) {
+        this.articleLinkId = articleLinkId;
     }
 }

@@ -47,8 +47,8 @@ public class SolrServiceTest {
         article.setArticleViewPwd("pwd");
         try {
             articleService.addArticle(article);
-            article = articleService.getArticleByLinkId(article.getArticleLinkId());
-            solrService.addDoc(article.getArticleId(), article.getArticleContent(), article.getArticleTag());
+            article = articleService.selectArticleByLinkId(article.getArticleLinkId());
+            solrService.addArticle(article);
         } catch (Exception e) {
             e.printStackTrace();
         }

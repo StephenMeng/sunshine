@@ -21,11 +21,14 @@ public enum ResultEnum {
      * 空参数错误
      */
     NULL_PARAMETER(402, "参数为空！", "Null Parameter"),
+    NO_RESOURCE_FOUND(403,"没有找到资源" ,"Empty Resource Found" ),
+
     /**
      * 缺少访问权限
      */
-    SERVER_WRONG(500, "服务器错误", "Server Wrong"),
-    AUTHORIZE_ERROR(501, "无访问权限", "Request Denied");
+    SERVER_WRONG(500,"服务器错误","Server Wrong"),
+
+    AUTHORIZE_ERROR(501,"无访问权限","Request Denied");
 
 
     private Integer code;
