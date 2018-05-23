@@ -2,7 +2,6 @@ package team.stephen.sunshine.util.helper;
 
 import team.stephen.sunshine.util.common.LogRecod;
 
-import java.io.IOException;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**

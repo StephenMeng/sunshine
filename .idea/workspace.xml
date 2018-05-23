@@ -7,20 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25c4afe5-eed6-45bd-860d-b58b2f8d26cf" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_net_commons_net_3_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/helper/FtpClientFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/helper/FtpClientHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/service/FileUtilsTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/FileUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/schedule/KafkaRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/schedule/Runner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/service/CrawlerServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/service/CrawlerServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/constant/SessionAttr.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/controller/BaseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/controller/BaseController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/common/FileUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/common/FileUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/web/schedule/KafkaRunner$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/web/schedule/KafkaRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/helper/FtpClientFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/helper/FtpClientFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/service/CrawlerServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/service/CrawlerServiceTest.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -68,8 +58,8 @@
       <file leaf-file-name="FtpClientFactory.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/helper/FtpClientFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="40" column="42" lean-forward="true" selection-start-line="40" selection-start-column="42" selection-end-line="40" selection-end-column="42" />
+            <state relative-caret-position="352">
+              <caret line="16" column="32" lean-forward="true" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1310#1311#0" expanded="true" />
@@ -833,7 +823,14 @@
       <option name="project" value="LOCAL" />
       <updated>1527055863580</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="ftp上传服务">
+      <created>1527069866840</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1527069866840</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -869,7 +866,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="115258000" />
+    <option name="totallyTimeSpent" value="116193000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -894,7 +891,7 @@
       <window_info id="Structure" order="1" sideWeight="0.18241759" side_tool="true" weight="0.19087404" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.4993573" visible="true" weight="0.3253857" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4993573" visible="true" weight="0.3253857" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Messages" order="7" weight="0.32959327" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
@@ -905,7 +902,7 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.3478261" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32959327" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8175824" visible="true" weight="0.19087404" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8175824" visible="true" weight="0.19087404" />
       <window_info anchor="right" id="Bean Validation" order="3" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32959327" />
@@ -1027,7 +1024,8 @@
     <MESSAGE value="附件上传记录服务" />
     <MESSAGE value="二维码工具" />
     <MESSAGE value="ftp服务 pom" />
-    <option name="LAST_COMMIT_MESSAGE" value="ftp服务 pom" />
+    <MESSAGE value="ftp上传服务" />
+    <option name="LAST_COMMIT_MESSAGE" value="ftp上传服务" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1607,8 +1605,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/helper/FtpClientFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="40" column="42" lean-forward="true" selection-start-line="40" selection-start-column="42" selection-end-line="40" selection-end-column="42" />
+        <state relative-caret-position="352">
+          <caret line="16" column="32" lean-forward="true" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1310#1311#0" expanded="true" />
