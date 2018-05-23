@@ -26,7 +26,7 @@ public class FtpClientHelper {
         this.ftpClientFactory = ftpClientFactory;
     }
 
-    public void returnToPool() {
+    public synchronized void returnToPool() {
         ftpClientFactory.recycle(this);
     }
 

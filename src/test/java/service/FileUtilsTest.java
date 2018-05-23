@@ -8,7 +8,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import team.stephen.sunshine.util.common.FileUtils;
 import team.stephen.sunshine.util.helper.FtpClientFactory;
 
-import java.io.IOException;
+import java.io.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -16,23 +16,44 @@ public class FileUtilsTest {
 
     @Test
     public void testAdd() {
-        String ftpHost = "192.168.2.117";
+        String ftpHost = "192.168.1.103";
         int ftpPort = 21;
-        int ftpClientoolSize = 10;
-        String ftpUserName = "ftp-root";
-        String ftpPassword = "016611sai";
+        int ftpClientoolSize = 2;
+        int maxPoolSiz = 8;
+        String ftpUserName = "Stephen_FTP";
+        String ftpPassword = "016611";
 
-        FtpClientFactory.init(ftpHost, ftpPort, ftpClientoolSize, ftpClientMaxPoolSize, ftpUserName, ftpPassword);
+        FtpClientFactory.init(ftpHost, ftpPort, ftpClientoolSize, maxPoolSiz, ftpUserName, ftpPassword);
         for (int i = 0; i < 20; i++) {
             final int n = i;
             new Thread(() -> {
                 try {
-                    FileUtils.uploadFtpFile(null, null, null);
+                    final InputStream inputStream = new FileInputStream(new File("C:\\Users\\Stephen\\Desktop\\毕业论文\\参考文献\\phd.pdf"));
+                    FileUtils.uploadFtpFile("/", "phd" + n + ".pdf", inputStream);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }).start();
+        }
 
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        for (int i = 0; i < 20; i++) {
+            final int n = i;
+            new Thread(() -> {
+                try {
+                    final InputStream inputStream = new FileInputStream(new File("C:\\Users\\Stephen\\Desktop\\毕业论文\\参考文献\\phd.pdf"));
+                    FileUtils.uploadFtpFile("/", "phd" + n + ".pdf", inputStream);
+                    Thread.sleep(2000);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }).start();
         }
     }
 }
