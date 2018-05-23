@@ -1,9 +1,12 @@
 package team.stephen.sunshine.util.helper;
 
 import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPFile;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
  * ftpClient的帮助类
@@ -23,7 +26,7 @@ public class FtpClientHelper {
         this.ftpClientFactory = ftpClientFactory;
     }
 
-    public void returnToPool() throws IOException {
+    public void returnToPool() {
         ftpClientFactory.recycle(this);
     }
 
@@ -43,8 +46,8 @@ public class FtpClientHelper {
         ftpClient.disconnect();
     }
 
-    public void storeFile(String s, FileInputStream fileInputStream) throws IOException {
-        ftpClient.storeFile(s, fileInputStream);
+    public void storeFile(String s, InputStream inputStream) throws IOException {
+        ftpClient.storeFile(s, inputStream);
     }
 
     public void connect(String s, int i) throws IOException {
@@ -55,8 +58,19 @@ public class FtpClientHelper {
         ftpClient.login(s, p);
     }
 
-    public void remove(){
+    public void remove() {
         ftpClientFactory.remove(this);
     }
 
+    public FTPFile[] listFiles() throws IOException {
+        return ftpClient.listFiles();
+    }
+
+    public void retrieveFile(String name, OutputStream os) throws IOException {
+        ftpClient.retrieveFile(name, os);
+    }
+
+    public void setKeepAliveTimeOut(int time) {
+        ftpClient.setControlKeepAliveTimeout(time);
+    }
 }

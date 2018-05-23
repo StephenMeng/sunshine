@@ -3,7 +3,6 @@ package service;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import team.stephen.sunshine.util.common.FileUtils;
@@ -23,12 +22,12 @@ public class FileUtilsTest {
         String ftpUserName = "ftp-root";
         String ftpPassword = "016611sai";
 
-        FtpClientFactory.init(ftpHost, ftpPort, ftpClientoolSize, ftpUserName, ftpPassword);
+        FtpClientFactory.init(ftpHost, ftpPort, ftpClientoolSize, ftpClientMaxPoolSize, ftpUserName, ftpPassword);
         for (int i = 0; i < 20; i++) {
             final int n = i;
             new Thread(() -> {
                 try {
-                    FileUtils.connect(n);
+                    FileUtils.uploadFtpFile(null, null, null);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

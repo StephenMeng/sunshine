@@ -1,7 +1,6 @@
 package team.stephen.sunshine.web.schedule;
 
 import com.alibaba.fastjson.JSONObject;
-import com.google.common.collect.Lists;
 import io.netty.util.concurrent.DefaultThreadFactory;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -18,7 +17,6 @@ import team.stephen.sunshine.util.common.LogRecod;
 import team.stephen.sunshine.util.helper.FtpClientFactory;
 
 import javax.mail.MessagingException;
-import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.*;
 
@@ -50,7 +48,9 @@ public class Runner implements CommandLineRunner {
     @Value("${sunshine.ftp.port}")
     private int ftpPort;
     @Value("${sunshine.ftp.pool.size}")
-    private int ftpClientoolSize;
+    private int ftpClientPoolSize;
+    @Value("${sunshine.ftp.pool.maxnum.size}")
+    private int ftpClientMaxPoolSize;
     @Value("${sunshine.ftp.username}")
     private String ftpUserName;
     @Value("${sunshine.ftp.password}")
@@ -58,11 +58,11 @@ public class Runner implements CommandLineRunner {
 
     @Override
     public void run(String... strings) {
-        FtpClientFactory.init(ftpHost, ftpPort, ftpClientoolSize, ftpUserName, ftpPassword);
+        FtpClientFactory.init(ftpHost, ftpPort, ftpClientPoolSize,ftpClientMaxPoolSize, ftpUserName, ftpPassword);
         emailExecutor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keeAliveTime,
                 TimeUnit.MINUTES, new SynchronousQueue<>(), new DefaultThreadFactory(Topic.EMAIL.getName()));
         //单元测试时需注释掉此处代码
-        consume(Lists.newArrayList(Topic.EMAIL.getName(), Topic.LOG.getName()));
+//        consume(Lists.newArrayList(Topic.EMAIL.getName(), Topic.LOG.getName()));
     }
 
     private void consume(List<String> topics) {
