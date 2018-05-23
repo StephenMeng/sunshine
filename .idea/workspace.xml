@@ -7,7 +7,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25c4afe5-eed6-45bd-860d-b58b2f8d26cf" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_net_commons_net_3_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/helper/FtpClientFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/helper/FtpClientHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/service/FileUtilsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/FileUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/schedule/KafkaRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/schedule/Runner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/service/CrawlerServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/service/CrawlerServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/constant/SessionAttr.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/controller/BaseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/controller/BaseController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/common/FileUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/util/common/FileUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/web/schedule/KafkaRunner$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/stephen/sunshine/web/schedule/KafkaRunner.class" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -46,31 +59,83 @@
       <file leaf-file-name="FileUtils.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/FileUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="682">
-              <caret line="38" column="63" lean-forward="true" selection-start-line="38" selection-start-column="63" selection-end-line="38" selection-end-column="63" />
+            <state relative-caret-position="651">
+              <caret line="70" column="12" lean-forward="true" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="12" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserManagementController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/UserManagementController.java">
+      <file leaf-file-name="FtpClientFactory.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/helper/FtpClientFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="85" column="46" selection-start-line="85" selection-start-column="46" selection-end-line="85" selection-end-column="46" />
+            <state relative-caret-position="340">
+              <caret line="40" column="42" lean-forward="true" selection-start-line="40" selection-start-column="42" selection-end-line="40" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3594#3595#0" expanded="true" />
-                <element signature="e#3675#3676#0" expanded="true" />
+                <element signature="e#1310#1311#0" expanded="true" />
+                <element signature="e#1349#1350#0" expanded="true" />
+                <element signature="e#642#643#0" expanded="true" />
+                <element signature="e#682#683#0" expanded="true" />
+                <element signature="e#1460#1461#0" expanded="true" />
+                <element signature="e#1507#1508#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/common/FileController.java">
+      <file leaf-file-name="Runner.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/schedule/Runner.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="51" column="38" lean-forward="true" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
+            <state relative-caret-position="302">
+              <caret line="64" column="19" selection-start-line="64" selection-start-column="19" selection-end-line="64" selection-end-column="19" />
+              <folding>
+                <element signature="e#1210#1251#1" expanded="true" />
+                <element signature="e#1294#1337#1" expanded="true" />
+                <element signature="e#1421#1463#1" expanded="true" />
+                <element signature="e#1521#1543#1" expanded="true" />
+                <element signature="e#1584#1606#1" expanded="true" />
+                <element signature="e#1675#1702#1" expanded="true" />
+                <element signature="e#1718#1744#1" expanded="true" />
+                <element signature="e#1789#1815#1" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="128">
+              <caret line="37" column="25" lean-forward="true" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FtpClientHelper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/helper/FtpClientHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="51" column="5" lean-forward="true" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#358#359#0" expanded="true" />
+                <element signature="e#401#402#0" expanded="true" />
+                <element signature="e#475#476#0" expanded="true" />
+                <element signature="e#531#532#0" expanded="true" />
+                <element signature="e#653#654#0" expanded="true" />
+                <element signature="e#700#701#0" expanded="true" />
+                <element signature="e#1494#1495#0" expanded="true" />
+                <element signature="e#1525#1526#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileUtilsTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/service/FileUtilsTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="213">
+              <caret line="23" column="41" lean-forward="true" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -97,49 +162,16 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/constant/SystemConst.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="88">
-              <caret line="4" column="2" lean-forward="true" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
+              <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QRCodeUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/QRCodeUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="619">
-              <caret line="51" column="13" lean-forward="true" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="251">
               <caret line="177" column="19" selection-start-line="177" selection-start-column="19" selection-end-line="177" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ArticleManagementController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/ArticleManagementController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1081">
-              <caret line="113" column="34" selection-start-line="113" selection-start-column="34" selection-end-line="113" selection-end-column="34" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SessionConst.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/constant/SessionConst.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44">
-              <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -181,11 +213,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/front/AdminColumnDto.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/Response.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/element/StringUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/ParamCheck.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/constant/AricleConst.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/article/Article.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/ArticleDao.xml" />
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/article/ArticleService.java" />
@@ -217,7 +244,6 @@
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/user/SignInUserDto.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/user/UpdateUserDto.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/admin/UserManagementController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/dao/common/AttachmentDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/constant/enu/AttachmentEnum.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/helper/entity.java" />
@@ -232,6 +258,12 @@
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/constant/SessionAttr.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/constant/SessionConst.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/FileUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/helper/FtpClientHelper.java" />
+        <option value="$PROJECT_DIR$/src/test/java/service/FileUtilsTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/schedule/Runner.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/helper/FtpClientFactory.java" />
       </list>
     </option>
   </component>
@@ -325,7 +357,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="sunshine" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sunshine" type="b2602c69:ProjectViewProjectNode" />
@@ -334,8 +366,36 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="sunshine" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="schedule" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sunshine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sunshine" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sunshine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sunshine" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sunshine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sunshine" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sunshine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sunshine" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -372,11 +432,11 @@
       <recent name="C:\Users\DELL\IdeaProjects\sunshine\src\test" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="service" />
       <recent name="team.stephen.sunshine.dao.common" />
       <recent name="team.stephen.sunshine.web.dto.base" />
       <recent name="team.stephen.sunshine.web.dto.front" />
       <recent name="team.stephen.sunshine.exception" />
-      <recent name="service" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\DELL\IdeaProjects\sunshine\web" />
@@ -397,6 +457,29 @@
   <component name="RunManager" selected="Spring Boot.Application">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration name="FileUtilsTest.testAdd" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="sunshine" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="service" />
+      <option name="MAIN_CLASS_NAME" value="service.FileUtilsTest" />
+      <option name="METHOD_NAME" value="testAdd" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
     </configuration>
     <configuration name="FrontServiceTest.testChannelAdd" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="sunshine" />
@@ -480,29 +563,6 @@
       <option name="PACKAGE_NAME" value="service" />
       <option name="MAIN_CLASS_NAME" value="service.FrontServiceTest" />
       <option name="METHOD_NAME" value="testChannelUpdate" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
-    </configuration>
-    <configuration name="MailServiceTest.testSendSimpleMail" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="sunshine" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="service" />
-      <option name="MAIN_CLASS_NAME" value="service.MailServiceTest" />
-      <option name="METHOD_NAME" value="testSendSimpleMail" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" value="" />
@@ -635,19 +695,19 @@
     </configuration>
     <list>
       <item itemvalue="Spring Boot.Application" />
-      <item itemvalue="JUnit.MailServiceTest.testSendSimpleMail" />
       <item itemvalue="JUnit.FrontServiceTest.testChannelAdd" />
       <item itemvalue="JUnit.FrontServiceTest.testChannelSelect" />
       <item itemvalue="JUnit.FrontServiceTest.testChannelUpdate" />
       <item itemvalue="JUnit.FrontServiceTest.testChannelDelete" />
+      <item itemvalue="JUnit.FileUtilsTest.testAdd" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.FileUtilsTest.testAdd" />
         <item itemvalue="JUnit.FrontServiceTest.testChannelDelete" />
         <item itemvalue="JUnit.FrontServiceTest.testChannelUpdate" />
         <item itemvalue="JUnit.FrontServiceTest.testChannelSelect" />
         <item itemvalue="JUnit.FrontServiceTest.testChannelAdd" />
-        <item itemvalue="JUnit.MailServiceTest.testSendSimpleMail" />
       </list>
     </recent_temporary>
   </component>
@@ -766,43 +826,50 @@
       <option name="project" value="LOCAL" />
       <updated>1526996903250</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="ftp服务 pom">
+      <created>1527055863580</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1527055863580</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="FrontServiceTest_testChannelAdd - 2018.05.21 at 23h 42m 40s.xml">
-      <configuration name="FrontServiceTest.testChannelAdd" configurationId="JUnit" />
+    <history-entry file="FileUtilsTest_testAdd - 2018.05.23 at 17h 40m 02s.xml">
+      <configuration name="FileUtilsTest.testAdd" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="FrontServiceTest_testChannelAdd - 2018.05.21 at 23h 43m 26s.xml">
-      <configuration name="FrontServiceTest.testChannelAdd" configurationId="JUnit" />
+    <history-entry file="FileUtilsTest_testAdd - 2018.05.23 at 17h 40m 40s.xml">
+      <configuration name="FileUtilsTest.testAdd" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="FrontServiceTest_testChannelAdd - 2018.05.21 at 23h 44m 01s.xml">
-      <configuration name="FrontServiceTest.testChannelAdd" configurationId="JUnit" />
+    <history-entry file="FileUtilsTest_testAdd - 2018.05.23 at 17h 40m 59s.xml">
+      <configuration name="FileUtilsTest.testAdd" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="FrontServiceTest_testChannelDelete - 2018.05.21 at 23h 48m 32s.xml">
-      <configuration name="FrontServiceTest.testChannelDelete" configurationId="JUnit" />
+    <history-entry file="FileUtilsTest_testAdd - 2018.05.23 at 17h 41m 17s.xml">
+      <configuration name="FileUtilsTest.testAdd" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="FrontServiceTest_testChannelDelete - 2018.05.21 at 23h 48m 57s.xml">
-      <configuration name="FrontServiceTest.testChannelDelete" configurationId="JUnit" />
+    <history-entry file="FileUtilsTest_testAdd - 2018.05.23 at 17h 42m 27s.xml">
+      <configuration name="FileUtilsTest.testAdd" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="FrontServiceTest_testChannelSelect - 2018.05.21 at 23h 45m 49s.xml">
-      <configuration name="FrontServiceTest.testChannelSelect" configurationId="JUnit" />
+    <history-entry file="FileUtilsTest_testAdd - 2018.05.23 at 17h 43m 04s.xml">
+      <configuration name="FileUtilsTest.testAdd" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="FrontServiceTest_testChannelSelect - 2018.05.21 at 23h 46m 15s.xml">
-      <configuration name="FrontServiceTest.testChannelSelect" configurationId="JUnit" />
+    <history-entry file="FileUtilsTest_testAdd - 2018.05.23 at 17h 44m 07s.xml">
+      <configuration name="FileUtilsTest.testAdd" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="FrontServiceTest_testChannelUpdate - 2018.05.21 at 23h 47m 23s.xml">
-      <configuration name="FrontServiceTest.testChannelUpdate" configurationId="JUnit" />
+    <history-entry file="FileUtilsTest_testAdd - 2018.05.23 at 17h 45m 12s.xml">
+      <configuration name="FileUtilsTest.testAdd" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MailServiceTest_testSendSimpleMail - 2018.05.21 at 09h 34m 15s.xml">
-      <configuration name="MailServiceTest.testSendSimpleMail" configurationId="JUnit" />
+    <history-entry file="FileUtilsTest_testAdd - 2018.05.23 at 17h 45m 42s.xml">
+      <configuration name="FileUtilsTest.testAdd" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MailServiceTest_testSendSimpleMail - 2018.05.21 at 09h 50m 47s.xml">
-      <configuration name="MailServiceTest.testSendSimpleMail" configurationId="JUnit" />
+    <history-entry file="FileUtilsTest_testAdd - 2018.05.23 at 17h 46m 08s.xml">
+      <configuration name="FileUtilsTest.testAdd" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="109298000" />
+    <option name="totallyTimeSpent" value="115258000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -827,7 +894,7 @@
       <window_info id="Structure" order="1" sideWeight="0.18241759" side_tool="true" weight="0.19087404" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4993573" visible="true" weight="0.36185133" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.4993573" visible="true" weight="0.3253857" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Messages" order="7" weight="0.32959327" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
@@ -835,10 +902,10 @@
       <window_info anchor="bottom" id="Java Enterprise" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.47685835" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3478261" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32959327" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8175824" visible="true" weight="0.19087404" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8175824" visible="true" weight="0.19087404" />
       <window_info anchor="right" id="Bean Validation" order="3" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32959327" />
@@ -959,101 +1026,15 @@
     <MESSAGE value="成员的增改查" />
     <MESSAGE value="附件上传记录服务" />
     <MESSAGE value="二维码工具" />
-    <option name="LAST_COMMIT_MESSAGE" value="二维码工具" />
+    <MESSAGE value="ftp服务 pom" />
+    <option name="LAST_COMMIT_MESSAGE" value="ftp服务 pom" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="59" />
+      <option name="time" value="63" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/element/StringUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="14" column="45" lean-forward="true" selection-start-line="14" selection-start-column="45" selection-end-line="14" selection-end-column="45" />
-          <folding>
-            <element signature="e#370#371#0" expanded="true" />
-            <element signature="e#422#423#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/front/FrontController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="145" column="51" selection-start-line="145" selection-start-column="51" selection-end-line="145" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="633" column="19" selection-start-line="633" selection-start-column="19" selection-end-line="633" selection-end-column="19" />
-          <folding>
-            <element signature="e#23072#23073#0" expanded="true" />
-            <element signature="e#23112#23113#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/ArticleDao.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/dao/article/ArticleDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/article/impl/ArticleServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="38" column="44" lean-forward="true" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
-          <folding>
-            <element signature="e#1206#1207#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/article/ArticleService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="31">
-          <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/front/FrontArticleDetailDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="30" column="34" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#834#835#0" expanded="true" />
-            <element signature="e#2051#2052#0" expanded="true" />
-            <element signature="e#2087#2088#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/model/article/Article.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="72" column="40" selection-start-line="72" selection-start-column="40" selection-end-line="72" selection-end-column="40" />
-          <folding>
-            <element signature="e#6365#6366#0" expanded="true" />
-            <element signature="e#6401#6402#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/dto/article/InputArticleDto.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -1408,13 +1389,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="34" column="42" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/service/common/impl/AttachmentServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="509">
@@ -1487,7 +1461,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/QRCodeUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="619">
-          <caret line="51" column="13" lean-forward="true" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
+          <caret line="51" column="13" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1497,7 +1471,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/controller/common/FileController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
-          <caret line="51" column="38" lean-forward="true" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
+          <caret line="51" column="38" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -1525,14 +1499,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/constant/SystemConst.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
-          <caret line="4" column="2" lean-forward="true" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/FileUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="682">
-          <caret line="38" column="63" lean-forward="true" selection-start-line="38" selection-start-column="63" selection-end-line="38" selection-end-column="63" />
+          <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -1540,6 +1507,117 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="251">
           <caret line="177" column="19" selection-start-line="177" selection-start-column="19" selection-end-line="177" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/jre/lib/rt.jar!/sun/net/ftp/impl/FtpClient.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="58" column="13" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/util/LinkedList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="649" column="13" selection-start-line="649" selection-start-column="13" selection-end-line="649" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/commons-net/commons-net/3.6/commons-net-3.6.jar!/org/apache/commons/net/ftp/FTPHTTPClient.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-330">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/LogRecod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/commons-net/commons-net/3.6/commons-net-3.6.jar!/org/apache/commons/net/ftp/FTPClient.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="1139" column="16" selection-start-line="1139" selection-start-column="16" selection-end-line="1139" selection-end-column="16" />
+          <folding>
+            <element signature="e#42626#42627#0" expanded="true" />
+            <element signature="e#42694#42695#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/helper/FtpClientHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="51" column="5" lean-forward="true" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#358#359#0" expanded="true" />
+            <element signature="e#401#402#0" expanded="true" />
+            <element signature="e#475#476#0" expanded="true" />
+            <element signature="e#531#532#0" expanded="true" />
+            <element signature="e#653#654#0" expanded="true" />
+            <element signature="e#700#701#0" expanded="true" />
+            <element signature="e#1494#1495#0" expanded="true" />
+            <element signature="e#1525#1526#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/common/FileUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="70" column="12" lean-forward="true" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/service/FileUtilsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="23" column="41" lean-forward="true" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="37" column="25" lean-forward="true" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/web/schedule/Runner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="64" column="19" selection-start-line="64" selection-start-column="19" selection-end-line="64" selection-end-column="19" />
+          <folding>
+            <element signature="e#1210#1251#1" expanded="true" />
+            <element signature="e#1294#1337#1" expanded="true" />
+            <element signature="e#1421#1463#1" expanded="true" />
+            <element signature="e#1521#1543#1" expanded="true" />
+            <element signature="e#1584#1606#1" expanded="true" />
+            <element signature="e#1675#1702#1" expanded="true" />
+            <element signature="e#1718#1744#1" expanded="true" />
+            <element signature="e#1789#1815#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/stephen/sunshine/util/helper/FtpClientFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="40" column="42" lean-forward="true" selection-start-line="40" selection-start-column="42" selection-end-line="40" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1310#1311#0" expanded="true" />
+            <element signature="e#1349#1350#0" expanded="true" />
+            <element signature="e#642#643#0" expanded="true" />
+            <element signature="e#682#683#0" expanded="true" />
+            <element signature="e#1460#1461#0" expanded="true" />
+            <element signature="e#1507#1508#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
