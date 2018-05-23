@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import team.stephen.sunshine.util.common.FileUtils;
 import team.stephen.sunshine.util.common.QRCodeUtils;
 import team.stephen.sunshine.util.common.Response;
+import team.stephen.sunshine.util.helper.FtpClientFactory;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -40,7 +41,6 @@ public class FileController {
     @ApiImplicitParam(name = "path", value = "下载路径", required = true, dataType = "String", paramType = "query")
     @RequestMapping(value = "download", method = RequestMethod.GET)
     public Response download(String path, HttpServletResponse response) {
-//        path = AVATAR_URI + "/" + "sunshine_option.sql";
         FileUtils.download(response, path);
         return Response.success(true);
     }
@@ -50,7 +50,19 @@ public class FileController {
     @RequestMapping(value = "qr", method = RequestMethod.GET)
     public Response qrCode(String text, HttpServletResponse response) {
         text = "http://im.nju.edu.cn";
-        QRCodeUtils.create(text,  response);
+        QRCodeUtils.create(text, response);
+        return Response.success(true);
+    }
+
+    @ApiOperation(value = "ftp下载", httpMethod = "GET", response = Response.class)
+    @ApiImplicitParam(name = "filename", value = "文件名", required = true, dataType = "String", paramType = "query")
+    @RequestMapping(value = "ftp/download", method = RequestMethod.GET)
+    public Response ftpDownload(String filename, HttpServletResponse response) {
+        try {
+            FileUtils.downloadFtpFile("/img", filename + ".doc", response);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return Response.success(true);
     }
 }

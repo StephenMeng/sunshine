@@ -65,7 +65,7 @@ public class CrawlerServiceTest {
 
     @Test
     public void testCrawlDouban() {
-        String url = "https://api.douban.com/v2/book/search?q=java&start=4";
+        String url = "https://api.douban.com/v2/book/search?q=java&init=4";
         try {
             List<BookDto> bookDtos = crawlerService.get(url, null, new DouBanBookParser());
             List<Book> books = bookDtos.stream().map(dtoTransformService::bookDtoToModel).collect(Collectors.toList());
