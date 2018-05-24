@@ -6,9 +6,13 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import team.stephen.sunshine.util.common.FileUtils;
+import team.stephen.sunshine.util.common.LogRecod;
 import team.stephen.sunshine.util.helper.FtpClientFactory;
+import team.stephen.sunshine.util.helper.FtpClientHelper;
 
 import java.io.*;
+import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -55,5 +59,19 @@ public class FileUtilsTest {
                 }
             }).start();
         }
+    }
+
+    @Test
+    public void testList() {
+        ConcurrentLinkedQueue<String> strings = new ConcurrentLinkedQueue<>();
+        for (int i = 0; i < 4; i++) {
+            strings.add("str" + i);
+        }
+        LogRecod.print(strings);
+        for (int i = 0; i < 4; i++) {
+            if (i / 2 == 0) {
+            }
+        }
+        LogRecod.print(strings);
     }
 }
