@@ -62,7 +62,6 @@ public class FileUtils {
         ftp.storeFile(fileName, inputStream);
         //回收
         ftp.returnToPool();
-        LogRecod.print("上传成功");
     }
 
     public static boolean downloadFtpFile(String pathname, String filename, HttpServletResponse response) throws IOException {
