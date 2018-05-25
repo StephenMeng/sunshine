@@ -21,6 +21,8 @@ import javax.mail.MessagingException;
 import java.util.List;
 import java.util.concurrent.*;
 
+import static team.stephen.sunshine.conf.GloableConfig.ftpService;
+
 
 /**
  * @author Stephen
@@ -59,11 +61,14 @@ public class Runner implements CommandLineRunner {
 
     @Override
     public void run(String... strings) {
-        FtpClientFactory.init(ftpHost, ftpPort, ftpClientPoolSize, ftpClientMaxPoolSize, ftpUserName, ftpPassword);
+        if (ftpService) {
+            FtpClientFactory.init(ftpHost, ftpPort, ftpClientPoolSize, ftpClientMaxPoolSize, ftpUserName, ftpPassword);
+        }
         emailExecutor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keeAliveTime,
                 TimeUnit.MINUTES, new SynchronousQueue<>(), new DefaultThreadFactory(Topic.EMAIL.getName()));
         //单元测试时需注释掉此处代码
-        consume(Lists.newArrayList(Topic.EMAIL.getName(), Topic.LOG.getName()));
+        //开启一个线程来处理消息
+        new Thread(() -> consume(Lists.newArrayList(Topic.EMAIL.getName(), Topic.LOG.getName()))).start();
     }
 
     private void consume(List<String> topics) {

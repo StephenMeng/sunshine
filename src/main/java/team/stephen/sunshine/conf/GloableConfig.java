@@ -5,6 +5,7 @@ package team.stephen.sunshine.conf;
  */
 public class GloableConfig {
     public static final boolean sendEmail = true;
+    public static final boolean ftpService = false;
 
     public static final String SOLR_ARTICLE_URL = "http://localhost:8983/solr/article";
 

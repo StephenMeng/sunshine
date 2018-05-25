@@ -145,6 +145,7 @@
           <element id="library" level="project" name="Maven: org.xerial.snappy:snappy-java:1.1.7.1" />
           <element id="library" level="project" name="Maven: com.google.zxing:core:3.3.2" />
           <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-core:8.5.23" />
+          <element id="library" level="project" name="Maven: commons-net:commons-net:3.6" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="sunshine/web/Web" />

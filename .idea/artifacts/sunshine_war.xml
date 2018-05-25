@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="war" name="sunshine:war">
-    <output-path>$PROJECT_DIR$/out/artifacts/sunshine_war</output-path>
+  <artifact type="war" build-on-make="true" name="sunshine:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
     <root id="archive" name="sunshine_war.war">
       <element id="artifact" artifact-name="sunshine:war exploded" />
     </root>
