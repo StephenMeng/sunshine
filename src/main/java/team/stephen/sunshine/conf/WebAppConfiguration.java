@@ -5,6 +5,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import team.stephen.sunshine.web.interceptor.AccessLogInterceptor;
+import team.stephen.sunshine.web.interceptor.CrossDomainterceptor;
 
 /**
  * Created by stephen on 2017/7/15.
@@ -16,6 +17,7 @@ public class WebAppConfiguration extends WebMvcConfigurerAdapter {
 //        registry.addInterceptor(new LoginInterceptor())
 //                .excludePathPatterns("/index", "/toLogin", "/login", "/user/sign-up", "/error");
         registry.addInterceptor(new AccessLogInterceptor());
+        registry.addInterceptor(new CrossDomainterceptor());
         super.addInterceptors(registry);
     }
 
