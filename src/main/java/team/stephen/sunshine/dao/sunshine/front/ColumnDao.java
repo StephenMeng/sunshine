@@ -1,4 +1,4 @@
-package team.stephen.sunshine.dao.front;
+package team.stephen.sunshine.dao.sunshine.front;
 
 import org.apache.ibatis.annotations.Mapper;
 import team.stephen.sunshine.model.front.Channel;

@@ -1,4 +1,4 @@
-package team.stephen.sunshine.dao.common;
+package team.stephen.sunshine.dao.sunshine.common;
 
 import org.apache.ibatis.annotations.Mapper;
 import team.stephen.sunshine.model.common.HistoryLog;

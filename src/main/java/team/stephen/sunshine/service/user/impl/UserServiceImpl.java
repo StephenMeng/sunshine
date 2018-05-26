@@ -4,10 +4,9 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import team.stephen.sunshine.dao.user.UserDao;
+import team.stephen.sunshine.dao.sunshine.user.UserDao;
 import team.stephen.sunshine.model.user.User;
 import team.stephen.sunshine.service.user.UserService;
-import team.stephen.sunshine.util.common.PageUtil;
 import team.stephen.sunshine.util.element.StringUtils;
 
 @Service

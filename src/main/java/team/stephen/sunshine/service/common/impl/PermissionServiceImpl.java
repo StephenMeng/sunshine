@@ -2,7 +2,7 @@ package team.stephen.sunshine.service.common.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import team.stephen.sunshine.dao.permission.UserRoleRelationDao;
+import team.stephen.sunshine.dao.sunshine.permission.UserRoleRelationDao;
 import team.stephen.sunshine.web.dto.user.UserDto;
 import team.stephen.sunshine.model.user.UserRoleRelation;
 import team.stephen.sunshine.service.common.CacheService;

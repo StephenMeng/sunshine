@@ -1,4 +1,4 @@
-package team.stephen.sunshine.dao.user;
+package team.stephen.sunshine.dao.sunshine.user;
 
 import org.apache.ibatis.annotations.Mapper;
 import team.stephen.sunshine.model.user.UserBinBehavior;

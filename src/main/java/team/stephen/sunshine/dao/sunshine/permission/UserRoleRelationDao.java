@@ -1,4 +1,4 @@
-package team.stephen.sunshine.dao.permission;
+package team.stephen.sunshine.dao.sunshine.permission;
 
 
 import org.apache.ibatis.annotations.Mapper;

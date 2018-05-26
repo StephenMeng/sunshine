@@ -2,7 +2,7 @@ package team.stephen.sunshine.service.common.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import team.stephen.sunshine.dao.user.UserBinBehaviorDao;
+import team.stephen.sunshine.dao.sunshine.user.UserBinBehaviorDao;
 import team.stephen.sunshine.service.common.BehaviorService;
 
 /**

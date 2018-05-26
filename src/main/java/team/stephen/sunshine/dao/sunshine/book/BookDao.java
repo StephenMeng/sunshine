@@ -1,4 +1,4 @@
-package team.stephen.sunshine.dao.book;
+package team.stephen.sunshine.dao.sunshine.book;
 
 import org.apache.ibatis.annotations.Mapper;
 import team.stephen.sunshine.model.book.Book;

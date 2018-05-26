@@ -4,7 +4,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import team.stephen.sunshine.dao.common.CommentDao;
+import team.stephen.sunshine.dao.sunshine.common.CommentDao;
 import team.stephen.sunshine.model.common.Comment;
 import team.stephen.sunshine.service.common.CommentService;
 import team.stephen.sunshine.util.common.ParamCheck;

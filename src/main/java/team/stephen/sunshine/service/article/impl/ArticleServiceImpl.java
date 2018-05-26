@@ -4,7 +4,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import team.stephen.sunshine.dao.article.ArticleDao;
+import team.stephen.sunshine.dao.sunshine.article.ArticleDao;
 import team.stephen.sunshine.model.article.Article;
 import team.stephen.sunshine.service.article.ArticleService;
 import team.stephen.sunshine.util.element.StringUtils;

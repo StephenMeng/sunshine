@@ -4,7 +4,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import team.stephen.sunshine.dao.front.ChannelDao;
+import team.stephen.sunshine.dao.sunshine.front.ChannelDao;
 import team.stephen.sunshine.model.front.Channel;
 import team.stephen.sunshine.service.front.ChannelService;
 

@@ -3,7 +3,7 @@ package team.stephen.sunshine.service.common.impl;
 import com.github.pagehelper.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import team.stephen.sunshine.constant.enu.AttachmentEnum;
-import team.stephen.sunshine.dao.common.AttachmentDao;
+import team.stephen.sunshine.dao.sunshine.common.AttachmentDao;
 import team.stephen.sunshine.exception.NullParamException;
 import team.stephen.sunshine.model.common.Attachment;
 import team.stephen.sunshine.service.common.AttachmentService;

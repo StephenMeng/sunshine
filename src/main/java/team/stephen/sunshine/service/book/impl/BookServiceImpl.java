@@ -2,7 +2,7 @@ package team.stephen.sunshine.service.book.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import team.stephen.sunshine.dao.book.BookDao;
+import team.stephen.sunshine.dao.sunshine.book.BookDao;
 import team.stephen.sunshine.model.book.Book;
 import team.stephen.sunshine.service.book.BookService;
 
