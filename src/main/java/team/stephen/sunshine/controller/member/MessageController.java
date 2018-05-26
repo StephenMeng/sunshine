@@ -33,8 +33,6 @@ public class MessageController extends BaseController {
 
         for (int i = 0; i < 10; i++) {
             HistoryLog log = new HistoryLog();
-            log.setId((long) i);
-            log.setDescription("description : " + i);
             if (i / 2 == 0) {
                 log = null;
             }
