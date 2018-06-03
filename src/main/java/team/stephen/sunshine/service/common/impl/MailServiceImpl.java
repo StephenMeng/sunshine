@@ -11,7 +11,7 @@ import team.stephen.sunshine.conf.GloableConfig;
 import team.stephen.sunshine.exception.NullParamException;
 import team.stephen.sunshine.model.common.Email;
 import team.stephen.sunshine.service.common.MailService;
-import team.stephen.sunshine.util.common.LogRecod;
+import team.stephen.sunshine.util.common.LogRecord;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -58,9 +58,9 @@ public class MailServiceImpl implements MailService {
             helper.setCc(email.getCcAddress());
             if (email.getAttachFileNames() != null) {
                 if (email.getAttachFileInputStream() == null) {
-                    LogRecod.error("邮件附件列表为空");
+                    LogRecord.error("邮件附件列表为空");
                 } else if (email.getAttachFileInputStream().length != email.getAttachFileNames().length) {
-                    LogRecod.error("邮件附件的名字和附件内容长度不符");
+                    LogRecord.error("邮件附件的名字和附件内容长度不符");
                 } else {
                     for (int i = 0; i < email.getAttachFileNames().length; i++) {
                         helper.addAttachment(email.getAttachFileNames()[i], new InputStreamResource(email.getAttachFileInputStream()[i]));

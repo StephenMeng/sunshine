@@ -14,7 +14,7 @@ import team.stephen.sunshine.constant.enu.Topic;
 import team.stephen.sunshine.exception.NullParamException;
 import team.stephen.sunshine.model.common.Email;
 import team.stephen.sunshine.service.common.MailService;
-import team.stephen.sunshine.util.common.LogRecod;
+import team.stephen.sunshine.util.common.LogRecord;
 import team.stephen.sunshine.util.helper.FtpClientFactory;
 
 import javax.mail.MessagingException;
@@ -79,7 +79,7 @@ public class Runner implements CommandLineRunner {
                 for (ConsumerRecord record : records) {
                     Topic topic = Topic.getTopic(record.topic());
                     if (topic != null) {
-                        LogRecod.print(topic + "\t" + record.key() + ":" + record.value());
+                        LogRecord.print(topic + "\t" + record.key() + ":" + record.value());
                         switch (topic) {
                             case EMAIL:
                                 try {

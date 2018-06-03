@@ -15,7 +15,6 @@ import team.stephen.sunshine.model.other.CssciJournal;
 import team.stephen.sunshine.model.other.CssciPaper;
 import team.stephen.sunshine.service.other.CssciService;
 import team.stephen.sunshine.util.common.HttpUtils;
-import team.stephen.sunshine.util.common.LogRecod;
 
 import java.io.IOException;
 import java.util.List;

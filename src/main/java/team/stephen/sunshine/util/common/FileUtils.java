@@ -43,7 +43,7 @@ public class FileUtils {
     public static void uploadFtpFile(String pathName, String fileName, InputStream inputStream) throws IOException {
         FtpClientHelper ftp = FtpClientFactory.getFtpClient();
         if (ftp == null) {
-            LogRecod.print("null ftp");
+            LogRecord.print("null ftp");
             return;
         }
         //链接远程服务
@@ -80,7 +80,7 @@ public class FileUtils {
             FTPFile[] ftpFiles = ftp.listFiles();
             for (FTPFile file : ftpFiles) {
                 if (filename.equalsIgnoreCase(file.getName())) {
-                    LogRecod.print(filename);
+                    LogRecord.print(filename);
                     ftp.retrieveFile(filename, response.getOutputStream());
                 }
             }

@@ -19,7 +19,7 @@ import team.stephen.sunshine.model.other.WeiboUserConfig;
 import team.stephen.sunshine.service.other.CrawlErrorService;
 import team.stephen.sunshine.service.other.WeiboService;
 import team.stephen.sunshine.util.common.HttpUtils;
-import team.stephen.sunshine.util.common.LogRecod;
+import team.stephen.sunshine.util.common.LogRecord;
 import team.stephen.sunshine.util.element.StringUtils;
 
 import java.io.IOException;
@@ -110,7 +110,7 @@ public class WeiboServiceImpl implements WeiboService {
                 config.setWeiboNum(Integer.valueOf(num));
             }
         } catch (IOException e) {
-            LogRecod.error(e);
+            e.printStackTrace();
             logErrorUrl(userUrl, "user config");
         }
         return config;
@@ -119,9 +119,22 @@ public class WeiboServiceImpl implements WeiboService {
     @Override
     public List<Weibo> crawlWeibo(WeiboUserConfig config, int page, Map<String, String> headers) {
         List<Weibo> result = new ArrayList<>();
-        result.addAll(crawlFirstPage(config, page, headers));
-        result.addAll(crawlPageBar(config, page, headers, 0));
-        result.addAll(crawlPageBar(config, page, headers, 1));
+        result.addAll(crawlWeiboFirstPage(config, page, headers));
+        result.addAll(crawlWeiboPageBar(config, page, 0, headers));
+        result.addAll(crawlWeiboPageBar(config, page, 1, headers));
+        return result;
+    }
+
+    @Override
+    public List<Weibo> crawlWeiboFirstPage(WeiboUserConfig config, int page, Map<String, String> headers) {
+        List<Weibo> result = crawlFirstPage(config, page, headers);
+        completeExtraInfo(headers, result);
+        return result;
+    }
+
+    @Override
+    public List<Weibo> crawlWeiboPageBar(WeiboUserConfig config, int page, int pageBar, Map<String, String> headers) {
+        List<Weibo> result = crawlPageBar(config, page, headers, pageBar);
         completeExtraInfo(headers, result);
         return result;
     }
@@ -133,7 +146,8 @@ public class WeiboServiceImpl implements WeiboService {
         try {
             html = HttpUtils.okrHttpGet(url, headers);
         } catch (IOException e) {
-            LogRecod.error(e);
+            LogRecord.error("获取微博评论http请求失败，原因：" + e.getMessage());
+
             logErrorUrl(url, "weibo comment");
         }
         List<WeiboComment> result = parseComment(html);
@@ -181,15 +195,18 @@ public class WeiboServiceImpl implements WeiboService {
                 "page=" + page + "&ajaxpagelet=1&ajaxpagelet_v6=1";
         try {
             String html = HttpUtils.okrHttpGet(url, headers);
-            html = html.substring(html.indexOf("view({") + 5, html.indexOf(")</script>"));
-            JSONObject jsonObject = JSONObject.parseObject(html);
-            String jsonResult = jsonObject.getString("html");
+            String jsonResult = getFirstPageHtml(html);
             return parseWeibo(config.getName(), jsonResult);
         } catch (IOException e) {
-            e.printStackTrace();
+            LogRecord.error("获取微博firstPage失败，原因：" + e.getMessage());
             logErrorUrl(url, "weibo fist page");
         }
         return new ArrayList<>();
+    }
+
+    private String getFirstPageHtml(String html) {
+        html = html.substring(html.indexOf("view({") + 5, html.indexOf(")</script>"));
+        return getPageBarHtml(html, "html");
     }
 
     private List<Weibo> crawlPageBar(WeiboUserConfig config, int page, Map<String, String> headers, int i) {
@@ -200,14 +217,17 @@ public class WeiboServiceImpl implements WeiboService {
                 + config.getUri() + "&feed_type=0&pre_page=" + page + "&domain_op=" + config.getDomain();
         try {
             String html = HttpUtils.okrHttpGet(url, headers);
-            JSONObject jsonObject = JSONObject.parseObject(html);
-            String jsonResult = jsonObject.getString("data");
-            return parseWeibo(config.getName(), jsonResult);
+            return parseWeibo(config.getName(), getPageBarHtml(html, "data"));
         } catch (IOException e) {
-            e.printStackTrace();
+            LogRecord.error("获取微博pagerBar失败，原因：" + e.getMessage());
             logErrorUrl(url, "weibo page bar");
         }
         return new ArrayList<>();
+    }
+
+    private String getPageBarHtml(String html, String data) {
+        JSONObject jsonObject = JSONObject.parseObject(html);
+        return jsonObject.getString(data);
     }
 
     private void logErrorUrl(String url, String site) {
@@ -222,57 +242,64 @@ public class WeiboServiceImpl implements WeiboService {
 
     private List<Weibo> parseWeibo(String weiboName, String jsonResult) {
         List<Weibo> result = new ArrayList<>();
+        if (jsonResult == null) {
+            return result;
+        }
         Document document = Jsoup.parse(jsonResult);
         Elements elements = document.select("div[tbinfo]");
 
         for (Element element : elements) {
-            Weibo weibo = new Weibo();
-            weibo.setCrawlDate(new Date());
-            Elements ename = element.select("div[class^=WB_cardtitle_b]");
-            if (ename != null && StringUtils.isNotNull(ename.html())) {
-                continue;
-            }
-            Element wb = element.select("div[class^=WB_from S_txt]").first();
-            Elements as = wb.select("a");
-            String date = as.get(0).text();
-            String from = null;
-            if (as.size() > 1) {
-                from = as.get(1).text();
-            }
-            Element contentE = element.select("div[class^=WB_text W_f]").first();
             try {
-                Element pictureE = element.select("div[class^=WB_media_wrap]").first();
-                Elements picEs = pictureE.select("img");
-                StringBuilder pics = new StringBuilder();
-                for (Element picE : picEs) {
-                    pics.append(picE.attr("src")).append(";");
+                Weibo weibo = new Weibo();
+                weibo.setCrawlDate(new Date());
+                Elements ename = element.select("div[class^=WB_cardtitle_b]");
+                if (ename != null && StringUtils.isNotNull(ename.html())) {
+                    continue;
                 }
-                weibo.setwPics(pics.toString());
+                Element wb = element.select("div[class^=WB_from S_txt]").first();
+                Elements as = wb.select("a");
+                String date = as.get(0).text();
+                String from = null;
+                if (as.size() > 1) {
+                    from = as.get(1).text();
+                }
+                Element contentE = element.select("div[class^=WB_text W_f]").first();
+                try {
+                    Element pictureE = element.select("div[class^=WB_media_wrap]").first();
+                    Elements picEs = pictureE.select("img");
+                    StringBuilder pics = new StringBuilder();
+                    for (Element picE : picEs) {
+                        pics.append(picE.attr("src")).append(";");
+                    }
+                    weibo.setwPics(pics.toString());
+                } catch (Exception e) {
+                    LogRecord.error("没有图片，原因：" + e.getMessage());
+                }
+                Elements handles = element.select("div[class=WB_handle]").first().select("li");
+                String shareCount = handles.get(1).text().replace("转发", "0");
+                String commentCount = handles.get(2).text().replace("评论", "0");
+                String thumbCount = handles.get(3).text().replace("ñ", "").replace("赞", "0");
+
+
+                Element idInfo = handles.get(2).select("a").first();
+                String ouIdStr = idInfo.attr("action-data");
+                ouIdStr = ouIdStr.substring(ouIdStr.indexOf("=") + 1, ouIdStr.indexOf("&"));
+                String mid = idInfo.attr("suda-uatrack");
+                mid = mid.substring(mid.lastIndexOf(":") + 1, mid.length());
+                weibo.setwDate(date);
+                weibo.setwCommentCount(commentCount);
+                weibo.setwContent(contentE.text());
+                weibo.setwFrom(from);
+                weibo.setwUserName(weiboName);
+                weibo.setwMid(mid);
+                weibo.setwOuid(ouIdStr);
+                weibo.setwUrl("");
+                weibo.setwShareCount(shareCount);
+                weibo.setwThumbCount(thumbCount);
+                result.add(weibo);
             } catch (Exception e) {
-                LogRecod.error(e);
+                LogRecord.error("解析微博失败，原因：" + e.getMessage());
             }
-            Elements handles = element.select("div[class=WB_handle]").first().select("li");
-            String shareCount = handles.get(1).text().replace("转发", "0");
-            String commentCount = handles.get(2).text().replace("评论", "0");
-            String thumbCount = handles.get(3).text().replace("ñ", "").replace("赞", "0");
-
-
-            Element idInfo = handles.get(2).select("a").first();
-            String ouIdStr = idInfo.attr("action-data");
-            ouIdStr = ouIdStr.substring(ouIdStr.indexOf("=") + 1, ouIdStr.indexOf("&"));
-            String mid = idInfo.attr("suda-uatrack");
-            mid = mid.substring(mid.lastIndexOf(":") + 1, mid.length());
-            weibo.setwDate(date);
-            weibo.setwCommentCount(commentCount);
-            weibo.setwContent(contentE.text());
-            weibo.setwFrom(from);
-            weibo.setwUserName(weiboName);
-            weibo.setwMid(mid);
-            weibo.setwOuid(ouIdStr);
-            weibo.setwUrl("");
-            weibo.setwShareCount(shareCount);
-            weibo.setwThumbCount(thumbCount);
-            result.add(weibo);
         }
         return result;
     }
@@ -293,7 +320,7 @@ public class WeiboServiceImpl implements WeiboService {
                 //去除emoj表情符号
                 weibo.setwContent(weibo.getwContent().replaceAll("[\\x{10000}-\\x{10FFFF}]", ""));
             } catch (Exception e) {
-                LogRecod.error(e);
+                LogRecord.error("去除emoj表情符号失败，原因：" + e.getMessage());
             }
             if (weibo.getwContent().contains("展开全文")) {
                 String fullContent = getFullContent(weibo.getwMid(), headers);
@@ -313,7 +340,8 @@ public class WeiboServiceImpl implements WeiboService {
             Document document = Jsoup.parse(jsonResult);
             return document.text();
         } catch (Exception e) {
-            LogRecod.error(e);
+            LogRecord.error("获取微博全文失败，原因：" + e.getMessage());
+
         }
         return null;
     }

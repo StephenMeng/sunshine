@@ -13,7 +13,7 @@ import team.stephen.sunshine.model.other.Weibo;
 import team.stephen.sunshine.model.other.WeiboComment;
 import team.stephen.sunshine.model.other.WeiboUserConfig;
 import team.stephen.sunshine.service.other.WeiboService;
-import team.stephen.sunshine.util.common.LogRecod;
+import team.stephen.sunshine.util.common.LogRecord;
 
 import java.util.HashMap;
 import java.util.List;
@@ -40,7 +40,7 @@ public class WeiboCrawlerTest {
             try {
                 weiboService.addWeiboUserConfig(config);
             } catch (Exception e) {
-                LogRecod.error(e);
+                LogRecord.error(e);
             }
         }
     }
@@ -57,7 +57,7 @@ public class WeiboCrawlerTest {
         headers.put("Cookie", cookie);
         if (config != null) {
 //            for (int page = 1; page <= config.getWeiboNum() / 45 + 1; page++) {
-            int page = 1;
+            int page = 5;
             List<Weibo> weibos = weiboService.crawlWeibo(config, page, headers);
             weibos.forEach(weibo -> {
                 try {
@@ -84,7 +84,7 @@ public class WeiboCrawlerTest {
             try {
                 weiboService.addWeiboComment(comment);
             } catch (Exception e) {
-                LogRecod.error(e);
+                LogRecord.error(e);
             }
         });
     }

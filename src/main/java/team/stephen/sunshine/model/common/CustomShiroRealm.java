@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import team.stephen.sunshine.model.user.User;
 import team.stephen.sunshine.service.common.PermissionService;
 import team.stephen.sunshine.service.user.UserService;
-import team.stephen.sunshine.util.common.LogRecod;
+import team.stephen.sunshine.util.common.LogRecord;
 
 import java.util.List;
 
@@ -33,8 +33,8 @@ public class CustomShiroRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 //        System.out.println("权限配置-->MyShiroRealm.doGetAuthorizationInfo()");
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        LogRecod.print("授权");
-        LogRecod.print(principals.getPrimaryPrincipal());
+        LogRecord.print("授权");
+        LogRecord.print(principals.getPrimaryPrincipal());
         String userNo = (String) principals.getPrimaryPrincipal();
         List<String> roles = permissionService.getUserRoles(userNo);
         authorizationInfo.addRoles(roles);
@@ -47,7 +47,7 @@ public class CustomShiroRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token)
             throws AuthenticationException {
-        LogRecod.print("验证");
+        LogRecord.print("验证");
         //获取用户的输入的账号.
         String userNo = (String) token.getPrincipal();
 //        System.out.println(token.getCredentials());

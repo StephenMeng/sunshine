@@ -1,7 +1,7 @@
 package team.stephen.sunshine.util.helper;
 
 import org.apache.commons.net.ftp.FTPReply;
-import team.stephen.sunshine.util.common.LogRecod;
+import team.stephen.sunshine.util.common.LogRecord;
 
 import java.io.IOException;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -45,10 +45,10 @@ public class FtpClientFactory {
                 FtpClientHelper helper = getDefaultFtpClientHelper(ftpHost, ftpPort, ftpUserName, ftpPassword, ftpClientFactory);
                 ftpClients.add(helper);
             } catch (Exception e) {
-                LogRecod.error(e.getStackTrace());
+                LogRecord.error(e.getStackTrace());
             }
         }
-        LogRecod.info("ftp client factory 共成功初始化：" + ftpClients.size() + "个 client");
+        LogRecord.info("ftp client factory 共成功初始化：" + ftpClients.size() + "个 client");
 
     }
 
@@ -79,21 +79,21 @@ public class FtpClientFactory {
                             //临时创建的client设置超时时间为10分钟
                             helper.setKeepAliveTimeOut(3);
                             //此时无需添加client池，等回收时会自动添加。
-                            LogRecod.print("poll size:" + ftpClients.size());
-                            LogRecod.print("used :" + getInstance().used.get());
-                            LogRecod.print("新增 ftp client 成功");
+                            LogRecord.print("poll size:" + ftpClients.size());
+                            LogRecord.print("used :" + getInstance().used.get());
+                            LogRecord.print("新增 ftp client 成功");
 
                             return helper;
                         } catch (Exception e) {
-                            LogRecod.error(e.getStackTrace());
+                            LogRecord.error(e.getStackTrace());
                         }
                     }
                 }
             }
         }
         //没有加锁，可能会创建多于maxNumPoolSize的线程数。。不过影响不大
-        LogRecod.print("get poll size:" + ftpClients.size());
-        LogRecod.print("get used :" + getInstance().used.get());
+        LogRecord.print("get poll size:" + ftpClients.size());
+        LogRecord.print("get used :" + getInstance().used.get());
         int reply = ftp.getReplyCode();
         //判断活跃性
         if (!FTPReply.isPositiveCompletion(reply)) {
@@ -118,7 +118,7 @@ public class FtpClientFactory {
     }
 
     public void remove(FtpClientHelper helper) {
-        LogRecod.print("删除 FTPClient");
+        LogRecord.print("删除 FTPClient");
         ftpClientFactory.remove(helper);
     }
 

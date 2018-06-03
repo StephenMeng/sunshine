@@ -13,7 +13,7 @@ import team.stephen.sunshine.web.dto.condition.ArticleSearchCondition;
 import team.stephen.sunshine.model.article.Article;
 import team.stephen.sunshine.service.article.ArticleService;
 import team.stephen.sunshine.service.common.SolrService;
-import team.stephen.sunshine.util.common.LogRecod;
+import team.stephen.sunshine.util.common.LogRecord;
 import team.stephen.sunshine.util.common.RandomIDUtil;
 
 import java.util.Date;
@@ -73,7 +73,7 @@ public class SolrServiceTest {
         condition.setDesc(false);
         try {
             PageInfo<Article> articlePageInfo = solrService.queryArticle(condition);
-            LogRecod.print(articlePageInfo);
+            LogRecord.print(articlePageInfo);
         } catch (Exception e) {
             e.printStackTrace();
         }

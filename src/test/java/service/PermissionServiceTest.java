@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import team.stephen.sunshine.Application;
 import team.stephen.sunshine.service.common.PermissionService;
-import team.stephen.sunshine.util.common.LogRecod;
+import team.stephen.sunshine.util.common.LogRecord;
 
 import java.util.List;
 
@@ -23,8 +23,8 @@ public class PermissionServiceTest {
     @Test
     public void testRole() {
         List<String> userRoles = permissionService.getUserRoles(1);
-        LogRecod.print(userRoles);
+        LogRecord.print(userRoles);
         userRoles = permissionService.getUserRoles("MG1514018");
-        LogRecod.print(userRoles);
+        LogRecord.print(userRoles);
     }
 }

@@ -2,7 +2,7 @@ package team.stephen.sunshine.web.interceptor;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import team.stephen.sunshine.util.common.LogRecod;
+import team.stephen.sunshine.util.common.LogRecord;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +15,7 @@ public class AccessLogInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         String uri=httpServletRequest.getRequestURI();
         String query=httpServletRequest.getQueryString();
-        LogRecod.info(uri+"\t"+query);
+        LogRecord.info(uri+"\t"+query);
         return true;
     }
 

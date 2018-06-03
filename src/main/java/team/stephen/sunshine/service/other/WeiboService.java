@@ -68,6 +68,10 @@ public interface WeiboService {
      */
     List<Weibo> crawlWeibo(WeiboUserConfig config, int page, Map<String, String> headers);
 
+    List<Weibo> crawlWeiboFirstPage(WeiboUserConfig config, int page, Map<String, String> headers);
+
+    List<Weibo> crawlWeiboPageBar(WeiboUserConfig config, int page, int pageBar, Map<String, String> headers);
+
     /**
      * 爬评论
      *

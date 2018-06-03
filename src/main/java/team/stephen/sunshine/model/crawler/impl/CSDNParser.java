@@ -7,7 +7,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import team.stephen.sunshine.model.article.Article;
 import team.stephen.sunshine.model.crawler.Parser;
-import team.stephen.sunshine.util.common.LogRecod;
+import team.stephen.sunshine.util.common.LogRecord;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ public class CSDNParser implements Parser<Article> {
         Document document = Jsoup.parse(html);
         Elements elements = document.select("dl[class=search-list J_search]");
         elements.forEach(element -> {
-            LogRecod.print(element.text());
+            LogRecord.print(element.text());
             String title = element.select("dt").first().text();
             String content = element.select("dd[class=search-detail]").first().text();
             String link = element.select("dd[class=search-link]").first().text();

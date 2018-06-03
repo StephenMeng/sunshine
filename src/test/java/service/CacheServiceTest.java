@@ -10,7 +10,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import team.stephen.sunshine.Application;
 import team.stephen.sunshine.web.dto.user.UserDto;
 import team.stephen.sunshine.service.common.CacheService;
-import team.stephen.sunshine.util.common.LogRecod;
+import team.stephen.sunshine.util.common.LogRecord;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
@@ -22,21 +22,21 @@ public class CacheServiceTest {
     @Test
     public void testUserId() {
         UserDto userDto = cacheService.findUserDtoByUserId(1);
-        LogRecod.print(userDto.getUserName());
+        LogRecord.print(userDto.getUserName());
     }
 
     @Test
     public void testUserNo() {
         UserDto userDto = cacheService.findUserDtoByUserNo("MG1514017");
-        LogRecod.print(userDto);
+        LogRecord.print(userDto);
     }
 
     @Test
     public void testUserNull() {
         UserDto userDto = cacheService.findUserDtoByUserNo(null);
-        LogRecod.print(userDto);
+        LogRecord.print(userDto);
         userDto = cacheService.findUserDtoByUserId(null);
-        LogRecod.print(userDto);
+        LogRecord.print(userDto);
     }
 
     @Test
@@ -45,6 +45,6 @@ public class CacheServiceTest {
         userDto.setEmail("1581284397@qq.com");
         cacheService.addOrUpdateUserCache(userDto);
         userDto = cacheService.findUserDtoByUserId(1);
-        LogRecod.print(userDto.getEmail());
+        LogRecord.print(userDto.getEmail());
     }
 }

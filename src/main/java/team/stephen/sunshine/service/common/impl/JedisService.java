@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-import team.stephen.sunshine.util.common.LogRecod;
+import team.stephen.sunshine.util.common.LogRecord;
 
 import java.util.Collections;
 import java.util.UUID;
@@ -94,7 +94,7 @@ public class JedisService {
                 jedis = jedisPool.getResource();
                 return callBack.handle(jedis);
             } catch (Exception e) {
-                LogRecod.error(e.getMessage());
+                LogRecord.error(e.getMessage());
             } finally {
                 if (jedis != null) {
                     jedis.close();

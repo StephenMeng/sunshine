@@ -2,15 +2,13 @@ package team.stephen.sunshine.util.common;
 
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
-import team.stephen.sunshine.model.user.User;
-import team.stephen.sunshine.util.common.LogRecod;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class SecurityUtil {
     public static String md5(String input) {
-        LogRecod.print(input);
+        LogRecord.print(input);
         MessageDigest messageDigest = null;
         try {
             messageDigest = MessageDigest.getInstance("md5");

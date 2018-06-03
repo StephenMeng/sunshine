@@ -10,7 +10,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import team.stephen.sunshine.Application;
 import team.stephen.sunshine.constant.JedisConst;
 import team.stephen.sunshine.service.common.impl.JedisService;
-import team.stephen.sunshine.util.common.LogRecod;
+import team.stephen.sunshine.util.common.LogRecord;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +35,7 @@ public class JedisServiceTest {
                 }
             }).start();
         }
-        LogRecod.print(apple);
+        LogRecord.print(apple);
     }
 
     @Test
@@ -48,9 +48,9 @@ public class JedisServiceTest {
                 if (identifier != null) {
                     apple.add(apple.size());
                     jedisService.unLock(lockKey, identifier);
-                    LogRecod.print(System.currentTimeMillis() - cu);
+                    LogRecord.print(System.currentTimeMillis() - cu);
                 } else {
-                    LogRecod.print("获取锁失败");
+                    LogRecord.print("获取锁失败");
                 }
 
             }).start();
@@ -60,6 +60,6 @@ public class JedisServiceTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        LogRecod.print(apple);
+        LogRecord.print(apple);
     }
 }

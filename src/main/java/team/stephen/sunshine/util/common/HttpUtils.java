@@ -137,7 +137,7 @@ public class HttpUtils {
 
         } catch (Exception e) {
             e.printStackTrace();
-            LogRecod.error(e);
+            LogRecord.error(e);
         }
         return null;
     }

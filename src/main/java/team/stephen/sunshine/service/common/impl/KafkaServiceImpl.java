@@ -10,7 +10,7 @@ import team.stephen.sunshine.constant.enu.Topic;
 import team.stephen.sunshine.exception.NullParamException;
 import team.stephen.sunshine.exception.WrongClassTypeException;
 import team.stephen.sunshine.service.common.KafkaService;
-import team.stephen.sunshine.util.common.LogRecod;
+import team.stephen.sunshine.util.common.LogRecord;
 
 /**
  * @author Stephen
@@ -32,7 +32,7 @@ public class KafkaServiceImpl implements KafkaService {
         ProducerRecord<String, String> record = new ProducerRecord<>(topic.getName(), "key", JSONObject.toJSONString(obj));
         try {
             producer.send(record);
-            LogRecod.print("produce success:" + obj.toString());
+            LogRecord.print("produce success:" + obj.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }

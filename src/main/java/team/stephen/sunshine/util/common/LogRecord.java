@@ -6,9 +6,10 @@ import org.slf4j.LoggerFactory;
 import team.stephen.sunshine.Application;
 
 /**
- * Created by stephen on 2017/7/15.
+ * @author stephen
+ * @date 2017/7/15
  */
-public class LogRecod {
+public class LogRecord {
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
     public static void info(Object object) {

@@ -56,10 +56,10 @@ public class QRCodeUtils {
             outPutImage.flush();
         } catch (WriterException e) {
             e.printStackTrace();
-            LogRecod.error("二维码生成失败");
+            LogRecord.error("二维码生成失败");
         } catch (IOException e) {
             e.printStackTrace();
-            LogRecod.error("生成二维码图片失败");
+            LogRecord.error("生成二维码图片失败");
         }
     }
 }

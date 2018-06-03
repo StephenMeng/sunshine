@@ -10,23 +10,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import team.stephen.sunshine.Application;
-import team.stephen.sunshine.model.article.Article;
-import team.stephen.sunshine.model.crawler.Parser;
-import team.stephen.sunshine.model.other.CssciAuthor;
-import team.stephen.sunshine.model.other.CssciCitation;
 import team.stephen.sunshine.model.other.CssciJournal;
 import team.stephen.sunshine.model.other.CssciPaper;
-import team.stephen.sunshine.service.article.ArticleService;
 import team.stephen.sunshine.service.common.CrawlerService;
 import team.stephen.sunshine.service.other.CssciService;
 import team.stephen.sunshine.util.common.HttpUtils;
-import team.stephen.sunshine.util.common.LogRecod;
-import team.stephen.sunshine.util.common.RandomIDUtil;
-import team.stephen.sunshine.util.element.StringUtils;
+import team.stephen.sunshine.util.common.LogRecord;
 
-import javax.persistence.Table;
 import java.io.IOException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +36,7 @@ public class CssciServiceTest {
         String url = "http://cssci.nju.edu.cn/js/web_message.js";
         try {
             crawlerService.get(url, html -> {
-                LogRecod.print(html);
+                LogRecord.print(html);
                 return null;
             });
         } catch (IOException e) {
@@ -64,8 +55,8 @@ public class CssciServiceTest {
                             + jid + "&type=" + type + "&pagenow=" + i;
                     try {
                         String html = HttpUtils.okrHttpGet(url);
-                        LogRecod.print(url);
-                        LogRecod.print(html);
+                        LogRecord.print(url);
+                        LogRecord.print(html);
                         JSONObject jsonObject = JSONObject.parseObject(html);
                         JSONArray jsonArray = jsonObject.getJSONArray("contents");
                         if (jsonArray != null) {
@@ -127,7 +118,7 @@ public class CssciServiceTest {
             if (pageNum <= i) {
 //                    break;
             }
-            LogRecod.print(html);
+            LogRecord.print(html);
         } catch (IOException e) {
             e.printStackTrace();
         }
