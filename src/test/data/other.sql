@@ -2,18 +2,33 @@
 Navicat MySQL Data Transfer
 
 Source Server         : local
-Source Server Version : 50720
-Source Host           : localhost:3306
+Source Server Version : 50722
+Source Host           : 127.0.0.1:3306
 Source Database       : other
 
 Target Server Type    : MYSQL
-Target Server Version : 50720
+Target Server Version : 50722
 File Encoding         : 65001
 
-Date: 2018-05-29 11:48:46
+Date: 2018-06-03 17:45:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for crawl_error
+-- ----------------------------
+DROP TABLE IF EXISTS `crawl_error`;
+CREATE TABLE `crawl_error` (
+  `id` int(30) NOT NULL AUTO_INCREMENT,
+  `site` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `method` varchar(255) DEFAULT NULL,
+  `body` varchar(255) DEFAULT NULL,
+  `create_date` timestamp NULL DEFAULT NULL,
+  `deleted` bit(1) DEFAULT b'0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for cssci_author
@@ -142,12 +157,53 @@ CREATE TABLE `cssci_paper` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Table structure for live_platform_policy
+-- Table structure for weibo
 -- ----------------------------
-DROP TABLE IF EXISTS `live_platform_policy`;
-CREATE TABLE `live_platform_policy` (
-  `url` varchar(255) NOT NULL,
-  `pub_date` varchar(255) DEFAULT NULL,
-  `content` longtext,
-  PRIMARY KEY (`url`)
+DROP TABLE IF EXISTS `weibo`;
+CREATE TABLE `weibo` (
+  `w_ouid` varchar(30) NOT NULL,
+  `w_mid` varchar(30) NOT NULL,
+  `w_user_name` varchar(255) DEFAULT NULL,
+  `w_url` varchar(255) DEFAULT NULL,
+  `w_date` varchar(20) DEFAULT NULL,
+  `w_from` varchar(255) DEFAULT NULL,
+  `w_share_count` varchar(255) DEFAULT NULL,
+  `w_comment_count` varchar(255) DEFAULT NULL,
+  `w_thumb_count` varchar(255) DEFAULT NULL,
+  `w_content` varchar(4096) DEFAULT NULL,
+  `w_pics` varchar(1024) DEFAULT NULL,
+  `crawl_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `index_words` varchar(1024) DEFAULT NULL,
+  PRIMARY KEY (`w_mid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Table structure for weibo_comment
+-- ----------------------------
+DROP TABLE IF EXISTS `weibo_comment`;
+CREATE TABLE `weibo_comment` (
+  `w_mid` varchar(30) DEFAULT NULL,
+  `w_ouid` varchar(30) DEFAULT NULL,
+  `c_user_name` varchar(255) DEFAULT NULL,
+  `c_date` varchar(20) DEFAULT NULL,
+  `c_content` varchar(512) DEFAULT NULL,
+  `c_user_url` varchar(255) DEFAULT NULL,
+  `c_reply` varchar(20) DEFAULT NULL,
+  `c_thumb` varchar(20) DEFAULT NULL,
+  `c_crawl_date` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Table structure for weibo_user_config
+-- ----------------------------
+DROP TABLE IF EXISTS `weibo_user_config`;
+CREATE TABLE `weibo_user_config` (
+  `oid` varchar(255) NOT NULL,
+  `uri` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `domain` varchar(255) NOT NULL,
+  `pids` varchar(255) NOT NULL,
+  `weibo_num` varchar(255) NOT NULL,
+  `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`uri`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
