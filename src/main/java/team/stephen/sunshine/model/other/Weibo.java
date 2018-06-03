@@ -13,11 +13,11 @@ import java.util.Date;
 @Entity
 @Table(name = "weibo")
 public class Weibo {
-    @Id
     @Column(name = "w_url")
     private String wUrl;
     @Column(name = "w_ouid")
     private String wOuid;
+    @Id
     @Column(name = "w_mid")
     private String wMid;
     @Column(name = "w_user_name")
@@ -38,6 +38,9 @@ public class Weibo {
     private String wPics;
     @Column(name = "crawl_date")
     private Date crawlDate;
+    @Column(name = "index_words")
+    private String indexWords;
+
     public String getwUrl() {
         return wUrl;
     }
@@ -132,5 +135,13 @@ public class Weibo {
 
     public void setCrawlDate(Date crawlDate) {
         this.crawlDate = crawlDate;
+    }
+
+    public String getIndexWords() {
+        return indexWords;
+    }
+
+    public void setIndexWords(String indexWords) {
+        this.indexWords = indexWords;
     }
 }

@@ -7,10 +7,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import team.stephen.sunshine.constant.enu.ResultEnum;
 import team.stephen.sunshine.model.user.User;
 import team.stephen.sunshine.service.common.CacheService;
@@ -42,7 +39,7 @@ public class UserManagementController {
 
     @ApiOperation(value = "新增成员", httpMethod = "POST", response = Response.class)
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public Response add(SignInUserDto signInUserDto) {
+    public Response add(@RequestBody SignInUserDto signInUserDto) {
         ParamCheck check = checkSignParam(signInUserDto);
         if (check.error()) {
             return Response.error(check);

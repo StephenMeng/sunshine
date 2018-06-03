@@ -68,7 +68,7 @@ public class Runner implements CommandLineRunner {
                 TimeUnit.MINUTES, new SynchronousQueue<>(), new DefaultThreadFactory(Topic.EMAIL.getName()));
         //单元测试时需注释掉此处代码
         //开启一个线程来处理消息
-        new Thread(() -> consume(Lists.newArrayList(Topic.EMAIL.getName(), Topic.LOG.getName()))).start();
+//        new Thread(() -> consume(Lists.newArrayList(Topic.EMAIL.getName(), Topic.LOG.getName()))).start();
     }
 
     private void consume(List<String> topics) {

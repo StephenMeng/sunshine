@@ -66,10 +66,32 @@ public interface WeiboService {
      * @param headers headers
      * @return 列表
      */
-    List<Weibo> crawlWeibo(WeiboUserConfig config, int page, Map<String, String> headers);
+    List<Weibo> crawlWeiboHomePage(WeiboUserConfig config, int page, Map<String, String> headers);
 
+    /**
+     * 爬取搜索页信息
+     *
+     * @param url     搜索页
+     * @param headers header
+     * @return 列表
+     */
+    List<Weibo> crawlWeiboSearchPage(String url, Map<String, String> headers);
+
+    /** 爬用户主页的第一节数据
+     * @param config
+     * @param page
+     * @param headers
+     * @return
+     */
     List<Weibo> crawlWeiboFirstPage(WeiboUserConfig config, int page, Map<String, String> headers);
 
+    /**爬用户主页的第二三节数据
+     * @param config
+     * @param page
+     * @param pageBar 0表示第二节，1表示第三节
+     * @param headers
+     * @return
+     */
     List<Weibo> crawlWeiboPageBar(WeiboUserConfig config, int page, int pageBar, Map<String, String> headers);
 
     /**
@@ -82,4 +104,11 @@ public interface WeiboService {
      */
     List<WeiboComment> crawlWeiboComment(String mid, int page, Map<String, String> headers);
 
+    /** 主键查找
+     * @param mid
+     * @return
+     */
+    Weibo selectByPrimary(String mid);
+
+    int updateSelective(Weibo tu);
 }

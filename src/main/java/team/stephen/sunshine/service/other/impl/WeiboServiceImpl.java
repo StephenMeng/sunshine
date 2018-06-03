@@ -47,6 +47,7 @@ public class WeiboServiceImpl implements WeiboService {
     private Pattern uidPattern = Pattern.compile("'page_id'\\]='(.*?)'");
     private Pattern titlePattern = Pattern.compile("'title_value'\\]='(.*?)'");
     private Pattern weiboNumPattern = Pattern.compile("粉丝(.*?)strong(.*?)>(.*?)<(.*?)微博");
+    private Pattern searchResultPattern = Pattern.compile("\\{\"pid\":\"pl_weibo_direct\"(.*?)}");
 
     private String baseUrl = "https://weibo.com";
 
@@ -117,12 +118,25 @@ public class WeiboServiceImpl implements WeiboService {
     }
 
     @Override
-    public List<Weibo> crawlWeibo(WeiboUserConfig config, int page, Map<String, String> headers) {
+    public List<Weibo> crawlWeiboHomePage(WeiboUserConfig config, int page, Map<String, String> headers) {
         List<Weibo> result = new ArrayList<>();
         result.addAll(crawlWeiboFirstPage(config, page, headers));
         result.addAll(crawlWeiboPageBar(config, page, 0, headers));
         result.addAll(crawlWeiboPageBar(config, page, 1, headers));
         return result;
+    }
+
+    @Override
+    public List<Weibo> crawlWeiboSearchPage(String url, Map<String, String> headers) {
+        try {
+            String html = HttpUtils.okrHttpGet(url, headers);
+            List<Weibo> weibos = parseSearchResult(html);
+            completeExtraInfo(headers, weibos);
+            return weibos;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
     }
 
     @Override
@@ -158,6 +172,16 @@ public class WeiboServiceImpl implements WeiboService {
         return result;
     }
 
+    @Override
+    public Weibo selectByPrimary(String mid) {
+        return weiboDao.selectByPrimaryKey(mid);
+    }
+
+    @Override
+    public int updateSelective(Weibo tu) {
+        return weiboDao.updateByPrimaryKeySelective(tu);
+    }
+
     private List<WeiboComment> parseComment(String html) {
         List<WeiboComment> result = new ArrayList<>();
         if (html == null) {
@@ -179,9 +203,13 @@ public class WeiboServiceImpl implements WeiboService {
             Elements handle = element.select("span[class^=line S_line]");
             String reply = handle.get(2).text();
             String thumb = handle.get(3).text();
+            if (reply.contains("查看对话")) {
+                reply = handle.get(3).text();
+                thumb = handle.get(4).text();
+            }
             weiboComment.setcUserName(authorName);
             weiboComment.setcReply(reply.replace("回复", "0"));
-            weiboComment.setcThumb(thumb.replace("ñ赞", "0"));
+            weiboComment.setcThumb(thumb.replace("ñ", "").replace("赞", "0"));
             weiboComment.setcDate(date);
             weiboComment.setcContent(content);
             weiboComment.setcUserUrl(authorLink);
@@ -196,7 +224,7 @@ public class WeiboServiceImpl implements WeiboService {
         try {
             String html = HttpUtils.okrHttpGet(url, headers);
             String jsonResult = getFirstPageHtml(html);
-            return parseWeibo(config.getName(), jsonResult);
+            return parsePersonHomePage(config.getName(), jsonResult);
         } catch (IOException e) {
             LogRecord.error("获取微博firstPage失败，原因：" + e.getMessage());
             logErrorUrl(url, "weibo fist page");
@@ -217,7 +245,7 @@ public class WeiboServiceImpl implements WeiboService {
                 + config.getUri() + "&feed_type=0&pre_page=" + page + "&domain_op=" + config.getDomain();
         try {
             String html = HttpUtils.okrHttpGet(url, headers);
-            return parseWeibo(config.getName(), getPageBarHtml(html, "data"));
+            return parsePersonHomePage(config.getName(), getPageBarHtml(html, "data"));
         } catch (IOException e) {
             LogRecord.error("获取微博pagerBar失败，原因：" + e.getMessage());
             logErrorUrl(url, "weibo page bar");
@@ -240,7 +268,7 @@ public class WeiboServiceImpl implements WeiboService {
     }
 
 
-    private List<Weibo> parseWeibo(String weiboName, String jsonResult) {
+    private List<Weibo> parsePersonHomePage(String weiboName, String jsonResult) {
         List<Weibo> result = new ArrayList<>();
         if (jsonResult == null) {
             return result;
@@ -304,6 +332,86 @@ public class WeiboServiceImpl implements WeiboService {
         return result;
     }
 
+    private List<Weibo> parseSearchResult(String html) {
+        Matcher matcher = searchResultPattern.matcher(html);
+        while (matcher.find()) {
+            String json = matcher.group();
+            JSONObject jsonObject = JSONObject.parseObject(json);
+            String resulthtml = jsonObject.getString("html");
+            return parseSearchResultWeibo("search", resulthtml);
+        }
+        return new ArrayList<>(0);
+    }
+
+    public List<Weibo> parseSearchResultWeibo(String weiboName, String jsonResult) {
+        List<Weibo> result = new ArrayList<>();
+        if (jsonResult == null) {
+            return result;
+        }
+        Document document = Jsoup.parse(jsonResult);
+        Elements elements = document.select("div[tbinfo]");
+
+        for (Element element : elements) {
+            try {
+                Weibo weibo = new Weibo();
+                weibo.setCrawlDate(new Date());
+
+                String ouIdStr = element.attr("tbinfo");
+                ouIdStr = ouIdStr.substring(ouIdStr.indexOf("=") + 1);
+                String mid = element.attr("mid");
+
+                Element ename = element.select("div[class^=feed_content wbcon]").first().select("a").first();
+                String name = ename.text();
+                Element wb = element.select("div[class=feed_from W_textb]").first();
+                String date = null;
+                String from = null;
+                try {
+
+                    Elements as = wb.select("a");
+                    date = as.get(0).text();
+
+                    if (as.size() > 1) {
+                        from = as.get(1).text();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Element contentE = element.select("p[class=comment_txt]").first();
+                try {
+                    Element pictureE = element.select("div[class^=WB_media_wrap]").first();
+                    Elements picEs = pictureE.select("img");
+                    StringBuilder pics = new StringBuilder();
+                    for (Element picE : picEs) {
+                        pics.append(picE.attr("src")).append(";");
+                    }
+                    weibo.setwPics(pics.toString());
+                } catch (Exception e) {
+                    LogRecord.error("没有图片，原因：" + e.getMessage());
+                }
+                Elements handles = element.select("div[class=feed_action clearfix]").first().select("li");
+                String shareCount = handles.get(1).text().replace("转发", "0");
+                String commentCount = handles.get(2).text().replace("评论", "0");
+                String thumbCount = handles.get(3).text().replace("ñ", "").replace("赞", "0");
+
+
+                weibo.setwDate(date);
+                weibo.setwCommentCount(commentCount);
+                weibo.setwContent(contentE.text());
+                weibo.setwFrom(from);
+                weibo.setwUserName(name);
+                weibo.setwMid(mid);
+                weibo.setwOuid(ouIdStr);
+                weibo.setwUrl("");
+                weibo.setwShareCount(shareCount);
+                weibo.setwThumbCount(thumbCount);
+                result.add(weibo);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
+    }
+
     private String parseUrl(String url) {
         if (url.contains("?")) {
             url = url.substring(0, url.indexOf("?"));
@@ -319,6 +427,12 @@ public class WeiboServiceImpl implements WeiboService {
             try {
                 //去除emoj表情符号
                 weibo.setwContent(weibo.getwContent().replaceAll("[\\x{10000}-\\x{10FFFF}]", ""));
+            } catch (Exception e) {
+                LogRecord.error("去除emoj表情符号失败，原因：" + e.getMessage());
+            }
+            try {
+                //去除emoj表情符号
+                weibo.setwFrom(weibo.getwFrom().replaceAll("[\\x{10000}-\\x{10FFFF}]", ""));
             } catch (Exception e) {
                 LogRecord.error("去除emoj表情符号失败，原因：" + e.getMessage());
             }
