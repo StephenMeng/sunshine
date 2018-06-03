@@ -3,6 +3,7 @@ package team.stephen.sunshine.model.other;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.util.Date;
 
 /**
  * @author Stephen
@@ -27,6 +28,8 @@ public class WeiboComment {
     private String cReply;
     @Column(name = "c_thumb")
     private String cThumb;
+    @Column(name = "c_crawl_date")
+    private Date cCrawlDate;
 
     public String getwMid() {
         return wMid;
@@ -90,5 +93,13 @@ public class WeiboComment {
 
     public void setcThumb(String cThumb) {
         this.cThumb = cThumb;
+    }
+
+    public Date getcCrawlDate() {
+        return cCrawlDate;
+    }
+
+    public void setcCrawlDate(Date cCrawlDate) {
+        this.cCrawlDate = cCrawlDate;
     }
 }

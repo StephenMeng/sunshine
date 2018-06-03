@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 /**
  * @author Stephen
@@ -31,8 +32,12 @@ public class Weibo {
     private String wCommentCount;
     @Column(name = "w_thumb_count")
     private String wThumbCount;
+    @Column(name = "w_content")
     private String wContent;
-
+    @Column(name = "w_pics")
+    private String wPics;
+    @Column(name = "crawl_date")
+    private Date crawlDate;
     public String getwUrl() {
         return wUrl;
     }
@@ -111,5 +116,21 @@ public class Weibo {
 
     public void setwContent(String wContent) {
         this.wContent = wContent;
+    }
+
+    public String getwPics() {
+        return wPics;
+    }
+
+    public void setwPics(String wPics) {
+        this.wPics = wPics;
+    }
+
+    public Date getCrawlDate() {
+        return crawlDate;
+    }
+
+    public void setCrawlDate(Date crawlDate) {
+        this.crawlDate = crawlDate;
     }
 }
