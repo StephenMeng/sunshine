@@ -16,6 +16,8 @@ public class WeiboUserConfig {
 
     @Column(name = "oid")
     private String oid;
+    @Column(name = "page_id")
+    private String pageId;
     @Id
     @Column(name = "uri")
     private String uri;
@@ -27,6 +29,10 @@ public class WeiboUserConfig {
     private String pids;
     @Column(name = "weibo_num")
     private Integer weiboNum;
+    @Column(name = "fans_num")
+    private Integer fansNum;
+    @Column(name = "follow_num")
+    private Integer followNum;
     @Column(name = "update_date")
     private Date updateDate;
 
@@ -36,6 +42,14 @@ public class WeiboUserConfig {
 
     public void setOid(String oid) {
         this.oid = oid;
+    }
+
+    public String getPageId() {
+        return pageId;
+    }
+
+    public void setPageId(String pageId) {
+        this.pageId = pageId;
     }
 
     public String getUri() {
@@ -76,6 +90,22 @@ public class WeiboUserConfig {
 
     public void setWeiboNum(Integer weiboNum) {
         this.weiboNum = weiboNum;
+    }
+
+    public Integer getFansNum() {
+        return fansNum;
+    }
+
+    public void setFansNum(Integer fansNum) {
+        this.fansNum = fansNum;
+    }
+
+    public Integer getFollowNum() {
+        return followNum;
+    }
+
+    public void setFollowNum(Integer followNum) {
+        this.followNum = followNum;
     }
 
     public Date getUpdateDate() {

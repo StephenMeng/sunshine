@@ -1,4 +1,4 @@
-package team.stephen.sunshine.util.typehandler;
+package team.stephen.sunshine.util.handler;
 
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;

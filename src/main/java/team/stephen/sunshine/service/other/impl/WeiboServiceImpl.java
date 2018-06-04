@@ -21,6 +21,7 @@ import team.stephen.sunshine.service.other.WeiboService;
 import team.stephen.sunshine.util.common.HttpUtils;
 import team.stephen.sunshine.util.common.LogRecord;
 import team.stephen.sunshine.util.element.StringUtils;
+import team.stephen.sunshine.util.handler.UrlHandler;
 
 import java.io.IOException;
 import java.util.*;
@@ -44,12 +45,12 @@ public class WeiboServiceImpl implements WeiboService {
 
     private Pattern pidPatter = Pattern.compile("Pl_Official_MyProfileFeed__(.*?)\"");
     private Pattern domainPattern = Pattern.compile("domain'\\]='(.*?)'");
-    private Pattern uidPattern = Pattern.compile("'page_id'\\]='(.*?)'");
+    private Pattern oidPattern = Pattern.compile("'oid'\\]='(.*?)'");
+    private Pattern pageIdPattern = Pattern.compile("'page_id'\\]='(.*?)'");
     private Pattern titlePattern = Pattern.compile("'title_value'\\]='(.*?)'");
-    private Pattern weiboNumPattern = Pattern.compile("粉丝(.*?)strong(.*?)>(.*?)<(.*?)微博");
+    private Pattern statisticPattern = Pattern.compile("\\{\"ns(.*?)>关注<(.*?)>粉丝<(.*?)>微博<(.*?)}");
     private Pattern searchResultPattern = Pattern.compile("\\{\"pid\":\"pl_weibo_direct\"(.*?)}");
 
-    private String baseUrl = "https://weibo.com";
 
     @Override
     public int addWeibo(Weibo weibo) {
@@ -79,6 +80,7 @@ public class WeiboServiceImpl implements WeiboService {
 
     @Override
     public WeiboUserConfig crawlUserConfig(String userUrl, Map<String, String> headers) {
+        //获取用户的uri
         String userUri = parseUrl(userUrl);
         WeiboUserConfig config = null;
         try {
@@ -87,7 +89,7 @@ public class WeiboServiceImpl implements WeiboService {
             String html = HttpUtils.okrHttpGet(userUrl, headers);
             Matcher pidMatcher = pidPatter.matcher(html);
             if (pidMatcher.find()) {
-                String pid = pidMatcher.group(0).replace("Pl_Official_MyProfileFeed__", "").replace("\\\"", "");
+                String pid = pidMatcher.group(0).replace("\\\"", "");
                 config.setPids(pid);
             }
             Matcher domainMatcher = domainPattern.matcher(html);
@@ -95,20 +97,33 @@ public class WeiboServiceImpl implements WeiboService {
                 String domain = domainMatcher.group(0).replace("domain']='", "").replace("'", "");
                 config.setDomain(domain);
             }
-            Matcher uidMatcher = uidPattern.matcher(html);
+            Matcher uidMatcher = oidPattern.matcher(html);
             while (uidMatcher.find()) {
-                String uid = uidMatcher.group(0).replace("page_id']='", "").replace("'", "");
+                String uid = uidMatcher.group(0).replace("oid']='", "").replace("'", "");
                 config.setOid(uid);
+            }
+            Matcher pageIdMatcher = pageIdPattern.matcher(html);
+            while (pageIdMatcher.find()) {
+                String uid = pageIdMatcher.group(0).replace("page_id']='", "").replace("'", "");
+                config.setPageId(uid);
             }
             Matcher titleMatcher = titlePattern.matcher(html);
             while (titleMatcher.find()) {
                 String title = titleMatcher.group(0).replace("title_value']='", "").replace("'", "");
                 config.setName(title);
             }
-            Matcher weiboNumMatcher = weiboNumPattern.matcher(html);
-            while (weiboNumMatcher.find()) {
-                String num = weiboNumMatcher.group(3);
-                config.setWeiboNum(Integer.valueOf(num));
+            Matcher statisticMatcher = statisticPattern.matcher(html);
+            if (statisticMatcher.find()) {
+                String json = statisticMatcher.group();
+                String resultHtml = getHtmlFromJson(json, "html");
+                Document document = Jsoup.parse(resultHtml);
+                Elements elements = document.select("strong");
+                String follow = elements.get(0).text();
+                String fans = elements.get(1).text();
+                String weiboNum = elements.get(2).text();
+                config.setWeiboNum(Integer.valueOf(weiboNum));
+                config.setFansNum(Integer.valueOf(fans));
+                config.setFollowNum(Integer.valueOf(follow));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -120,9 +135,13 @@ public class WeiboServiceImpl implements WeiboService {
     @Override
     public List<Weibo> crawlWeiboHomePage(WeiboUserConfig config, int page, Map<String, String> headers) {
         List<Weibo> result = new ArrayList<>();
-        result.addAll(crawlWeiboFirstPage(config, page, headers));
-        result.addAll(crawlWeiboPageBar(config, page, 0, headers));
-        result.addAll(crawlWeiboPageBar(config, page, 1, headers));
+        String firstPageUrl = UrlHandler.getWeiboFirstPageUrl(config, page);
+        result.addAll(crawlWeiboFirstPage(firstPageUrl, headers));
+        String pageBarUrl1 = UrlHandler.getWeiboPageBarUrl(config, page, 0);
+        result.addAll(crawlWeiboPageBar(pageBarUrl1, headers));
+        String pageBarUrl2 = UrlHandler.getWeiboPageBarUrl(config, page, 1);
+        result.addAll(crawlWeiboPageBar(pageBarUrl2, headers));
+        result.forEach(w -> w.setwUserName(config.getName()));
         return result;
     }
 
@@ -130,9 +149,7 @@ public class WeiboServiceImpl implements WeiboService {
     public List<Weibo> crawlWeiboSearchPage(String url, Map<String, String> headers) {
         try {
             String html = HttpUtils.okrHttpGet(url, headers);
-            List<Weibo> weibos = parseSearchResult(html);
-            completeExtraInfo(headers, weibos);
-            return weibos;
+            return parseSearchResult(html);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -140,17 +157,27 @@ public class WeiboServiceImpl implements WeiboService {
     }
 
     @Override
-    public List<Weibo> crawlWeiboFirstPage(WeiboUserConfig config, int page, Map<String, String> headers) {
-        List<Weibo> result = crawlFirstPage(config, page, headers);
-        completeExtraInfo(headers, result);
-        return result;
+    public List<Weibo> crawlWeiboFirstPage(String url, Map<String, String> headers) {
+        try {
+            String html = HttpUtils.okrHttpGet(url, headers);
+            return parsePersonHomePage(getFirstPageHtml(html));
+        } catch (IOException e) {
+            LogRecord.error("获取微博firstPage失败，原因：" + e.getMessage());
+            logErrorUrl(url, "weibo fist page");
+        }
+        return new ArrayList<>();
     }
 
     @Override
-    public List<Weibo> crawlWeiboPageBar(WeiboUserConfig config, int page, int pageBar, Map<String, String> headers) {
-        List<Weibo> result = crawlPageBar(config, page, headers, pageBar);
-        completeExtraInfo(headers, result);
-        return result;
+    public List<Weibo> crawlWeiboPageBar(String url, Map<String, String> headers) {
+        try {
+            String html = HttpUtils.okrHttpGet(url, headers);
+            return parsePersonHomePage(getHtmlFromJson(html, "data"));
+        } catch (IOException e) {
+            LogRecord.error("获取微博pagerBar失败，原因：" + e.getMessage());
+            logErrorUrl(url, "weibo page bar");
+        }
+        return new ArrayList<>();
     }
 
     @Override
@@ -218,42 +245,14 @@ public class WeiboServiceImpl implements WeiboService {
         return result;
     }
 
-    private List<Weibo> crawlFirstPage(WeiboUserConfig config, int page, Map<String, String> headers) {
-        String url = baseUrl + config.getUri() + "?pids=Pl_Official_MyProfileFeed__" + config.getPids() + "&is_search=0&visible=0&is_all=1&is_tag=0&profile_ftype=1&" +
-                "page=" + page + "&ajaxpagelet=1&ajaxpagelet_v6=1";
-        try {
-            String html = HttpUtils.okrHttpGet(url, headers);
-            String jsonResult = getFirstPageHtml(html);
-            return parsePersonHomePage(config.getName(), jsonResult);
-        } catch (IOException e) {
-            LogRecord.error("获取微博firstPage失败，原因：" + e.getMessage());
-            logErrorUrl(url, "weibo fist page");
-        }
-        return new ArrayList<>();
-    }
 
     private String getFirstPageHtml(String html) {
         html = html.substring(html.indexOf("view({") + 5, html.indexOf(")</script>"));
-        return getPageBarHtml(html, "html");
+        return getHtmlFromJson(html, "html");
     }
 
-    private List<Weibo> crawlPageBar(WeiboUserConfig config, int page, Map<String, String> headers, int i) {
-        String url = baseUrl + "/p/aj/v6/mblog/mbloglist?ajwvr=6&domain="
-                + config.getDomain() + "&is_search=0&visible=0&is_all=1&is_tag=0&profile_ftype=1&" +
-                "page=" + page + "&pagebar=" + i + "&pl_name=Pl_Official_MyProfileFeed__"
-                + config.getPids() + "&id=" + config.getOid() + "&script_uri="
-                + config.getUri() + "&feed_type=0&pre_page=" + page + "&domain_op=" + config.getDomain();
-        try {
-            String html = HttpUtils.okrHttpGet(url, headers);
-            return parsePersonHomePage(config.getName(), getPageBarHtml(html, "data"));
-        } catch (IOException e) {
-            LogRecord.error("获取微博pagerBar失败，原因：" + e.getMessage());
-            logErrorUrl(url, "weibo page bar");
-        }
-        return new ArrayList<>();
-    }
 
-    private String getPageBarHtml(String html, String data) {
+    private String getHtmlFromJson(String html, String data) {
         JSONObject jsonObject = JSONObject.parseObject(html);
         return jsonObject.getString(data);
     }
@@ -268,7 +267,7 @@ public class WeiboServiceImpl implements WeiboService {
     }
 
 
-    private List<Weibo> parsePersonHomePage(String weiboName, String jsonResult) {
+    private List<Weibo> parsePersonHomePage(String jsonResult) {
         List<Weibo> result = new ArrayList<>();
         if (jsonResult == null) {
             return result;
@@ -292,17 +291,7 @@ public class WeiboServiceImpl implements WeiboService {
                     from = as.get(1).text();
                 }
                 Element contentE = element.select("div[class^=WB_text W_f]").first();
-                try {
-                    Element pictureE = element.select("div[class^=WB_media_wrap]").first();
-                    Elements picEs = pictureE.select("img");
-                    StringBuilder pics = new StringBuilder();
-                    for (Element picE : picEs) {
-                        pics.append(picE.attr("src")).append(";");
-                    }
-                    weibo.setwPics(pics.toString());
-                } catch (Exception e) {
-                    LogRecord.error("没有图片，原因：" + e.getMessage());
-                }
+                parsePictures(element, weibo);
                 Elements handles = element.select("div[class=WB_handle]").first().select("li");
                 String shareCount = handles.get(1).text().replace("转发", "0");
                 String commentCount = handles.get(2).text().replace("评论", "0");
@@ -318,7 +307,6 @@ public class WeiboServiceImpl implements WeiboService {
                 weibo.setwCommentCount(commentCount);
                 weibo.setwContent(contentE.text());
                 weibo.setwFrom(from);
-                weibo.setwUserName(weiboName);
                 weibo.setwMid(mid);
                 weibo.setwOuid(ouIdStr);
                 weibo.setwUrl("");
@@ -334,21 +322,21 @@ public class WeiboServiceImpl implements WeiboService {
 
     private List<Weibo> parseSearchResult(String html) {
         Matcher matcher = searchResultPattern.matcher(html);
-        while (matcher.find()) {
+        if (matcher.find()) {
             String json = matcher.group();
             JSONObject jsonObject = JSONObject.parseObject(json);
             String resulthtml = jsonObject.getString("html");
-            return parseSearchResultWeibo("search", resulthtml);
+            return parseSearchResultWeibo(resulthtml);
         }
         return new ArrayList<>(0);
     }
 
-    public List<Weibo> parseSearchResultWeibo(String weiboName, String jsonResult) {
+    public List<Weibo> parseSearchResultWeibo(String html) {
         List<Weibo> result = new ArrayList<>();
-        if (jsonResult == null) {
+        if (html == null) {
             return result;
         }
-        Document document = Jsoup.parse(jsonResult);
+        Document document = Jsoup.parse(html);
         Elements elements = document.select("div[tbinfo]");
 
         for (Element element : elements) {
@@ -377,17 +365,7 @@ public class WeiboServiceImpl implements WeiboService {
                     e.printStackTrace();
                 }
                 Element contentE = element.select("p[class=comment_txt]").first();
-                try {
-                    Element pictureE = element.select("div[class^=WB_media_wrap]").first();
-                    Elements picEs = pictureE.select("img");
-                    StringBuilder pics = new StringBuilder();
-                    for (Element picE : picEs) {
-                        pics.append(picE.attr("src")).append(";");
-                    }
-                    weibo.setwPics(pics.toString());
-                } catch (Exception e) {
-                    LogRecord.error("没有图片，原因：" + e.getMessage());
-                }
+                parsePictures(element, weibo);
                 Elements handles = element.select("div[class=feed_action clearfix]").first().select("li");
                 String shareCount = handles.get(1).text().replace("转发", "0");
                 String commentCount = handles.get(2).text().replace("评论", "0");
@@ -412,6 +390,20 @@ public class WeiboServiceImpl implements WeiboService {
         return result;
     }
 
+    private void parsePictures(Element element, Weibo weibo) {
+        try {
+            Element pictureE = element.select("div[class^=WB_media_wrap]").first();
+            Elements picEs = pictureE.select("img");
+            StringBuilder pics = new StringBuilder();
+            for (Element picE : picEs) {
+                pics.append(picE.attr("src")).append(";");
+            }
+            weibo.setwPics(pics.toString());
+        } catch (Exception e) {
+            LogRecord.error("没有图片，原因：" + e.getMessage());
+        }
+    }
+
     private String parseUrl(String url) {
         if (url.contains("?")) {
             url = url.substring(0, url.indexOf("?"));
@@ -422,27 +414,26 @@ public class WeiboServiceImpl implements WeiboService {
         return url.substring(url.lastIndexOf("/"));
     }
 
-    private void completeExtraInfo(Map<String, String> headers, List<Weibo> weibos) {
-        weibos.forEach(weibo -> {
-            try {
-                //去除emoj表情符号
-                weibo.setwContent(weibo.getwContent().replaceAll("[\\x{10000}-\\x{10FFFF}]", ""));
-            } catch (Exception e) {
-                LogRecord.error("去除emoj表情符号失败，原因：" + e.getMessage());
+    @Override
+    public void completeExtraInfo(Map<String, String> headers, Weibo weibo) {
+        try {
+            //去除emoj表情符号
+            weibo.setwContent(weibo.getwContent().replaceAll("[\\x{10000}-\\x{10FFFF}]", ""));
+        } catch (Exception e) {
+            LogRecord.error("去除emoj表情符号失败，原因：" + e.getMessage());
+        }
+        try {
+            //去除emoj表情符号
+            weibo.setwFrom(weibo.getwFrom().replaceAll("[\\x{10000}-\\x{10FFFF}]", ""));
+        } catch (Exception e) {
+            LogRecord.error("去除emoj表情符号失败，原因：" + e.getMessage());
+        }
+        if (weibo.getwContent().contains("展开全文")) {
+            String fullContent = getFullContent(weibo.getwMid(), headers);
+            if (fullContent != null) {
+                weibo.setwContent(fullContent);
             }
-            try {
-                //去除emoj表情符号
-                weibo.setwFrom(weibo.getwFrom().replaceAll("[\\x{10000}-\\x{10FFFF}]", ""));
-            } catch (Exception e) {
-                LogRecord.error("去除emoj表情符号失败，原因：" + e.getMessage());
-            }
-            if (weibo.getwContent().contains("展开全文")) {
-                String fullContent = getFullContent(weibo.getwMid(), headers);
-                if (fullContent != null) {
-                    weibo.setwContent(fullContent);
-                }
-            }
-        });
+        }
     }
 
     private String getFullContent(String s, Map<String, String> headers) {
