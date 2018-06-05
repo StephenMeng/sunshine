@@ -5,6 +5,7 @@ import team.stephen.sunshine.model.other.Weibo;
 import team.stephen.sunshine.model.other.WeiboComment;
 import team.stephen.sunshine.model.other.WeiboUserConfig;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -66,7 +67,15 @@ public interface WeiboService {
      * @param headers headers
      * @return 列表
      */
-    List<Weibo> crawlWeiboHomePage(WeiboUserConfig config, int page, Map<String, String> headers);
+    List<Weibo> crawlWeibo(WeiboUserConfig config, int page, Map<String, String> headers);
+
+    /**
+     * 爬微博
+     *
+     * @param config  博主的基本信息
+     * @param headers headers
+     */
+    void crawlWeibo(WeiboUserConfig config, Map<String, String> headers);
 
     /**
      * 爬取搜索页信息
@@ -76,6 +85,15 @@ public interface WeiboService {
      * @return 列表
      */
     List<Weibo> crawlWeiboSearchPage(String url, Map<String, String> headers);
+
+    /**
+     * 爬取搜索页信息
+     *
+     * @param url     搜索页
+     * @param headers header
+     * @return 列表
+     */
+    int crawlWeiboSearchPageSize(String url, Map<String, String> headers) throws IOException;
 
     /**
      * 爬用户主页的第一节数据
@@ -117,9 +135,11 @@ public interface WeiboService {
 
     /**
      * 获取正文、去除表情
-     *@param weibo weibo
+     *
+     * @param weibo   weibo
      * @param headers
      */
     void completeExtraInfo(Map<String, String> headers, Weibo weibo);
 
+    int updateSelective(WeiboUserConfig config);
 }

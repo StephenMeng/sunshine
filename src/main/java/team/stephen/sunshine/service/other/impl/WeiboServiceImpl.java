@@ -24,7 +24,10 @@ import team.stephen.sunshine.util.element.StringUtils;
 import team.stephen.sunshine.util.handler.UrlHandler;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -33,7 +36,8 @@ import java.util.regex.Pattern;
  * @date 2018/05/30 02:33
  */
 @Service
-public class WeiboServiceImpl implements WeiboService {
+public class
+WeiboServiceImpl implements WeiboService {
     @Autowired
     private WeiboDao weiboDao;
     @Autowired
@@ -50,7 +54,10 @@ public class WeiboServiceImpl implements WeiboService {
     private Pattern titlePattern = Pattern.compile("'title_value'\\]='(.*?)'");
     private Pattern statisticPattern = Pattern.compile("\\{\"ns(.*?)>关注<(.*?)>粉丝<(.*?)>微博<(.*?)}");
     private Pattern searchResultPattern = Pattern.compile("\\{\"pid\":\"pl_weibo_direct\"(.*?)}");
+    private Pattern sexPatter = Pattern.compile("\"ns\":\"pl.nav.index(.*?)}");
+    private Pattern coreUserPatter = Pattern.compile("\"domid\":\"Pl_Core_UserInfo__6(.*?)}");
 
+    private static final int WEIBO_PAGE_SIZE = 45;
 
     @Override
     public int addWeibo(Weibo weibo) {
@@ -125,6 +132,68 @@ public class WeiboServiceImpl implements WeiboService {
                 config.setFansNum(Integer.valueOf(fans));
                 config.setFollowNum(Integer.valueOf(follow));
             }
+            Matcher sexMatcher = sexPatter.matcher(html);
+            if (sexMatcher.find()) {
+                String json = sexMatcher.group();
+                json = "{" + json;
+                Document document = Jsoup.parse(getHtmlFromJson(json, "html"));
+                Element sex = document.select("span[class=S_txt1 t_link]").first();
+                String sexStr = sex.text();
+                if (sexStr.contains("她")) {
+                    config.setSex("女");
+                }
+                if (sexStr.contains("他")) {
+                    config.setSex("男");
+                }
+                LogRecord.print(sexStr);
+            }
+            Matcher coreUserMatcher = coreUserPatter.matcher(html);
+            if (coreUserMatcher.find()) {
+                String json = coreUserMatcher.group();
+                LogRecord.print(json);
+                json = "{" + json;
+                Document document = Jsoup.parse(getHtmlFromJson(json, "html"));
+                Element lvE = document.select("span[class=icon_group S_line1 W_fl]").first();
+                String lv = lvE.text();
+                config.setLv(lv);
+                Element desE = document.select("p[class=info]").first();
+                String des = desE.text();
+                config.setDescription(des);
+                Element detailE = document.select("div[class=WB_innerwrap]").first();
+                Elements lisE = detailE.select("li");
+                for (Element liE : lisE) {
+                    if (liE.html().contains("cd_place")) {
+                        String place = liE.text();
+                        config.setPlace(place.replace("2 ", ""));
+                    }
+                    if (liE.html().contains("ficon_constellation ")) {
+                        String birthday = liE.text();
+                        config.setBirthday(birthday.replace("ö ", ""));
+                    }
+                    if (liE.html().contains("ficon_pinfo ")) {
+                        String pinfo = liE.text();
+                        config.setPinfo(pinfo.replace("Ü ", ""));
+                    }
+                    if (liE.html().contains("ficon_link")) {
+                        String link = liE.text();
+                        config.setLink(link.replace("5 ", "") + ":" + liE.select("a").first().attr("href"));
+                    }
+                    if (liE.html().contains("pinfo_icon_baidu")) {
+                        String baike = liE.text();
+                        config.setBaike(baike);
+                    }
+
+                    if (liE.html().contains("ficon_bag")) {
+                        String career = liE.text();
+                        config.setCareer(career.replace("3 ", ""));
+                    }
+                    if (liE.html().contains("ficon_cd_coupon")) {
+                        String ext = liE.text();
+                        config.setTag(ext.replace("T ", ""));
+                    }
+                }
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
             logErrorUrl(userUrl, "user config");
@@ -133,7 +202,7 @@ public class WeiboServiceImpl implements WeiboService {
     }
 
     @Override
-    public List<Weibo> crawlWeiboHomePage(WeiboUserConfig config, int page, Map<String, String> headers) {
+    public List<Weibo> crawlWeibo(WeiboUserConfig config, int page, Map<String, String> headers) {
         List<Weibo> result = new ArrayList<>();
         String firstPageUrl = UrlHandler.getWeiboFirstPageUrl(config, page);
         result.addAll(crawlWeiboFirstPage(firstPageUrl, headers));
@@ -146,14 +215,51 @@ public class WeiboServiceImpl implements WeiboService {
     }
 
     @Override
+    public void crawlWeibo(WeiboUserConfig config, Map<String, String> headers) {
+        if (config == null || config.getWeiboNum() <= 0) {
+            return;
+        }
+        for (int page = 1; page <= (config.getWeiboNum() / WEIBO_PAGE_SIZE) + 1; page++) {
+            List<Weibo> result = crawlWeibo(config, page, headers);
+            result.forEach(weibo -> {
+                completeExtraInfo(headers, weibo);
+                addWeibo(weibo);
+            });
+        }
+    }
+
+    @Override
     public List<Weibo> crawlWeiboSearchPage(String url, Map<String, String> headers) {
         try {
             String html = HttpUtils.okrHttpGet(url, headers);
             return parseSearchResult(html);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            logErrorUrl(url, "search url");
         }
         return new ArrayList<>();
+    }
+
+    @Override
+    public int crawlWeiboSearchPageSize(String url, Map<String, String> headers) throws IOException {
+        try {
+            String html = HttpUtils.okrHttpGet(url, headers);
+            Matcher matcher = searchResultPattern.matcher(html);
+            if (matcher.find()) {
+                String json = matcher.group();
+                JSONObject jsonObject = JSONObject.parseObject(json);
+                String resulthtml = jsonObject.getString("html");
+                Document document = Jsoup.parse(resulthtml);
+                Elements elements = document.select("div[class=W_pages]").first().select("li");
+                if (elements != null) {
+                    return elements.size();
+                }
+
+            }
+            return 1;
+        } catch (IOException e) {
+            throw e;
+        }
     }
 
     @Override
@@ -161,7 +267,7 @@ public class WeiboServiceImpl implements WeiboService {
         try {
             String html = HttpUtils.okrHttpGet(url, headers);
             return parsePersonHomePage(getFirstPageHtml(html));
-        } catch (IOException e) {
+        } catch (Exception e) {
             LogRecord.error("获取微博firstPage失败，原因：" + e.getMessage());
             logErrorUrl(url, "weibo fist page");
         }
@@ -173,7 +279,7 @@ public class WeiboServiceImpl implements WeiboService {
         try {
             String html = HttpUtils.okrHttpGet(url, headers);
             return parsePersonHomePage(getHtmlFromJson(html, "data"));
-        } catch (IOException e) {
+        } catch (Exception e) {
             LogRecord.error("获取微博pagerBar失败，原因：" + e.getMessage());
             logErrorUrl(url, "weibo page bar");
         }
@@ -267,14 +373,16 @@ public class WeiboServiceImpl implements WeiboService {
     }
 
 
-    private List<Weibo> parsePersonHomePage(String jsonResult) {
+    private List<Weibo> parsePersonHomePage(String jsonResult) throws Exception {
         List<Weibo> result = new ArrayList<>();
         if (jsonResult == null) {
             return result;
         }
         Document document = Jsoup.parse(jsonResult);
         Elements elements = document.select("div[tbinfo]");
-
+        if (elements == null) {
+            throw new Exception("html erro");
+        }
         for (Element element : elements) {
             try {
                 Weibo weibo = new Weibo();
@@ -320,15 +428,16 @@ public class WeiboServiceImpl implements WeiboService {
         return result;
     }
 
-    private List<Weibo> parseSearchResult(String html) {
+    private List<Weibo> parseSearchResult(String html) throws Exception {
         Matcher matcher = searchResultPattern.matcher(html);
         if (matcher.find()) {
             String json = matcher.group();
             JSONObject jsonObject = JSONObject.parseObject(json);
             String resulthtml = jsonObject.getString("html");
             return parseSearchResultWeibo(resulthtml);
+        } else {
+            throw new Exception();
         }
-        return new ArrayList<>(0);
     }
 
     public List<Weibo> parseSearchResultWeibo(String html) {
@@ -369,7 +478,7 @@ public class WeiboServiceImpl implements WeiboService {
                 Elements handles = element.select("div[class=feed_action clearfix]").first().select("li");
                 String shareCount = handles.get(1).text().replace("转发", "0");
                 String commentCount = handles.get(2).text().replace("评论", "0");
-                String thumbCount = handles.get(3).text().replace("ñ", "").replace("赞", "0");
+                String thumbCount = handles.get(3).text().replace("ñ", "0").replace("赞", "");
 
 
                 weibo.setwDate(date);
@@ -434,6 +543,11 @@ public class WeiboServiceImpl implements WeiboService {
                 weibo.setwContent(fullContent);
             }
         }
+    }
+
+    @Override
+    public int updateSelective(WeiboUserConfig config) {
+        return weiboUserConfigDao.updateByPrimaryKeySelective(config);
     }
 
     private String getFullContent(String s, Map<String, String> headers) {

@@ -33,6 +33,26 @@ public class WeiboUserConfig {
     private Integer fansNum;
     @Column(name = "follow_num")
     private Integer followNum;
+    @Column(name = "lv")
+    private String lv;
+    @Column(name = "place")
+    private String place;
+    @Column(name = "description")
+    private String description;
+    @Column(name = "link")
+    private String link;
+    @Column(name = "tag")
+    private String tag;
+    @Column(name = "baike")
+    private String baike;
+    @Column(name = "birthday")
+    private String birthday;
+    @Column(name = "career")
+    private String career;
+    @Column(name = "pinfo")
+    private String pinfo;
+    @Column(name = "sex")
+    private String sex;
     @Column(name = "update_date")
     private Date updateDate;
 
@@ -104,8 +124,88 @@ public class WeiboUserConfig {
         return followNum;
     }
 
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
     public void setFollowNum(Integer followNum) {
         this.followNum = followNum;
+    }
+
+    public String getLv() {
+        return lv;
+    }
+
+    public void setLv(String lv) {
+        this.lv = lv;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public String getPinfo() {
+        return pinfo;
+    }
+
+    public void setPinfo(String pinfo) {
+        this.pinfo = pinfo;
+    }
+
+    public String getBaike() {
+        return baike;
+    }
+
+    public void setBaike(String baike) {
+        this.baike = baike;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getCareer() {
+        return career;
+    }
+
+    public void setCareer(String career) {
+        this.career = career;
     }
 
     public Date getUpdateDate() {
