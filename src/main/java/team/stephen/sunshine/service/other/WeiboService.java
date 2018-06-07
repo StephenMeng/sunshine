@@ -4,6 +4,7 @@ import com.github.pagehelper.Page;
 import team.stephen.sunshine.model.other.Weibo;
 import team.stephen.sunshine.model.other.WeiboComment;
 import team.stephen.sunshine.model.other.WeiboUserConfig;
+import team.stephen.sunshine.util.bean.WeiboVerifyResult;
 
 import java.io.IOException;
 import java.util.List;
@@ -142,4 +143,9 @@ public interface WeiboService {
     void completeExtraInfo(Map<String, String> headers, Weibo weibo);
 
     int updateSelective(WeiboUserConfig config);
+
+    WeiboVerifyResult getVerifyCodeResult(String url);
+
+    boolean verifyCode(Map<String, String> headers,String cookie);
+
 }

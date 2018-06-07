@@ -40,12 +40,13 @@ import java.util.regex.Pattern;
 public class WeiboCrawlerTest {
     @Autowired
     private WeiboService weiboService;
-    private static String cookie = "SINAGLOBAL=1570178649173.4304.1523004461037; YF-Ugrow-G0=9642b0b34b4c0d569ed7a372f8823a8e; login_sid_t=b9747540e06ba243308fe6f8fe75a654; cross_origin_proto=SSL; YF-V5-G0=a5a6106293f9aeef5e34a2e71f04fae4; _s_tentry=www.baidu.com; Apache=8329811246027.716.1528010277976; ULV=1528010278380:5:1:1:8329811246027.716.1528010277976:1527336989528; SSOLoginState=1528010297; wvr=6; YF-Page-G0=c47452adc667e76a7435512bb2f774f3; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WhafKh-AK_DR8KR-fW3sBuy5JpX5KMhUgL.Fo-NS0BEeKMXe0B2dJLoIE5LxK-LB-BL1-qLxK-L1hMLBK2LxKnLBo-L1-zN1hM7S5tt; ALF=1559699296; SCF=AvRfcm4sv_K8hn2oHbGFVbafdRQy5TfuRBXV2lunP6o68rkvhNdWrM6sx5wyuJyKl7OZHZV13gBfPkKpW_zNAsg.; SUB=_2A252EZuyDeRhGeNJ7FYT8SnIyDiIHXVVZop6rDV8PUNbmtBeLRj9kW9NS7N__lWsEFUGUhDjc_wbJKfS1nMY-8ya; SUHB=0C1SY15Al5S0Gw; UOR=v.ifeng.com,widget.weibo.com,login.sina.com.cn";
+    private static String cookie ="_s_tentry=movie.kankan.com; Apache=7256170564393.524.1525878160642; SINAGLOBAL=7256170564393.524.1525878160642; ULV=1525878160649:1:1:1:7256170564393.524.1525878160642:; login_sid_t=fe72f64d0dbba7f7b0e63c5616fa15d4; cross_origin_proto=SSL; SWBSSL=usrmdinst_7; SWB=usrmdinst_15; ALF=1559849282; SSOLoginState=1528313282; SCF=ApWJpYkIBCSLvQa6VugVvlZ6e-DWM2_b7Y4Eih38-j3oLHovnRTfnSFHy3SpiZywB53HkqhV_o1jefZpb9HPxDI.; SUB=_2A252HEWTDeRhGeNJ7FYT8SnIyDiIHXVVaDBbrDV8PUNbmtANLVrbkW9NS7N__l4RArQ-48Qwz27OI77ToT5jjwxo; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WhafKh-AK_DR8KR-fW3sBuy5JpX5KzhUgL.Fo-NS0BEeKMXe0B2dJLoIE5LxK-LB-BL1-qLxK-L1hMLBK2LxKnLBo-L1-zN1hM7S5tt; SUHB=0C1SY15AkiXDpl; wvr=6; UOR=,,www.baidu.com; ULOGIN_IMG=15283356726837; WBStorage=5548c0baa42e6f3d|undefined";
     private static Map<String, String> headers = new HashMap<>();
 
     static {
         headers.put("Cookie", cookie);
     }
+
 
     @Test
     public void testCrawlBasicInfo() {
@@ -72,7 +73,7 @@ public class WeiboCrawlerTest {
 
     @Test
     public void testCrawlSearchPageNum() {
-        String keyword = "范冰冰";
+        String keyword = "邱淑贞";
         int page = 1;
         String url = "https://s.weibo.com/weibo/" + keyword
                 + "&typeall=1&suball=1&page=" + page;
@@ -85,7 +86,7 @@ public class WeiboCrawlerTest {
 
     @Test
     public void testCraswlSearchInfo() {
-        String keyword = "区块链";
+        String keyword = "SVM";
 //        int page = 4;
         for (int page = 1; page <= 50; page++) {
             String url = "https://s.weibo.com/weibo/" + keyword
@@ -120,11 +121,11 @@ public class WeiboCrawlerTest {
                     e.printStackTrace();
                 }
             });
-            try {
-                Thread.sleep(10000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                Thread.sleep(10000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
         }
     }
 

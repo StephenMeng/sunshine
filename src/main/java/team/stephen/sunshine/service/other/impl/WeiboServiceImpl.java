@@ -3,6 +3,12 @@ package team.stephen.sunshine.service.other.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.google.common.base.Charsets;
+import com.google.common.base.Joiner;
+import com.google.common.io.Files;
+import net.sourceforge.tess4j.util.ImageHelper;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -18,16 +24,19 @@ import team.stephen.sunshine.model.other.WeiboComment;
 import team.stephen.sunshine.model.other.WeiboUserConfig;
 import team.stephen.sunshine.service.other.CrawlErrorService;
 import team.stephen.sunshine.service.other.WeiboService;
+import team.stephen.sunshine.util.SvmPredict;
+import team.stephen.sunshine.util.bean.WeiboVerifyResult;
 import team.stephen.sunshine.util.common.HttpUtils;
 import team.stephen.sunshine.util.common.LogRecord;
 import team.stephen.sunshine.util.element.StringUtils;
 import team.stephen.sunshine.util.handler.UrlHandler;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -56,6 +65,17 @@ WeiboServiceImpl implements WeiboService {
     private Pattern searchResultPattern = Pattern.compile("\\{\"pid\":\"pl_weibo_direct\"(.*?)}");
     private Pattern sexPatter = Pattern.compile("\"ns\":\"pl.nav.index(.*?)}");
     private Pattern coreUserPatter = Pattern.compile("\"domid\":\"Pl_Core_UserInfo__6(.*?)}");
+
+    private static final String svmBaseDir = "C:\\Users\\Stephen\\Desktop\\sunshine\\weibo\\code\\svm\\";
+    private static final String svmTrainFilePath = svmBaseDir + "train\\train.txt";
+    private static final String svmModelFilePath = svmBaseDir + "model\\model.txt";
+    private static final String svmTestFilePath = svmBaseDir + "test\\test-%s.txt";
+    private static final String svmToTestFilePath = svmBaseDir + "totest";
+    private static final String svmPredictFilePath = svmBaseDir + "predict\\predict-%s.txt";
+    private static final int Y_SCALE = 1000;
+
+    private String verifyPicUrl = "http://s.weibo.com/ajax/pincode/pin";
+    private String postVerifyUrl = "https://s.weibo.com/ajax/pincode/verified";
 
     private static final int WEIBO_PAGE_SIZE = 45;
 
@@ -548,6 +568,290 @@ WeiboServiceImpl implements WeiboService {
     @Override
     public int updateSelective(WeiboUserConfig config) {
         return weiboUserConfigDao.updateByPrimaryKeySelective(config);
+    }
+
+    @Override
+    public WeiboVerifyResult getVerifyCodeResult(String url) {
+        WeiboVerifyResult vr = new WeiboVerifyResult();
+        OkHttpClient httpClient = new OkHttpClient();
+        Request.Builder builder = new Request.Builder().url(url);
+        Request request = builder.build();
+
+        InputStream in;
+        String fileName = svmBaseDir + "/test.png";
+        try {
+            okhttp3.Response response = httpClient.newCall(request).execute();
+            List<String> setCookies = response.headers("Set-Cookie");
+            String img = null;
+            for (String setCookie : setCookies) {
+                if (setCookie.contains("ULOGIN")) {
+                    img = setCookie.substring(setCookie.indexOf("=") + 1, setCookie.indexOf(";"));
+                    break;
+                }
+            }
+            vr.setuLoginImg(img);
+            in = response.body().byteStream();
+            byte[] tempbytes = new byte[100];
+            int byteread;
+            OutputStream outputStream = new FileOutputStream(new File(fileName));
+            while ((byteread = in.read(tempbytes)) != -1) {
+                outputStream.write(tempbytes, 0, byteread);
+            }
+            outputStream.close();
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return vr;
+        }
+        BufferedImage grayImage = null;
+        try {
+            grayImage = ImageHelper.convertImageToBinary(ImageIO.read(new File(fileName)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        removeZaoyin(grayImage);
+
+        BufferedWriter writer;
+        String testFilePath = svmTestFilePath;
+        try {
+            writer = Files.newWriter(new File(testFilePath), Charsets.UTF_8);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return vr;
+        }
+
+        try {
+            List<BufferedImage> subs = getBufferedImages(grayImage);
+            for (BufferedImage sub : subs) {
+                StringBuilder sb = getTrainData(sub, "0");
+                writer.write(sb.toString());
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String predictPath = svmPredictFilePath;
+        try {
+            testSvmVerify(testFilePath, predictPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String code = testGenSvmResult(predictPath);
+        vr.setCode(code);
+        return vr;
+    }
+
+    @Override
+    public boolean verifyCode(Map<String, String> headers, String cookie) {
+        WeiboVerifyResult vr = getVerifyCodeResult(verifyPicUrl);
+        LogRecord.print(vr.getCode() + "\t" + vr.getuLoginImg());
+        cookie = cookie.substring(0, cookie.indexOf("ULOGIN_IMG") + 11) + vr.getuLoginImg();
+
+        headers.put("Cookie", cookie);
+        headers.put("Referer", "https://s.weibo.com/weibo/%25E5%258D&Refer=index");
+        headers.put("Cookie", cookie);
+        headers.put("X-Requested-With", "XMLHttpRequest");
+
+        Map<String, String> body = new HashMap<>(4);
+        body.put("secode", vr.getCode());
+        body.put("type", "sass");
+        body.put("pageid", "weibo");
+        body.put("_t", "0");
+
+
+        try {
+            String res = HttpUtils.okrHttpPost(postVerifyUrl, headers, body);
+            if (res.contains("retcode")) {
+                return true;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    private void testSvmVerify(String testFile, String predictPath) throws IOException {
+        String[] parg = {testFile, //测试数据
+                svmModelFilePath, // 调用训练模型
+                predictPath,
+                "-g", "2.0", "-c", "100", "-t", "0", "-m", "500.0", "-h", "0",
+                "-b", "1", "-v", "5"}; //预测结果
+        try {
+            SvmPredict.main(parg);  //调用
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String testGenSvmResult(String filePath) {
+        List<String> result;
+        List<String> codes = new ArrayList<>();
+        try {
+            result = Files.readLines(new File(filePath), Charsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
+        try {
+            for (int j = 1; j < result.size(); j++) {
+                String item = result.get(j);
+                if (StringUtils.isNotNull(item)) {
+                    codes.add(getChar(Integer.parseInt(item.substring(0, item.indexOf(".")))));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String r = Joiner.on("").join(codes);
+        return r;
+    }
+
+    private String getChar(int i) {
+        if (i < 10) {
+            return i + "";
+        }
+        return String.valueOf((char) ('a' + (i - 10)));
+
+    }
+
+    private StringBuilder getTrainData(BufferedImage img, String filename) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getInt(filename)).append(" ");
+        sb.append(getSvmDataFromImage(img));
+        sb.append("\r\n");
+        return sb;
+    }
+
+    private StringBuilder getSvmDataFromImage(BufferedImage img) {
+        int width = img.getWidth();
+        int height = img.getHeight();
+        StringBuilder sb = new StringBuilder();
+        for (int y = 0; y < height; ++y) {
+            for (int x = 0; x < width; ++x) {
+                sb.append(y * Y_SCALE + x).append(":").append(getWeight(img, x, y)).append(" ");
+            }
+        }
+        return sb;
+    }
+
+    private List<BufferedImage> getBufferedImages(BufferedImage img) {
+        List<BufferedImage> subImages = new ArrayList<>();
+        int width = img.getWidth();
+
+        boolean has = false;
+        int startX = 0;
+        int endX = 0;
+        for (int x = 0; x < width; ++x) {
+            try {
+                if (isEmpty(img, x, true)) {
+                    if (has) {
+                        endX = x - 1;
+                        BufferedImage sub = img.getSubimage(startX, 0, endX - startX, img.getHeight());
+                        int startY = 0;
+                        int endY = 0;
+                        for (int y = 0; y < sub.getHeight(); y++) {
+                            if (!isEmpty(sub, y, false)) {
+                                startY = y;
+                                break;
+                            }
+                        }
+                        for (int y = sub.getHeight() - 1; y >= 0; y--) {
+                            if (!isEmpty(sub, y, false)) {
+                                endY = y;
+                                break;
+                            }
+                        }
+                        try {
+                            sub = img.getSubimage(startX, startY, endX - startX, endY - startY);
+                            subImages.add(sub);
+                        } catch (Exception e) {
+//                        e.printStackTrace();
+                        }
+                        has = false;
+                    }
+                    continue;
+                }
+                if (!has) {
+                    startX = x;
+                    has = true;
+                }
+            } catch (Exception e) {
+
+            }
+        }
+        return subImages;
+    }
+
+    private boolean isEmpty(BufferedImage image, int x, boolean column) {
+        if (column) {
+            for (int k = 0; k < image.getHeight(); k++) {
+                if (!isWhite(image.getRGB(x, k))) {
+                    return false;
+                }
+            }
+        } else {
+            for (int k = 0; k < image.getWidth(); k++) {
+                if (!isWhite(image.getRGB(k, x))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private int getInt(String s) {
+        String f = s.substring(0, 1);
+        try {
+            return Integer.parseInt(f);
+        } catch (Exception e) {
+        }
+        char c = f.charAt(0);
+        return (c - 'a') + 10;
+    }
+
+    private double getWeight(BufferedImage img, int x, int y) {
+        if (isWhite(img.getRGB(x, y))) {
+            return 0.01;
+        }
+        return 0.99;
+    }
+
+    private void removeZaoyin(BufferedImage img) {
+        int width = img.getWidth();
+        int height = img.getHeight();
+        for (int x = 0; x < width; ++x) {
+            for (int y = 0; y < height; ++y) {
+                if (isWhite(img.getRGB(x, y))) {
+                    img.setRGB(x, y, Color.WHITE.getRGB());
+                } else {
+                    if (isZaoyin(img, x, y)) {
+                        img.setRGB(x, y, Color.WHITE.getRGB());
+                    } else {
+                        img.setRGB(x, y, Color.BLACK.getRGB());
+                    }
+                }
+
+            }
+        }
+    }
+
+    private boolean isZaoyin(BufferedImage img, int x, int y) {
+        return x == 0 || y == 0 || x == img.getWidth() - 1 || y == img.getHeight() - 1 || (isWhite(img.getRGB(x - 1, y - 1)) &&
+                isWhite(img.getRGB(x - 1, y)) &&
+                isWhite(img.getRGB(x - 1, y + 1)) &&
+                isWhite(img.getRGB(x, y - 1)) &&
+                isWhite(img.getRGB(x, y + 1)) &&
+                isWhite(img.getRGB(x + 1, y - 1)) &&
+                isWhite(img.getRGB(x + 1, y)) &&
+                isWhite(img.getRGB(x + 1, y + 1)));
+    }
+
+    private static boolean isWhite(int colorInt) {
+        Color color = new Color(colorInt);
+        if (color.getRed() + color.getGreen() + color.getBlue() > 100) {
+            return true;
+        }
+        return false;
     }
 
     private String getFullContent(String s, Map<String, String> headers) {

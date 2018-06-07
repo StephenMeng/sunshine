@@ -1,5 +1,6 @@
 package team.stephen.sunshine.util.common;
 
+import okhttp3.CacheControl;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -50,8 +51,8 @@ public class HttpUtils {
         if (body != null && body.size() > 0) {
             addPostBody(body, formBody);
         }
-        Request.Builder builder = new Request.Builder().url(url).post(formBody.build());
-        if (header != null && body.size() > 0) {
+        Request.Builder builder = new Request.Builder().url(url).post(formBody.build()).cacheControl(new CacheControl.Builder().noCache().build());
+        if (header != null && header.size() > 0) {
             addHeader(header, builder);
         }
         Request request = builder.build();
@@ -66,7 +67,8 @@ public class HttpUtils {
 
     private static void addPostBody(Map<String, String> body, FormBody.Builder formBody) {
         for (Map.Entry<String, String> entry : body.entrySet()) {
-            formBody.add(entry.getKey(), entry.getValue());//传递键值对参数
+            //传递键值对参数
+            formBody.add(entry.getKey(), entry.getValue());
         }
     }
 
@@ -107,11 +109,11 @@ public class HttpUtils {
         return httpResponse;
     }
 
-    public static HttpResponse httpPost(String url, Map<String, String> map) {
-        return httpPost(url, map, true, DEFAULT_CHARSET);
+    public static HttpResponse httpPost(String url, Map<String, String> headers, Map<String, String> map) {
+        return httpPost(url, headers, map, true, DEFAULT_CHARSET);
     }
 
-    public static HttpResponse httpPost(String url, Map<String, String> map, Boolean needResponse, String charset) {
+    public static HttpResponse httpPost(String url, Map<String, String> header, Map<String, String> map, Boolean needResponse, String charset) {
         HttpClientBuilder clientBuilder = HttpClients.custom().setConnectionManagerShared(true);
         CloseableHttpClient httpClient = clientBuilder.build();
         RequestConfig requestConfig = RequestConfig.custom()
@@ -130,6 +132,11 @@ public class HttpUtils {
             if (list.size() > 0) {
                 UrlEncodedFormEntity entity = new UrlEncodedFormEntity(list, charset);
                 post.setEntity(entity);
+            }
+            if (header != null) {
+                for (Map.Entry<String, String> entry : header.entrySet()) {
+                    post.setHeader(entry.getKey(), entry.getValue());
+                }
             }
             HttpResponse httpResponse = httpClient.execute(post);
             if (needResponse)
