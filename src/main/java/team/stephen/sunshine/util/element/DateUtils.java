@@ -19,4 +19,16 @@ public class DateUtils {
         }
         return date;
     }
+
+    public static String parseDateToString(Date tmp, String format) {
+        return new SimpleDateFormat(format).format(tmp);
+    }
+
+    public static Date parseStringToDate(String dateStr) {
+        return parseStringToDate(dateStr, "yyyy-MM-dd");
+    }
+
+    public static String parseDateToString(Date date) {
+        return parseDateToString(date,"yyyy-MM-dd");
+    }
 }

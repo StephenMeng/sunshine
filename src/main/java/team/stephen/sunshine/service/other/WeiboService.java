@@ -85,7 +85,7 @@ public interface WeiboService {
      * @param headers header
      * @return 列表
      */
-    List<Weibo> crawlWeiboSearchPage(String url, Map<String, String> headers);
+    List<Weibo> crawlWeiboSearchPage(String url, Map<String, String> headers) throws Exception;
 
     /**
      * 爬取搜索页信息
@@ -146,6 +146,11 @@ public interface WeiboService {
 
     WeiboVerifyResult getVerifyCodeResult(String url);
 
-    boolean verifyCode(Map<String, String> headers,String cookie);
+    boolean verifyCode(Map<String, String> headers) throws Exception;
 
+    public void logErrorUrl(String url, String site);
+
+    List<String> getAllUserIdsFromWeibo();
+
+    Page<WeiboUserConfig> selectUserConfig(WeiboUserConfig condition, int pageNum, int pageSize);
 }

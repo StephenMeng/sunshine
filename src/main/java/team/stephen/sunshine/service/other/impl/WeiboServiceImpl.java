@@ -45,8 +45,7 @@ import java.util.regex.Pattern;
  * @date 2018/05/30 02:33
  */
 @Service
-public class
-WeiboServiceImpl implements WeiboService {
+public class WeiboServiceImpl implements WeiboService {
     @Autowired
     private WeiboDao weiboDao;
     @Autowired
@@ -109,7 +108,7 @@ WeiboServiceImpl implements WeiboService {
     public WeiboUserConfig crawlUserConfig(String userUrl, Map<String, String> headers) {
         //获取用户的uri
         String userUri = parseUrl(userUrl);
-        WeiboUserConfig config = null;
+        WeiboUserConfig config;
         try {
             config = new WeiboUserConfig();
             config.setUri(userUri);
@@ -165,20 +164,24 @@ WeiboServiceImpl implements WeiboService {
                 if (sexStr.contains("他")) {
                     config.setSex("男");
                 }
-                LogRecord.print(sexStr);
             }
             Matcher coreUserMatcher = coreUserPatter.matcher(html);
             if (coreUserMatcher.find()) {
                 String json = coreUserMatcher.group();
-                LogRecord.print(json);
                 json = "{" + json;
                 Document document = Jsoup.parse(getHtmlFromJson(json, "html"));
-                Element lvE = document.select("span[class=icon_group S_line1 W_fl]").first();
-                String lv = lvE.text();
-                config.setLv(lv);
-                Element desE = document.select("p[class=info]").first();
-                String des = desE.text();
-                config.setDescription(des);
+                try {
+                    Element lvE = document.select("span[class=icon_group S_line1 W_fl]").first();
+                    String lv = lvE.text();
+                    config.setLv(lv);
+                } catch (Exception e) {
+                }
+                try {
+                    Element desE = document.select("p[class=info]").first();
+                    String des = desE.text();
+                    config.setDescription(des);
+                } catch (Exception e) {
+                }
                 Element detailE = document.select("div[class=WB_innerwrap]").first();
                 Elements lisE = detailE.select("li");
                 for (Element liE : lisE) {
@@ -216,7 +219,7 @@ WeiboServiceImpl implements WeiboService {
 
         } catch (IOException e) {
             e.printStackTrace();
-            logErrorUrl(userUrl, "user config");
+            return null;
         }
         return config;
     }
@@ -249,15 +252,21 @@ WeiboServiceImpl implements WeiboService {
     }
 
     @Override
-    public List<Weibo> crawlWeiboSearchPage(String url, Map<String, String> headers) {
+    public List<Weibo> crawlWeiboSearchPage(String url, Map<String, String> headers) throws Exception {
+        String html;
         try {
-            String html = HttpUtils.okrHttpGet(url, headers);
-            return parseSearchResult(html);
+            html = HttpUtils.okrHttpGet(url, headers);
         } catch (Exception e) {
             e.printStackTrace();
             logErrorUrl(url, "search url");
+            return new ArrayList<>();
         }
-        return new ArrayList<>();
+        try {
+            return parseSearchResult(html);
+        } catch (Exception e) {
+            throw e;
+
+        }
     }
 
     @Override
@@ -270,7 +279,18 @@ WeiboServiceImpl implements WeiboService {
                 JSONObject jsonObject = JSONObject.parseObject(json);
                 String resulthtml = jsonObject.getString("html");
                 Document document = Jsoup.parse(resulthtml);
-                Elements elements = document.select("div[class=W_pages]").first().select("li");
+                Elements elements = null;
+                try {
+                    elements = document.select("div[class=W_pages]").first().select("li");
+                } catch (Exception ee) {
+//                    ee.printStackTrace();
+                }
+                if (elements == null) {
+                    List<Weibo> weibos = parseSearchResultWeibo(resulthtml);
+                    if (weibos != null && weibos.size() > 0) {
+                        return 1;
+                    }
+                }
                 if (elements != null) {
                     return elements.size();
                 }
@@ -278,6 +298,13 @@ WeiboServiceImpl implements WeiboService {
             }
             return 1;
         } catch (IOException e) {
+            try {
+                while (!verifyCode(headers)) {
+                    LogRecord.print("verify code failed");
+                }
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
             throw e;
         }
     }
@@ -383,13 +410,31 @@ WeiboServiceImpl implements WeiboService {
         return jsonObject.getString(data);
     }
 
-    private void logErrorUrl(String url, String site) {
+    @Override
+    public void logErrorUrl(String url, String site) {
+
         CrawlError error = new CrawlError();
-        error.setDeleted(false);
+        error.setUrl(url);
+
+        int count = crawlErrorService.selectCount(error);
+        if (count > 0) {
+            return;
+        }
         error.setSite(site);
         error.setMethod("get");
-        error.setUrl(url);
+        error.setDeleted(false);
         crawlErrorService.addError(error);
+    }
+
+    @Override
+    public List<String> getAllUserIdsFromWeibo() {
+        return weiboDao.selectAllUserIdsFromWeibo();
+    }
+
+    @Override
+    public Page<WeiboUserConfig> selectUserConfig(WeiboUserConfig condition, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        return (Page<WeiboUserConfig>) weiboUserConfigDao.select(condition);
     }
 
 
@@ -475,15 +520,23 @@ WeiboServiceImpl implements WeiboService {
 
                 String ouIdStr = element.attr("tbinfo");
                 ouIdStr = ouIdStr.substring(ouIdStr.indexOf("=") + 1);
+                if (ouIdStr.contains("&")) {
+                    ouIdStr = ouIdStr.substring(0, ouIdStr.indexOf("&"));
+                }
                 String mid = element.attr("mid");
 
                 Element ename = element.select("div[class^=feed_content wbcon]").first().select("a").first();
                 String name = ename.text();
-                Element wb = element.select("div[class=feed_from W_textb]").first();
+                Elements wbs = element.select("div[class=feed_from W_textb]");
                 String date = null;
                 String from = null;
                 try {
-
+                    Element wb;
+                    if (wbs.size() >= 2) {
+                        wb = wbs.get(1);
+                    } else {
+                        wb = wbs.get(0);
+                    }
                     Elements as = wb.select("a");
                     date = as.get(0).text();
 
@@ -529,7 +582,6 @@ WeiboServiceImpl implements WeiboService {
             }
             weibo.setwPics(pics.toString());
         } catch (Exception e) {
-            LogRecord.error("没有图片，原因：" + e.getMessage());
         }
     }
 
@@ -545,18 +597,6 @@ WeiboServiceImpl implements WeiboService {
 
     @Override
     public void completeExtraInfo(Map<String, String> headers, Weibo weibo) {
-        try {
-            //去除emoj表情符号
-            weibo.setwContent(weibo.getwContent().replaceAll("[\\x{10000}-\\x{10FFFF}]", ""));
-        } catch (Exception e) {
-            LogRecord.error("去除emoj表情符号失败，原因：" + e.getMessage());
-        }
-        try {
-            //去除emoj表情符号
-            weibo.setwFrom(weibo.getwFrom().replaceAll("[\\x{10000}-\\x{10FFFF}]", ""));
-        } catch (Exception e) {
-            LogRecord.error("去除emoj表情符号失败，原因：" + e.getMessage());
-        }
         if (weibo.getwContent().contains("展开全文")) {
             String fullContent = getFullContent(weibo.getwMid(), headers);
             if (fullContent != null) {
@@ -642,10 +682,22 @@ WeiboServiceImpl implements WeiboService {
     }
 
     @Override
-    public boolean verifyCode(Map<String, String> headers, String cookie) {
+    public boolean verifyCode(Map<String, String> headers) throws Exception {
+        String cookie = headers.get("Cookie");
+        if (StringUtils.isNull(cookie)) {
+            throw new Exception("cookie can not be null");
+        }
         WeiboVerifyResult vr = getVerifyCodeResult(verifyPicUrl);
+        if (vr == null || vr.getCode() == null || vr.getuLoginImg() == null) {
+            LogRecord.print("vr is null");
+            return false;
+        }
         LogRecord.print(vr.getCode() + "\t" + vr.getuLoginImg());
-        cookie = cookie.substring(0, cookie.indexOf("ULOGIN_IMG") + 11) + vr.getuLoginImg();
+        if (vr.getCode().length() != 4) {
+            LogRecord.print("vr is error");
+            return false;
+        }
+        cookie = updateVerifyCookie(cookie, vr.getuLoginImg());
 
         headers.put("Cookie", cookie);
         headers.put("Referer", "https://s.weibo.com/weibo/%25E5%258D&Refer=index");
@@ -657,11 +709,10 @@ WeiboServiceImpl implements WeiboService {
         body.put("type", "sass");
         body.put("pageid", "weibo");
         body.put("_t", "0");
-
-
         try {
             String res = HttpUtils.okrHttpPost(postVerifyUrl, headers, body);
             if (res.contains("retcode")) {
+                LogRecord.print("verify code success");
                 return true;
             }
         } catch (IOException e) {
@@ -670,14 +721,22 @@ WeiboServiceImpl implements WeiboService {
         return false;
     }
 
+    private String updateVerifyCookie(String cookie, String uLoginImg) {
+        return cookie.replaceAll("ULOGIN_IMG=(\\d{1,})", "ULOGIN_IMG=" + uLoginImg);
+    }
+
     private void testSvmVerify(String testFile, String predictPath) throws IOException {
-        String[] parg = {testFile, //测试数据
-                svmModelFilePath, // 调用训练模型
+        String[] parg = {
+                //测试数据
+                testFile,
+                // 调用训练模型
+                svmModelFilePath,
                 predictPath,
                 "-g", "2.0", "-c", "100", "-t", "0", "-m", "500.0", "-h", "0",
-                "-b", "1", "-v", "5"}; //预测结果
+                "-b", "1", "-v", "5"};
         try {
-            SvmPredict.main(parg);  //调用
+            //预测结果
+            SvmPredict.main(parg);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -765,7 +824,6 @@ WeiboServiceImpl implements WeiboService {
                             sub = img.getSubimage(startX, startY, endX - startX, endY - startY);
                             subImages.add(sub);
                         } catch (Exception e) {
-//                        e.printStackTrace();
                         }
                         has = false;
                     }

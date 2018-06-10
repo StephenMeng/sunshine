@@ -28,6 +28,7 @@ public class CrawErrorServiceImpl implements CrawlErrorService {
     public List<CrawlError> getCrawlError(String site) {
         CrawlError condition = new CrawlError();
         condition.setSite(site);
+        condition.setDeleted(false);
         return crawlErrorDao.select(condition);
     }
 
@@ -37,5 +38,10 @@ public class CrawErrorServiceImpl implements CrawlErrorService {
         condition.setId(id);
         condition.setDeleted(true);
         return crawlErrorDao.updateByPrimaryKeySelective(condition);
+    }
+
+    @Override
+    public int selectCount(CrawlError error) {
+        return 0;
     }
 }

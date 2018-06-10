@@ -24,13 +24,13 @@ import java.util.Map;
 
 public class HttpUtils {
     public static final String DEFAULT_CHARSET = "utf-8";
+    private static final OkHttpClient httpClient = new OkHttpClient().newBuilder().build();
 
     public static String okrHttpGet(String url) throws IOException {
         return okrHttpGet(url, null);
     }
 
     public static String okrHttpGet(String url, Map<String, String> header) throws IOException {
-        OkHttpClient httpClient = new OkHttpClient();
         Request.Builder builder = new Request.Builder().url(url);
         if (header != null) {
             addHeader(header, builder);
@@ -44,8 +44,6 @@ public class HttpUtils {
     }
 
     public static String okrHttpPost(String url, Map<String, String> header, Map<String, String> body) throws IOException {
-        //创建OkHttpClient对象。
-        OkHttpClient httpClient = new OkHttpClient();
         //创建表单请求体
         FormBody.Builder formBody = new FormBody.Builder();
         if (body != null && body.size() > 0) {
@@ -139,8 +137,9 @@ public class HttpUtils {
                 }
             }
             HttpResponse httpResponse = httpClient.execute(post);
-            if (needResponse)
+            if (needResponse) {
                 return httpResponse;
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

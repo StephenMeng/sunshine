@@ -1,17 +1,8 @@
 package controller;
 
 
-import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.Page;
-import com.google.common.io.Files;
-import net.sourceforge.tess4j.Tesseract;
-import net.sourceforge.tess4j.TesseractException;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+import io.netty.util.concurrent.DefaultThreadFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,20 +10,21 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import team.stephen.sunshine.Application;
+import team.stephen.sunshine.constant.enu.Topic;
+import team.stephen.sunshine.model.other.CrawlError;
 import team.stephen.sunshine.model.other.Weibo;
 import team.stephen.sunshine.model.other.WeiboComment;
 import team.stephen.sunshine.model.other.WeiboUserConfig;
+import team.stephen.sunshine.service.other.CrawlErrorService;
 import team.stephen.sunshine.service.other.WeiboService;
-import team.stephen.sunshine.util.common.HttpUtils;
 import team.stephen.sunshine.util.common.LogRecord;
+import team.stephen.sunshine.util.element.DateUtils;
+import team.stephen.sunshine.util.element.TimeFormateUtil;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.io.IOException;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.stream.Collectors;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
@@ -40,13 +32,18 @@ import java.util.regex.Pattern;
 public class WeiboCrawlerTest {
     @Autowired
     private WeiboService weiboService;
-    private static String cookie ="_s_tentry=movie.kankan.com; Apache=7256170564393.524.1525878160642; SINAGLOBAL=7256170564393.524.1525878160642; ULV=1525878160649:1:1:1:7256170564393.524.1525878160642:; login_sid_t=fe72f64d0dbba7f7b0e63c5616fa15d4; cross_origin_proto=SSL; SWBSSL=usrmdinst_7; SWB=usrmdinst_15; ALF=1559849282; SSOLoginState=1528313282; SCF=ApWJpYkIBCSLvQa6VugVvlZ6e-DWM2_b7Y4Eih38-j3oLHovnRTfnSFHy3SpiZywB53HkqhV_o1jefZpb9HPxDI.; SUB=_2A252HEWTDeRhGeNJ7FYT8SnIyDiIHXVVaDBbrDV8PUNbmtANLVrbkW9NS7N__l4RArQ-48Qwz27OI77ToT5jjwxo; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WhafKh-AK_DR8KR-fW3sBuy5JpX5KzhUgL.Fo-NS0BEeKMXe0B2dJLoIE5LxK-LB-BL1-qLxK-L1hMLBK2LxKnLBo-L1-zN1hM7S5tt; SUHB=0C1SY15AkiXDpl; wvr=6; UOR=,,www.baidu.com; ULOGIN_IMG=15283356726837; WBStorage=5548c0baa42e6f3d|undefined";
+    @Autowired
+    private CrawlErrorService crawlErrorService;
+    private static String cookie = "_s_tentry=movie.kankan.com; Apache=7256170564393.524.1525878160642; SINAGLOBAL=7256170564393.524.1525878160642; ULV=1525878160649:1:1:1:7256170564393.524.1525878160642:; login_sid_t=fe72f64d0dbba7f7b0e63c5616fa15d4; cross_origin_proto=SSL; SWBSSL=usrmdinst_7; SWB=usrmdinst_15; SSOLoginState=1528313282; wvr=6; ULOGIN_IMG=15283371533974; SCF=ApWJpYkIBCSLvQa6VugVvlZ6e-DWM2_b7Y4Eih38-j3oXRVFZSzz1MfSljY7KuTkx-p5ct8dpYgVMqFRW4toQFM.; SUB=_2A252Hv4TDeRhGeNJ7FYT8SnIyDiIHXVVamjbrDV8PUJbmtAKLUfWkW9NS7N__luXtJ0hCdsXY69Zd4DS8WDzddZJ; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WhafKh-AK_DR8KR-fW3sBuy5JpX5K-hUgL.Fo-NS0BEeKMXe0B2dJLoIE5LxK-LB-BL1-qLxK-L1hMLBK2LxKnLBo-L1-zN1hM7S5tt; SUHB=06ZVb8IQ0Wz4ON; ALF=1560003009; UOR=,,graph.qq.com; WBStorage=5548c0baa42e6f3d|undefined";
     private static Map<String, String> headers = new HashMap<>();
+
+    private int corePoolSize = 20;
+    private int maximumPoolSize = 40;
+    private int keeAliveTime = 30;
 
     static {
         headers.put("Cookie", cookie);
     }
-
 
     @Test
     public void testCrawlBasicInfo() {
@@ -57,11 +54,8 @@ public class WeiboCrawlerTest {
 //        url="https://weibo.com/u/2146154687?refer_flag=1001030101_";
 //        url="https://weibo.com/leehom?refer_flag=1001030101_&is_hot=1";
         url = "https://weibo.com/chaijingkanjian?refer_flag=1001030201_";
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Cookie", cookie);
         WeiboUserConfig config = weiboService.crawlUserConfig(url, headers);
         if (config != null) {
-
             try {
                 weiboService.addWeiboUserConfig(config);
             } catch (Exception e) {
@@ -69,6 +63,51 @@ public class WeiboCrawlerTest {
                 LogRecord.error(e);
             }
         }
+    }
+
+    @Test
+    public void insertUserId() {
+        List<Weibo> weibos = weiboService.selectWeibo(null, 1, 0);
+        List<String> ouIds = weibos.stream().map(Weibo::getwOuid).collect(Collectors.toList());
+        removeDuplicate(ouIds);
+        for (String ouId : ouIds) {
+            try {
+                String uri = "/u/" + ouId;
+                WeiboUserConfig userConfig = new WeiboUserConfig();
+                userConfig.setOid(ouId);
+                userConfig.setUri(uri);
+                weiboService.addWeiboUserConfig(userConfig);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    @Test
+    public void testAllCrawlBasicInfo() {
+        ExecutorService executor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keeAliveTime,
+                TimeUnit.MINUTES, new LinkedBlockingQueue<>(), new DefaultThreadFactory(Topic.EMAIL.getName()));
+//        ExecutorService executor = Executors.newFixedThreadPool(1);
+        List<WeiboUserConfig> userConfigs = weiboService.selectUserConfig(null, 1, 0);
+        List<String> ouIds = userConfigs.stream().filter(conf -> conf.getName() == null).map(WeiboUserConfig::getOid).collect(Collectors.toList());
+        LogRecord.print(ouIds.size());
+        for (String ouid : ouIds) {
+//            executor.execute(() -> {
+            String url = "https://weibo.com/u/" + ouid + "?refer_flag=1001030201_";
+            LogRecord.print(url);
+            WeiboUserConfig config = weiboService.crawlUserConfig(url, headers);
+            if (config != null) {
+                weiboService.updateSelective(config);
+            }
+        }
+    }
+
+    private static void removeDuplicate(List<String> list) {
+        LinkedHashSet<String> set = new LinkedHashSet<>(list.size());
+        set.addAll(list);
+        list.clear();
+        list.addAll(set);
     }
 
     @Test
@@ -85,15 +124,210 @@ public class WeiboCrawlerTest {
     }
 
     @Test
-    public void testCraswlSearchInfo() {
-        String keyword = "SVM";
-//        int page = 4;
-        for (int page = 1; page <= 50; page++) {
-            String url = "https://s.weibo.com/weibo/" + keyword
-                    + "&typeall=1&suball=1&page=" + page;
+    public void testCraswlHourSearchInfo() {
+        String keyword = "柴静 穹顶之下";
+        keyword = "北京 红色预警";
+        keyword = "阅兵蓝";
+        keyword = "柴静蓝";
+        keyword = "柴静雾霾调查";
+        String start = "2015-02-28";
+//        start = "2016-12-16";
+//        start = "2015-08-22";
+        String end = "2015-03-08";
+        //爬多了。
+//        end = "2016-12-22";
+//        end = "2015-09-10";
+        Date sd = TimeFormateUtil.parseStringToDate(start);
+        end = getNextDayStr(end);
+        Date ed = TimeFormateUtil.parseStringToDate(end);
+        String startStr = start + "-0";
+        while (sd.before(ed)) {
+            LogRecord.print(startStr);
+            sd = DateUtils.parseStringToDate(startStr.substring(0, 10));
+            String pageUrl = "https://s.weibo.com/weibo/" + keyword + "&typeall=1&suball=1&timescope=custom:" + startStr + ":" + startStr + "&page=";
+            crawl(keyword, pageUrl);
+            startStr = getNextHourStr(startStr);
+        }
+    }
 
-            List<Weibo> weibos = weiboService.crawlWeiboSearchPage(url, headers);
+    @Test
+    public void testCraswlDaySearchInfo() {
+        String keyword = "棉纱 空气采样器";
+        keyword = "柴静蓝";
+        keyword = "柴静雾霾调查";
+        String startStr = "2016-10-25";
+        startStr = "2015-03-19";
+        String endStr = "2016-10-28";
+        endStr = "2015-03-20";
+        Date sd = TimeFormateUtil.parseStringToDate(startStr);
+        Date ed = TimeFormateUtil.parseStringToDate(endStr);
+        while (sd.before(ed)) {
+            sd = DateUtils.parseStringToDate(startStr);
+            String pageUrl = "https://s.weibo.com/weibo/" + keyword + "&typeall=1&suball=1&timescope=custom:" + startStr + ":" + startStr + "&page=";
+            crawl(keyword, pageUrl);
+            LogRecord.print(startStr);
+            startStr = getNextDayStr(startStr);
+        }
+    }
+
+
+    @Test
+    public void testCraswlSimpleSearchInfo() {
+        String keyword = "马里兰 空气";
+        keyword = "2000年以来北京空气质量 改善";
+        keyword = "石家庄市民因雾霾状告环保局";
+        keyword = "北大雕像戴口罩";
+        keyword = "棉纱 空气采样器";
+        String startStr = "2017-05-22";
+        startStr = "2014-01-25";
+        startStr = "2014-02-24";
+        startStr = "2014-03-15";
+        startStr = "2014-02-23";
+        startStr = "2017-04-27";
+        startStr = "2017-06-16";
+        String endStr = "2017-05-30";
+        endStr = "2014-01-28";
+        endStr = "2014-03-01";
+        endStr = "2014-03-20";
+        endStr = "2014-02-28";
+        endStr = "2017-04-30";
+        endStr = "2017-06-19";
+        String pageUrl = "https://s.weibo.com/weibo/" + keyword + "&typeall=1&suball=1&timescope=custom:" + startStr + ":" + endStr + "&page=";
+        crawl(keyword, pageUrl);
+    }
+
+    @Test
+    public void testCrawlErrorSearchInfo() {
+        String site = "search page url";
+        List<CrawlError> crawlErrors = crawlErrorService.getCrawlError(site);
+        LogRecord.print(crawlErrors.size());
+        for (CrawlError crawlError : crawlErrors) {
+            String url = crawlError.getUrl();
+            String pageUrl = url.replaceAll("page=(\\d{1,})", "page=");
+            String keyword = url.substring(url.lastIndexOf("/") + 1, url.indexOf("&"));
+            LogRecord.print(pageUrl + "\t" + keyword);
+//            if(true){
+//                continue;
+//            }
+            int pageNum;
+            try {
+                pageNum = weiboService.crawlWeiboSearchPageSize(pageUrl + 1, headers);
+            } catch (Exception e) {
+                e.printStackTrace();
+                LogRecord.print("error pageurl :" + pageUrl);
+                continue;
+//                break;
+            }
+
+            LogRecord.print(pageNum);
+            for (int page = 1; page <= pageNum; page++) {
+                url = pageUrl + page + "&pageNum=" + pageNum;
+                List<Weibo> weibos = null;
+                try {
+                    weibos = weiboService.crawlWeiboSearchPage(url, headers);
+                } catch (Exception e) {
+                    weiboService.logErrorUrl(url, "search url");
+                    try {
+                        while (!weiboService.verifyCode(headers)) {
+                            LogRecord.print("verify code failed");
+                        }
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
+                    e.printStackTrace();
+                }
+                for (Weibo weibo : weibos) {
+                    weibo.setwUrl(url);
+                    weiboService.completeExtraInfo(headers, weibo);
+                    weibo.setIndexWords(keyword + ";");
+                    boolean succcess = true;
+                    try {
+                        weiboService.addWeibo(weibo);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        succcess = false;
+                    }
+                    if (succcess) {
+                        continue;
+                    }
+                    try {
+                        Weibo uw = weiboService.selectByPrimary(weibo.getwMid());
+                        if (uw == null) {
+                            continue;
+                        }
+                        if (uw.getIndexWords() == null || !uw.getIndexWords().contains(weibo.getIndexWords())) {
+                            Weibo tu = new Weibo();
+                            tu.setwMid(uw.getwMid());
+                            tu.setIndexWords(uw.getIndexWords() + ";" + keyword);
+                            weiboService.updateSelective(tu);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            crawlErrorService.completed(crawlError.getId());
+        }
+
+    }
+
+    @Test
+    public void testCrawlErrorWeiboSearchInfo() {
+        String site = "search url";
+        List<CrawlError> crawlErrors = crawlErrorService.getCrawlError(site);
+        LogRecord.print(crawlErrors.size());
+        for (CrawlError crawlError : crawlErrors) {
+            String url = crawlError.getUrl();
+            String keyword = url.substring(url.lastIndexOf("/") + 1, url.indexOf("&"));
+            LogRecord.print(url + "\t" + keyword);
+            List<Weibo> weibos = getWeibos(url);
+            for (Weibo weibo : weibos) {
+                weibo.setwUrl(url);
+                weiboService.completeExtraInfo(headers, weibo);
+                weibo.setIndexWords(keyword + ";");
+                boolean succcess = true;
+                try {
+                    weiboService.addWeibo(weibo);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    succcess = false;
+                }
+                if (succcess) {
+                    continue;
+                }
+                try {
+                    Weibo uw = weiboService.selectByPrimary(weibo.getwMid());
+                    if (uw == null) {
+                        continue;
+                    }
+                    if (uw.getIndexWords() == null || !uw.getIndexWords().contains(weibo.getIndexWords())) {
+                        Weibo tu = new Weibo();
+                        tu.setwMid(uw.getwMid());
+                        tu.setIndexWords(uw.getIndexWords() + ";" + keyword);
+                        weiboService.updateSelective(tu);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            crawlErrorService.completed(crawlError.getId());
+        }
+
+    }
+
+    private void crawl(String keyword, String pageUrl) {
+        int pageNum = 1;
+        try {
+            pageNum = weiboService.crawlWeiboSearchPageSize(pageUrl + 1, headers);
+        } catch (Exception e) {
+            weiboService.logErrorUrl(pageUrl, "search page url");
+        }
+        LogRecord.print(pageNum);
+        for (int page = 1; page <= pageNum; page++) {
+            String url = pageUrl + page + "&pageNum=" + pageNum;
+            List<Weibo> weibos = getWeibos(url);
             weibos.forEach(weibo -> {
+                weibo.setwUrl(url);
                 weiboService.completeExtraInfo(headers, weibo);
                 weibo.setIndexWords(keyword + ";");
                 boolean succcess = true;
@@ -121,12 +355,56 @@ public class WeiboCrawlerTest {
                     e.printStackTrace();
                 }
             });
-//            try {
-//                Thread.sleep(10000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
         }
+    }
+
+    private List<Weibo> getWeibos(String url) {
+        List<Weibo> weibos = new ArrayList<>();
+        try {
+            weibos = weiboService.crawlWeiboSearchPage(url, headers);
+        } catch (Exception e) {
+            e.printStackTrace();
+            weiboService.logErrorUrl(url, "search url");
+            try {
+                while (!weiboService.verifyCode(headers)) {
+                    LogRecord.print("verify code failed");
+                }
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
+        return weibos;
+    }
+
+    @Test
+    public void testCrawlError() {
+        CrawlError condition = new CrawlError();
+        condition.setSite("");
+    }
+
+    private String getNextHourStr(String startStr) {
+        String dateStr = startStr.substring(0, 10);
+        String hourStr = startStr.substring(11);
+        int h = Integer.parseInt(hourStr);
+        if (h < 23) {
+            h++;
+            return dateStr + "-" + h;
+        }
+        Date date = DateUtils.parseStringToDate(dateStr);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, 1);
+        date = cal.getTime();
+        return DateUtils.parseDateToString(date) + "-0";
+    }
+
+    private String getNextDayStr(String dateStr) {
+        Date date = DateUtils.parseStringToDate(dateStr);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, 1);
+        date = cal.getTime();
+        return DateUtils.parseDateToString(date);
     }
 
     @Test

@@ -12,7 +12,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * Created by stephen on 2017/7/14.
+ *
+ * @author stephen
+ * @date 2017/7/14
  */
 @EnableSwagger2
 @SpringBootApplication(exclude = {

@@ -14,4 +14,6 @@ public interface CrawlErrorService {
     List<CrawlError> getCrawlError(String site);
 
     int completed(int id);
+
+    int selectCount(CrawlError error);
 }
