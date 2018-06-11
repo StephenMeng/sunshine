@@ -167,53 +167,57 @@ public class WeiboServiceImpl implements WeiboService {
             }
             Matcher coreUserMatcher = coreUserPatter.matcher(html);
             if (coreUserMatcher.find()) {
-                String json = coreUserMatcher.group();
-                json = "{" + json;
-                Document document = Jsoup.parse(getHtmlFromJson(json, "html"));
                 try {
-                    Element lvE = document.select("span[class=icon_group S_line1 W_fl]").first();
-                    String lv = lvE.text();
-                    config.setLv(lv);
-                } catch (Exception e) {
-                }
-                try {
-                    Element desE = document.select("p[class=info]").first();
-                    String des = desE.text();
-                    config.setDescription(des);
-                } catch (Exception e) {
-                }
-                Element detailE = document.select("div[class=WB_innerwrap]").first();
-                Elements lisE = detailE.select("li");
-                for (Element liE : lisE) {
-                    if (liE.html().contains("cd_place")) {
-                        String place = liE.text();
-                        config.setPlace(place.replace("2 ", ""));
+                    String json = coreUserMatcher.group();
+                    json = "{" + json;
+                    Document document = Jsoup.parse(getHtmlFromJson(json, "html"));
+                    try {
+                        Element lvE = document.select("span[class=icon_group S_line1 W_fl]").first();
+                        String lv = lvE.text();
+                        config.setLv(lv);
+                    } catch (Exception e) {
                     }
-                    if (liE.html().contains("ficon_constellation ")) {
-                        String birthday = liE.text();
-                        config.setBirthday(birthday.replace("ö ", ""));
+                    try {
+                        Element desE = document.select("p[class=info]").first();
+                        String des = desE.text();
+                        config.setDescription(des);
+                    } catch (Exception e) {
                     }
-                    if (liE.html().contains("ficon_pinfo ")) {
-                        String pinfo = liE.text();
-                        config.setPinfo(pinfo.replace("Ü ", ""));
-                    }
-                    if (liE.html().contains("ficon_link")) {
-                        String link = liE.text();
-                        config.setLink(link.replace("5 ", "") + ":" + liE.select("a").first().attr("href"));
-                    }
-                    if (liE.html().contains("pinfo_icon_baidu")) {
-                        String baike = liE.text();
-                        config.setBaike(baike);
-                    }
+                    Element detailE = document.select("div[class=WB_innerwrap]").first();
+                    Elements lisE = detailE.select("li");
+                    for (Element liE : lisE) {
+                        if (liE.html().contains("cd_place")) {
+                            String place = liE.text();
+                            config.setPlace(place.replace("2 ", ""));
+                        }
+                        if (liE.html().contains("ficon_constellation ")) {
+                            String birthday = liE.text();
+                            config.setBirthday(birthday.replace("ö ", ""));
+                        }
+                        if (liE.html().contains("ficon_pinfo ")) {
+                            String pinfo = liE.text();
+                            config.setPinfo(pinfo.replace("Ü ", ""));
+                        }
+                        if (liE.html().contains("ficon_link")) {
+                            String link = liE.text();
+                            config.setLink(link.replace("5 ", "") + ":" + liE.select("a").first().attr("href"));
+                        }
+                        if (liE.html().contains("pinfo_icon_baidu")) {
+                            String baike = liE.text();
+                            config.setBaike(baike);
+                        }
 
-                    if (liE.html().contains("ficon_bag")) {
-                        String career = liE.text();
-                        config.setCareer(career.replace("3 ", ""));
+                        if (liE.html().contains("ficon_bag")) {
+                            String career = liE.text();
+                            config.setCareer(career.replace("3 ", ""));
+                        }
+                        if (liE.html().contains("ficon_cd_coupon")) {
+                            String ext = liE.text();
+                            config.setTag(ext.replace("T ", ""));
+                        }
                     }
-                    if (liE.html().contains("ficon_cd_coupon")) {
-                        String ext = liE.text();
-                        config.setTag(ext.replace("T ", ""));
-                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
 

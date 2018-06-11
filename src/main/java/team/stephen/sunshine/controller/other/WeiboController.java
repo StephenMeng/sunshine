@@ -1,5 +1,6 @@
 package team.stephen.sunshine.controller.other;
 
+import com.google.common.collect.Lists;
 import io.netty.util.concurrent.DefaultThreadFactory;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -38,7 +39,7 @@ import java.util.stream.Collectors;
 public class WeiboController extends BaseController {
     @Autowired
     private WeiboService weiboService;
-    private static String cookie ="YF-V5-G0=b1e3c8e8ad37eca95b65a6759b3fc219; _s_tentry=movie.kankan.com; Apache=7256170564393.524.1525878160642; SINAGLOBAL=7256170564393.524.1525878160642; ULV=1525878160649:1:1:1:7256170564393.524.1525878160642:; YF-Ugrow-G0=ea90f703b7694b74b62d38420b5273df; login_sid_t=fe72f64d0dbba7f7b0e63c5616fa15d4; cross_origin_proto=SSL; YF-Page-G0=00acf392ca0910c1098d285f7eb74a11; WBtopGlobal_register_version=cd58c0d338fe446e; SSOLoginState=1528313282; SUB=_2AkMsRywaf8NxqwJRmP8cz2jlaohwzQvEieKaG93BJRMxHRl-yT9jqmoQtRB6B8cC9RX4nU5FbPeZ2pNB1jbLql3U4zV3; SUBP=0033WrSXqPxfM72-Ws9jqgMF55529P9D9W5oAnXq5fc4mqqBjqOdeSSI";
+    private static String cookie ="YF-V5-G0=b1e3c8e8ad37eca95b65a6759b3fc219; _s_tentry=movie.kankan.com; Apache=7256170564393.524.1525878160642; SINAGLOBAL=7256170564393.524.1525878160642; ULV=1525878160649:1:1:1:7256170564393.524.1525878160642:; YF-Ugrow-G0=ea90f703b7694b74b62d38420b5273df; login_sid_t=fe72f64d0dbba7f7b0e63c5616fa15d4; cross_origin_proto=SSL; YF-Page-G0=00acf392ca0910c1098d285f7eb74a11; WBtopGlobal_register_version=cd58c0d338fe446e; SSOLoginState=1528313282; wb_view_log=1920*10801; WBStorage=5548c0baa42e6f3d|undefined; crossidccode=CODE-yf-1Fs0nf-Fy3Nn-KCX2LXEQNjpDs0Hb49800; ALF=1560173237; SCF=ApWJpYkIBCSLvQa6VugVvlZ6e-DWM2_b7Y4Eih38-j3o2C_UjyGDCKmvw08S8rifxt2l1ey5qJdjo6DJ3dapTN4.; SUB=_2A252GVdmDeRhGeNJ7FYT8SnIyDiIHXVVb8-urDV8PUNbmtANLUPbkW9NS7N__mUKIHDo5xM8QLD78J4caov5-mm3; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WhafKh-AK_DR8KR-fW3sBuy5JpX5KzhUgL.Fo-NS0BEeKMXe0B2dJLoIE5LxK-LB-BL1-qLxK-L1hMLBK2LxKnLBo-L1-zN1hM7S5tt; SUHB=0u5BC9USPfsZ-3; wvr=6";
 //            "_s_tentry=movie.kankan.com; Apache=7256170564393.524.1525878160642; SINAGLOBAL=7256170564393.524.1525878160642; ULV=1525878160649:1:1:1:7256170564393.524.1525878160642:; login_sid_t=fe72f64d0dbba7f7b0e63c5616fa15d4; cross_origin_proto=SSL; SWBSSL=usrmdinst_7; SWB=usrmdinst_15; SSOLoginState=1528313282; wvr=6; ULOGIN_IMG=15283371533974; SCF=ApWJpYkIBCSLvQa6VugVvlZ6e-DWM2_b7Y4Eih38-j3oXRVFZSzz1MfSljY7KuTkx-p5ct8dpYgVMqFRW4toQFM.; SUB=_2A252Hv4TDeRhGeNJ7FYT8SnIyDiIHXVVamjbrDV8PUJbmtAKLUfWkW9NS7N__luXtJ0hCdsXY69Zd4DS8WDzddZJ; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WhafKh-AK_DR8KR-fW3sBuy5JpX5K-hUgL.Fo-NS0BEeKMXe0B2dJLoIE5LxK-LB-BL1-qLxK-L1hMLBK2LxKnLBo-L1-zN1hM7S5tt; SUHB=06ZVb8IQ0Wz4ON; ALF=1560003009; UOR=,,graph.qq.com; WBStorage=5548c0baa42e6f3d|undefined";
     private static Map<String, String> headers = new HashMap<>();
 
@@ -62,6 +63,7 @@ public class WeiboController extends BaseController {
         ExecutorService executor = Executors.newFixedThreadPool(5);
         List<WeiboUserConfig> userConfigs = weiboService.selectUserConfig(null, pageNum, pageSize);
         List<String> ouIds = userConfigs.stream().filter(conf -> conf.getName() == null).map(WeiboUserConfig::getOid).collect(Collectors.toList());
+        ouIds= Lists.reverse(ouIds);
         LogRecord.print(ouIds.size());
         for (String ouid : ouIds) {
             executor.execute(() -> {
@@ -78,6 +80,7 @@ public class WeiboController extends BaseController {
                     }
                 }
             });
+//            break;
         }
         return Response.success(ouIds.size());
     }
