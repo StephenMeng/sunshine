@@ -116,8 +116,7 @@ public class UserManagementController {
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public Response selectLit(@RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
                               @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize) {
-        User condition = new User();
-        Page<User> userPage = userService.select(condition, pageNum, pageSize);
+        Page<User> userPage = userService.select(null, pageNum, pageSize);
         Page<UserDto> userDtoPage = PageUtil.transformPage(userPage, dtoTransformService::userModelToDto);
         return Response.success(new PageInfo<>(userDtoPage));
     }

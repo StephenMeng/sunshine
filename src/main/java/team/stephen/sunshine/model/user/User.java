@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @author stephen
+ */
 @Entity
 @Table(name = "sunshine_user")
 public class User {
