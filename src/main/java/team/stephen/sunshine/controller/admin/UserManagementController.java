@@ -73,7 +73,7 @@ public class UserManagementController {
 
     @ApiOperation(value = "更新成员", httpMethod = "POST", response = Response.class)
     @RequestMapping(value = "update", method = RequestMethod.POST)
-    public Response update(UpdateUserDto updateUserDto) {
+    public Response update(@RequestBody UpdateUserDto updateUserDto) {
         ParamCheck check = checkUpdateParam(updateUserDto);
         if (check.error()) {
             return Response.error(check);
@@ -85,6 +85,18 @@ public class UserManagementController {
             return Response.error(ResultEnum.SERVER_WRONG.getCode(), e.getMessage(), e.getMessage());
         }
         return Response.success(true);
+    }
+
+    @ApiOperation(value = "删除成员", httpMethod = "POST", response = Response.class)
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
+    @ApiImplicitParam(name = "userNo", value = "userNo", required = true, dataType = "string", paramType = "body")
+    public Response delete(@RequestParam("userNo") String userNo) {
+        if(StringUtils.isNull(userNo)){
+            return Response.error(ResultEnum.NULL_PARAMETER);
+        }
+        cacheService.removeCache(userNo);
+        boolean success = userService.deleteUser(userNo) == 1;
+        return Response.success(success);
     }
 
     private ParamCheck checkUpdateParam(UpdateUserDto updateUserDto) {

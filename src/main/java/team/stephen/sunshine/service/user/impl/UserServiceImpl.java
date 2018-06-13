@@ -46,6 +46,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int deleteUser(String userNo) {
+        User user = new User();
+        user.setUserNo(userNo);
+        return userDao.delete(user);
+    }
+
+    @Override
     public int updateSelective(User user) {
         return userDao.updateByPrimaryKeySelective(user);
     }

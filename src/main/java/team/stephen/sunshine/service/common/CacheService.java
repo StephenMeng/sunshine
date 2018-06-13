@@ -9,4 +9,5 @@ public interface CacheService {
 
     boolean addOrUpdateUserCache(UserDto userDto);
 
+    int removeCache(String userNo);
 }

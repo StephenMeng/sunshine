@@ -71,4 +71,17 @@ public class CacheServiceImpl implements CacheService {
         jedisService.set(noKey, JSONObject.toJSONString(userDto));
         return true;
     }
+
+    @Override
+    public int removeCache(String userNo) {
+        UserDto userDto=findUserDtoByUserNo(userNo);
+        if(userDto!=null) {
+            String idKey = String.format(JedisConst.USER_INFO_ID, userDto.getUserId());
+            String noKey = String.format(JedisConst.USER_INFO_NO, userDto.getUserNo());
+            jedisService.remove(idKey);
+            jedisService.remove(noKey);
+            return 1;
+        }
+        return 0;
+    }
 }

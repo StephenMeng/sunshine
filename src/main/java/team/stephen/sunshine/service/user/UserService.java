@@ -14,4 +14,6 @@ public interface UserService {
     Page<User> select(User condition, Integer pageNum, Integer pageSize);
 
     int insert(User user);
+
+    int deleteUser(String userNo);
 }

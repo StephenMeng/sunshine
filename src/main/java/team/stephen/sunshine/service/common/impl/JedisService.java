@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import team.stephen.sunshine.util.common.LogRecord;
+import team.stephen.sunshine.util.element.StringUtils;
 
 import java.util.Collections;
 import java.util.UUID;
@@ -78,6 +79,16 @@ public class JedisService {
             String script = "if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end";
             Object result = jedis.eval(script, Collections.singletonList(lockKey), Collections.singletonList(identifier));
             return RELEASE_SUCCESS.equals(result);
+        });
+    }
+
+    public boolean remove(String key) {
+        if (StringUtils.isNull(key)) {
+            return false;
+        }
+        JedisTemplate template = new JedisTemplate();
+        return template.execute(jedis -> {
+            return  jedis.del(key)>0;
         });
     }
 
