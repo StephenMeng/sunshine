@@ -21,27 +21,6 @@ public class CacheServiceImpl implements CacheService {
     private DtoTransformService dtoTransformService;
 
     @Override
-    public UserDto findUserDtoByUserId(Integer userId) {
-        if (userId == null) {
-            return null;
-        }
-        String idKey = String.format(JedisConst.USER_INFO_ID, userId);
-        String userStr = jedisService.get(idKey);
-        if (!StringUtils.isNull(userStr)) {
-            return JSONObject.parseObject(userStr, UserDto.class);
-        }
-        User user = userService.getUserByUserId(userId);
-        if (user == null) {
-            return null;
-        }
-
-        UserDto userDto = dtoTransformService.userModelToDto(user);
-        addOrUpdateUserCache(userDto);
-        return userDto;
-
-    }
-
-    @Override
     public UserDto findUserDtoByUserNo(String userNo) {
         if (StringUtils.isNull(userNo)) {
             return null;
@@ -65,9 +44,7 @@ public class CacheServiceImpl implements CacheService {
         if (userDto == null || userDto.getUserId() == null) {
             return false;
         }
-        String idKey = String.format(JedisConst.USER_INFO_ID, userDto.getUserId());
         String noKey = String.format(JedisConst.USER_INFO_NO, userDto.getUserNo());
-        jedisService.set(idKey, JSONObject.toJSONString(userDto));
         jedisService.set(noKey, JSONObject.toJSONString(userDto));
         return true;
     }
@@ -76,9 +53,7 @@ public class CacheServiceImpl implements CacheService {
     public int removeCache(String userNo) {
         UserDto userDto=findUserDtoByUserNo(userNo);
         if(userDto!=null) {
-            String idKey = String.format(JedisConst.USER_INFO_ID, userDto.getUserId());
             String noKey = String.format(JedisConst.USER_INFO_NO, userDto.getUserNo());
-            jedisService.remove(idKey);
             jedisService.remove(noKey);
             return 1;
         }

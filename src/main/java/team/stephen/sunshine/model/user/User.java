@@ -12,8 +12,6 @@ import javax.persistence.Table;
 @Table(name = "sunshine_user")
 public class User {
     @Id
-    @Column(name = "user_id")
-    private Integer userId;
     @Column(name = "user_no")
     private String userNo;
     @Column(name = "user_name")
@@ -28,14 +26,6 @@ public class User {
     private String title;
     @Column(name = "mobile_phone")
     private String mobilePhone;
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
 
     public String getUserName() {
         return userName;
@@ -83,5 +73,13 @@ public class User {
 
     public void setMobilePhone(String mobilePhone) {
         this.mobilePhone = mobilePhone;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
