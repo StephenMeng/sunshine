@@ -35,6 +35,6 @@ public class BaseController {
             return null;
         }
         //使用缓存中的最新信息
-        return cacheService.findUserDtoByUserId(((UserDto) value).getUserId());
+        return cacheService.findUserDtoByUserNo(((UserDto) value).getUserNo());
     }
 }
