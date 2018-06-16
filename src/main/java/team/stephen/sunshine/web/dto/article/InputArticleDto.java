@@ -4,6 +4,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import team.stephen.sunshine.web.dto.base.BaseArticleDto;
 
+import java.util.List;
+
 /**
  * @author stephen
  * @date 2018/5/22
@@ -20,7 +22,9 @@ public class InputArticleDto extends BaseArticleDto {
     private Boolean articleIsPublished;
     @ApiModelProperty(value = "是否私有")
     private Boolean isPrivate;
-
+    @ApiModelProperty(value = "标签")
+    private List<String>tags;
+    @ApiModelProperty
     public String getArticleContent() {
         return articleContent;
     }

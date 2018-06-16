@@ -3,14 +3,12 @@ package team.stephen.sunshine.controller.admin;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.hankcs.hanlp.HanLP;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import team.stephen.sunshine.constant.enu.ResultEnum;
 import team.stephen.sunshine.controller.BaseController;
 import team.stephen.sunshine.model.article.Article;
@@ -36,6 +34,7 @@ import static team.stephen.sunshine.constant.AricleConst.ARTICLE_LINK_ID_LENGTH;
  * @author stephen
  * @date 2018/5/22
  */
+@Api(description = "管理员管理文章、博客")
 @RequestMapping("admin/article")
 @RestController
 public class ArticleManagementController extends BaseController {
@@ -54,7 +53,7 @@ public class ArticleManagementController extends BaseController {
             @ApiImplicitParam(name = "deleted", value = "是否是回收站内的，默认否", dataType = "boolean", paramType = "query"),
             @ApiImplicitParam(name = "pageNum", value = "页码", required = true, dataType = "int", paramType = "query"),
             @ApiImplicitParam(name = "pageSize", value = "数据量", required = true, dataType = "int", paramType = "query")})
-    @RequestMapping(value = "article", method = RequestMethod.GET)
+    @RequestMapping(value = "list", method = RequestMethod.GET)
     public Response getArticle(
             @RequestParam(value = "channelId", required = false) Integer channelId,
             @RequestParam(value = "columnId", required = false) Integer columnId,
@@ -77,8 +76,8 @@ public class ArticleManagementController extends BaseController {
     }
 
     @ApiOperation(value = "新增文章", httpMethod = "POST", response = Response.class)
-    @RequestMapping(value = "article/add", method = RequestMethod.POST)
-    public Response addColumn(InputArticleDto inputArticleDto) {
+    @RequestMapping(value = "add", method = RequestMethod.POST)
+    public Response addColumn(@RequestBody InputArticleDto inputArticleDto) {
         UserDto currentUser = getUser();
         ParamCheck check = checkAddArticleParam(inputArticleDto);
         if (check.error()) {
@@ -115,7 +114,7 @@ public class ArticleManagementController extends BaseController {
     }
 
     @ApiOperation(value = "更新文章信息", httpMethod = "POST", response = Response.class)
-    @RequestMapping(value = "article/update", method = RequestMethod.POST)
+    @RequestMapping(value = "update", method = RequestMethod.POST)
     public Response updateChannel(InputArticleDto inputArticleDto) {
         UserDto currentUser = getUser();
         ParamCheck check = checkUpdateArticleParam(inputArticleDto);
@@ -156,7 +155,7 @@ public class ArticleManagementController extends BaseController {
 
     @ApiOperation(value = "将文章放入回收站", httpMethod = "POST", response = Response.class)
     @ApiImplicitParam(name = "linkId", value = "文章 link ID", required = true, dataType = "string", paramType = "query")
-    @RequestMapping(value = "article/recycle", method = RequestMethod.POST)
+    @RequestMapping(value = "recycle", method = RequestMethod.POST)
     public Response recycleArticle(String linkId) {
         return recycleOrRestoreArticle(linkId, true);
     }
@@ -164,7 +163,7 @@ public class ArticleManagementController extends BaseController {
 
     @ApiOperation(value = "将文章从回收站还原", httpMethod = "POST", response = Response.class)
     @ApiImplicitParam(name = "linkId", value = "文章 Link ID", required = true, dataType = "string", paramType = "query")
-    @RequestMapping(value = "article/restore", method = RequestMethod.POST)
+    @RequestMapping(value = "restore", method = RequestMethod.POST)
     public Response resotoreColumn(String linkId) {
         return recycleOrRestoreArticle(linkId, false);
     }
