@@ -1,7 +1,10 @@
 package team.stephen.sunshine.controller.admin;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
+import com.google.common.base.Joiner;
 import com.hankcs.hanlp.HanLP;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -12,9 +15,13 @@ import org.springframework.web.bind.annotation.*;
 import team.stephen.sunshine.constant.enu.ResultEnum;
 import team.stephen.sunshine.controller.BaseController;
 import team.stephen.sunshine.model.article.Article;
+import team.stephen.sunshine.model.front.Channel;
+import team.stephen.sunshine.model.front.Column;
 import team.stephen.sunshine.service.article.ArticleService;
 import team.stephen.sunshine.service.common.DtoTransformService;
 import team.stephen.sunshine.service.common.SolrService;
+import team.stephen.sunshine.service.front.ChannelService;
+import team.stephen.sunshine.service.front.ColumnService;
 import team.stephen.sunshine.util.common.PageUtil;
 import team.stephen.sunshine.util.common.ParamCheck;
 import team.stephen.sunshine.util.common.RandomIDUtil;
@@ -44,6 +51,10 @@ public class ArticleManagementController extends BaseController {
     private ArticleService articleService;
     @Autowired
     private SolrService solrService;
+    @Autowired
+    private ChannelService channelService;
+    @Autowired
+    private ColumnService columnService;
 
     @ApiOperation(value = "获取文章列表", httpMethod = "GET", response = Response.class)
     @ApiImplicitParams({
@@ -79,18 +90,41 @@ public class ArticleManagementController extends BaseController {
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public Response addColumn(@RequestBody InputArticleDto inputArticleDto) {
         UserDto currentUser = getUser();
+        //todo 测试
+        currentUser = new UserDto();
+        currentUser.setUserId(1);
         ParamCheck check = checkAddArticleParam(inputArticleDto);
         if (check.error()) {
             return Response.error(check);
         }
         Article article = Article.getNewDefaultInstance();
         dtoTransformService.copyProperties(article, inputArticleDto);
+        if (inputArticleDto.getTags() != null) {
+            article.setArticleTag(Joiner.on(";").join(inputArticleDto.getTags()));
+        }
+        if (StringUtils.isNull(inputArticleDto.getChannel())) {
+            return Response.error(ResultEnum.CLIENT_ERROR.getCode(), "频道不能为空", "频道不能为空");
+        }
+        Channel channel = channelService.selectByChannelUri(inputArticleDto.getChannel());
+        if (channel == null) {
+            return Response.error(ResultEnum.CLIENT_ERROR.getCode(), "查无此频道", "查无此频道");
+        }
+        article.setChannelId(channel.getChannelId());
+        if (StringUtils.isNotNull(inputArticleDto.getColumn())) {
+            Column column = columnService.selectBycolumnUri(inputArticleDto.getColumn());
+            if (column != null) {
+                article.setColumnId(column.getColumnId());
+            }else {
+                return Response.error(ResultEnum.CLIENT_ERROR.getCode(), "查无此栏目", "查无此栏目");
+            }
+        }
         article.setDeleted(false);
         article.setArticleAuthor(currentUser.getUserId());
         article.setArticleCreateDate(new Date());
         article.setArticleUpdateDate(new Date());
         article.setArticleAbstract(String.valueOf(HanLP.extractSummary(article.getArticleContent(), 10)));
         article.setArticleLinkId(RandomIDUtil.randomID(ARTICLE_LINK_ID_LENGTH));
+        article.setArticleLink("article/detail/" + article.getArticleLinkId());
         try {
             articleService.addArticle(article);
             article = articleService.selectArticleByLinkId(article.getArticleLinkId());

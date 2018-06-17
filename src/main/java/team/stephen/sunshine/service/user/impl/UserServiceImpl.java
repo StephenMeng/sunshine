@@ -15,6 +15,16 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
+    public User getUserByUserId(Integer userId) {
+        if (userId == null) {
+            return null;
+        }
+        User condition = new User();
+        condition.setUserId(userId);
+        return userDao.selectOne(condition);
+    }
+
+    @Override
     public User getUserByUserNo(String userNo) {
         if (StringUtils.isNull(userNo)) {
             return null;

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import team.stephen.sunshine.constant.SessionConst;
 import team.stephen.sunshine.service.common.CacheService;
+import team.stephen.sunshine.util.common.LogRecord;
 import team.stephen.sunshine.web.dto.user.UserDto;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,11 +31,11 @@ public class BaseController {
     }
 
     public UserDto getUser() {
-        Object value = session.getAttribute(SessionConst._USER);
+        Object value = request.getSession().getAttribute(SessionConst._USER);
         if (!(value instanceof UserDto)) {
             return null;
         }
         //使用缓存中的最新信息
-        return cacheService.findUserDtoByUserNo(((UserDto) value).getUserNo());
+        return cacheService.findUserDtoByUserId(((UserDto) value).getUserId());
     }
 }

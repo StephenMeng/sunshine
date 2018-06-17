@@ -1,4 +1,4 @@
-package team.stephen.sunshine.controller.member;
+package team.stephen.sunshine.controller.personal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

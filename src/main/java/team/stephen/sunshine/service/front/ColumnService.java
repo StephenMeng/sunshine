@@ -22,4 +22,6 @@ public interface ColumnService {
     int restore(int columnId);
 
     Column selectOne(Column condition);
+
+    Column selectBycolumnUri(String column);
 }

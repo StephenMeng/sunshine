@@ -61,4 +61,11 @@ public class ChannelServiceImpl implements ChannelService {
     public Channel selectOne(Channel condition) {
         return channelDao.selectOne(condition);
     }
+
+    @Override
+    public Channel selectByChannelUri(String channel) {
+        Channel condition = new Channel();
+        condition.setChannelUri(channel);
+        return channelDao.selectOne(condition);
+    }
 }

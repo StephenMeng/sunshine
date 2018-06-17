@@ -61,4 +61,11 @@ public class ColumnServiceImpl implements ColumnService {
     public Column selectOne(Column condition) {
         return columnDao.selectOne(condition);
     }
+
+    @Override
+    public Column selectBycolumnUri(String column) {
+        Column condition = new Column();
+        condition.setColumnUri(column);
+        return columnDao.selectOne(condition);
+    }
 }

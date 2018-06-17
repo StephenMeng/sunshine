@@ -20,6 +20,7 @@ import team.stephen.sunshine.controller.BaseController;
 import team.stephen.sunshine.service.common.CacheService;
 import team.stephen.sunshine.util.common.LogRecord;
 import team.stephen.sunshine.util.common.Response;
+import team.stephen.sunshine.web.dto.user.UserDto;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -84,8 +85,8 @@ public class LoginController extends BaseController {
         if (currentUser.isAuthenticated()) {
             LogRecord.info("用户[" + userNo + "]登录认证通过(这里可以进行一些认证通过后的一些系统参数初始化操作)");
             HttpSession session = request.getSession(true);
-
-            session.setAttribute(SessionConst._USER, cacheService.findUserDtoByUserNo(userNo));
+            UserDto userDto= cacheService.findUserDtoByUserNo(userNo);
+            session.setAttribute(SessionConst._USER,userDto);
             return Response.success("login success");
         } else {
             token.clear();

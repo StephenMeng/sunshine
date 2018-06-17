@@ -11,9 +11,25 @@ import java.util.List;
  * @date 2018/5/22
  */
 @ApiModel(description = "附件 输入实体类")
-public class AttachmentDto extends BaseArticleDto {
+public class AttachmentDto {
     @ApiModelProperty(value = "附件名")
     private String attachName;
     @ApiModelProperty(value = "附件uri")
-    private Integer attachUri;
+    private String attachUri;
+
+    public String getAttachName() {
+        return attachName;
+    }
+
+    public void setAttachName(String attachName) {
+        this.attachName = attachName;
+    }
+
+    public String getAttachUri() {
+        return attachUri;
+    }
+
+    public void setAttachUri(String attachUri) {
+        this.attachUri = attachUri;
+    }
 }

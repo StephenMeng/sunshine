@@ -21,4 +21,6 @@ public interface ChannelService {
     int restore(int channelId);
 
     Channel selectOne(Channel condition);
+
+    Channel selectByChannelUri(String channel);
 }

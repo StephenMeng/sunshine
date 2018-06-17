@@ -1,4 +1,4 @@
-package team.stephen.sunshine.controller.member;
+package team.stephen.sunshine.controller.personal;
 
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -20,7 +20,7 @@ import team.stephen.sunshine.web.dto.user.UserDto;
  * @date 2018/5/21
  */
 @RestController
-@RequestMapping("member/user")
+@RequestMapping("personal")
 public class UserController extends BaseController {
     @Autowired
     private UserService userService;
