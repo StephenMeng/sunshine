@@ -18,7 +18,6 @@ public class UserDto extends BaseUserDto implements Serializable {
     private String email;
     @ApiModelProperty(value = "角色")
     private String userRole;
-
     public Integer getUserId() {
         return userId;
     }

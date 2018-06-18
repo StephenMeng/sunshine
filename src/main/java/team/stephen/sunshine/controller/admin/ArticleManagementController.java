@@ -1,7 +1,5 @@
 package team.stephen.sunshine.controller.admin;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.google.common.base.Joiner;
@@ -119,7 +117,7 @@ public class ArticleManagementController extends BaseController {
             }
         }
         article.setDeleted(false);
-        article.setArticleAuthor(currentUser.getUserId());
+        article.setArticleAuthorId(currentUser.getUserId());
         article.setArticleCreateDate(new Date());
         article.setArticleUpdateDate(new Date());
         article.setArticleAbstract(String.valueOf(HanLP.extractSummary(article.getArticleContent(), 10)));
@@ -161,7 +159,7 @@ public class ArticleManagementController extends BaseController {
         }
         dtoTransformService.copyProperties(article, inputArticleDto);
         article.setDeleted(false);
-        article.setArticleAuthor(currentUser.getUserId());
+        article.setArticleAuthorId(currentUser.getUserId());
         article.setArticleUpdateDate(new Date());
         article.setArticleAbstract(String.valueOf(HanLP.extractSummary(article.getArticleContent(), 10)));
         try {

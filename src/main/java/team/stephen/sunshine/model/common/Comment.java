@@ -29,6 +29,13 @@ public class Comment {
     @Column(name = "deleted")
     private Boolean deleted;
 
+    public static Comment getNewDefaultInstance() {
+        Comment comment=new Comment();
+        comment.setDeleted(false);
+        comment.setCommentDate(new Date());
+        return comment;
+    }
+
     public Long getCommentId() {
         return commentId;
     }

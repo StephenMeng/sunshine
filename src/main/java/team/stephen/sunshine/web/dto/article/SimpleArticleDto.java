@@ -1,5 +1,6 @@
-package team.stephen.sunshine.web.dto.front;
+package team.stephen.sunshine.web.dto.article;
 
+import team.stephen.sunshine.model.article.Article;
 import team.stephen.sunshine.web.dto.base.BaseArticleDto;
 import team.stephen.sunshine.web.dto.user.UserDto;
 
@@ -7,11 +8,12 @@ import java.util.Date;
 
 /**
  * @author stephen
- * @date 2018/5/22
+ * @date //
  */
-public class FrontArticleDetailDto extends BaseArticleDto {
-    private String channelUri;
-    private String columnUri;
+public class SimpleArticleDto extends BaseArticleDto {
+    private Long articleId;
+    private Integer channelId;
+    private Integer columnId;
     private String articleAbstract;
     private Integer articleCommentCount;
     private Integer articleViewCount;
@@ -20,30 +22,37 @@ public class FrontArticleDetailDto extends BaseArticleDto {
     private Boolean articlePutTop;
     private Date articleUpdateDate;
     private String articleViewPwd;
-    protected UserDto articleAuthor;
-
-    public UserDto getArticleAuthor() {
-        return articleAuthor;
+    private UserDto articleAuthor;
+    public SimpleArticleDto() {
+        super();
     }
 
-    public void setArticleAuthor(UserDto articleAuthor) {
-        this.articleAuthor = articleAuthor;
+    public SimpleArticleDto(Article source) {
+        super(source);
     }
 
-    public String getChannelUri() {
-        return channelUri;
+    public Long getArticleId() {
+        return articleId;
     }
 
-    public void setChannelUri(String channelUri) {
-        this.channelUri = channelUri;
+    public void setArticleId(Long articleId) {
+        this.articleId = articleId;
     }
 
-    public String getColumnUri() {
-        return columnUri;
+    public Integer getChannelId() {
+        return channelId;
     }
 
-    public void setColumnUri(String columnUri) {
-        this.columnUri = columnUri;
+    public void setChannelId(Integer channelId) {
+        this.channelId = channelId;
+    }
+
+    public Integer getColumnId() {
+        return columnId;
+    }
+
+    public void setColumnId(Integer columnId) {
+        this.columnId = columnId;
     }
 
     public String getArticleAbstract() {
@@ -108,5 +117,13 @@ public class FrontArticleDetailDto extends BaseArticleDto {
 
     public void setArticleViewPwd(String articleViewPwd) {
         this.articleViewPwd = articleViewPwd;
+    }
+
+    public UserDto getArticleAuthor() {
+        return articleAuthor;
+    }
+
+    public void setArticleAuthor(UserDto articleAuthor) {
+        this.articleAuthor = articleAuthor;
     }
 }

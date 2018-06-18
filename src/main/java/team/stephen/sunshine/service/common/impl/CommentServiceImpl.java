@@ -2,12 +2,16 @@ package team.stephen.sunshine.service.common.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import team.stephen.sunshine.dao.sunshine.common.CommentDao;
 import team.stephen.sunshine.model.common.Comment;
+import team.stephen.sunshine.service.common.CacheService;
 import team.stephen.sunshine.service.common.CommentService;
 import team.stephen.sunshine.util.common.ParamCheck;
+import team.stephen.sunshine.web.dto.comment.CommentDto;
+import team.stephen.sunshine.web.dto.user.UserDto;
 
 import static team.stephen.sunshine.constant.CommentType.COMMENT_ON_ARTICLE;
 import static team.stephen.sunshine.constant.CommentType.COMMENT_ON_COMMENT;
@@ -20,9 +24,11 @@ import static team.stephen.sunshine.constant.CommentType.COMMENT_ON_COMMENT;
 public class CommentServiceImpl implements CommentService {
     @Autowired
     private CommentDao commentDao;
+    @Autowired
+    private CacheService cacheService;
 
     @Override
-    public Page<Comment> selectArticleOnArticle(Long articleId, Integer pageNum, Integer pageSize) {
+    public Page<Comment> selectCommentOnArticle(Long articleId, Integer pageNum, Integer pageSize) {
         return getComments(articleId, pageNum, pageSize, COMMENT_ON_ARTICLE);
     }
 
@@ -60,5 +66,17 @@ public class CommentServiceImpl implements CommentService {
         condition.setDeleted(true);
         commentDao.updateByPrimaryKeySelective(condition);
         return ParamCheck.right();
+    }
+
+    @Override
+    public CommentDto modelToDto(Comment comment) {
+        if (comment == null) {
+            return null;
+        }
+        CommentDto commentDto = new CommentDto();
+        BeanUtils.copyProperties(comment, commentDto);
+        UserDto userDto = cacheService.findUserDtoByUserId(comment.getCommentUserId());
+        commentDto.setCommentUser(userDto);
+        return commentDto;
     }
 }

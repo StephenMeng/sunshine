@@ -34,7 +34,7 @@ public class Article {
     @Field("articleTag")
     private String articleTag;
     @Column(name = "article_author")
-    private Integer articleAuthor;
+    private Integer articleAuthorId;
     @Column(name = "article_comment_count")
     private Integer articleCommentCount;
     @Column(name = "article_view_count")
@@ -132,12 +132,12 @@ public class Article {
         this.articleTag = articleTag;
     }
 
-    public Integer getArticleAuthor() {
-        return articleAuthor;
+    public Integer getArticleAuthorId() {
+        return articleAuthorId;
     }
 
-    public void setArticleAuthor(Integer articleAuthor) {
-        this.articleAuthor = articleAuthor;
+    public void setArticleAuthorId(Integer articleAuthorId) {
+        this.articleAuthorId = articleAuthorId;
     }
 
     public Integer getArticleCommentCount() {

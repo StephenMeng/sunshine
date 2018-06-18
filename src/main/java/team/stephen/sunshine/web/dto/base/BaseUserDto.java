@@ -15,6 +15,8 @@ public class BaseUserDto {
     private String userNo;
     @ApiModelProperty(value = "用户名")
     private String userName;
+    @ApiModelProperty(value = "头像")
+    private String avatarUrl;
 
     public String getUserNo() {
         return userNo;
@@ -30,5 +32,13 @@ public class BaseUserDto {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }

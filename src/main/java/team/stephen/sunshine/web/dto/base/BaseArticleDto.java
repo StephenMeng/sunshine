@@ -16,8 +16,6 @@ public class BaseArticleDto {
     protected String articleTitle;
     @ApiModelProperty(value = "标签")
     protected String articleTag;
-    @ApiModelProperty(value = "作者")
-    protected Integer articleAuthor;
     @ApiModelProperty(value = "链接")
     protected String articleLink;
     @ApiModelProperty(value = "创建日期")
@@ -29,7 +27,6 @@ public class BaseArticleDto {
     }
 
     public BaseArticleDto(Article source) {
-        setArticleAuthor(source.getArticleAuthor());
         setArticleCreateDate(source.getArticleCreateDate());
         setArticleLink(source.getArticleLink());
         setArticleTag(source.getArticleTag());
@@ -50,14 +47,6 @@ public class BaseArticleDto {
 
     public void setArticleTag(String articleTag) {
         this.articleTag = articleTag;
-    }
-
-    public Integer getArticleAuthor() {
-        return articleAuthor;
-    }
-
-    public void setArticleAuthor(Integer articleAuthor) {
-        this.articleAuthor = articleAuthor;
     }
 
     public String getArticleLink() {

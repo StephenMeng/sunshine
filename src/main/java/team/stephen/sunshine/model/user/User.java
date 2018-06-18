@@ -28,7 +28,8 @@ public class User {
     private String title;
     @Column(name = "mobile_phone")
     private String mobilePhone;
-
+    @Column(name = "avatar_url")
+    private String avatarUrl;
     public Integer getUserId() {
         return userId;
     }
@@ -91,5 +92,12 @@ public class User {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }

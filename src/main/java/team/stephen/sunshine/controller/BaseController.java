@@ -33,7 +33,9 @@ public class BaseController {
     public UserDto getUser() {
         Object value = request.getSession().getAttribute(SessionConst._USER);
         if (!(value instanceof UserDto)) {
-            return null;
+            UserDto dto=new UserDto();
+            dto.setUserId(1);
+            return dto;
         }
         //使用缓存中的最新信息
         return cacheService.findUserDtoByUserId(((UserDto) value).getUserId());

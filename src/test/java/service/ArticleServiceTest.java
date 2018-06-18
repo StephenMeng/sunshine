@@ -26,7 +26,7 @@ public class ArticleServiceTest {
         Article article = new Article();
         article.setArticleTitle("第三篇文档");
         article.setArticleLinkId(RandomIDUtil.randomID(16));
-        article.setArticleAuthor(1);
+        article.setArticleAuthorId(1);
         article.setArticleLink(" ");
         article.setArticleUpdateDate(new Date());
         article.setArticleCreateDate(new Date());

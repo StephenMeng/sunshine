@@ -2,6 +2,7 @@ package team.stephen.sunshine.web.dto.article;
 
 import team.stephen.sunshine.model.article.Article;
 import team.stephen.sunshine.web.dto.base.BaseArticleDto;
+import team.stephen.sunshine.web.dto.user.UserDto;
 
 import java.util.Date;
 
@@ -22,9 +23,17 @@ public class StandardArticleDto extends BaseArticleDto {
     private Boolean articlePutTop;
     private Date articleUpdateDate;
     private String articleViewPwd;
-
+    private UserDto articleAuthor;
     public StandardArticleDto() {
         super();
+    }
+
+    public UserDto getArticleAuthor() {
+        return articleAuthor;
+    }
+
+    public void setArticleAuthor(UserDto articleAuthor) {
+        this.articleAuthor = articleAuthor;
     }
 
     public StandardArticleDto(Article source) {

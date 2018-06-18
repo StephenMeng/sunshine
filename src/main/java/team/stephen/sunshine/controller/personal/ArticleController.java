@@ -5,8 +5,6 @@ import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.apache.shiro.crypto.hash.SimpleHash;
-import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,15 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import team.stephen.sunshine.controller.BaseController;
 import team.stephen.sunshine.model.article.Article;
-import team.stephen.sunshine.model.user.User;
 import team.stephen.sunshine.service.article.ArticleService;
+import team.stephen.sunshine.service.common.CacheService;
 import team.stephen.sunshine.service.common.DtoTransformService;
-import team.stephen.sunshine.service.user.UserService;
 import team.stephen.sunshine.util.common.PageUtil;
 import team.stephen.sunshine.util.common.Response;
-import team.stephen.sunshine.web.dto.base.BaseArticleDto;
-import team.stephen.sunshine.web.dto.user.SignInUserDto;
-import team.stephen.sunshine.web.dto.user.UserDto;
+import team.stephen.sunshine.web.dto.article.SimpleArticleDto;
 
 /**
  * @author stephen
@@ -35,6 +30,8 @@ public class ArticleController extends BaseController {
     private ArticleService articleService;
     @Autowired
     private DtoTransformService dtoTransformService;
+    @Autowired
+    private CacheService cacheService;
 
     @ApiOperation(value = "获取我喜欢的文章列表", httpMethod = "GET", response = Response.class)
     @ApiImplicitParams({
@@ -43,13 +40,14 @@ public class ArticleController extends BaseController {
     @RequestMapping(value = "like", method = RequestMethod.GET)
     public Response getArticle(
             @RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
-            @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize) {
+            @RequestParam(name = "pageSize", defaultValue = "4") Integer pageSize) {
         Article condition = new Article();
         Page<Article> articlePage = articleService.select(condition, pageNum, pageSize);
-        Page<BaseArticleDto> standardArticleDtoPage = PageUtil.transformPage(articlePage, article -> {
-            BaseArticleDto standardArticleDto = new BaseArticleDto();
-            dtoTransformService.copyProperties(standardArticleDto, article);
-            return standardArticleDto;
+        Page<SimpleArticleDto> standardArticleDtoPage = PageUtil.transformPage(articlePage, article -> {
+            SimpleArticleDto simpleArticleDto = new SimpleArticleDto();
+            dtoTransformService.copyProperties(simpleArticleDto, article);
+            simpleArticleDto.setArticleAuthor(cacheService.findUserDtoByUserId(article.getArticleAuthorId()));
+            return simpleArticleDto;
         });
         return Response.success(new PageInfo(standardArticleDtoPage));
     }
