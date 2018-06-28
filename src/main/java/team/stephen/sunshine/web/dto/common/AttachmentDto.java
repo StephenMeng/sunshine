@@ -2,6 +2,7 @@ package team.stephen.sunshine.web.dto.common;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import team.stephen.sunshine.model.common.Attachment;
 import team.stephen.sunshine.web.dto.base.BaseArticleDto;
 
 import java.util.List;
@@ -16,6 +17,14 @@ public class AttachmentDto {
     private String attachName;
     @ApiModelProperty(value = "附件uri")
     private String attachUri;
+
+    public AttachmentDto() {
+    }
+
+    public AttachmentDto(String attachUri, String attachName) {
+        setAttachName(attachName);
+        setAttachUri(attachUri);
+    }
 
     public String getAttachName() {
         return attachName;

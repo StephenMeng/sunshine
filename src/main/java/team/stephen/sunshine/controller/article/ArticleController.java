@@ -1,7 +1,9 @@
-package team.stephen.sunshine.controller.personal;
+package team.stephen.sunshine.controller.article;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
+import com.google.common.base.Splitter;
+import com.google.common.collect.Lists;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -12,19 +14,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import team.stephen.sunshine.controller.BaseController;
 import team.stephen.sunshine.model.article.Article;
+import team.stephen.sunshine.model.common.ArticleAttachRelation;
+import team.stephen.sunshine.model.common.Attachment;
 import team.stephen.sunshine.service.article.ArticleService;
 import team.stephen.sunshine.service.common.CacheService;
 import team.stephen.sunshine.service.common.DtoTransformService;
 import team.stephen.sunshine.util.common.PageUtil;
 import team.stephen.sunshine.util.common.Response;
+import team.stephen.sunshine.util.element.StringUtils;
 import team.stephen.sunshine.web.dto.article.SimpleArticleDto;
+import team.stephen.sunshine.web.dto.article.StandardArticleDto;
+import team.stephen.sunshine.web.dto.common.AttachmentDto;
+
+import java.util.List;
 
 /**
  * @author stephen
  * @date 2018/5/21
  */
 @RestController
-@RequestMapping("personal/article")
+@RequestMapping("article")
 public class ArticleController extends BaseController {
     @Autowired
     private ArticleService articleService;
@@ -52,4 +61,15 @@ public class ArticleController extends BaseController {
         return Response.success(new PageInfo(standardArticleDtoPage));
     }
 
+    @ApiOperation(value = "获取文章详情", httpMethod = "GET", response = Response.class)
+    @ApiImplicitParam(name = "articleLinkId", value = "文章linkId", required = true, dataType = "string", paramType = "query")
+    @RequestMapping(value = "detail", method = RequestMethod.GET)
+    public Response getArticle(
+            @RequestParam(name = "articleLinkId") String articleLinkId) {
+        Article article = articleService.selectArticleByLinkId(articleLinkId);
+        StandardArticleDto standardArticleDto = dtoTransformService.articleModelToDto(article);
+        List<AttachmentDto> attaches = articleService.getAttachments(article.getArticleId());
+        standardArticleDto.setAttachments(attaches);
+        return Response.success(standardArticleDto);
+    }
 }

@@ -83,6 +83,20 @@ public class FileController extends BaseController{
         }
         return Response.success("/img/picture/"+fileName);
     }
+    @ApiOperation(value = "上传附件", httpMethod = "POST", response = Response.class)
+    @RequestMapping(value = "upload/attach")
+    public Response updateAttachement(@RequestParam("file")  MultipartFile file) {
+        String fileName = file.getOriginalFilename();
+        String filePath=null;
+        try {
+            File rootDir=ResourceUtils.getFile("classpath:static/attach");
+            filePath=rootDir+ "/" + fileName;
+            FileUtils.upload(file.getInputStream(), filePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return Response.success("/attach/"+fileName);
+    }
     @ApiOperation(value = "下载文件", httpMethod = "POST", response = Response.class)
     @ApiImplicitParam(name = "path", value = "下载路径", required = true, dataType = "String", paramType = "query")
     @RequestMapping(value = "download", method = RequestMethod.GET)

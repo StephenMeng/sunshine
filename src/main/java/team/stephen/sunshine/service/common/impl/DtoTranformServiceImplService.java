@@ -2,11 +2,14 @@ package team.stephen.sunshine.service.common.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.google.common.base.Splitter;
+import com.google.common.collect.Lists;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.stereotype.Service;
 import team.stephen.sunshine.model.article.Article;
 import team.stephen.sunshine.model.front.Channel;
 import team.stephen.sunshine.model.front.Column;
+import team.stephen.sunshine.util.element.StringUtils;
 import team.stephen.sunshine.web.dto.article.StandardArticleDto;
 import team.stephen.sunshine.web.dto.book.BookDto;
 import team.stephen.sunshine.web.dto.front.FrontChannelDto;
@@ -19,6 +22,7 @@ import team.stephen.sunshine.model.user.User;
 import team.stephen.sunshine.service.common.DtoTransformService;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 @Service
 public class DtoTranformServiceImplService implements DtoTransformService {
@@ -115,6 +119,11 @@ public class DtoTranformServiceImplService implements DtoTransformService {
         }
         StandardArticleDto dto = new StandardArticleDto();
         copyProperties(dto, orig);
+        if (StringUtils.isNotNull(orig.getArticleTag())) {
+            Iterable its = Splitter.on(team.stephen.sunshine.constant.Splitter.SEMICOLON).split(orig.getArticleTag());
+            List<String> tags = Lists.newArrayList(its);
+            dto.setTags(tags);
+        }
         return dto;
     }
 

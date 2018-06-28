@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="team.stephen.sunshine.dao.sunshine.common.CommentDao">
+    <resultMap id="BaseResultMap" type="team.stephen.sunshine.model.common.Comment">
+        <id column="comment_id" property="commentId" jdbcType="INTEGER"/>
+        <result column="comment_user_id" property="commentUserId" jdbcType="INTEGER"/>
+        <result column="comment_on_bin_id" property="commentOnBinId" jdbcType="INTEGER"/>
+        <result column="comment_on_bin_type" property="commentOnBinType" jdbcType="INTEGER"/>
+        <result column="comment_content" property="commentContent" jdbcType="VARCHAR"/>
+        <result column="comment_date" property="commentDate" jdbcType="TIMESTAMP"/>
+        <result column="deleted" property="deleted" jdbcType="BOOLEAN"/>
+
+    </resultMap>
+    <select id="selectByCondition"  resultMap="BaseResultMap">
+        select * from sunshine_comment where
+        1=1
+        <if test="comment.commentId!=null">
+            AND comment_id=#{comment.commentId}
+        </if>
+        <if test="comment.commentUserId!=null">
+            AND comment_user_id=#{comment.commentUserId}
+        </if>
+        <if test="comment.commentOnBinId!=null">
+            AND comment_on_bin_id=#{comment.commentOnBinId}
+        </if>
+        <if test="comment.commentOnBinType!=null">
+            AND comment_on_bin_type=#{comment.commentOnBinType}
+        </if>
+        <if test="comment.deleted!=null">
+            AND deleted=#{comment.deleted}
+        </if>
+        ORDER BY comment_date desc
+    </select>
+</mapper>

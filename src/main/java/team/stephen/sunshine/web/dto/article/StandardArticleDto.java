@@ -2,9 +2,11 @@ package team.stephen.sunshine.web.dto.article;
 
 import team.stephen.sunshine.model.article.Article;
 import team.stephen.sunshine.web.dto.base.BaseArticleDto;
+import team.stephen.sunshine.web.dto.common.AttachmentDto;
 import team.stephen.sunshine.web.dto.user.UserDto;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author stephen
@@ -24,6 +26,25 @@ public class StandardArticleDto extends BaseArticleDto {
     private Date articleUpdateDate;
     private String articleViewPwd;
     private UserDto articleAuthor;
+    private List<AttachmentDto> attachments;
+    private List<String>tags;
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
+
+    public List<AttachmentDto> getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(List<AttachmentDto> attachments) {
+        this.attachments = attachments;
+    }
+
     public StandardArticleDto() {
         super();
     }

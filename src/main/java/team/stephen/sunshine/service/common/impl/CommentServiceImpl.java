@@ -41,8 +41,9 @@ public class CommentServiceImpl implements CommentService {
         Comment condition = new Comment();
         condition.setCommentOnBinId(articleId);
         condition.setCommentOnBinType(commentOnArticle);
+        condition.setDeleted(false);
         PageHelper.startPage(pageNum, pageSize);
-        return (Page<Comment>) commentDao.select(condition);
+        return (Page<Comment>) commentDao.selectByCondition(condition);
     }
 
     @Override

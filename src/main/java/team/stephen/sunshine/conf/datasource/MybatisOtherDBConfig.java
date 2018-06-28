@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import javax.sql.DataSource;
 
@@ -18,8 +19,10 @@ import javax.sql.DataSource;
  * @date 2018/5/26
  */
 @Configuration
-@MapperScan(basePackages = {"team.stephen.sunshine.dao.other"}, sqlSessionFactoryRef = "otherSqlFactoryRef")
+@MapperScan(basePackages = {MybatisOtherDBConfig.PACKAGE}, sqlSessionFactoryRef = "otherSqlFactoryRef")
 public class MybatisOtherDBConfig {
+    static final String PACKAGE = "team.stephen.sunshine.dao.other";
+    static final String MAPPER_LOCATION = "classpath:mapper/other/*.xml";
     @Autowired
     @Qualifier("otherDS")
     private DataSource otherDataSource;
@@ -29,7 +32,8 @@ public class MybatisOtherDBConfig {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
         //sunshine 数据源
         factoryBean.setDataSource(otherDataSource);
-
+        factoryBean.setMapperLocations(new PathMatchingResourcePatternResolver()
+                .getResources(MybatisOtherDBConfig.MAPPER_LOCATION));
         return factoryBean.getObject();
     }
 

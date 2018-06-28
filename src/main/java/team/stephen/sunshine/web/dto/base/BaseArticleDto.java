@@ -14,8 +14,8 @@ import java.util.Date;
 public class BaseArticleDto {
     @ApiModelProperty(value = "题名")
     protected String articleTitle;
-    @ApiModelProperty(value = "标签")
-    protected String articleTag;
+//    @ApiModelProperty(value = "标签")
+//    protected String articleTag;
     @ApiModelProperty(value = "链接")
     protected String articleLink;
     @ApiModelProperty(value = "创建日期")
@@ -29,7 +29,7 @@ public class BaseArticleDto {
     public BaseArticleDto(Article source) {
         setArticleCreateDate(source.getArticleCreateDate());
         setArticleLink(source.getArticleLink());
-        setArticleTag(source.getArticleTag());
+//        setArticleTag(source.getArticleTag());
         setArticleTitle(source.getArticleTitle());
     }
 
@@ -41,13 +41,13 @@ public class BaseArticleDto {
         this.articleTitle = articleTitle;
     }
 
-    public String getArticleTag() {
-        return articleTag;
-    }
-
-    public void setArticleTag(String articleTag) {
-        this.articleTag = articleTag;
-    }
+//    public String getArticleTag() {
+//        return articleTag;
+//    }
+//
+//    public void setArticleTag(String articleTag) {
+//        this.articleTag = articleTag;
+//    }
 
     public String getArticleLink() {
         return articleLink;

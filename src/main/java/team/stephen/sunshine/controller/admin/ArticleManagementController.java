@@ -16,6 +16,7 @@ import team.stephen.sunshine.model.article.Article;
 import team.stephen.sunshine.model.front.Channel;
 import team.stephen.sunshine.model.front.Column;
 import team.stephen.sunshine.service.article.ArticleService;
+import team.stephen.sunshine.service.common.AttachmentService;
 import team.stephen.sunshine.service.common.DtoTransformService;
 import team.stephen.sunshine.service.common.SolrService;
 import team.stephen.sunshine.service.front.ChannelService;
@@ -27,9 +28,12 @@ import team.stephen.sunshine.util.common.Response;
 import team.stephen.sunshine.util.element.StringUtils;
 import team.stephen.sunshine.web.dto.article.InputArticleDto;
 import team.stephen.sunshine.web.dto.base.BaseArticleDto;
+import team.stephen.sunshine.web.dto.common.AttachmentDto;
 import team.stephen.sunshine.web.dto.user.UserDto;
 
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static team.stephen.sunshine.constant.AricleConst.ARTICLE_LINK_ID_LENGTH;
 
@@ -53,7 +57,8 @@ public class ArticleManagementController extends BaseController {
     private ChannelService channelService;
     @Autowired
     private ColumnService columnService;
-
+    @Autowired
+    private AttachmentService attachmentService;
     @ApiOperation(value = "获取文章列表", httpMethod = "GET", response = Response.class)
     @ApiImplicitParams({
             @ApiImplicitParam(name = "channelId", value = "频道ID", required = true, dataType = "int", paramType = "query"),
@@ -84,8 +89,8 @@ public class ArticleManagementController extends BaseController {
         return Response.success(new PageInfo(standardArticleDtoPage));
     }
 
-    @ApiOperation(value = "新增文章", httpMethod = "POST", response = Response.class)
-    @RequestMapping(value = "add", method = RequestMethod.POST)
+    @ApiOperation(value = "新增或更新文章，根据articleLinkId判断", httpMethod = "POST", response = Response.class)
+    @RequestMapping(value = "addOrUpdate", method = RequestMethod.POST)
     public Response addColumn(@RequestBody InputArticleDto inputArticleDto) {
         UserDto currentUser = getUser();
         //todo 测试
@@ -100,6 +105,8 @@ public class ArticleManagementController extends BaseController {
         if (inputArticleDto.getTags() != null) {
             article.setArticleTag(Joiner.on(";").join(inputArticleDto.getTags()));
         }
+        inputArticleDto.setChannel("tas");
+        inputArticleDto.setColumn("post");
         if (StringUtils.isNull(inputArticleDto.getChannel())) {
             return Response.error(ResultEnum.CLIENT_ERROR.getCode(), "频道不能为空", "频道不能为空");
         }
@@ -121,17 +128,37 @@ public class ArticleManagementController extends BaseController {
         article.setArticleCreateDate(new Date());
         article.setArticleUpdateDate(new Date());
         article.setArticleAbstract(String.valueOf(HanLP.extractSummary(article.getArticleContent(), 10)));
-        article.setArticleLinkId(RandomIDUtil.randomID(ARTICLE_LINK_ID_LENGTH));
         article.setArticleLink("article/detail/" + article.getArticleLinkId());
-        try {
-            articleService.addArticle(article);
-            article = articleService.selectArticleByLinkId(article.getArticleLinkId());
-            solrService.addArticle(article);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return Response.error(ResultEnum.SERVER_WRONG.getCode(), e.getMessage(), e.getMessage());
-        }
 
+        Long articleId;
+        if(StringUtils.isNull(inputArticleDto.getArticleLinkId())){
+            //新增
+            article.setArticleLinkId(RandomIDUtil.randomID(ARTICLE_LINK_ID_LENGTH));
+            try {
+                articleService.addArticle(article);
+                article = articleService.selectArticleByLinkId(article.getArticleLinkId());
+                articleId=article.getArticleId();
+                solrService.addArticle(article);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return Response.error(ResultEnum.SERVER_WRONG.getCode(), e.getMessage(), e.getMessage());
+            }
+        }else {
+            Article exist = articleService.selectArticleByLinkId(article.getArticleLinkId());
+            articleId=exist.getArticleId();
+            article.setArticleId(articleId);
+            try {
+                articleService.updateSelective(article);
+                solrService.update(article);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return Response.error(ResultEnum.SERVER_WRONG.getCode(), e.getMessage(), e.getMessage());
+            }
+        }
+        List<AttachmentDto> attaches=inputArticleDto.getAttachments();
+        if(attaches!=null&&attaches.size()>0) {
+            articleService.addAttachments(articleId,attaches);
+        }
         return Response.success(true);
     }
 

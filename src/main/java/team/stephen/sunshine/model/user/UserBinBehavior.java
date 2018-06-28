@@ -16,7 +16,7 @@ import java.util.Date;
 @Table(name = "sunshine_user_bin_behavior")
 public class UserBinBehavior {
     @Id
-    @Column(name = "userId")
+    @Column(name = "user_id")
     private Integer userId;
     @Id
     @Column(name = "bin_id")

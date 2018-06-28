@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
 public class DataSourceConfig {
     @Bean(name = "sunshineDS")
     @ConfigurationProperties(prefix = "spring.datasource.sunshine")
+
     public javax.sql.DataSource sunshineDataSource() {
         return DataSourceBuilder.create().build();
     }

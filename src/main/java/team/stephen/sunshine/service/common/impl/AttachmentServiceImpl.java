@@ -2,6 +2,7 @@ package team.stephen.sunshine.service.common.impl;
 
 import com.github.pagehelper.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import team.stephen.sunshine.constant.enu.AttachmentEnum;
 import team.stephen.sunshine.dao.sunshine.common.AttachmentDao;
 import team.stephen.sunshine.exception.NullParamException;
@@ -17,6 +18,7 @@ import java.util.List;
  * @author stephen
  * @date 2018/5/22
  */
+@Service
 public class AttachmentServiceImpl implements AttachmentService {
     @Autowired
     private AttachmentDao attachmentDao;
