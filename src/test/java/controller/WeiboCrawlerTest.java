@@ -2,6 +2,8 @@ package controller;
 
 
 import com.github.pagehelper.Page;
+import com.google.common.base.Charsets;
+import com.google.common.io.Files;
 import io.netty.util.concurrent.DefaultThreadFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,9 +23,13 @@ import team.stephen.sunshine.util.common.LogRecord;
 import team.stephen.sunshine.util.element.DateUtils;
 import team.stephen.sunshine.util.element.TimeFormateUtil;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -468,5 +474,22 @@ public class WeiboCrawlerTest {
         List<Weibo> r = weiboService.crawlWeiboPageBar(url, headers);
         LogRecord.print(r);
     }
-
+    @Test
+    public void testImportWeiboUri() throws IOException {
+        String filePath="C:\\Users\\stephen\\Desktop\\weibo\\uri.txt";
+        List<String>lines= Files.readLines(new File(filePath), Charsets.UTF_8);
+        for(String line:lines){
+            line=line.substring(line.indexOf(".com")+4,line.indexOf("?"));
+            line=line.replace("/home","");
+            line=line.replace("/info","");
+//            LogRecord.print(line);
+            WeiboUserConfig config=new WeiboUserConfig();
+            config.setUri(line);
+            try{
+                weiboService.addWeiboUserConfig(config);
+            }catch (Exception e){
+                LogRecord.print(line);
+            }
+        }
+    }
 }
