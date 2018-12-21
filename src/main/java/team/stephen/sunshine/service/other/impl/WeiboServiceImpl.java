@@ -197,6 +197,7 @@ public class WeiboServiceImpl implements WeiboService {
                         if (liE.html().contains("ficon_pinfo ")) {
                             String pinfo = liE.text();
                             config.setPinfo(pinfo.replace("Ü ", ""));
+                            config.setPinfo(StringUtils.filterEmoji(config.getPinfo()));
                         }
                         if (liE.html().contains("ficon_link")) {
                             String link = liE.text();
@@ -223,7 +224,22 @@ public class WeiboServiceImpl implements WeiboService {
 
         } catch (IOException e) {
             e.printStackTrace();
+            try {
+                LogRecord.print("休息10秒钟");
+                Thread.sleep(10000);
+
+            } catch (InterruptedException e2) {
+                e2.printStackTrace();
+            }
             return null;
+        }
+        if(StringUtils.isNull(config.getName())){
+            try {
+                LogRecord.print("休息5秒钟");
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         return config;
     }
@@ -436,9 +452,28 @@ public class WeiboServiceImpl implements WeiboService {
     }
 
     @Override
+    public List<String> getAllUrlsFromWeibo() {
+        return weiboDao.selectAllUrlsFromWeibo();
+    }
+
+    @Override
     public Page<WeiboUserConfig> selectUserConfig(WeiboUserConfig condition, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         return (Page<WeiboUserConfig>) weiboUserConfigDao.select(condition);
+    }
+
+    @Override
+    public void addOrUpdate(Weibo weibo) {
+        try {
+            weiboDao.insert(weibo);
+        }catch (Exception e){
+//            LogRecord.error("weibo has been inserted :"+weibo.getwUrl());
+        }
+    }
+
+    @Override
+    public List<Weibo> getAll() {
+        return weiboDao.selectAll();
     }
 
 
@@ -455,7 +490,7 @@ public class WeiboServiceImpl implements WeiboService {
         for (Element element : elements) {
             try {
                 Weibo weibo = new Weibo();
-                weibo.setCrawlDate(new Date());
+                weibo.setCreateDate(new Date());
                 Elements ename = element.select("div[class^=WB_cardtitle_b]");
                 if (ename != null && StringUtils.isNotNull(ename.html())) {
                     continue;
@@ -520,7 +555,7 @@ public class WeiboServiceImpl implements WeiboService {
         for (Element element : elements) {
             try {
                 Weibo weibo = new Weibo();
-                weibo.setCrawlDate(new Date());
+                weibo.setCreateDate(new Date());
 
                 String ouIdStr = element.attr("tbinfo");
                 ouIdStr = ouIdStr.substring(ouIdStr.indexOf("=") + 1);

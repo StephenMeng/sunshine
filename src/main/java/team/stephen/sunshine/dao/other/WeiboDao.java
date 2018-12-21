@@ -11,6 +11,9 @@ import java.util.List;
  * @date 2018/05/30 02:32
  */
 @Mapper
-public interface WeiboDao extends BaseDao<Weibo>{
+public interface WeiboDao extends BaseDao<Weibo> {
     List<String> selectAllUserIdsFromWeibo();
+
+    List<String> selectAllUrlsFromWeibo();
+
 }

@@ -30,6 +30,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -40,7 +42,8 @@ public class WeiboCrawlerTest {
     private WeiboService weiboService;
     @Autowired
     private CrawlErrorService crawlErrorService;
-    private static String cookie = "_s_tentry=movie.kankan.com; Apache=7256170564393.524.1525878160642; SINAGLOBAL=7256170564393.524.1525878160642; ULV=1525878160649:1:1:1:7256170564393.524.1525878160642:; login_sid_t=fe72f64d0dbba7f7b0e63c5616fa15d4; cross_origin_proto=SSL; SWBSSL=usrmdinst_7; SWB=usrmdinst_15; SSOLoginState=1528313282; wvr=6; ULOGIN_IMG=15283371533974; SCF=ApWJpYkIBCSLvQa6VugVvlZ6e-DWM2_b7Y4Eih38-j3oXRVFZSzz1MfSljY7KuTkx-p5ct8dpYgVMqFRW4toQFM.; SUB=_2A252Hv4TDeRhGeNJ7FYT8SnIyDiIHXVVamjbrDV8PUJbmtAKLUfWkW9NS7N__luXtJ0hCdsXY69Zd4DS8WDzddZJ; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WhafKh-AK_DR8KR-fW3sBuy5JpX5K-hUgL.Fo-NS0BEeKMXe0B2dJLoIE5LxK-LB-BL1-qLxK-L1hMLBK2LxKnLBo-L1-zN1hM7S5tt; SUHB=06ZVb8IQ0Wz4ON; ALF=1560003009; UOR=,,graph.qq.com; WBStorage=5548c0baa42e6f3d|undefined";
+    private static String cookie =
+            "SINAGLOBAL=8490149224106.765.1520337385948; UOR=www.hankcs.com,widget.weibo.com,www.baidu.com; login_sid_t=3bda450336e5de9374c8f844fab15e49; cross_origin_proto=SSL; _s_tentry=passport.weibo.com; Apache=9039113386961.615.1545109205964; ULV=1545109205974:7:1:1:9039113386961.615.1545109205964:1530534997868; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WhHG.930Gf5fOgXqM.y_wER5JpX5o275NHD95Q0e02ceK-fSh5fWs4Dqcj.i--Xi-ihiKyWi--4iKnEi-8Wi--Ri-2pi-zEi--fi-zEiK.7; ALF=1576645236; SSOLoginState=1545109237; SUB=_2A25xHA6mDeRhGeVN6lQQ9SvIyzmIHXVSaGdurDV8PUNbmtAKLU_-kW9NTEdLmRdEmNvSFEa_S-C06gV3NLgJ_92c; SUHB=0BLoa6K_CQMmWD; wvr=6";
     private static Map<String, String> headers = new HashMap<>();
 
     private int corePoolSize = 20;
@@ -50,7 +53,52 @@ public class WeiboCrawlerTest {
     static {
         headers.put("Cookie", cookie);
     }
-
+    @Test
+    public void testGetUserUid() {
+        List<Weibo>weiboUrls=weiboService.getAll();
+        Pattern pattern=Pattern.compile("\\/([0-9]*?)\\?");
+        Matcher matcher;
+        for (Weibo weibo : weiboUrls) {
+            matcher=pattern.matcher(weibo.getwUserUrl());
+            LogRecord.print(weibo.getwUserUrl());
+            if(matcher.find()){
+                String uid=matcher.group();
+                uid=uid.replace("/","").replace("?","");
+                WeiboUserConfig config=new WeiboUserConfig();
+                config.setOid(uid);
+                try{
+                    weiboService.addWeiboUserConfig(config);
+                }catch (Exception e){
+                    LogRecord.print(e.getMessage());
+                }
+            }
+        }
+    }
+    @Test
+    public void testUpdateUserUidOfWeibo() {
+        List<Weibo>weiboUrls=weiboService.getAll();
+        Pattern pattern=Pattern.compile("\\/([0-9]*?)\\?");
+        Matcher matcher;
+        for (Weibo weibo : weiboUrls) {
+            if(weibo.getwOuid()!=null&&!weibo.getwOuid().startsWith("u")){
+                continue;
+            }
+            matcher=pattern.matcher(weibo.getwUserUrl());
+            if(matcher.find()){
+                String uid=matcher.group();
+                uid=uid.replace("/","").replace("?","");
+                Weibo w=new Weibo();
+                LogRecord.print(uid+"\t"+weibo.getwUserUrl());
+                w.setwUrl(weibo.getwUrl());
+                w.setwOuid(uid);
+                try{
+                    weiboService.updateSelective(w);
+                }catch (Exception e){
+                    LogRecord.print(e.getMessage());
+                }
+            }
+        }
+    }
     @Test
     public void testCrawlBasicInfo() {
         String url = "https://weibo.com/u/2579500772?refer_flag=1001030201_";
@@ -60,6 +108,7 @@ public class WeiboCrawlerTest {
 //        url="https://weibo.com/u/2146154687?refer_flag=1001030101_";
 //        url="https://weibo.com/leehom?refer_flag=1001030101_&is_hot=1";
         url = "https://weibo.com/chaijingkanjian?refer_flag=1001030201_";
+        url="https://weibo.com/1400935015";
         WeiboUserConfig config = weiboService.crawlUserConfig(url, headers);
         if (config != null) {
             try {
@@ -100,9 +149,10 @@ public class WeiboCrawlerTest {
         LogRecord.print(ouIds.size());
         for (String ouid : ouIds) {
 //            executor.execute(() -> {
-            String url = "https://weibo.com/u/" + ouid + "?refer_flag=1001030201_";
+            String url = "https://weibo.com/u/" + ouid ;
             LogRecord.print(url);
             WeiboUserConfig config = weiboService.crawlUserConfig(url, headers);
+            config.setOid(ouid);
             if (config != null) {
                 weiboService.updateSelective(config);
             }

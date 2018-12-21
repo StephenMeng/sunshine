@@ -13,15 +13,17 @@ import java.util.Date;
 @Entity
 @Table(name = "weibo")
 public class Weibo {
+    @Id
     @Column(name = "w_url")
     private String wUrl;
     @Column(name = "w_ouid")
     private String wOuid;
-    @Id
     @Column(name = "w_mid")
     private String wMid;
     @Column(name = "w_user_name")
     private String wUserName;
+    @Column(name = "w_user_url")
+    private String wUserUrl;
     @Column(name = "w_date")
     private String wDate;
     @Column(name = "w_from")
@@ -32,14 +34,20 @@ public class Weibo {
     private String wCommentCount;
     @Column(name = "w_thumb_count")
     private String wThumbCount;
+    @Column(name = "w_collect_count")
+    private String wCollectCount;
     @Column(name = "w_content")
     private String wContent;
     @Column(name = "w_pics")
     private String wPics;
-    @Column(name = "crawl_date")
-    private Date crawlDate;
     @Column(name = "index_words")
     private String indexWords;
+    @Column(name = "full_content_param")
+    private String fullContentParam;
+    @Column(name = "create_date")
+    private Date createDate;
+    @Column(name = "update_date")
+    private Date updateDate;
 
     public String getwUrl() {
         return wUrl;
@@ -71,6 +79,14 @@ public class Weibo {
 
     public void setwUserName(String wUserName) {
         this.wUserName = wUserName;
+    }
+
+    public String getwUserUrl() {
+        return wUserUrl;
+    }
+
+    public void setwUserUrl(String wUserUrl) {
+        this.wUserUrl = wUserUrl;
     }
 
     public String getwDate() {
@@ -113,6 +129,14 @@ public class Weibo {
         this.wThumbCount = wThumbCount;
     }
 
+    public String getwCollectCount() {
+        return wCollectCount;
+    }
+
+    public void setwCollectCount(String wCollectCount) {
+        this.wCollectCount = wCollectCount;
+    }
+
     public String getwContent() {
         return wContent;
     }
@@ -129,19 +153,58 @@ public class Weibo {
         this.wPics = wPics;
     }
 
-    public Date getCrawlDate() {
-        return crawlDate;
-    }
-
-    public void setCrawlDate(Date crawlDate) {
-        this.crawlDate = crawlDate;
-    }
-
     public String getIndexWords() {
         return indexWords;
     }
 
     public void setIndexWords(String indexWords) {
         this.indexWords = indexWords;
+    }
+
+    public String getFullContentParam() {
+        return fullContentParam;
+    }
+
+    public void setFullContentParam(String fullContentParam) {
+        this.fullContentParam = fullContentParam;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Weibo{" +
+                "wUrl='" + wUrl + '\'' +
+                ", wOuid='" + wOuid + '\'' +
+                ", wMid='" + wMid + '\'' +
+                ", wUserName='" + wUserName + '\'' +
+                ", wUserUrl='" + wUserUrl + '\'' +
+                ", wDate='" + wDate + '\'' +
+                ", wFrom='" + wFrom + '\'' +
+                ", wShareCount='" + wShareCount + '\'' +
+                ", wCommentCount='" + wCommentCount + '\'' +
+                ", wThumbCount='" + wThumbCount + '\'' +
+                ", wCollectCount='" + wCollectCount + '\'' +
+                ", wContent='" + wContent + '\'' +
+                ", wPics='" + wPics + '\'' +
+                ", indexWords='" + indexWords + '\'' +
+                ", fullContentParam='" + fullContentParam + '\'' +
+                ", createDate=" + createDate +
+                ", updateDate=" + updateDate +
+                '}';
     }
 }

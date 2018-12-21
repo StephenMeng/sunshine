@@ -13,12 +13,11 @@ import java.util.Date;
 @Entity
 @Table(name = "weibo_user_config")
 public class WeiboUserConfig {
-
+    @Id
     @Column(name = "oid")
     private String oid;
     @Column(name = "page_id")
     private String pageId;
-    @Id
     @Column(name = "uri")
     private String uri;
     @Column(name = "name")

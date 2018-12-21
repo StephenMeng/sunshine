@@ -18,7 +18,13 @@ public class StringUtils {
     public static boolean isNotBlank(String str) {
         return !isBlank(str);
     }
-
+    public static String filterEmoji(String source) {
+        if (source != null && source.length() > 0) {
+            return source.replaceAll("[\ud800\udc00-\udbff\udfff\ud800-\udfff]", "");
+        } else {
+            return source;
+        }
+    }
     public static String decodeUnicode(final String unicode) {
         if (StringUtils.isBlank(unicode)) return null;
         StringBuilder sb = new StringBuilder();

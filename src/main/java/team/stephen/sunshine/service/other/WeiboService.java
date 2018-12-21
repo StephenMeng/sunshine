@@ -151,6 +151,11 @@ public interface WeiboService {
     public void logErrorUrl(String url, String site);
 
     List<String> getAllUserIdsFromWeibo();
+    List<String> getAllUrlsFromWeibo();
 
     Page<WeiboUserConfig> selectUserConfig(WeiboUserConfig condition, int pageNum, int pageSize);
+
+    void addOrUpdate(Weibo weibo);
+
+    List<Weibo> getAll();
 }
