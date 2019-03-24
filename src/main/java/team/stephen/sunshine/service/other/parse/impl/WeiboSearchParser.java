@@ -1,11 +1,11 @@
-package team.stephen.sunshine.service.other.impl;
+package team.stephen.sunshine.service.other.parse.impl;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import team.stephen.sunshine.model.other.Weibo;
-import team.stephen.sunshine.service.other.Parser;
+import team.stephen.sunshine.service.other.parse.Parser;
 import team.stephen.sunshine.util.element.StringUtils;
 
 import java.util.ArrayList;
@@ -45,7 +45,7 @@ public class WeiboSearchParser implements Parser {
             }
             weibo.setCreateDate(new Date());
             if (weibo.getwUrl() != null) {
-                weibo.setFullContentParam("-");
+//                weibo.setFullContentParam("-");
                 weiboList.add(weibo);
             }
         }
@@ -67,7 +67,7 @@ public class WeiboSearchParser implements Parser {
     private void parseFrom(Element element, Weibo weibo) {
         //存在分享自的情况，判断一下，选择第二个，比较挫。
         Elements pubDates = element.select("p[class=from]");
-        Element pubDate=pubDates.size()>=2?pubDates.get(1):pubDates.first();
+        Element pubDate = pubDates.size() >= 2 ? pubDates.get(1) : pubDates.first();
         try {
             weibo.setwDate(pubDate.select("a").first().text());
         } catch (Exception e) {
@@ -105,7 +105,10 @@ public class WeiboSearchParser implements Parser {
     private void parseContent(Element element, Weibo weibo) {
         Element wTxt = element.select("p[class=txt]").first();
         weibo.setwContent(wTxt.text());
-
+        Element wFullTxt = element.select("p[node-type=feed_list_content_full]").first();
+        if (wFullTxt != null) {
+            weibo.setFullContentParam(wFullTxt.text());
+        }
         try {
             Element wPic = element.select("div[node-type=feed_list_media_prev]").first();
             Element wPicSub = wPic.select("div[class=media media-piclist]").first();
@@ -115,7 +118,6 @@ public class WeiboSearchParser implements Parser {
             pics.forEach(pic -> stringBuilder.append(pic.attr("src")).append(";"));
             weibo.setwPics(stringBuilder.toString());
             weibo.setwMid(parseId(idInfo, MID));
-//            weibo.setwOuid(parseId(idInfo,UID));
         } catch (Exception e) {
         }
     }
@@ -124,9 +126,5 @@ public class WeiboSearchParser implements Parser {
         Element user = element.select("div[class=info]").first();
         weibo.setwUserName(user.select("a[^nick-]").first().text());
         weibo.setwUserUrl(user.select("a[^nick-]").first().attr("href"));
-    }
-    @Override
-    public Object parseDetail(String html) {
-        return null;
     }
 }

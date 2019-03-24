@@ -34,6 +34,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 @WebAppConfiguration
@@ -53,52 +54,67 @@ public class WeiboCrawlerTest {
     static {
         headers.put("Cookie", cookie);
     }
+
     @Test
     public void testGetUserUid() {
-        List<Weibo>weiboUrls=weiboService.getAll();
-        Pattern pattern=Pattern.compile("\\/([0-9]*?)\\?");
+        Weibo condition = new Weibo();
+        condition.setFullContentParam("-");
+        List<Weibo> weiboUrls = weiboService.selectWeibo(condition, 1, 0);
+//        List<Weibo>weiboUrls=weiboService.getAll();
+        Pattern pattern = Pattern.compile("\\/([0-9]*?)\\?");
         Matcher matcher;
         for (Weibo weibo : weiboUrls) {
-            matcher=pattern.matcher(weibo.getwUserUrl());
+            matcher = pattern.matcher(weibo.getwUserUrl());
             LogRecord.print(weibo.getwUserUrl());
-            if(matcher.find()){
-                String uid=matcher.group();
-                uid=uid.replace("/","").replace("?","");
-                WeiboUserConfig config=new WeiboUserConfig();
+            if (matcher.find()) {
+                String uid = matcher.group();
+                uid = uid.replace("/", "").replace("?", "");
+                WeiboUserConfig config = new WeiboUserConfig();
                 config.setOid(uid);
-                try{
+                try {
                     weiboService.addWeiboUserConfig(config);
-                }catch (Exception e){
+                } catch (Exception e) {
                     LogRecord.print(e.getMessage());
                 }
-            }
-        }
-    }
-    @Test
-    public void testUpdateUserUidOfWeibo() {
-        List<Weibo>weiboUrls=weiboService.getAll();
-        Pattern pattern=Pattern.compile("\\/([0-9]*?)\\?");
-        Matcher matcher;
-        for (Weibo weibo : weiboUrls) {
-            if(weibo.getwOuid()!=null&&!weibo.getwOuid().startsWith("u")){
-                continue;
-            }
-            matcher=pattern.matcher(weibo.getwUserUrl());
-            if(matcher.find()){
-                String uid=matcher.group();
-                uid=uid.replace("/","").replace("?","");
-                Weibo w=new Weibo();
-                LogRecord.print(uid+"\t"+weibo.getwUserUrl());
+                Weibo w = new Weibo();
+                LogRecord.print(uid + "\t" + weibo.getwUserUrl());
                 w.setwUrl(weibo.getwUrl());
                 w.setwOuid(uid);
-                try{
+                try {
                     weiboService.updateSelective(w);
-                }catch (Exception e){
+                } catch (Exception e) {
                     LogRecord.print(e.getMessage());
                 }
             }
         }
     }
+
+    @Test
+    public void testUpdateUserUidOfWeibo() {
+        List<Weibo> weiboUrls = weiboService.getAll();
+        Pattern pattern = Pattern.compile("\\/([0-9]*?)\\?");
+        Matcher matcher;
+        for (Weibo weibo : weiboUrls) {
+            if (weibo.getwOuid() != null && !weibo.getwOuid().startsWith("u")) {
+                continue;
+            }
+            matcher = pattern.matcher(weibo.getwUserUrl());
+            if (matcher.find()) {
+                String uid = matcher.group();
+                uid = uid.replace("/", "").replace("?", "");
+                Weibo w = new Weibo();
+                LogRecord.print(uid + "\t" + weibo.getwUserUrl());
+                w.setwUrl(weibo.getwUrl());
+                w.setwOuid(uid);
+                try {
+                    weiboService.updateSelective(w);
+                } catch (Exception e) {
+                    LogRecord.print(e.getMessage());
+                }
+            }
+        }
+    }
+
     @Test
     public void testCrawlBasicInfo() {
         String url = "https://weibo.com/u/2579500772?refer_flag=1001030201_";
@@ -108,7 +124,7 @@ public class WeiboCrawlerTest {
 //        url="https://weibo.com/u/2146154687?refer_flag=1001030101_";
 //        url="https://weibo.com/leehom?refer_flag=1001030101_&is_hot=1";
         url = "https://weibo.com/chaijingkanjian?refer_flag=1001030201_";
-        url="https://weibo.com/1400935015";
+        url = "https://weibo.com/1400935015";
         WeiboUserConfig config = weiboService.crawlUserConfig(url, headers);
         if (config != null) {
             try {
@@ -149,7 +165,7 @@ public class WeiboCrawlerTest {
         LogRecord.print(ouIds.size());
         for (String ouid : ouIds) {
 //            executor.execute(() -> {
-            String url = "https://weibo.com/u/" + ouid ;
+            String url = "https://weibo.com/u/" + ouid;
             LogRecord.print(url);
             WeiboUserConfig config = weiboService.crawlUserConfig(url, headers);
             config.setOid(ouid);
@@ -466,13 +482,14 @@ public class WeiboCrawlerTest {
     @Test
     public void testCrawlInfo() {
         String userUri = "/nju1902";
-        userUri = "/ronnieo147ROS";
+        userUri = "1232802984";
         WeiboUserConfig config = weiboService.selectUserConfig(userUri);
 
         if (config == null) {
             return;
         }
-        int page = 14;
+
+        int page = 1;
         List<Weibo> weibos = weiboService.crawlWeibo(config, page, headers);
         weibos.forEach(weibo -> {
             weiboService.completeExtraInfo(headers, weibo);
@@ -524,20 +541,21 @@ public class WeiboCrawlerTest {
         List<Weibo> r = weiboService.crawlWeiboPageBar(url, headers);
         LogRecord.print(r);
     }
+
     @Test
     public void testImportWeiboUri() throws IOException {
-        String filePath="C:\\Users\\stephen\\Desktop\\weibo\\uri.txt";
-        List<String>lines= Files.readLines(new File(filePath), Charsets.UTF_8);
-        for(String line:lines){
-            line=line.substring(line.indexOf(".com")+4,line.indexOf("?"));
-            line=line.replace("/home","");
-            line=line.replace("/info","");
+        String filePath = "C:\\Users\\stephen\\Desktop\\weibo\\uri.txt";
+        List<String> lines = Files.readLines(new File(filePath), Charsets.UTF_8);
+        for (String line : lines) {
+            line = line.substring(line.indexOf(".com") + 4, line.indexOf("?"));
+            line = line.replace("/home", "");
+            line = line.replace("/info", "");
 //            LogRecord.print(line);
-            WeiboUserConfig config=new WeiboUserConfig();
+            WeiboUserConfig config = new WeiboUserConfig();
             config.setUri(line);
-            try{
+            try {
                 weiboService.addWeiboUserConfig(config);
-            }catch (Exception e){
+            } catch (Exception e) {
                 LogRecord.print(line);
             }
         }

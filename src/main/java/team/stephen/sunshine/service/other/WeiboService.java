@@ -158,4 +158,6 @@ public interface WeiboService {
     void addOrUpdate(Weibo weibo);
 
     List<Weibo> getAll();
+
+    int crawlUserWeiboPageNum(WeiboUserConfig config, Map<String, String> headers);
 }

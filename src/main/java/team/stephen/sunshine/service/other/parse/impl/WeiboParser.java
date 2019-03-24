@@ -1,11 +1,11 @@
-package team.stephen.sunshine.service.other.impl;
+package team.stephen.sunshine.service.other.parse.impl;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import team.stephen.sunshine.model.other.Weibo;
-import team.stephen.sunshine.service.other.Parser;
+import team.stephen.sunshine.service.other.parse.Parser;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,13 +26,11 @@ public class WeiboParser implements Parser {
             Weibo weibo = new Weibo();
             try {
                 Element user = element.select("div[class=WB_info]").first();
-//                weibo.setwUserName();user.text());
                 weibo.setwUserUrl(user.select("a").first().attr("href"));
             } catch (Exception e) {
             }
             try {
                 String li = screenBox.select("li").first().html();
-//                weibo.setMid(li.substring(li.indexOf("mid"), li.indexOf("src")));
             } catch (Exception e) {
             }
             try {
@@ -80,15 +78,11 @@ public class WeiboParser implements Parser {
             }
             weibo.setCreateDate(new Date());
 //            LogRecod.print(weibo);
-//            if (weibo.getUrl() != null) {
-//                weiboList.add(weibo);
-//            }
+            if (weibo.getwUserUrl() != null) {
+                weiboList.add(weibo);
+            }
         }
         return weiboList;
     }
 
-    @Override
-    public Object parseDetail(String html) {
-        return null;
-    }
 }

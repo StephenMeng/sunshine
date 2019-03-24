@@ -2,36 +2,28 @@ package team.stephen.sunshine.controller.other;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
-import io.netty.util.concurrent.DefaultThreadFactory;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
-import org.apache.shiro.crypto.hash.SimpleHash;
-import org.apache.shiro.util.ByteSource;
-import org.apache.shiro.util.StringUtils;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import team.stephen.sunshine.constant.enu.Topic;
 import team.stephen.sunshine.constant.other.UrlConstant;
 import team.stephen.sunshine.controller.BaseController;
 import team.stephen.sunshine.model.other.CrawlError;
 import team.stephen.sunshine.model.other.Weibo;
 import team.stephen.sunshine.model.other.WeiboUserConfig;
-import team.stephen.sunshine.model.user.User;
-import team.stephen.sunshine.service.common.DtoTransformService;
 import team.stephen.sunshine.service.other.CrawlErrorService;
 import team.stephen.sunshine.service.other.WeiboService;
-import team.stephen.sunshine.service.other.impl.WeiboParser;
-import team.stephen.sunshine.service.other.impl.WeiboSearchParser;
-import team.stephen.sunshine.service.user.UserService;
+import team.stephen.sunshine.service.other.parse.Parser;
+import team.stephen.sunshine.service.other.parse.ParserFactory;
+import team.stephen.sunshine.service.other.parse.ParserType;
+import team.stephen.sunshine.service.other.parse.impl.WeiboParser;
+import team.stephen.sunshine.service.other.parse.impl.WeiboSearchParser;
 import team.stephen.sunshine.util.LogRecod;
 import team.stephen.sunshine.util.common.CodeUtils;
 import team.stephen.sunshine.util.common.HttpUtils;
@@ -39,14 +31,12 @@ import team.stephen.sunshine.util.common.LogRecord;
 import team.stephen.sunshine.util.common.Response;
 import team.stephen.sunshine.util.element.DateUtils;
 import team.stephen.sunshine.util.element.TimeFormateUtil;
-import team.stephen.sunshine.web.dto.user.SignInUserDto;
-import team.stephen.sunshine.web.dto.user.UserDto;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.parsers.DocumentBuilder;
 import java.io.IOException;
 import java.util.*;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -65,7 +55,7 @@ public class WeiboController extends BaseController {
     private static final Pattern keywordPatter = Pattern.compile("q=(.*?)&");
 
     private static String cookie =
-            "SINAGLOBAL=8490149224106.765.1520337385948; Ugrow-G0=8751d9166f7676afdce9885c6d31cd61; login_sid_t=3bda450336e5de9374c8f844fab15e49; cross_origin_proto=SSL; YF-V5-G0=da1eb9ea7ccc47f9e865137ccb4cf9f3; _s_tentry=passport.weibo.com; Apache=9039113386961.615.1545109205964; ULV=1545109205974:7:1:1:9039113386961.615.1545109205964:1530534997868; SSOLoginState=1545109237; wvr=6; YF-Page-G0=5c7144e56a57a456abed1d1511ad79e8; wb_timefeed_3316155405=1; TC-V5-G0=ffc89a27ffa5c92ffdaf08972449df02; TC-Page-G0=07e0932d682fda4e14f38fbcb20fac81; ALF=1576819602; SCF=AsYh56D0aSeu_7mKsJHNSGQw_0lSyPg4k3RsZ_J1u_CYIbnQiY14zb6WRrJLc8pt9fLPMkvDy07Lfz5sUen0a8A.; SUHB=0mxUf7LTects8w; UOR=www.hankcs.com,widget.weibo.com,login.sina.com.cn; SUB=_2AkMrQFG_f8NxqwJRmPAUzGjqbYp3zgzEieKdHKBkJRMxHRl-yT83qmMDtRB6AMB_X68GtEdSgCT2Cz63TpImWitQzmn1; SUBP=0033WrSXqPxfM72-Ws9jqgMF55529P9D9WFLv_Amx0bcosVrefmdOC1h";
+            "SINAGLOBAL=7256170564393.524.1525878160642; _s_tentry=www.gaoxiaojob.com; cross_origin_proto=SSL; login_sid_t=5f8965b4ced6e733efaccbc5044c6a6d; Apache=147931733707.84897.1552921740928; ULV=1552921740938:3:1:1:147931733707.84897.1552921740928:1550410282133; SSOLoginState=1552921834; wvr=6; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WhHG.930Gf5fOgXqM.y_wER5JpX5KMhUgL.Foe0eKqpSK-Xeh-2dJLoIEBLxKBLB.eL122LxK.L1hzLB-2LxKnLBK2LBozLxK-LBozL1K5t; ALF=1584552888; SCF=ApWJpYkIBCSLvQa6VugVvlZ6e-DWM2_b7Y4Eih38-j3oocpnJfJJraIw4-wEL42D6uAll8WmBwRZk8SyWeA5w3Y.; SUB=_2A25xlVhqDeRhGeVN6lQQ9SvIyzmIHXVS486irDV8PUNbmtBeLVDwkW9NTEdLmRtvu4Xav2QT_rVARZK-cwUiGpbQ; SUHB=0G0uvoUufz3Otp; UOR=,,login.sina.com.cn; WBStorage=201903200134|undefined";
     private static Map<String, String> headers = new HashMap<>();
 
     static {
@@ -301,9 +291,45 @@ public class WeiboController extends BaseController {
         }
     }
 
+    @ApiOperation(value = "根据关键词查询每小时的微博信息", httpMethod = "GET", response = Response.class)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "keyword", value = "keyword", required = true, dataType = "string", paramType = "query"),
+            @ApiImplicitParam(name = "startDate", value = "startDate", required = true, dataType = "string", paramType = "query"),
+            @ApiImplicitParam(name = "endDate", value = "endDate", required = true, dataType = "string", paramType = "query"),
+
+    })
+    @RequestMapping(value = "searchByKeywordByHour", method = RequestMethod.GET)
+    public void searchByKeywordByHour(@RequestParam("keyword") String keyword,
+                                      @RequestParam("startDate") String startDate,
+                                      @RequestParam("endDate") String endDate
+    ) {
+        LogRecord.print("start crawl weibo : keyword is " + keyword + ",startDate is " + startDate + ",endDate is " + endDate);
+        Date sd = TimeFormateUtil.parseStringToDate(startDate);
+        Date ed = TimeFormateUtil.parseStringToDate(endDate);
+        while (ed.after(sd)) {
+            for (int sh = 0; sh <= 24; sh++) {
+                String pageUrl = "https://s.weibo.com/weibo?q=" + keyword
+                        + "&xsort=hot&suball=1&timescope=custom:" + DateUtils.parseDateToString(sd) + "-" + format(sh) + ":" + DateUtils.parseDateToString(sd) +
+                        "-" + format(sh + 1) + "&page=";
+                Integer page = getTotalPage(pageUrl);
+                if (page == null) {
+                    insetErrorInfoIntoDataBase(pageUrl, null);
+                    try {
+                        Thread.sleep(120000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    continue;
+                }
+                search(pageUrl, 1, page);
+            }
+            sd = TimeFormateUtil.parseStringToDate(getNextDayStr(DateUtils.parseDateToString(sd)));
+        }
+    }
+
     private void crawlByHour(String keyword, String startDate, int sh, int eh) {
         String pageUrl = "https://s.weibo.com/weibo?q=" + keyword
-                + "&typeall=1&suball=1&timescope=custom:" + startDate + ":" + startDate + "&page=";
+                + "&xsort=hot&suball=1&timescope=custom:" + startDate + ":" + startDate + "&page=";
         Integer page = getTotalPage(pageUrl);
         if (page == null) {
             insetErrorInfoIntoDataBase(pageUrl, null);
@@ -318,14 +344,21 @@ public class WeiboController extends BaseController {
             search(pageUrl, 1, page);
         } else if (sh + 1 >= eh) {
             pageUrl = "https://s.weibo.com/weibo?q=" + keyword
-                    + "&typeall=1&suball=1&timescope=custom:" + startDate + "-" + sh + ":" + startDate +
-                    "-" + eh + "&page=";
+                    + "&xsort=hot&suball=1&timescope=custom:" + startDate + "-" + format(sh) + ":" + startDate +
+                    "-" + format(eh) + "&page=";
             search(pageUrl, 1, 50);
         } else {
             int mh = (sh + eh) / 2;
             crawlByHour(keyword, startDate, sh, mh);
             crawlByHour(keyword, startDate, mh, eh);
         }
+    }
+
+    private String format(int sh) {
+        if (sh < 10) {
+            return "0" + sh;
+        }
+        return String.valueOf(sh);
     }
 
     private Date getMiddleDate(Date sd, Date ed) {
@@ -371,16 +404,8 @@ public class WeiboController extends BaseController {
         try {
             HttpResponse response = HttpUtils.httpGet(url, headers);
             String html = IOUtils.toString(response.getEntity().getContent(), "utf-8");
-            Document document = Jsoup.parse(html);
-            Element element = document.select("div[class=m-page]").first();
-            Integer result = null;
-            try {
-                result = element.select("li").size();
-            } catch (Exception e) {
-                result = 1;
-                LogRecord.error("could not get record page num:" + url + ",or may be one");
-            }
-            return result;
+            Parser parser = ParserFactory.INSTANCE.getParser(ParserType.WEIBO_SEARCH_PAGE_NUM).get();
+            return (Integer) parser.parse(html).get(0);
         } catch (IOException e) {
             e.printStackTrace();
             try {
@@ -481,9 +506,7 @@ public class WeiboController extends BaseController {
 
     @RequestMapping(value = "/crawl_user", method = RequestMethod.GET)
     public void crawlBasicInfo() {
-//        ExecutorService executor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keeAliveTime,
-//                TimeUnit.MINUTES, new LinkedBlockingQueue<>(), new DefaultThreadFactory(Topic.EMAIL.getName()));
-            ExecutorService executor = Executors.newFixedThreadPool(5);
+        ExecutorService executor = Executors.newFixedThreadPool(5);
         List<WeiboUserConfig> userConfigs = weiboService.selectUserConfig(null, 1, 0);
         List<String> ouIds = userConfigs.stream().filter(conf -> conf.getName() == null).map(WeiboUserConfig::getOid).collect(Collectors.toList());
         LogRecord.print(ouIds.size());
@@ -495,7 +518,7 @@ public class WeiboController extends BaseController {
                 if (config != null) {
                     config.setOid(ouid);
                     weiboService.updateSelective(config);
-                }else {
+                } else {
 
                 }
                 try {
@@ -506,4 +529,95 @@ public class WeiboController extends BaseController {
             });
         }
     }
+
+    @RequestMapping(value = "/batch_crawl_weibo_by_user", method = RequestMethod.GET)
+    public Response batchCrawlWeibosByUser() {
+        List<String> keywords = Lists.newArrayList("雾霾", "空气", "pm2.5");
+        List<String> oids = Lists.newArrayList(
+//                "1244589914",
+//                "2050142347",
+//                "2803301701",
+                "1699432410",
+                "1639498782",
+                "1644114654",
+                "1663937380",
+                "1646068663",
+                "1197161814",
+                "1813080181",
+                "1182391231",
+                "1195031270",
+                "1850988623",
+                "1772412422",
+                "1792419723");
+        for (String keyword : keywords) {
+            for (String oid : oids) {
+                crawlWeiboByUser(oid, null, null, keyword, 120);
+            }
+        }
+        return Response.success("ok");
+    }
+
+    @RequestMapping(value = "/crawl_weibo_by_user", method = RequestMethod.GET)
+    public Response crawlWeiboByUser(@RequestParam("oid") String oid,
+                                     @RequestParam(value = "startPage", required = false) Integer startPage,
+                                     @RequestParam(value = "endPage", required = false) Integer endPage,
+                                     @RequestParam(value = "keyword", required = false) String keyword,
+                                     @RequestParam(value = "internal", required = false) int internal) {
+        WeiboUserConfig config = weiboService.selectUserConfig(oid);
+
+        if (config == null) {
+            return Response.success("config is null");
+        }
+        config.setKeyword(keyword);
+
+        int page;
+        int start = 1;
+        if (startPage != null) {
+            start = startPage;
+        }
+
+        if (endPage != null) {
+            page = endPage;
+        } else {
+            page = weiboService.crawlUserWeiboPageNum(config, headers);
+        }
+
+        for (int i = start; i <= page; i++) {
+
+            config.setKeyword(keyword);
+            LogRecord.print("search begin,username:" + config.getName() + "keyword:" + keyword + ",page:" + i + ",total page:" + page);
+            List<Weibo> weibos = weiboService.crawlWeibo(config, i, headers);
+            weibos.forEach(weibo -> {
+                weiboService.completeExtraInfo(headers, weibo);
+                weibo.setIndexWords(keyword);
+                try {
+                    weiboService.addWeibo(weibo);
+                } catch (Exception e) {
+                    LogRecord.print(e.getMessage());
+                }
+            });
+            try {
+                Thread.sleep(internal * 1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return Response.success("ok");
+    }
+
+    @RequestMapping(value = "/crawl_user_config", method = RequestMethod.GET)
+    public Response crawlUserConfig(@RequestParam("uri") String uri) {
+        String url = "https://weibo.com/" + uri;
+        WeiboUserConfig config = weiboService.crawlUserConfig(url, headers);
+        if (config != null) {
+            try {
+                weiboService.addWeiboUserConfig(config);
+            } catch (Exception e) {
+                weiboService.updateSelective(config);
+                LogRecord.error(e);
+            }
+        }
+        return Response.success(config == null ? null : config.getOid());
+    }
+
 }

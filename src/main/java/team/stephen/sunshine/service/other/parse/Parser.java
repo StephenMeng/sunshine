@@ -1,4 +1,4 @@
-package team.stephen.sunshine.service.other;
+package team.stephen.sunshine.service.other.parse;
 
 import java.util.List;
 
@@ -7,6 +7,4 @@ import java.util.List;
  */
 public interface Parser<T> {
     public List<T> parse(String html);
-
-    T parseDetail(String html);
 }

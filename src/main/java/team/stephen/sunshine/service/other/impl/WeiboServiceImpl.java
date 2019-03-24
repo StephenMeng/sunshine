@@ -1,11 +1,13 @@
 package team.stephen.sunshine.service.other.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.google.common.base.Charsets;
 import com.google.common.base.Joiner;
 import com.google.common.io.Files;
+import io.swagger.models.auth.In;
 import net.sourceforge.tess4j.util.ImageHelper;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -54,7 +56,8 @@ public class WeiboServiceImpl implements WeiboService {
     private WeiboUserConfigDao weiboUserConfigDao;
     @Autowired
     private CrawlErrorService crawlErrorService;
-
+    private Pattern pattern = Pattern.compile("\\/([0-9]*?)\\?");
+    private Matcher matcher;
     private Pattern pidPatter = Pattern.compile("Pl_Official_MyProfileFeed__(.*?)\"");
     private Pattern domainPattern = Pattern.compile("domain'\\]='(.*?)'");
     private Pattern oidPattern = Pattern.compile("'oid'\\]='(.*?)'");
@@ -233,7 +236,7 @@ public class WeiboServiceImpl implements WeiboService {
             }
             return null;
         }
-        if(StringUtils.isNull(config.getName())){
+        if (StringUtils.isNull(config.getName())) {
             try {
                 LogRecord.print("休息5秒钟");
                 Thread.sleep(5000);
@@ -254,6 +257,8 @@ public class WeiboServiceImpl implements WeiboService {
         String pageBarUrl2 = UrlHandler.getWeiboPageBarUrl(config, page, 1);
         result.addAll(crawlWeiboPageBar(pageBarUrl2, headers));
         result.forEach(w -> w.setwUserName(config.getName()));
+//        result.forEach(w -> w.setFullContentParam(config.getName()));
+
         return result;
     }
 
@@ -466,7 +471,27 @@ public class WeiboServiceImpl implements WeiboService {
     public void addOrUpdate(Weibo weibo) {
         try {
             weiboDao.insert(weibo);
-        }catch (Exception e){
+        } catch (Exception e) {
+//            LogRecord.error("weibo has been inserted :"+weibo.getwUrl());
+        }
+        try {
+            matcher = pattern.matcher(weibo.getwUserUrl());
+            if (matcher.find()) {
+                String uid = matcher.group();
+                uid = uid.replace("/", "").replace("?", "");
+                Weibo w = new Weibo();
+                w.setwUrl(weibo.getwUrl());
+                w.setwOuid(uid);
+                updateSelective(w);
+                WeiboUserConfig userConfig = new WeiboUserConfig();
+                String ouId = weibo.getwOuid();
+                String uri = "/u/" + ouId;
+                userConfig.setOid(ouId);
+                userConfig.setUri(uri);
+                addWeiboUserConfig(userConfig);
+            }
+
+        } catch (Exception e) {
 //            LogRecord.error("weibo has been inserted :"+weibo.getwUrl());
         }
     }
@@ -476,10 +501,44 @@ public class WeiboServiceImpl implements WeiboService {
         return weiboDao.selectAll();
     }
 
+    @Override
+    public int crawlUserWeiboPageNum(WeiboUserConfig config, Map<String, String> headers) {
+        int page = getPagFromPageBar(config, headers, 1);
+        if (page == -1) {
+            page = getPagFromPageBar(config, headers, 0);
+        }
+        return page == -1 ? 1 : page;
+    }
+
+    private int getPagFromPageBar(WeiboUserConfig config, Map<String, String> headers, int barIndex) {
+        String pageBarUrl2 = UrlHandler.getWeiboPageBarUrl(config, 1, barIndex);
+        String json = null;
+        try {
+            String html = HttpUtils.okrHttpGet(pageBarUrl2, headers);
+            json = getHtmlFromJson(html, "data");
+        } catch (Exception e) {
+            LogRecord.error("获取微博pagerBar失败，原因：" + e.getMessage());
+        }
+        if (StringUtils.isNotNull(json)) {
+            Document document = Jsoup.parse(json);
+            Elements elements = document.select("a[action-type=feed_list_page_more]");
+            if (elements != null && elements.size() > 0) {
+                String pageStr = elements.first().attr("action-data");
+                pageStr = pageStr.substring(pageStr.indexOf("countPage=") + 10);
+                try {
+                    return Integer.parseInt(pageStr);
+                } catch (Exception e) {
+                    LogRecord.print(e);
+                }
+            }
+        }
+        return -1;
+    }
+
 
     private List<Weibo> parsePersonHomePage(String jsonResult) throws Exception {
         List<Weibo> result = new ArrayList<>();
-        if (jsonResult == null) {
+        if (StringUtils.isNull(jsonResult)) {
             return result;
         }
         Document document = Jsoup.parse(jsonResult);
@@ -498,6 +557,7 @@ public class WeiboServiceImpl implements WeiboService {
                 Element wb = element.select("div[class^=WB_from S_txt]").first();
                 Elements as = wb.select("a");
                 String date = as.get(0).text();
+                String url = as.get(0).attr("href");
                 String from = null;
                 if (as.size() > 1) {
                     from = as.get(1).text();
@@ -508,7 +568,6 @@ public class WeiboServiceImpl implements WeiboService {
                 String shareCount = handles.get(1).text().replace("转发", "0");
                 String commentCount = handles.get(2).text().replace("评论", "0");
                 String thumbCount = handles.get(3).text().replace("ñ", "").replace("赞", "0");
-
 
                 Element idInfo = handles.get(2).select("a").first();
                 String ouIdStr = idInfo.attr("action-data");
@@ -521,7 +580,7 @@ public class WeiboServiceImpl implements WeiboService {
                 weibo.setwFrom(from);
                 weibo.setwMid(mid);
                 weibo.setwOuid(ouIdStr);
-                weibo.setwUrl("");
+                weibo.setwUrl(url);
                 weibo.setwShareCount(shareCount);
                 weibo.setwThumbCount(thumbCount);
                 result.add(weibo);

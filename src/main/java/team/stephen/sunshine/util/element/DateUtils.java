@@ -1,5 +1,9 @@
 package team.stephen.sunshine.util.element;
 
+import com.sun.javafx.util.Logging;
+import team.stephen.sunshine.exception.ShineException;
+import team.stephen.sunshine.util.common.LogRecord;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,7 +25,12 @@ public class DateUtils {
     }
 
     public static String parseDateToString(Date tmp, String format) {
-        return new SimpleDateFormat(format).format(tmp);
+        try {
+            return new SimpleDateFormat(format).format(tmp);
+        } catch (Exception e) {
+            LogRecord.error(e);
+        }
+        return null;
     }
 
     public static Date parseStringToDate(String dateStr) {
@@ -29,6 +38,6 @@ public class DateUtils {
     }
 
     public static String parseDateToString(Date date) {
-        return parseDateToString(date,"yyyy-MM-dd");
+        return parseDateToString(date, "yyyy-MM-dd");
     }
 }

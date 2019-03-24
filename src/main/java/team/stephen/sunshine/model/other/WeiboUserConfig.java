@@ -1,5 +1,7 @@
 package team.stephen.sunshine.model.other;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -54,6 +56,8 @@ public class WeiboUserConfig {
     private String sex;
     @Column(name = "update_date")
     private Date updateDate;
+    @Column(name = "keyword")
+    private String keyword;
 
     public String getOid() {
         return oid;
@@ -213,5 +217,13 @@ public class WeiboUserConfig {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 }
