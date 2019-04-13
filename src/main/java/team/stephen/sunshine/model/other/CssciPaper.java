@@ -323,4 +323,41 @@ public class CssciPaper {
     public void setAuthorsId(String authorsId) {
         this.authorsId = authorsId;
     }
+
+    @Override
+    public String toString() {
+        return "CssciPaper{" +
+                "sno='" + sno + '\'' +
+                ", id='" + id + '\'' +
+                ", authors='" + authors + '\'' +
+                ", authorsId='" + authorsId + '\'' +
+                ", authorsAddress='" + authorsAddress + '\'' +
+                ", authorsJg='" + authorsJg + '\'' +
+                ", blpm='" + blpm + '\'' +
+                ", byc='" + byc + '\'' +
+                ", dcbj='" + dcbj + '\'' +
+                ", jjlb='" + jjlb + '\'' +
+                ", juan='" + juan + '\'' +
+                ", lrymc='" + lrymc + '\'' +
+                ", lypm='" + lypm + '\'' +
+                ", lypmp='" + lypmp + '\'' +
+                ", nian='" + nian + '\'' +
+                ", qi='" + qi + '\'' +
+                ", qkdm='" + qkdm + '\'' +
+                ", qkmc='" + qkmc + '\'' +
+                ", qkno='" + qkno + '\'' +
+                ", skdm='" + skdm + '\'' +
+                ", wzlx='" + wzlx + '\'' +
+                ", wzlxZ='" + wzlxZ + '\'' +
+                ", xkdm1='" + xkdm1 + '\'' +
+                ", xkdm2='" + xkdm2 + '\'' +
+                ", xkfl1='" + xkfl1 + '\'' +
+                ", xkfl2='" + xkfl2 + '\'' +
+                ", xmlb='" + xmlb + '\'' +
+                ", ycflag='" + ycflag + '\'' +
+                ", yjdm='" + yjdm + '\'' +
+                ", ym='" + ym + '\'' +
+                ", ywsl='" + ywsl + '\'' +
+                '}';
+    }
 }

@@ -1,13 +1,11 @@
 package team.stephen.sunshine.service.other.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.google.common.base.Charsets;
 import com.google.common.base.Joiner;
 import com.google.common.io.Files;
-import io.swagger.models.auth.In;
 import net.sourceforge.tess4j.util.ImageHelper;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -469,30 +467,22 @@ public class WeiboServiceImpl implements WeiboService {
 
     @Override
     public void addOrUpdate(Weibo weibo) {
+        LogRecord.print(weibo);
         try {
             weiboDao.insert(weibo);
         } catch (Exception e) {
-//            LogRecord.error("weibo has been inserted :"+weibo.getwUrl());
+            LogRecord.error(e);
         }
         try {
-            matcher = pattern.matcher(weibo.getwUserUrl());
-            if (matcher.find()) {
-                String uid = matcher.group();
-                uid = uid.replace("/", "").replace("?", "");
-                Weibo w = new Weibo();
-                w.setwUrl(weibo.getwUrl());
-                w.setwOuid(uid);
-                updateSelective(w);
-                WeiboUserConfig userConfig = new WeiboUserConfig();
-                String ouId = weibo.getwOuid();
-                String uri = "/u/" + ouId;
-                userConfig.setOid(ouId);
-                userConfig.setUri(uri);
-                addWeiboUserConfig(userConfig);
-            }
+            WeiboUserConfig userConfig = new WeiboUserConfig();
+            String ouId = weibo.getwOuid();
+            String uri = "/u/" + ouId;
+            userConfig.setOid(ouId);
+            userConfig.setUri(uri);
+            addWeiboUserConfig(userConfig);
 
         } catch (Exception e) {
-//            LogRecord.error("weibo has been inserted :"+weibo.getwUrl());
+            LogRecord.error(e);
         }
     }
 
@@ -508,6 +498,11 @@ public class WeiboServiceImpl implements WeiboService {
             page = getPagFromPageBar(config, headers, 0);
         }
         return page == -1 ? 1 : page;
+    }
+
+    @Override
+    public void addWeibo(List<Weibo> weibos) {
+        weibos.forEach(this::addOrUpdate);
     }
 
     private int getPagFromPageBar(WeiboUserConfig config, Map<String, String> headers, int barIndex) {

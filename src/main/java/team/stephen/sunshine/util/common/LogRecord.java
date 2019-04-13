@@ -20,6 +20,10 @@ public class LogRecord {
         logger.error(e.toString());
     }
 
+    public static void warn(String s, Object e) {
+        logger.warn(String.format(s, e));
+    }
+
     public static void print(Object object) {
         logger.info("************************************");
         if (object == null) {

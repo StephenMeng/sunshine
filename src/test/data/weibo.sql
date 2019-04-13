@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2019-04-06 15:33:54
+Date: 2019-04-06 15:34:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,9 +34,9 @@ CREATE TABLE `weibo` (
   `w_content` varchar(4096) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `w_pics` varchar(2048) DEFAULT NULL,
   `create_date` timestamp NULL DEFAULT NULL,
-  `index_words` varchar(1024) DEFAULT NULL,
+  `qid` varchar(256) DEFAULT NULL,
   `update_date` datetime DEFAULT NULL,
   `full_content_param` longtext,
   PRIMARY KEY (`w_url`),
-  KEY `index_uid` (`w_ouid`) USING BTREE
+  KEY `key_qid` (`qid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

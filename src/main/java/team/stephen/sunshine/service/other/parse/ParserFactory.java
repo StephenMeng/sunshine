@@ -1,9 +1,11 @@
 package team.stephen.sunshine.service.other.parse;
 
 import com.google.common.collect.Maps;
-import team.stephen.sunshine.service.other.parse.impl.WeiboParser;
-import team.stephen.sunshine.service.other.parse.impl.WeiboSearchPageNumParserImpl;
-import team.stephen.sunshine.service.other.parse.impl.WeiboSearchParser;
+import team.stephen.sunshine.service.other.parse.impl.cssci.CssciPageParser;
+import team.stephen.sunshine.service.other.parse.impl.cssci.CssciArticleOverViewParser;
+import team.stephen.sunshine.service.other.parse.impl.weibo.WeiboParser;
+import team.stephen.sunshine.service.other.parse.impl.weibo.WeiboSearchPageNumParserImpl;
+import team.stephen.sunshine.service.other.parse.impl.weibo.WeiboSearchParser;
 
 import java.util.Map;
 import java.util.Optional;
@@ -20,6 +22,8 @@ public final class ParserFactory {
         PARSER_MAP.put(ParserType.WEIBO, new WeiboParser());
         PARSER_MAP.put(ParserType.WEIBO_SEARCH, new WeiboSearchParser());
         PARSER_MAP.put(ParserType.WEIBO_SEARCH_PAGE_NUM, new WeiboSearchPageNumParserImpl());
+        PARSER_MAP.put(ParserType.CSSCI_PAGE, new CssciPageParser());
+        PARSER_MAP.put(ParserType.CSSCI_ARTICLE_OVERVIEW, new CssciArticleOverViewParser());
 
     }
 
@@ -27,7 +31,7 @@ public final class ParserFactory {
 
     }
 
-    public  Optional<Parser> getParser(ParserType type) {
+    public Optional<Parser> getParser(ParserType type) {
         return Optional.ofNullable(PARSER_MAP.get(type));
     }
 }

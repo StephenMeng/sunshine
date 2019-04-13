@@ -1,4 +1,4 @@
-package team.stephen.sunshine.service.other.parse.impl;
+package team.stephen.sunshine.service.other.parse.impl.weibo;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

@@ -6,6 +6,7 @@ import team.stephen.sunshine.util.common.LogRecord;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -39,5 +40,14 @@ public class DateUtils {
 
     public static String parseDateToString(Date date) {
         return parseDateToString(date, "yyyy-MM-dd");
+    }
+
+    public static String getNextDayStr(String dateStr) {
+        Date date = DateUtils.parseStringToDate(dateStr);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, 1);
+        date = cal.getTime();
+        return DateUtils.parseDateToString(date);
     }
 }

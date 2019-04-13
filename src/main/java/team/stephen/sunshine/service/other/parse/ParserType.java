@@ -7,6 +7,10 @@ package team.stephen.sunshine.service.other.parse;
 public enum ParserType {
     WEIBO,
     WEIBO_SEARCH,
-    WEIBO_SEARCH_PAGE_NUM;
+    WEIBO_SEARCH_PAGE_NUM,
+
+    CSSCI_PAGE,
+    CSSCI_ARTICLE_OVERVIEW;
+
 
 }

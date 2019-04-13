@@ -1,5 +1,7 @@
 package team.stephen.sunshine.model.other.bean;
 
+import team.stephen.sunshine.exception.CrawlException;
+
 import java.util.Map;
 
 /**
@@ -8,8 +10,11 @@ import java.util.Map;
  */
 public interface CrawlParam {
 
-    String getUrl();
+    String getUrl() throws CrawlException;
 
     Map<String, String> getHeaders();
 
+    String getEncode();
+
+    void parseUrl(String url);
 }

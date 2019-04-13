@@ -205,4 +205,29 @@ public class CssciJournal {
     public void setTitleE(String titleE) {
         this.titleE = titleE;
     }
+
+    @Override
+    public String toString() {
+        return "CssciJournal{" +
+                "id='" + id + '\'' +
+                ", address='" + address + '\'' +
+                ", company='" + company + '\'' +
+                ", creatPubdate='" + creatPubdate + '\'' +
+                ", email='" + email + '\'' +
+                ", gg='" + gg + '\'' +
+                ", hx='" + hx + '\'' +
+                ", issn='" + issn + '\'' +
+                ", kb='" + kb + '\'' +
+                ", lan='" + lan + '\'' +
+                ", oldName='" + oldName + '\'' +
+                ", post='" + post + '\'' +
+                ", press='" + press + '\'' +
+                ", qkType='" + qkType + '\'' +
+                ", qkImg='" + qkImg + '\'' +
+                ", tag='" + tag + '\'' +
+                ", tel='" + tel + '\'' +
+                ", titleC='" + titleC + '\'' +
+                ", titleE='" + titleE + '\'' +
+                '}';
+    }
 }

@@ -40,8 +40,8 @@ public class Weibo {
     private String wContent;
     @Column(name = "w_pics")
     private String wPics;
-    @Column(name = "index_words")
-    private String indexWords;
+    @Column(name = "qid")
+    private String qid;
     @Column(name = "full_content_param")
     private String fullContentParam;
     @Column(name = "create_date")
@@ -153,12 +153,12 @@ public class Weibo {
         this.wPics = wPics;
     }
 
-    public String getIndexWords() {
-        return indexWords;
+    public String getQid() {
+        return qid;
     }
 
-    public void setIndexWords(String indexWords) {
-        this.indexWords = indexWords;
+    public void setQid(String qid) {
+        this.qid = qid;
     }
 
     public String getFullContentParam() {
@@ -201,7 +201,7 @@ public class Weibo {
                 ", wCollectCount='" + wCollectCount + '\'' +
                 ", wContent='" + wContent + '\'' +
                 ", wPics='" + wPics + '\'' +
-                ", indexWords='" + indexWords + '\'' +
+                ", qid='" + qid + '\'' +
                 ", fullContentParam='" + fullContentParam + '\'' +
                 ", createDate=" + createDate +
                 ", updateDate=" + updateDate +

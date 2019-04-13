@@ -311,7 +311,7 @@ public class WeiboCrawlerTest {
                 for (Weibo weibo : weibos) {
                     weibo.setwUrl(url);
                     weiboService.completeExtraInfo(headers, weibo);
-                    weibo.setIndexWords(keyword + ";");
+                    weibo.setQid(keyword + ";");
                     boolean succcess = true;
                     try {
                         weiboService.addWeibo(weibo);
@@ -327,10 +327,10 @@ public class WeiboCrawlerTest {
                         if (uw == null) {
                             continue;
                         }
-                        if (uw.getIndexWords() == null || !uw.getIndexWords().contains(weibo.getIndexWords())) {
+                        if (uw.getQid() == null || !uw.getQid().contains(weibo.getQid())) {
                             Weibo tu = new Weibo();
                             tu.setwMid(uw.getwMid());
-                            tu.setIndexWords(uw.getIndexWords() + ";" + keyword);
+                            tu.setQid(uw.getQid() + ";" + keyword);
                             weiboService.updateSelective(tu);
                         }
                     } catch (Exception e) {
@@ -356,7 +356,7 @@ public class WeiboCrawlerTest {
             for (Weibo weibo : weibos) {
                 weibo.setwUrl(url);
                 weiboService.completeExtraInfo(headers, weibo);
-                weibo.setIndexWords(keyword + ";");
+                weibo.setQid(keyword + ";");
                 boolean succcess = true;
                 try {
                     weiboService.addWeibo(weibo);
@@ -372,10 +372,10 @@ public class WeiboCrawlerTest {
                     if (uw == null) {
                         continue;
                     }
-                    if (uw.getIndexWords() == null || !uw.getIndexWords().contains(weibo.getIndexWords())) {
+                    if (uw.getQid() == null || !uw.getQid().contains(weibo.getQid())) {
                         Weibo tu = new Weibo();
                         tu.setwMid(uw.getwMid());
-                        tu.setIndexWords(uw.getIndexWords() + ";" + keyword);
+                        tu.setQid(uw.getQid() + ";" + keyword);
                         weiboService.updateSelective(tu);
                     }
                 } catch (Exception e) {
@@ -401,7 +401,7 @@ public class WeiboCrawlerTest {
             weibos.forEach(weibo -> {
                 weibo.setwUrl(url);
                 weiboService.completeExtraInfo(headers, weibo);
-                weibo.setIndexWords(keyword + ";");
+                weibo.setQid(keyword + ";");
                 boolean succcess = true;
                 try {
                     weiboService.addWeibo(weibo);
@@ -417,10 +417,10 @@ public class WeiboCrawlerTest {
                     if (uw == null) {
                         return;
                     }
-                    if (uw.getIndexWords() == null || !uw.getIndexWords().contains(weibo.getIndexWords())) {
+                    if (uw.getQid() == null || !uw.getQid().contains(weibo.getQid())) {
                         Weibo tu = new Weibo();
                         tu.setwMid(uw.getwMid());
-                        tu.setIndexWords(uw.getIndexWords() + ";" + keyword);
+                        tu.setQid(uw.getQid() + ";" + keyword);
                         weiboService.updateSelective(tu);
                     }
                 } catch (Exception e) {

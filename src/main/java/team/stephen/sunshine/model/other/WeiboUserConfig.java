@@ -226,4 +226,35 @@ public class WeiboUserConfig {
     public void setKeyword(String keyword) {
         this.keyword = keyword;
     }
+
+    @Override
+    public String toString() {
+        return "WeiboUserConfig{" +
+                "oid='" + oid + '\'' +
+                ", pageId='" + pageId + '\'' +
+                ", uri='" + uri + '\'' +
+                ", name='" + name + '\'' +
+                ", domain='" + domain + '\'' +
+                ", pids='" + pids + '\'' +
+                ", weiboNum=" + weiboNum +
+                ", fansNum=" + fansNum +
+                ", followNum=" + followNum +
+                ", lv='" + lv + '\'' +
+                ", place='" + place + '\'' +
+                ", description='" + description + '\'' +
+                ", link='" + link + '\'' +
+                ", tag='" + tag + '\'' +
+                ", baike='" + baike + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", career='" + career + '\'' +
+                ", pinfo='" + pinfo + '\'' +
+                ", sex='" + sex + '\'' +
+                ", updateDate=" + updateDate +
+                ", keyword='" + keyword + '\'' +
+                '}';
+    }
+
+    public void setlv(String lv) {
+        this.lv = lv;
+    }
 }

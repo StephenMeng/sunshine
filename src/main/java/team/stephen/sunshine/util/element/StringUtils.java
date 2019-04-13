@@ -18,6 +18,7 @@ public class StringUtils {
     public static boolean isNotBlank(String str) {
         return !isBlank(str);
     }
+
     public static String filterEmoji(String source) {
         if (source != null && source.length() > 0) {
             return source.replaceAll("[\ud800\udc00-\udbff\udfff\ud800-\udfff]", "");
@@ -25,8 +26,11 @@ public class StringUtils {
             return source;
         }
     }
+
     public static String decodeUnicode(final String unicode) {
-        if (StringUtils.isBlank(unicode)) return null;
+        if (StringUtils.isBlank(unicode)) {
+            return null;
+        }
         StringBuilder sb = new StringBuilder();
         int i = -1;
         int pos = 0;
@@ -42,4 +46,7 @@ public class StringUtils {
         return sb.toString();
     }
 
+    public static boolean isNumeric(String str) {
+        return org.apache.commons.lang3.StringUtils.isNumeric(str);
+    }
 }

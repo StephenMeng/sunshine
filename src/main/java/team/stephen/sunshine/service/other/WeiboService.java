@@ -151,6 +151,7 @@ public interface WeiboService {
     public void logErrorUrl(String url, String site);
 
     List<String> getAllUserIdsFromWeibo();
+
     List<String> getAllUrlsFromWeibo();
 
     Page<WeiboUserConfig> selectUserConfig(WeiboUserConfig condition, int pageNum, int pageSize);
@@ -160,4 +161,6 @@ public interface WeiboService {
     List<Weibo> getAll();
 
     int crawlUserWeiboPageNum(WeiboUserConfig config, Map<String, String> headers);
+
+    void addWeibo(List<Weibo> weibos);
 }

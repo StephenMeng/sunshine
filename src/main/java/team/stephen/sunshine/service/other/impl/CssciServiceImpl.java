@@ -15,6 +15,7 @@ import team.stephen.sunshine.model.other.CssciJournal;
 import team.stephen.sunshine.model.other.CssciPaper;
 import team.stephen.sunshine.service.other.CssciService;
 import team.stephen.sunshine.util.common.HttpUtils;
+import team.stephen.sunshine.util.common.LogRecord;
 
 import java.io.IOException;
 import java.util.List;
@@ -43,7 +44,12 @@ public class CssciServiceImpl implements CssciService {
 
     @Override
     public int addPaper(CssciPaper paper) {
-        return cssciPaperDao.insert(paper);
+        try {
+            return cssciPaperDao.insert(paper);
+        } catch (Exception e) {
+            LogRecord.error(e);
+            return -1;
+        }
     }
 
     @Override

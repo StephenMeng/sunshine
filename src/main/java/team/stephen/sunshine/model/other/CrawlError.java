@@ -26,6 +26,8 @@ public class CrawlError {
     private String body;
     @Column(name = "create_date")
     private Date createDate;
+    @Column(name = "type")
+    private String type;
     @Column(name = "deleted")
     private Boolean deleted;
 
@@ -83,5 +85,13 @@ public class CrawlError {
 
     public void setSite(String site) {
         this.site = site;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
