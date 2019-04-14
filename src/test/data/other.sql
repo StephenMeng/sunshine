@@ -142,7 +142,6 @@ DROP TABLE IF EXISTS `cssci_paper`;
 CREATE TABLE `cssci_paper` (
   `sno` varchar(56) NOT NULL,
   `authors` varchar(1024) DEFAULT NULL,
-  `authors_id` varchar(512) DEFAULT NULL,
   `authors_address` longtext,
   `authors_jg` varchar(2048) DEFAULT NULL,
   `blpm` varchar(1024) DEFAULT NULL,
