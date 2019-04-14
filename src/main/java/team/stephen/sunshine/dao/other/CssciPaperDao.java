@@ -1,7 +1,7 @@
 package team.stephen.sunshine.dao.other;
 
 import org.apache.ibatis.annotations.Mapper;
-import team.stephen.sunshine.model.other.CssciPaper;
+import team.stephen.sunshine.model.other.bean.cssci.CssciPaper;
 import team.stephen.sunshine.util.common.BaseDao;
 
 /**

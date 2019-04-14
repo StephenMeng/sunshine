@@ -9,10 +9,10 @@ import team.stephen.sunshine.dao.other.CssciAuthorDao;
 import team.stephen.sunshine.dao.other.CssciCitationDao;
 import team.stephen.sunshine.dao.other.CssciJournalDao;
 import team.stephen.sunshine.dao.other.CssciPaperDao;
-import team.stephen.sunshine.model.other.CssciAuthor;
-import team.stephen.sunshine.model.other.CssciCitation;
-import team.stephen.sunshine.model.other.CssciJournal;
-import team.stephen.sunshine.model.other.CssciPaper;
+import team.stephen.sunshine.model.other.bean.cssci.CssciAuthor;
+import team.stephen.sunshine.model.other.bean.cssci.CssciCitation;
+import team.stephen.sunshine.model.other.bean.cssci.CssciJournal;
+import team.stephen.sunshine.model.other.bean.cssci.CssciPaper;
 import team.stephen.sunshine.service.other.CssciService;
 import team.stephen.sunshine.util.common.HttpUtils;
 import team.stephen.sunshine.util.common.LogRecord;
@@ -81,6 +81,7 @@ public class CssciServiceImpl implements CssciService {
                 try {
                     addAuthor(author);
                 } catch (Exception e) {
+                    LogRecord.error(e);
                 }
             });
         }
@@ -91,6 +92,7 @@ public class CssciServiceImpl implements CssciService {
                 try {
                     addCitation(citation);
                 } catch (Exception e) {
+                    LogRecord.error(e);
                 }
             });
         }
@@ -105,6 +107,7 @@ public class CssciServiceImpl implements CssciService {
             }
             updatePaperSelective(paper);
         } catch (Exception e) {
+            LogRecord.error(e);
         }
         return 0;
     }

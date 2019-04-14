@@ -5,10 +5,8 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
 import team.stephen.sunshine.exception.CrawlException;
-import team.stephen.sunshine.model.other.WeiboUserConfig;
 import team.stephen.sunshine.model.other.bean.weibo.*;
 import team.stephen.sunshine.util.common.LogRecord;
-import team.stephen.sunshine.util.element.DateUtils;
 
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;

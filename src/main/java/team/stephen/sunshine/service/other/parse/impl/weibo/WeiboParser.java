@@ -4,7 +4,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import team.stephen.sunshine.model.other.Weibo;
+import team.stephen.sunshine.model.other.bean.weibo.Weibo;
 import team.stephen.sunshine.service.other.parse.Parser;
 
 import java.util.ArrayList;

@@ -1,9 +1,9 @@
 package team.stephen.sunshine.service.other;
 
 import com.github.pagehelper.Page;
-import team.stephen.sunshine.model.other.Weibo;
-import team.stephen.sunshine.model.other.WeiboComment;
-import team.stephen.sunshine.model.other.WeiboUserConfig;
+import team.stephen.sunshine.model.other.bean.weibo.Weibo;
+import team.stephen.sunshine.model.other.bean.weibo.WeiboComment;
+import team.stephen.sunshine.model.other.bean.weibo.WeiboUserConfig;
 import team.stephen.sunshine.util.bean.WeiboVerifyResult;
 
 import java.io.IOException;

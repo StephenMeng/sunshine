@@ -14,7 +14,6 @@ import java.util.List;
 public class CssciPageParser implements Parser {
     @Override
     public List parse(String html) {
-        LogRecord.print(html);
         Pagination res = new Pagination();
         try {
             JSONObject jsonObject = JSONObject.parseObject(html);

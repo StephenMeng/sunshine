@@ -2,11 +2,9 @@ package team.stephen.sunshine.service.other.parse.impl.cssci;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import team.stephen.sunshine.model.other.CssciPaper;
+import team.stephen.sunshine.model.other.bean.cssci.CssciPaper;
 import team.stephen.sunshine.service.other.parse.Parser;
-import team.stephen.sunshine.util.common.LogRecord;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 

@@ -1,9 +1,9 @@
 package team.stephen.sunshine.service.other;
 
-import team.stephen.sunshine.model.other.CssciAuthor;
-import team.stephen.sunshine.model.other.CssciCitation;
-import team.stephen.sunshine.model.other.CssciJournal;
-import team.stephen.sunshine.model.other.CssciPaper;
+import team.stephen.sunshine.model.other.bean.cssci.CssciAuthor;
+import team.stephen.sunshine.model.other.bean.cssci.CssciCitation;
+import team.stephen.sunshine.model.other.bean.cssci.CssciJournal;
+import team.stephen.sunshine.model.other.bean.cssci.CssciPaper;
 
 import java.io.IOException;
 import java.util.Map;

@@ -2,7 +2,6 @@ package team.stephen.sunshine.controller.other;
 
 import com.google.common.base.Charsets;
 import com.google.common.base.Objects;
-import com.google.common.collect.Lists;
 import com.google.common.io.Files;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -17,7 +16,7 @@ import team.stephen.sunshine.constant.enu.ResultEnum;
 import team.stephen.sunshine.controller.BaseController;
 import team.stephen.sunshine.exception.CrawlException;
 import team.stephen.sunshine.model.other.CrawlError;
-import team.stephen.sunshine.model.other.CssciPaper;
+import team.stephen.sunshine.model.other.bean.cssci.CssciPaper;
 import team.stephen.sunshine.model.other.bean.Pagination;
 import team.stephen.sunshine.model.other.bean.cssci.CssciArticleParam;
 import team.stephen.sunshine.model.other.bean.cssci.CssciCrawlResource;

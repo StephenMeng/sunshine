@@ -1,4 +1,4 @@
-package team.stephen.sunshine.model.other;
+package team.stephen.sunshine.model.other.bean.weibo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

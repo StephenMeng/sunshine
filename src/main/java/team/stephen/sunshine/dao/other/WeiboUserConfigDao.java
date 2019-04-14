@@ -1,10 +1,8 @@
 package team.stephen.sunshine.dao.other;
 
 import org.apache.ibatis.annotations.Mapper;
-import team.stephen.sunshine.model.other.WeiboUserConfig;
+import team.stephen.sunshine.model.other.bean.weibo.WeiboUserConfig;
 import team.stephen.sunshine.util.common.BaseDao;
-
-import java.util.List;
 
 /**
  * @author Stephen

@@ -1,6 +1,6 @@
 package team.stephen.sunshine.util.handler;
 
-import team.stephen.sunshine.model.other.WeiboUserConfig;
+import team.stephen.sunshine.model.other.bean.weibo.WeiboUserConfig;
 import team.stephen.sunshine.util.element.StringUtils;
 
 /**
