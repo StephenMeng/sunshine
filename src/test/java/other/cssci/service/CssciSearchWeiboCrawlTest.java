@@ -97,11 +97,12 @@ public class CssciSearchWeiboCrawlTest {
 
     @Test
     public void testCompleteCrawlTask() {
-        param.setQkname("地理学与国土研究");
-        param.setTitle("地理学与国土研究");
+        qkname="社会科学";
+        param.setQkname(qkname);
+        param.setTitle(qkname);
         param.setPagenow(1);
-        param.setStartYear("1998");
-        param.setEndYear("2018");
+        param.setStartYear("2017");
+        param.setEndYear("2017");
         param.setPageSize(50);
         LogRecord.print(param.getUrl());
         try {

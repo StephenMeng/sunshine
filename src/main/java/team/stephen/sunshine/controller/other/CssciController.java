@@ -2,6 +2,7 @@ package team.stephen.sunshine.controller.other;
 
 import com.google.common.base.Charsets;
 import com.google.common.base.Objects;
+import com.google.common.collect.Lists;
 import com.google.common.io.Files;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -87,6 +88,7 @@ public class CssciController extends BaseController {
         try {
             FileWriter writer = new FileWriter((new File(saveFile)), true);
             writer.append(journal + "\t" + startYear + "\t" + endYear + "\n");
+            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -116,12 +118,12 @@ public class CssciController extends BaseController {
             return Response.error(ResultEnum.NULL_PARAMETER);
         }
         CssciArticleParam param = new CssciArticleParam(resource);
-        if (qkname.contains("(")) {
-            param.setTitle(qkname);
-        } else {
-            param.setTitle(qkname);
-            param.setQkname(qkname);
-        }
+//        if (qkname.contains("(")) {
+//            param.setTitle(qkname);
+//        } else {
+        param.setTitle(qkname);
+//            param.setQkname(qkname);
+//        }
         param.setPagenow(1);
         param.setStartYear(String.valueOf(startYear));
         param.setEndYear(String.valueOf(endYear));
@@ -130,7 +132,7 @@ public class CssciController extends BaseController {
         try {
             HttpResponse response = HttpUtils.httpGet(param.getUrl(), normalHeaders(param));
             String html = IOUtils.toString(response.getEntity().getContent());
-            Thread.sleep(new Random().nextInt(2) * 1000);
+            Thread.sleep(new Random().nextInt(3) * 1000);
 
             Pagination pagination = (Pagination) pageParser.parse(html).get(0);
             LogRecord.print(pagination.getTotal());
@@ -144,6 +146,9 @@ public class CssciController extends BaseController {
                     param.setPagenow(i);
                     crawlSinglePage(param);
                 }
+            } else if (Objects.equal(param.getStartYear(), param.getEndYear()) || pagination.getTotal() > 1000) {
+                LogRecord.error("too much result : " + param.getUrl());
+                addError(param, "too much result:" + param.getTitle());
             } else {
                 int mid = (startYear + endYear) >> 1;
                 crawlArticleBaseInfo(qkname, startYear, mid);
@@ -167,7 +172,7 @@ public class CssciController extends BaseController {
 
     private void crawlSinglePage(CssciArticleParam param) {
         try {
-            LogRecord.print(param.getUrl());
+//            LogRecord.print(param.getUrl());
             String html = HttpUtils.okrHttpGet(param.getUrl(), param.getHeaders());
             List<CssciPaper> papers = artOvParser.parse(html);
             papers.forEach(cssciService::addPaper);
