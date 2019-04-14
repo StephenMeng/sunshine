@@ -38,6 +38,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 import static team.stephen.sunshine.util.constant.CrawError.ERROR_DETAIL;
@@ -195,15 +197,18 @@ public class CssciController extends BaseController {
     }
 
     @ApiOperation(value = "查询CSSCI论文详情信息", httpMethod = "GET", response = Response.class)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "threadNum", value = "线程数", required = true, paramType = "query")})
     @RequestMapping(value = "crawlPaperDetail", method = RequestMethod.GET)
-    public Response crawlPaperDetail() {
+    public Response crawlPaperDetail(Integer threadNum) {
         Pagination pagination = new Pagination();
         pagination.setPageIndex(1);
-        pagination.setPageSize(1);
+        pagination.setPageSize(Integer.MAX_VALUE);
         List<CssciPaper> papers = cssciService.selectPaper(null, pagination);
         papers = papers.stream().filter(p -> StringUtils.isBlank(p.getQkdm())).collect(Collectors.toList());
 
-        papers.forEach(this::crawlPaperSingleTask);
+        Executor executor = Executors.newFixedThreadPool(threadNum);
+        papers.forEach(p -> executor.execute(() -> crawlPaperSingleTask(p)));
         LogRecord.print(papers);
         return Response.success(null);
     }
@@ -212,9 +217,7 @@ public class CssciController extends BaseController {
         CssciPaperDetailParam detailParam = new CssciPaperDetailParam(resource);
         detailParam.setSno(cssciPaper.getSno());
         try {
-            String html = null;
-
-            html = HttpUtils.okrHttpGet(detailParam.getUrl(), detailParam.getHeaders());
+            String html = HttpUtils.okrHttpGet(detailParam.getUrl(), detailParam.getHeaders());
 
             List<CssciPaper> papers = detailParser.parse(html);
             List<CssciAuthor> authors = authorParser.parse(html);
