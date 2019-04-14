@@ -2,8 +2,6 @@ package team.stephen.sunshine.model.other.bean.cssci;
 
 import org.springframework.beans.BeanUtils;
 import team.stephen.sunshine.model.other.bean.BaseCrawlParam;
-import team.stephen.sunshine.model.other.bean.weibo.AdvanceType;
-import team.stephen.sunshine.model.other.bean.weibo.WeiboCrawlResource;
 import team.stephen.sunshine.util.common.LogRecord;
 import team.stephen.sunshine.util.element.StringUtils;
 
@@ -13,7 +11,7 @@ import java.net.URLEncoder;
  * @author Stephen
  * @date 2019/03/18 23:46
  */
-public class CssciArticleParam extends BaseCrawlParam implements Cloneable {
+public class CssciPaperParam extends BaseCrawlParam implements Cloneable {
     public static final String PREFIX = "http://cssci.nju.edu.cn/control/controllers.php?control=search_base&action=search_lysy";
     public static final String REFERER_PREFIX = "http://cssci.nju.edu.cn/ly_search_view.html?";
 
@@ -28,11 +26,11 @@ public class CssciArticleParam extends BaseCrawlParam implements Cloneable {
     int pageSize = 50;
     int pagenow;
 
-    public CssciArticleParam() {
+    public CssciPaperParam() {
         super(null);
     }
 
-    public CssciArticleParam(CssciCrawlResource resource) {
+    public CssciPaperParam(CssciCrawlResource resource) {
         super(resource);
         getHeaders().put("Connection", "keep-alive");
         getHeaders().put("Host", "cssci.nju.edu.cn");
@@ -170,10 +168,10 @@ public class CssciArticleParam extends BaseCrawlParam implements Cloneable {
     }
 
     @Override
-    public CssciArticleParam clone() {
-        CssciArticleParam param = null;
+    public CssciPaperParam clone() {
+        CssciPaperParam param = null;
         try {
-            param = (CssciArticleParam) super.clone();
+            param = (CssciPaperParam) super.clone();
         } catch (CloneNotSupportedException e) {
             LogRecord.error("CloneNotSupportedException");
         }

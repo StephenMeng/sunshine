@@ -9,11 +9,9 @@ import org.apache.commons.io.IOUtils;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import team.stephen.sunshine.model.other.bean.cssci.CssciPaper;
-import team.stephen.sunshine.model.other.bean.cssci.CssciArticleParam;
-import team.stephen.sunshine.model.other.bean.cssci.CssciCrawlResource;
-import team.stephen.sunshine.service.other.parse.impl.cssci.CssciPageParser;
-import team.stephen.sunshine.service.other.parse.impl.cssci.CssciArticleOverViewParser;
+import team.stephen.sunshine.model.other.bean.Pagination;
+import team.stephen.sunshine.model.other.bean.cssci.*;
+import team.stephen.sunshine.service.other.parse.impl.cssci.*;
 import team.stephen.sunshine.util.common.HttpUtils;
 import team.stephen.sunshine.util.common.LogRecord;
 import team.stephen.sunshine.util.element.StringUtils;
@@ -22,6 +20,7 @@ import java.io.*;
 import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
@@ -33,16 +32,23 @@ import static org.mockito.Mockito.mock;
 public class CssciSearchWeiboCrawlTest {
     private CssciCrawlResource resource = mock(CssciCrawlResource.class);
     private String cookie = "PHPSESSID=9dbl0krvk513pkfebj1bdhdf82; _ga=GA1.3.60051673.1555159461; _gid=GA1.3.194878920.1555159461; search_history_ly_a=title%3D%25E6%25B3%2595%25E5%25AD%25A6+++8%26start_year%3D1998%26end_year%3D2018%26nian%3D%26juan%3D%26qi%3D%26xw1%3D%26xw2%3D%26wzlx%3D%26xkfl1%3D%26jj%3D%26pagenum%3D20%26order_type%3Dnian%26order_px%3DDESC";
-    private CssciArticleParam param;
+    private CssciPaperParam param;
     private String qkname = "法学";
     private static final String ENCODE = "utf-8";
     private static String searchResultHtml;
+    private static String searchDetailHtml;
+    private static String sno;
+    private CssciPaperDetailParam detailParam;
 
     @BeforeClass
     public static void initHtml() {
         try {
+            sno = "11G0452017010001";
             InputStream in = Resources.getResource("./data/cssci.html").openStream();
             searchResultHtml = IOUtils.toString(in, ENCODE);
+            in = Resources.getResource("./data/cssci.detail.html").openStream();
+            searchDetailHtml = IOUtils.toString(in, ENCODE);
+            in.close();
         } catch (IOException e) {
             LogRecord.error(e);
         }
@@ -51,10 +57,13 @@ public class CssciSearchWeiboCrawlTest {
     @Before
     public void init() throws IOException {
         doReturn(cookie).when(resource).getCookie();
-        param = new CssciArticleParam(resource);
+        param = new CssciPaperParam(resource);
 
         InputStream in = Resources.getResource("./data/cssci.html").openStream();
         searchResultHtml = IOUtils.toString(in, ENCODE);
+
+        detailParam = new CssciPaperDetailParam(resource);
+        detailParam.setSno(sno);
     }
 
     @Test
@@ -96,8 +105,8 @@ public class CssciSearchWeiboCrawlTest {
 
     @Test
     public void testCompleteCrawlTask() {
-        qkname="社会科学";
-        param.setQkname(qkname);
+        qkname = "社会科学";
+//        param.setQkname(qkname);
         param.setTitle(qkname);
         param.setPagenow(1);
         param.setStartYear("2017");
@@ -108,20 +117,22 @@ public class CssciSearchWeiboCrawlTest {
             String html = IOUtils.toString(HttpUtils.httpGet(param.getUrl(), normalHeaders(param)).getEntity().getContent());
             CssciArticleOverViewParser parser = new CssciArticleOverViewParser();
             List<CssciPaper> papers = parser.parse(html);
-            Integer total = (Integer) new CssciPageParser().parse(html).get(0);
+            Pagination total = (Pagination) new CssciPageParser().parse(html).get(0);
             LogRecord.print(papers);
-            LogRecord.print(total);
+            LogRecord.print(total.getTotal());
         } catch (IOException e) {
             LogRecord.error(e);
         }
         assert param.getUrl().length() > 20;
     }
-    private Map<String, String> normalHeaders(CssciArticleParam param) {
+
+    private Map<String, String> normalHeaders(CssciPaperParam param) {
         String url = param.getUrl();
-        param.getHeaders().put("Referer", url.replace(CssciArticleParam.PREFIX, CssciArticleParam.REFERER_PREFIX).replace("&title","title"));
+        param.getHeaders().put("Referer", url.replace(CssciPaperParam.PREFIX, CssciPaperParam.REFERER_PREFIX).replace("&title", "title"));
         LogRecord.print(param.getHeaders().get("Referer"));
         return param.getHeaders();
     }
+
     @Test
     public void testParse() {
         LogRecord.print(searchResultHtml);
@@ -194,7 +205,7 @@ public class CssciSearchWeiboCrawlTest {
         String saveFile = dir + "crawled.txt";
         FileWriter writer = null;
         try {
-            writer = new FileWriter((new File(saveFile)),true);
+            writer = new FileWriter((new File(saveFile)), true);
             writer.append(journal + "\n");
             writer.close();
         } catch (IOException e) {
@@ -214,4 +225,38 @@ public class CssciSearchWeiboCrawlTest {
         return Integer.parseInt(s);
     }
 
+    @Test
+    public void testCrawlDetailParam() {
+        LogRecord.print(detailParam.getUrl());
+        assert detailParam.getSno().equals(sno);
+        assert detailParam.getUrl().length() > 10;
+    }
+
+    @Test
+    public void testCrawlDetail() {
+
+        String html = searchDetailHtml;
+        CssciArticleDetailParser detailParser = new CssciArticleDetailParser();
+        CssciArticleAuthorParser authorParser = new CssciArticleAuthorParser();
+        CssciArticleCitationParser citationParser = new CssciArticleCitationParser();
+
+        List<CssciPaper> papers = detailParser.parse(html);
+        List<CssciAuthor> authors = authorParser.parse(html);
+        List<CssciPaperAuthorRel> paperAuthorRelList = authors.stream().map(au -> this.genReal(au, sno)).collect(Collectors.toList());
+        List<CssciCitation> cssciCitations = citationParser.parse(html);
+        LogRecord.print(papers);
+        LogRecord.print(authors);
+        LogRecord.print(cssciCitations);
+        LogRecord.print(paperAuthorRelList);
+
+        assert detailParam.getSno().equals(sno);
+        assert detailParam.getUrl().length() > 10;
+    }
+
+    private CssciPaperAuthorRel genReal(CssciAuthor au, String sno) {
+        CssciPaperAuthorRel rel = new CssciPaperAuthorRel();
+        rel.setAuthorId(au.getId());
+        rel.setSno(sno);
+        return rel;
+    }
 }

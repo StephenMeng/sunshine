@@ -16,15 +16,16 @@ import team.stephen.sunshine.constant.enu.ResultEnum;
 import team.stephen.sunshine.controller.BaseController;
 import team.stephen.sunshine.exception.CrawlException;
 import team.stephen.sunshine.model.other.CrawlError;
-import team.stephen.sunshine.model.other.bean.cssci.CssciPaper;
+import team.stephen.sunshine.model.other.bean.cssci.*;
 import team.stephen.sunshine.model.other.bean.Pagination;
-import team.stephen.sunshine.model.other.bean.cssci.CssciArticleParam;
-import team.stephen.sunshine.model.other.bean.cssci.CssciCrawlResource;
 import team.stephen.sunshine.service.other.CrawlErrorService;
 import team.stephen.sunshine.service.other.CssciService;
 import team.stephen.sunshine.service.other.parse.Parser;
 import team.stephen.sunshine.service.other.parse.ParserFactory;
 import team.stephen.sunshine.service.other.parse.ParserType;
+import team.stephen.sunshine.service.other.parse.impl.cssci.CssciArticleAuthorParser;
+import team.stephen.sunshine.service.other.parse.impl.cssci.CssciArticleCitationParser;
+import team.stephen.sunshine.service.other.parse.impl.cssci.CssciArticleDetailParser;
 import team.stephen.sunshine.util.common.HttpUtils;
 import team.stephen.sunshine.util.common.LogRecord;
 import team.stephen.sunshine.util.common.Response;
@@ -37,6 +38,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import static team.stephen.sunshine.util.constant.CrawError.ERROR_DETAIL;
 import static team.stephen.sunshine.util.constant.CrawError.ERROR_PAGE;
@@ -58,6 +60,10 @@ public class CssciController extends BaseController {
 
     private Parser pageParser = ParserFactory.INSTANCE.getParser(ParserType.CSSCI_PAGE).get();
     private Parser artOvParser = ParserFactory.INSTANCE.getParser(ParserType.CSSCI_ARTICLE_OVERVIEW).get();
+
+    private CssciArticleDetailParser detailParser = new CssciArticleDetailParser();
+    private CssciArticleAuthorParser authorParser = new CssciArticleAuthorParser();
+    private CssciArticleCitationParser citationParser = new CssciArticleCitationParser();
     private String dir = "C:\\USERS\\STEPHEN\\Desktop\\sunshine\\cssci\\";
 
     @ApiOperation(value = "查询CSSCI论文ID 从文件中", httpMethod = "GET", response = Response.class)
@@ -116,13 +122,8 @@ public class CssciController extends BaseController {
         if (StringUtils.isBlank(qkname) || startYear == null || endYear == null) {
             return Response.error(ResultEnum.NULL_PARAMETER);
         }
-        CssciArticleParam param = new CssciArticleParam(resource);
-//        if (qkname.contains("(")) {
-//            param.setTitle(qkname);
-//        } else {
+        CssciPaperParam param = new CssciPaperParam(resource);
         param.setTitle(qkname);
-//            param.setQkname(qkname);
-//        }
         param.setPagenow(1);
         param.setStartYear(String.valueOf(startYear));
         param.setEndYear(String.valueOf(endYear));
@@ -162,14 +163,14 @@ public class CssciController extends BaseController {
         return Response.success(null);
     }
 
-    private Map<String, String> normalHeaders(CssciArticleParam param) {
+    private Map<String, String> normalHeaders(CssciPaperParam param) {
         String url = param.getUrl();
-        param.getHeaders().put("Referer", url.replace(CssciArticleParam.PREFIX, CssciArticleParam.REFERER_PREFIX));
+        param.getHeaders().put("Referer", url.replace(CssciPaperParam.PREFIX, CssciPaperParam.REFERER_PREFIX));
         return param.getHeaders();
     }
 
 
-    private void crawlSinglePage(CssciArticleParam param) {
+    private void crawlSinglePage(CssciPaperParam param) {
         try {
 //            LogRecord.print(param.getUrl());
             String html = HttpUtils.okrHttpGet(param.getUrl(), param.getHeaders());
@@ -182,14 +183,57 @@ public class CssciController extends BaseController {
 
     }
 
-    private void addError(CssciArticleParam param, String type) {
+    private void addError(CssciPaperParam param, String type) {
         CrawlError error = new CrawlError();
         error.setUrl(param.getUrl());
         error.setCreateDate(new Date());
         error.setMethod("GET");
-        error.setSite(CssciArticleParam.PREFIX);
+        error.setSite(CssciPaperParam.PREFIX);
         error.setDeleted(false);
         error.setType(type);
         crawlErrorService.addError(error);
+    }
+
+    @ApiOperation(value = "查询CSSCI论文详情信息", httpMethod = "GET", response = Response.class)
+    @RequestMapping(value = "crawlPaperDetail", method = RequestMethod.GET)
+    public Response crawlPaperDetail() {
+        Pagination pagination = new Pagination();
+        pagination.setPageIndex(1);
+        pagination.setPageSize(1);
+        List<CssciPaper> papers = cssciService.selectPaper(null, pagination);
+        papers = papers.stream().filter(p -> StringUtils.isBlank(p.getQkdm())).collect(Collectors.toList());
+
+        papers.forEach(this::crawlPaperSingleTask);
+        LogRecord.print(papers);
+        return Response.success(null);
+    }
+
+    private void crawlPaperSingleTask(CssciPaper cssciPaper) {
+        CssciPaperDetailParam detailParam = new CssciPaperDetailParam(resource);
+        detailParam.setSno(cssciPaper.getSno());
+        try {
+            String html = null;
+
+            html = HttpUtils.okrHttpGet(detailParam.getUrl(), detailParam.getHeaders());
+
+            List<CssciPaper> papers = detailParser.parse(html);
+            List<CssciAuthor> authors = authorParser.parse(html);
+            List<CssciPaperAuthorRel> paperAuthorRelList = authors.stream().map(au -> this.genReal(au, cssciPaper.getSno())).collect(Collectors.toList());
+            List<CssciCitation> cssciCitations = citationParser.parse(html);
+
+            papers.forEach(cssciService::updatePaperSelective);
+            authors.forEach(cssciService::addAuthor);
+            paperAuthorRelList.forEach(cssciService::addPaperAuthorRelation);
+            cssciCitations.forEach(cssciService::addCitation);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private CssciPaperAuthorRel genReal(CssciAuthor au, String sno) {
+        CssciPaperAuthorRel rel = new CssciPaperAuthorRel();
+        rel.setAuthorId(au.getId());
+        rel.setSno(sno);
+        return rel;
     }
 }

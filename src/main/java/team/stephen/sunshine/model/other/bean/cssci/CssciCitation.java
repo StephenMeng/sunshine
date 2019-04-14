@@ -2,6 +2,7 @@ package team.stephen.sunshine.model.other.bean.cssci;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -11,14 +12,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "cssci_citation")
 public class CssciCitation {
+    @Id
+    @Column(name = "id")
+    private String id;
+    @Id
+    @Column(name = "sno")
+    private String sno;
     @Column(name = "by_tag")
     private String byTag;
     @Column(name = "bynd")
     private String bynd;
     @Column(name = "dcbj")
     private String dcbj;
-    @Column(name = "id")
-    private String id;
     @Column(name = "jcxh")
     private String jcxh;
     @Column(name = "qk_tag")
@@ -27,8 +32,7 @@ public class CssciCitation {
     private String qkdm;
     @Column(name = "qkno")
     private String qkno;
-    @Column(name = "sno")
-    private String sno;
+
     @Column(name = "wzdm")
     private String wzdm;
     @Column(name = "yw_id")
@@ -280,5 +284,38 @@ public class CssciCitation {
 
     public void setYylb(String yylb) {
         this.yylb = yylb;
+    }
+
+    @Override
+    public String toString() {
+        return "CssciCitation{" +
+                "byTag='" + byTag + '\'' +
+                ", bynd='" + bynd + '\'' +
+                ", dcbj='" + dcbj + '\'' +
+                ", id='" + id + '\'' +
+                ", jcxh='" + jcxh + '\'' +
+                ", qkTag='" + qkTag + '\'' +
+                ", qkdm='" + qkdm + '\'' +
+                ", qkno='" + qkno + '\'' +
+                ", sno='" + sno + '\'' +
+                ", wzdm='" + wzdm + '\'' +
+                ", ywId='" + ywId + '\'' +
+                ", ywcbd='" + ywcbd + '\'' +
+                ", ywcbs='" + ywcbs + '\'' +
+                ", ywcc='" + ywcc + '\'' +
+                ", ywlx='" + ywlx + '\'' +
+                ", ywnd='" + ywnd + '\'' +
+                ", ywno='" + ywno + '\'' +
+                ", ywpm='" + ywpm + '\'' +
+                ", ywpmP='" + ywpmP + '\'' +
+                ", ywqk='" + ywqk + '\'' +
+                ", ywqkId='" + ywqkId + '\'' +
+                ", ywxj='" + ywxj + '\'' +
+                ", ywym='" + ywym + '\'' +
+                ", ywyz='" + ywyz + '\'' +
+                ", ywzz='" + ywzz + '\'' +
+                ", ywzzP='" + ywzzP + '\'' +
+                ", yylb='" + yylb + '\'' +
+                '}';
     }
 }

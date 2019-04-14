@@ -2,17 +2,14 @@ package team.stephen.sunshine.service.other.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.google.common.base.Joiner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import team.stephen.sunshine.dao.other.CssciAuthorDao;
-import team.stephen.sunshine.dao.other.CssciCitationDao;
-import team.stephen.sunshine.dao.other.CssciJournalDao;
-import team.stephen.sunshine.dao.other.CssciPaperDao;
-import team.stephen.sunshine.model.other.bean.cssci.CssciAuthor;
-import team.stephen.sunshine.model.other.bean.cssci.CssciCitation;
-import team.stephen.sunshine.model.other.bean.cssci.CssciJournal;
-import team.stephen.sunshine.model.other.bean.cssci.CssciPaper;
+import team.stephen.sunshine.dao.other.*;
+import team.stephen.sunshine.model.other.bean.Pagination;
+import team.stephen.sunshine.model.other.bean.cssci.*;
 import team.stephen.sunshine.service.other.CssciService;
 import team.stephen.sunshine.util.common.HttpUtils;
 import team.stephen.sunshine.util.common.LogRecord;
@@ -36,6 +33,8 @@ public class CssciServiceImpl implements CssciService {
     private CssciAuthorDao cssciAuthorDao;
     @Autowired
     private CssciCitationDao cssciCitationDao;
+    @Autowired
+    private CssciPaperAuthorRelDao cssciPaperAuthorRelDao;
 
     @Override
     public int addJournal(CssciJournal journal) {
@@ -46,6 +45,16 @@ public class CssciServiceImpl implements CssciService {
     public int addPaper(CssciPaper paper) {
         try {
             return cssciPaperDao.insert(paper);
+        } catch (Exception e) {
+            LogRecord.error(e);
+            return -1;
+        }
+    }
+
+    @Override
+    public int addPaperAuthorRelation(CssciPaperAuthorRel rel) {
+        try {
+            return cssciPaperAuthorRelDao.insert(rel);
         } catch (Exception e) {
             LogRecord.error(e);
             return -1;
@@ -100,15 +109,16 @@ public class CssciServiceImpl implements CssciService {
         try {
             JSONObject object = paperJArray.getJSONObject(0);
             CssciPaper paper = JSONObject.toJavaObject(object, CssciPaper.class);
-            if (authorList != null) {
-                List<String> aids = authorList.stream().map(CssciAuthor::getId).collect(Collectors.toList());
-                String authorIds = Joiner.on(";").join(aids);
-                paper.setAuthorsId(authorIds);
-            }
             updatePaperSelective(paper);
         } catch (Exception e) {
             LogRecord.error(e);
         }
         return 0;
+    }
+
+    @Override
+    public Page<CssciPaper> selectPaper(CssciPaper paper, Pagination pagination) {
+        PageHelper.startPage(pagination.getPageIndex(), pagination.getPageSize());
+        return (Page<CssciPaper>) cssciPaperDao.select(paper);
     }
 }

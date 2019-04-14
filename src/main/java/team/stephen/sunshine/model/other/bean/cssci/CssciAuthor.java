@@ -15,6 +15,9 @@ public class CssciAuthor {
     @Id
     @Column(name = "id")
     private String id;
+    @Id
+    @Column(name = "sno")
+    private String sno;
     @Column(name = "bmmc")
     private String bmmc;
     @Column(name = "dcbj")
@@ -39,6 +42,27 @@ public class CssciAuthor {
     private String zzdq;
     @Column(name = "zzpm")
     private String zzpm;
+    @Column(name = "yjdm")
+    private String yjdm;
+    @Column(name = "qklb")
+    private String qklb;
+    @Column(name = "xkfl2")
+    private String xkfl2;
+
+    @Column(name = "xkfl1")
+    private String xkfl1;
+    @Column(name = "nian")
+    private String nian;
+    @Column(name = "zzmc")
+    private String zzmc;
+
+    public String getZzmc() {
+        return zzmc;
+    }
+
+    public void setZzmc(String zzmc) {
+        this.zzmc = zzmc;
+    }
 
     public String getId() {
         return id;
@@ -142,5 +166,78 @@ public class CssciAuthor {
 
     public void setZzpm(String zzpm) {
         this.zzpm = zzpm;
+    }
+
+    public String getSno() {
+        return sno;
+    }
+
+    public void setSno(String sno) {
+        this.sno = sno;
+    }
+
+    public String getYjdm() {
+        return yjdm;
+    }
+
+    public void setYjdm(String yjdm) {
+        this.yjdm = yjdm;
+    }
+
+    public String getQklb() {
+        return qklb;
+    }
+
+    public void setQklb(String qklb) {
+        this.qklb = qklb;
+    }
+
+    public String getXkfl2() {
+        return xkfl2;
+    }
+
+    public void setXkfl2(String xkfl2) {
+        this.xkfl2 = xkfl2;
+    }
+
+    public String getXkfl1() {
+        return xkfl1;
+    }
+
+    public void setXkfl1(String xkfl1) {
+        this.xkfl1 = xkfl1;
+    }
+
+    public String getNian() {
+        return nian;
+    }
+
+    public void setNian(String nian) {
+        this.nian = nian;
+    }
+
+    @Override
+    public String toString() {
+        return "CssciAuthor{" +
+                "id='" + id + '\'' +
+                ", sno='" + sno + '\'' +
+                ", bmmc='" + bmmc + '\'' +
+                ", dcbj='" + dcbj + '\'' +
+                ", fwxs='" + fwxs + '\'' +
+                ", jglb1='" + jglb1 + '\'' +
+                ", jgmc='" + jgmc + '\'' +
+                ", pyxm='" + pyxm + '\'' +
+                ", sftt='" + sftt + '\'' +
+                ", sxdm='" + sxdm + '\'' +
+                ", txdz='" + txdz + '\'' +
+                ", yzbm='" + yzbm + '\'' +
+                ", zzdq='" + zzdq + '\'' +
+                ", zzpm='" + zzpm + '\'' +
+                ", yjdm='" + yjdm + '\'' +
+                ", qklb='" + qklb + '\'' +
+                ", xkfl2='" + xkfl2 + '\'' +
+                ", xkfl1='" + xkfl1 + '\'' +
+                ", nian='" + nian + '\'' +
+                '}';
     }
 }

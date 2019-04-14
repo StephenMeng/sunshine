@@ -1,11 +1,11 @@
 package team.stephen.sunshine.service.other;
 
-import team.stephen.sunshine.model.other.bean.cssci.CssciAuthor;
-import team.stephen.sunshine.model.other.bean.cssci.CssciCitation;
-import team.stephen.sunshine.model.other.bean.cssci.CssciJournal;
-import team.stephen.sunshine.model.other.bean.cssci.CssciPaper;
+import com.github.pagehelper.Page;
+import team.stephen.sunshine.model.other.bean.Pagination;
+import team.stephen.sunshine.model.other.bean.cssci.*;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,6 +17,8 @@ public interface CssciService {
 
     int addPaper(CssciPaper paper);
 
+    int addPaperAuthorRelation(CssciPaperAuthorRel rel);
+
     int updatePaperSelective(CssciPaper cssciPaper);
 
     int addAuthor(CssciAuthor author);
@@ -24,4 +26,6 @@ public interface CssciService {
     int addCitation(CssciCitation citation);
 
     int crawlOnePaper(String sno, Map<String, String> headers) throws IOException;
+
+    Page<CssciPaper> selectPaper(CssciPaper paper, Pagination pagination);
 }

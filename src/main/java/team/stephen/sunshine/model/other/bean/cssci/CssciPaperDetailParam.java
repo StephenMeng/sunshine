@@ -5,21 +5,19 @@ import team.stephen.sunshine.model.other.bean.BaseCrawlParam;
 import team.stephen.sunshine.util.common.LogRecord;
 import team.stephen.sunshine.util.element.StringUtils;
 
-import java.net.URLEncoder;
-
 /**
  * @author Stephen
  * @date 2019/03/18 23:46
  */
-public class CssciArticleDetailParam extends BaseCrawlParam implements Cloneable {
+public class CssciPaperDetailParam extends BaseCrawlParam implements Cloneable {
     public static final String PREFIX = "http://cssci.nju.edu.cn/control/controllers.php?control=search&action=source_id&id=";
     String sno;
 
-    public CssciArticleDetailParam() {
+    public CssciPaperDetailParam() {
         super(null);
     }
 
-    public CssciArticleDetailParam(CssciCrawlResource resource) {
+    public CssciPaperDetailParam(CssciCrawlResource resource) {
         super(resource);
     }
 
@@ -48,10 +46,10 @@ public class CssciArticleDetailParam extends BaseCrawlParam implements Cloneable
 
 
     @Override
-    public CssciArticleDetailParam clone() {
-        CssciArticleDetailParam param = null;
+    public CssciPaperDetailParam clone() {
+        CssciPaperDetailParam param = null;
         try {
-            param = (CssciArticleDetailParam) super.clone();
+            param = (CssciPaperDetailParam) super.clone();
         } catch (CloneNotSupportedException e) {
             LogRecord.error("CloneNotSupportedException");
         }

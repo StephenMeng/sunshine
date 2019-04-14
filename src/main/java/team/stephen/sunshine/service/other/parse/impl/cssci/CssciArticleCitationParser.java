@@ -20,10 +20,10 @@ public class CssciArticleCitationParser implements Parser {
         List<CssciCitation> citationList = Collections.emptyList();
         JSONObject jsonObject = JSONObject.parseObject(html);
 
-        JSONArray authorJArray = jsonObject.getJSONArray("catation");
-        if (authorJArray != null) {
+        JSONArray citationJArray = jsonObject.getJSONArray("catation");
+        if (citationJArray != null) {
             try {
-                citationList = authorJArray.toJavaList(CssciCitation.class);
+                citationList = citationJArray.toJavaList(CssciCitation.class);
             } catch (Exception e) {
                 LogRecord.error(e);
             }

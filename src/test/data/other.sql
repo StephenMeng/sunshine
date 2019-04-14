@@ -31,16 +31,16 @@ CREATE TABLE `crawl_error` (
   `error` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=354 DEFAULT CHARSET=utf8mb4;
-
 -- ----------------------------
 -- Table structure for cssci_author
 -- ----------------------------
 DROP TABLE IF EXISTS `cssci_author`;
 CREATE TABLE `cssci_author` (
+  `id` varchar(30) NOT NULL,
+  `sno` varchar(255) NOT NULL,
   `bmmc` varchar(255) DEFAULT NULL,
   `dcbj` varchar(255) DEFAULT NULL,
   `fwxs` varchar(255) DEFAULT NULL,
-  `id` varchar(30) NOT NULL,
   `jglb1` varchar(255) DEFAULT NULL,
   `jgmc` varchar(255) DEFAULT NULL,
   `pyxm` varchar(255) DEFAULT NULL,
@@ -50,7 +50,23 @@ CREATE TABLE `cssci_author` (
   `yzbm` varchar(255) DEFAULT NULL,
   `zzdq` varchar(255) DEFAULT NULL,
   `zzpm` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `yjdm` varchar(255) DEFAULT NULL,
+  `qklb` varchar(255) DEFAULT NULL,
+  `xkfl2` varchar(255) DEFAULT NULL,
+  `xkfl1` varchar(255) DEFAULT NULL,
+  `nian` varchar(255) DEFAULT NULL,
+    `zzmc` varchar(255) DEFAULT NULL,
+
+  PRIMARY KEY (`id`,`sno`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- ----------------------------
+-- Table structure for cssci_author
+-- ----------------------------
+DROP TABLE IF EXISTS `cssci_paper_author_rel`;
+CREATE TABLE `cssci_paper_author_rel` (
+  `author_id` varchar(30) NOT NULL,
+  `sno` varchar(255) NOT NULL
+  PRIMARY KEY (`author_id`,`sno`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------

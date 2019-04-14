@@ -19,8 +19,6 @@ public class CssciPaper {
     private String id;
     @Column(name = "authors")
     private String authors;
-    @Column(name = "authors_id")
-    private String authorsId;
     @Column(name = "authors_address")
     private String authorsAddress;
     @Column(name = "authors_jg")
@@ -316,21 +314,12 @@ public class CssciPaper {
         this.ywsl = ywsl;
     }
 
-    public String getAuthorsId() {
-        return authorsId;
-    }
-
-    public void setAuthorsId(String authorsId) {
-        this.authorsId = authorsId;
-    }
-
     @Override
     public String toString() {
         return "CssciPaper{" +
                 "sno='" + sno + '\'' +
                 ", id='" + id + '\'' +
                 ", authors='" + authors + '\'' +
-                ", authorsId='" + authorsId + '\'' +
                 ", authorsAddress='" + authorsAddress + '\'' +
                 ", authorsJg='" + authorsJg + '\'' +
                 ", blpm='" + blpm + '\'' +
