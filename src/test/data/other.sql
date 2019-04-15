@@ -65,7 +65,7 @@ CREATE TABLE `cssci_author` (
 DROP TABLE IF EXISTS `cssci_paper_author_rel`;
 CREATE TABLE `cssci_paper_author_rel` (
   `author_id` varchar(30) NOT NULL,
-  `sno` varchar(255) NOT NULL
+  `sno` varchar(255) NOT NULL ,
   PRIMARY KEY (`author_id`,`sno`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

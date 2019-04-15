@@ -17,6 +17,7 @@ import team.stephen.sunshine.util.common.LogRecord;
 import team.stephen.sunshine.util.element.StringUtils;
 
 import java.io.*;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
@@ -258,5 +259,30 @@ public class CssciSearchWeiboCrawlTest {
         rel.setAuthorId(au.getId());
         rel.setSno(sno);
         return rel;
+    }
+
+    @Test
+    public void testParseUrl() {
+        String url = "http://cssci.nju.edu.cn/control/controllers.php?control=search_base&action=search_lysy&title=%25E7%25AE%25A1%25E7%2590%2586%25E7%25A7%2591%25E5%25AD%25A6%252B%252B%252B8&start_year=2008&end_year=2009&order_type=nian&order_px=DESC&pagenow=1&pagesize=50&session_key=479&search_tag=1&rand=0.6675326233034267&nian=&juan=&qi=&xw1=&xw2=&xkfl1=&wzlx=";
+        CssciPaperParam paperParam = new CssciPaperParam(resource);
+        paperParam.parseUrl(url);
+        LogRecord.print(paperParam);
+        assert paperParam.getTitle().equals("管理科学");
+        assert paperParam.getQkname().equals("管理科学");
+        assert paperParam.getStartYear().equals("2008");
+        assert paperParam.getEndYear().equals("2009");
+        assert paperParam.getPagenow() == 1;
+        assert paperParam.getPageSize() == 50;
+        LogRecord.print(paperParam.getUrl());
+        String preUrl = normalizePreUrl(paperParam.getUrl());
+        LogRecord.print(preUrl);
+
+    }
+
+    private String normalizePreUrl(String url) {
+        String prefUrl = url.replace(CssciPaperParam.PREFIX, CssciPaperParam.REFERER_PREFIX);
+        prefUrl=prefUrl.replaceAll("qkname(.*?)&", "");
+        prefUrl=prefUrl.replace("pagesize","pagenum");
+        return URLDecoder.decode(prefUrl);
     }
 }

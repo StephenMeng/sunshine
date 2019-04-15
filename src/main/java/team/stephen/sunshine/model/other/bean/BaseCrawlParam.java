@@ -34,4 +34,14 @@ public abstract class BaseCrawlParam implements CrawlParam {
     public String getEncode() {
         return encode;
     }
+
+    protected String parseUrlItem(String url, String item) {
+        String res = url.substring(url.indexOf(item) + item.length()+1);
+        if (res.contains("&")) {
+            res = res.substring(0, res.indexOf("&"));
+        } else {
+            return res;
+        }
+        return res;
+    }
 }

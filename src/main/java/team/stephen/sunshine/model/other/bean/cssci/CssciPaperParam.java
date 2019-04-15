@@ -5,6 +5,7 @@ import team.stephen.sunshine.model.other.bean.BaseCrawlParam;
 import team.stephen.sunshine.util.common.LogRecord;
 import team.stephen.sunshine.util.element.StringUtils;
 
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 
 /**
@@ -23,6 +24,7 @@ public class CssciPaperParam extends BaseCrawlParam implements Cloneable {
     String endYear;
     String orderType = "nian";
     String orderPx = "DESC";
+    String xkfl;
     int pageSize = 50;
     int pagenow;
 
@@ -51,8 +53,16 @@ public class CssciPaperParam extends BaseCrawlParam implements Cloneable {
         assembleDate(sb);
         assembleSort(sb);
         assemblePage(sb);
+        assembleXkfl(sb);
         assembleOther(sb);
         return sb.toString();
+    }
+
+    private void assembleXkfl(StringBuilder sb) {
+        sb.append("&xkfl1=");
+        if (!StringUtils.isBlank(xkfl)) {
+            sb.append(xkfl);
+        }
     }
 
     private void assembleTitle(StringBuilder sb) {
@@ -65,7 +75,7 @@ public class CssciPaperParam extends BaseCrawlParam implements Cloneable {
         sb.append(AND).append("session_key=479&search_tag=1");
         sb.append(AND).append("rand=0.6675326233034267");
         sb.append("&nian=&juan=&qi=&xw1=&xw2=");
-        sb.append("&xkfl1=&wzlx=");
+        sb.append("&wzlx=");
     }
 
     private void assemblePage(StringBuilder sb) {
@@ -101,6 +111,14 @@ public class CssciPaperParam extends BaseCrawlParam implements Cloneable {
     @Override
     public void parseUrl(String url) {
         //todo parse Url
+        setTitle(URLDecoder.decode(URLDecoder.decode(parseUrlItem(url, "title"))).replace("+++8", ""));
+        setQkname(getTitle());
+        setStartYear(parseUrlItem(url, "start_year"));
+        setEndYear(parseUrlItem(url, "end_year"));
+        setPagenow(Integer.parseInt(parseUrlItem(url, "pagenow")));
+        setPageSize(Integer.parseInt(parseUrlItem(url, "pagesize")));
+
+
     }
 
     public String getQkname() {
@@ -159,6 +177,14 @@ public class CssciPaperParam extends BaseCrawlParam implements Cloneable {
         this.pagenow = pagenow;
     }
 
+    public String getXkfl() {
+        return xkfl;
+    }
+
+    public void setXkfl(String xkfl) {
+        this.xkfl = xkfl;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -177,5 +203,19 @@ public class CssciPaperParam extends BaseCrawlParam implements Cloneable {
         }
         BeanUtils.copyProperties(this, param);
         return param;
+    }
+
+    @Override
+    public String toString() {
+        return "CssciPaperParam{" +
+                "qkname='" + qkname + '\'' +
+                ", title='" + title + '\'' +
+                ", startYear='" + startYear + '\'' +
+                ", endYear='" + endYear + '\'' +
+                ", orderType='" + orderType + '\'' +
+                ", orderPx='" + orderPx + '\'' +
+                ", pageSize=" + pageSize +
+                ", pagenow=" + pagenow +
+                '}';
     }
 }

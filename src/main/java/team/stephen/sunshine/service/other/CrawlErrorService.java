@@ -1,6 +1,8 @@
 package team.stephen.sunshine.service.other;
 
+import com.github.pagehelper.Page;
 import team.stephen.sunshine.model.other.CrawlError;
+import team.stephen.sunshine.model.other.bean.Pagination;
 
 import java.util.List;
 
@@ -16,4 +18,6 @@ public interface CrawlErrorService {
     int completed(int id);
 
     int selectCount(CrawlError error);
+
+    Page<CrawlError> selectError(CrawlError condition, Pagination pagination);
 }

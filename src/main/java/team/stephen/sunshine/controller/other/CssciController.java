@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import sun.rmi.runtime.Log;
 import team.stephen.sunshine.constant.enu.ResultEnum;
 import team.stephen.sunshine.controller.BaseController;
 import team.stephen.sunshine.exception.CrawlException;
@@ -34,12 +35,11 @@ import team.stephen.sunshine.util.element.StringUtils;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.net.URLDecoder;
+import java.util.*;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 
 import static team.stephen.sunshine.util.constant.CrawError.ERROR_DETAIL;
@@ -60,6 +60,7 @@ public class CssciController extends BaseController {
     @Autowired
     private CssciCrawlResource resource;
 
+    private static final List<String> XKFL = getXkfl();
     private Parser pageParser = ParserFactory.INSTANCE.getParser(ParserType.CSSCI_PAGE).get();
     private Parser artOvParser = ParserFactory.INSTANCE.getParser(ParserType.CSSCI_ARTICLE_OVERVIEW).get();
 
@@ -132,37 +133,41 @@ public class CssciController extends BaseController {
         param.setPageSize(50);
         LogRecord.print(param.getUrl());
         try {
-            HttpResponse response = HttpUtils.httpGet(param.getUrl(), normalHeaders(param));
-            String html = IOUtils.toString(response.getEntity().getContent());
-            Thread.sleep(new Random().nextInt(3) * 1000);
-
-            Pagination pagination = (Pagination) pageParser.parse(html).get(0);
-            LogRecord.print(pagination.getTotal());
-            if (pagination.getTotal() == null) {
-                LogRecord.error("query pagination info error : " + param.getUrl());
-                addError(param, ERROR_PAGE);
-                return Response.error(ResultEnum.SERVER_WRONG);
-            }
-            if (Objects.equal(param.getStartYear(), param.getEndYear()) || pagination.getTotal() < 1000) {
-                for (int i = 1; i <= pagination.getTotal() / PAGE_SIZE + 1; i++) {
-                    param.setPagenow(i);
-                    crawlSinglePage(param);
-                }
-            } else if (Objects.equal(param.getStartYear(), param.getEndYear()) || pagination.getTotal() > 1000) {
-                LogRecord.error("too much result : " + param.getUrl());
-                addError(param, "too much result:" + param.getTitle());
-            } else {
-                int mid = (startYear + endYear) >> 1;
-                crawlArticleBaseInfo(qkname, startYear, mid);
-                crawlArticleBaseInfo(qkname, mid >= endYear ? endYear : (mid + 1), endYear);
-            }
-
-        } catch (IOException | CrawlException e) {
+            crawlPage(qkname, param);
+        } catch (Exception e) {
             LogRecord.error(e);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
         return Response.success(null);
+    }
+
+    private boolean crawlPage(String qkname, CssciPaperParam param) throws IOException, InterruptedException, CrawlException {
+        Integer startYear = Integer.valueOf(param.getStartYear());
+        Integer endYear = Integer.valueOf(param.getEndYear());
+        HttpResponse response = HttpUtils.httpGet(param.getUrl(), normalHeaders(param));
+        String html = IOUtils.toString(response.getEntity().getContent());
+        Thread.sleep(new Random().nextInt(1) * 1000);
+
+        Pagination pagination = (Pagination) pageParser.parse(html).get(0);
+        LogRecord.print(pagination.getTotal());
+        if (pagination.getTotal() == null) {
+            LogRecord.error("query pagination info error : " + param.getUrl());
+            addError(param, ERROR_PAGE);
+            return false;
+        }
+        if (Objects.equal(param.getStartYear(), param.getEndYear()) && pagination.getTotal() > 1000) {
+            LogRecord.error("too much result : " + param.getUrl());
+            addError(param, "too much result:" + param.getTitle());
+        } else if (Objects.equal(param.getStartYear(), param.getEndYear()) || pagination.getTotal() < 1000) {
+            for (int i = 1; i <= pagination.getTotal() / PAGE_SIZE + 1; i++) {
+                param.setPagenow(i);
+            }
+            crawlSinglePage(param);
+        } else {
+            int mid = (startYear + endYear) >> 1;
+            crawlArticleBaseInfo(qkname, startYear, mid);
+            crawlArticleBaseInfo(qkname, mid >= endYear ? endYear : (mid + 1), endYear);
+        }
+        return true;
     }
 
     private Map<String, String> normalHeaders(CssciPaperParam param) {
@@ -174,7 +179,6 @@ public class CssciController extends BaseController {
 
     private void crawlSinglePage(CssciPaperParam param) {
         try {
-//            LogRecord.print(param.getUrl());
             String html = HttpUtils.okrHttpGet(param.getUrl(), param.getHeaders());
             List<CssciPaper> papers = artOvParser.parse(html);
             papers.forEach(cssciService::addPaper);
@@ -201,27 +205,26 @@ public class CssciController extends BaseController {
             @ApiImplicitParam(name = "threadNum", value = "线程数", required = true, paramType = "query")})
     @RequestMapping(value = "crawlPaperDetail", method = RequestMethod.GET)
     public Response crawlPaperDetail(Integer threadNum) {
+        Executor executor = Executors.newFixedThreadPool(threadNum);
         Pagination pagination = new Pagination();
         pagination.setPageIndex(1);
         pagination.setPageSize(Integer.MAX_VALUE);
-        List<CssciPaper> papers = cssciService.selectPaper(null, pagination);
-        papers = papers.stream().filter(p -> StringUtils.isBlank(p.getQkdm())).collect(Collectors.toList());
-
-        Executor executor = Executors.newFixedThreadPool(threadNum);
+        List<String> papers = cssciService.selectToCrawl(pagination);
+        LogRecord.print("start crawl ,size:" + papers.size());
         papers.forEach(p -> executor.execute(() -> crawlPaperSingleTask(p)));
         LogRecord.print(papers);
         return Response.success(null);
     }
 
-    private void crawlPaperSingleTask(CssciPaper cssciPaper) {
+    private void crawlPaperSingleTask(String sno) {
         CssciPaperDetailParam detailParam = new CssciPaperDetailParam(resource);
-        detailParam.setSno(cssciPaper.getSno());
+        detailParam.setSno(sno);
         try {
             String html = HttpUtils.okrHttpGet(detailParam.getUrl(), detailParam.getHeaders());
 
             List<CssciPaper> papers = detailParser.parse(html);
             List<CssciAuthor> authors = authorParser.parse(html);
-            List<CssciPaperAuthorRel> paperAuthorRelList = authors.stream().map(au -> this.genReal(au, cssciPaper.getSno())).collect(Collectors.toList());
+            List<CssciPaperAuthorRel> paperAuthorRelList = authors.stream().map(au -> this.genReal(au, sno)).collect(Collectors.toList());
             List<CssciCitation> cssciCitations = citationParser.parse(html);
 
             papers.forEach(cssciService::updatePaperSelective);
@@ -238,5 +241,140 @@ public class CssciController extends BaseController {
         rel.setAuthorId(au.getId());
         rel.setSno(sno);
         return rel;
+    }
+
+    @ApiOperation(value = "查询出错的CSSCI论文信息", httpMethod = "GET", response = Response.class)
+    @RequestMapping(value = "crawlErrorPaper", method = RequestMethod.GET)
+    public Response crawlErrorPaper() {
+        CrawlError condition = new CrawlError();
+        condition.setBody("retry");
+        condition.setDeleted(false);
+        Pagination pagination = new Pagination();
+        pagination.setPageIndex(1);
+        pagination.setPageSize(Integer.MAX_VALUE);
+        List<CrawlError> errorList = crawlErrorService.selectError(condition, pagination);
+        Collections.sort(errorList, Comparator.comparing(CrawlError::getUrl));
+        String cur = "";
+        for (CrawlError error : errorList) {
+            CssciPaperParam paperParam = new CssciPaperParam(resource);
+            paperParam.parseUrl(error.getUrl());
+            if (!error.getType().equals(cur)) {
+                cur = error.getType();
+            }
+            LogRecord.print(paperParam.getUrl());
+            try {
+                String prefUrl = normalizePreUrl(paperParam.getUrl());
+                HttpUtils.okrHttpGet(prefUrl, paperParam.getHeaders());
+                if (crawlPage(paperParam.getTitle(), paperParam)) {
+                    crawlErrorService.completed(error.getId());
+                }
+            } catch (Exception e) {
+                LogRecord.error(e);
+            }
+        }
+        return Response.success(null);
+    }
+
+    @ApiOperation(value = "查询单年超过1000的出错的CSSCI论文信息", httpMethod = "GET", response = Response.class)
+    @RequestMapping(value = "crawlErrorPaperMoreThan1000", method = RequestMethod.GET)
+    public Response crawlErrorPaperMoreThan1000() {
+        CrawlError condition = new CrawlError();
+        condition.setBody("retry");
+        condition.setDeleted(false);
+        Pagination pagination = new Pagination();
+        pagination.setPageIndex(1);
+        pagination.setPageSize(Integer.MAX_VALUE);
+        List<CrawlError> errorList = crawlErrorService.selectError(condition, pagination);
+        Collections.sort(errorList, Comparator.comparing(CrawlError::getUrl));
+        String cur = "";
+        for (CrawlError error : errorList) {
+            CssciPaperParam paperParam = new CssciPaperParam(resource);
+            paperParam.parseUrl(error.getUrl());
+            if (!error.getType().equals(cur)) {
+                cur = error.getType();
+            }
+            for (String xkfl : XKFL) {
+                paperParam.setXkfl(xkfl);
+                LogRecord.print(paperParam.getUrl());
+                try {
+                    if (crawlPage(paperParam.getTitle(), paperParam)) {
+                        crawlErrorService.completed(error.getId());
+                    }
+                } catch (Exception e) {
+                    LogRecord.error(e);
+                }
+            }
+        }
+        return Response.success(null);
+    }
+
+    private String normalizePreUrl(String url) {
+        String prefUrl = url.replace(CssciPaperParam.PREFIX, CssciPaperParam.REFERER_PREFIX);
+        prefUrl = prefUrl.replaceAll("qkname(.*?)&", "");
+        prefUrl = prefUrl.replace("pagesize", "pagenum");
+        return URLDecoder.decode(prefUrl);
+    }
+
+    private static List<String> getXkfl() {
+        List<String> res = new ArrayList<>();
+        res.add("110");
+        res.add("120");
+        res.add("130");
+        res.add("140");
+        res.add("150");
+        res.add("160");
+        res.add("170");
+        res.add("180");
+        res.add("210");
+        res.add("220");
+        res.add("230");
+        res.add("240");
+        res.add("310");
+        res.add("320");
+        res.add("330");
+        res.add("340");
+        res.add("350");
+        res.add("360");
+        res.add("410");
+        res.add("420");
+        res.add("430");
+        res.add("440");
+        res.add("450");
+        res.add("460");
+        res.add("470");
+        res.add("480");
+        res.add("490");
+        res.add("510");
+        res.add("520");
+        res.add("530");
+        res.add("540");
+        res.add("550");
+        res.add("560");
+        res.add("570");
+        res.add("580");
+        res.add("590");
+        res.add("610");
+        res.add("620");
+        res.add("630");
+        res.add("710");
+        res.add("720");
+        res.add("730");
+        res.add("740");
+        res.add("750");
+        res.add("760");
+        res.add("770");
+        res.add("780");
+        res.add("790");
+        res.add("810");
+        res.add("820");
+        res.add("830");
+        res.add("840");
+        res.add("850");
+        res.add("860");
+        res.add("870");
+        res.add("880");
+        res.add("890");
+        res.add("910");
+        return res;
     }
 }

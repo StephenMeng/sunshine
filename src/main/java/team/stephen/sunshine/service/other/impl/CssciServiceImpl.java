@@ -121,4 +121,10 @@ public class CssciServiceImpl implements CssciService {
         PageHelper.startPage(pagination.getPageIndex(), pagination.getPageSize());
         return (Page<CssciPaper>) cssciPaperDao.select(paper);
     }
+
+    @Override
+    public Page<String> selectToCrawl(Pagination pagination) {
+        PageHelper.startPage(pagination.getPageIndex(), pagination.getPageSize());
+        return (Page<String>) cssciPaperDao.selectToCrawl();
+    }
 }

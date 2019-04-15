@@ -28,4 +28,6 @@ public interface CssciService {
     int crawlOnePaper(String sno, Map<String, String> headers) throws IOException;
 
     Page<CssciPaper> selectPaper(CssciPaper paper, Pagination pagination);
+
+    Page<String> selectToCrawl(Pagination pagination);
 }
