@@ -360,7 +360,7 @@ public class WeiboController extends BaseController {
 
     private List<Weibo> getSearchPageWeibos(WeiboSearchParam param) throws CrawlException {
         List<Weibo> weibos = (List<Weibo>) CrawlUtils.getHttpResultWithFunction(param, (html) -> new WeiboSearchParser().parse(html));
-        weibos.forEach(weibo -> weibo.setQid(param.getKeyword() + "-" + weibo.getwUrl()));
+        weibos.forEach(weibo -> weibo.setQid(param.getKeyword() + "-" + weibo.getWUrl()));
         return weibos;
     }
 

@@ -72,7 +72,7 @@ public class CssciController extends BaseController {
     @ApiOperation(value = "查询CSSCI论文ID 从文件中", httpMethod = "GET", response = Response.class)
     @RequestMapping(value = "crawlArticleFromFile", method = RequestMethod.GET)
     public Response crawlArticleFromFile() {
-        String filepath = dir + "journal.txt";
+        String filepath = dir + "journal-extra.txt";
         try {
             List<String> journals = Files.readLines(new File(filepath), Charsets.UTF_8);
             journals.forEach(this::handleLine);
@@ -125,6 +125,8 @@ public class CssciController extends BaseController {
         if (StringUtils.isBlank(qkname) || startYear == null || endYear == null) {
             return Response.error(ResultEnum.NULL_PARAMETER);
         }
+        LogRecord.print("start 2 crawl ,param: qkname is " + qkname + " \t startYear is : " + startYear + "\t endYear is " + endYear);
+
         CssciPaperParam param = new CssciPaperParam(resource);
         param.setTitle(qkname);
         param.setPagenow(1);
@@ -148,21 +150,34 @@ public class CssciController extends BaseController {
         Thread.sleep(new Random().nextInt(1) * 1000);
 
         Pagination pagination = (Pagination) pageParser.parse(html).get(0);
-        LogRecord.print(pagination.getTotal());
         if (pagination.getTotal() == null) {
             LogRecord.error("query pagination info error : " + param.getUrl());
             addError(param, ERROR_PAGE);
             return false;
         }
         if (Objects.equal(param.getStartYear(), param.getEndYear()) && pagination.getTotal() > 1000) {
-            LogRecord.error("too much result : " + param.getUrl());
-            addError(param, "too much result:" + param.getTitle());
-        } else if (Objects.equal(param.getStartYear(), param.getEndYear()) || pagination.getTotal() < 1000) {
-            for (int i = 1; i <= pagination.getTotal() / PAGE_SIZE + 1; i++) {
-                param.setPagenow(i);
+            LogRecord.print("startYear equals endYear,size more than 1000. journal:" + param.getTitle() + "\t year: " + param.getStartYear() + "\t , ,size: " + pagination.getTotal());
+            if (pagination.getTotal() <= 2000) {
+                LogRecord.print(" size less than 2000,crawl by sort !");
+                for (int i = 1; i <= 50; i++) {
+                    param.setPagenow(i);
+                    crawlSinglePage(param);
+                    param.setOrderPx(CssciPaperParam.ASC);
+                    crawlSinglePage(param);
+                }
+            } else {
+                LogRecord.error("too much result : " + param.getUrl());
+                addError(param, "too much result:" + param.getTitle());
             }
-            crawlSinglePage(param);
+        } else if (Objects.equal(param.getStartYear(), param.getEndYear()) || pagination.getTotal() < 1000) {
+            LogRecord.print("size less than 1000. journal:" + param.getTitle() + "\tstart year: "
+                    + param.getStartYear() + "\tend year: " + param.getEndYear() + "\tsize: " + pagination.getTotal());
+            for (int i = 1; i <= (pagination.getTotal() / PAGE_SIZE) + 1; i++) {
+                param.setPagenow(i);
+                crawlSinglePage(param);
+            }
         } else {
+            LogRecord.print("split year");
             int mid = (startYear + endYear) >> 1;
             crawlArticleBaseInfo(qkname, startYear, mid);
             crawlArticleBaseInfo(qkname, mid >= endYear ? endYear : (mid + 1), endYear);
@@ -184,7 +199,7 @@ public class CssciController extends BaseController {
             papers.forEach(cssciService::addPaper);
         } catch (Exception e) {
             addError(param, ERROR_DETAIL);
-            e.printStackTrace();
+            LogRecord.error(e.getMessage());
         }
 
     }
@@ -197,6 +212,7 @@ public class CssciController extends BaseController {
         error.setSite(CssciPaperParam.PREFIX);
         error.setDeleted(false);
         error.setType(type);
+        error.setBody(param.getTitle());
         crawlErrorService.addError(error);
     }
 
@@ -247,7 +263,6 @@ public class CssciController extends BaseController {
     @RequestMapping(value = "crawlErrorPaper", method = RequestMethod.GET)
     public Response crawlErrorPaper() {
         CrawlError condition = new CrawlError();
-        condition.setBody("retry");
         condition.setDeleted(false);
         Pagination pagination = new Pagination();
         pagination.setPageIndex(1);
@@ -258,16 +273,24 @@ public class CssciController extends BaseController {
         for (CrawlError error : errorList) {
             CssciPaperParam paperParam = new CssciPaperParam(resource);
             paperParam.parseUrl(error.getUrl());
+            LogRecord.print(paperParam.getUrl());
+
+            if (error.getType().equals(ERROR_DETAIL)) {
+                LogRecord.print("start 2 crawl detail page");
+                LogRecord.print(paperParam.getUrl());
+                crawlSinglePage(paperParam);
+                crawlErrorService.completed(error.getId());
+                continue;
+            }
             if (!error.getType().equals(cur)) {
                 cur = error.getType();
             }
-            LogRecord.print(paperParam.getUrl());
+            LogRecord.print("start 2 crawl page");
             try {
                 String prefUrl = normalizePreUrl(paperParam.getUrl());
                 HttpUtils.okrHttpGet(prefUrl, paperParam.getHeaders());
-                if (crawlPage(paperParam.getTitle(), paperParam)) {
-                    crawlErrorService.completed(error.getId());
-                }
+                crawlErrorService.completed(error.getId());
+                crawlPage(paperParam.getTitle(), paperParam);
             } catch (Exception e) {
                 LogRecord.error(e);
             }
@@ -279,7 +302,6 @@ public class CssciController extends BaseController {
     @RequestMapping(value = "crawlErrorPaperMoreThan1000", method = RequestMethod.GET)
     public Response crawlErrorPaperMoreThan1000() {
         CrawlError condition = new CrawlError();
-        condition.setBody("retry");
         condition.setDeleted(false);
         Pagination pagination = new Pagination();
         pagination.setPageIndex(1);
@@ -288,21 +310,21 @@ public class CssciController extends BaseController {
         Collections.sort(errorList, Comparator.comparing(CrawlError::getUrl));
         String cur = "";
         for (CrawlError error : errorList) {
+            if (!error.getType().contains("too")) {
+                continue;
+            }
             CssciPaperParam paperParam = new CssciPaperParam(resource);
             paperParam.parseUrl(error.getUrl());
+            paperParam.setQkname(paperParam.getTitle());
             if (!error.getType().equals(cur)) {
                 cur = error.getType();
             }
-            for (String xkfl : XKFL) {
-                paperParam.setXkfl(xkfl);
-                LogRecord.print(paperParam.getUrl());
-                try {
-                    if (crawlPage(paperParam.getTitle(), paperParam)) {
-                        crawlErrorService.completed(error.getId());
-                    }
-                } catch (Exception e) {
-                    LogRecord.error(e);
-                }
+            LogRecord.print(paperParam.getUrl());
+            try {
+                crawlErrorService.completed(error.getId());
+                crawlPage(paperParam.getTitle(), paperParam);
+            } catch (Exception e) {
+                LogRecord.error(e);
             }
         }
         return Response.success(null);

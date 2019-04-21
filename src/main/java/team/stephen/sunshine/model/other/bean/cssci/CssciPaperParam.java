@@ -15,7 +15,7 @@ import java.net.URLEncoder;
 public class CssciPaperParam extends BaseCrawlParam implements Cloneable {
     public static final String PREFIX = "http://cssci.nju.edu.cn/control/controllers.php?control=search_base&action=search_lysy";
     public static final String REFERER_PREFIX = "http://cssci.nju.edu.cn/ly_search_view.html?";
-
+    public static final String ASC = "ASC";
     private static final String AND = "&";
     private static final String ADD_8 = "+++8";
     String qkname;
@@ -112,11 +112,12 @@ public class CssciPaperParam extends BaseCrawlParam implements Cloneable {
     public void parseUrl(String url) {
         //todo parse Url
         setTitle(URLDecoder.decode(URLDecoder.decode(parseUrlItem(url, "title"))).replace("+++8", ""));
-        setQkname(getTitle());
+//        setQkname(getTitle());
         setStartYear(parseUrlItem(url, "start_year"));
         setEndYear(parseUrlItem(url, "end_year"));
         setPagenow(Integer.parseInt(parseUrlItem(url, "pagenow")));
         setPageSize(Integer.parseInt(parseUrlItem(url, "pagesize")));
+        setOrderPx(parseUrlItem(url, "order_px"));
 
 
     }

@@ -83,7 +83,7 @@ public class WeiboUserDetailParser extends BaseParser {
                 Document document = Jsoup.parse(getHtmlFromJson(json, "html"));
 
                 Elements lvEs = document.select("span[class=icon_group S_line1 W_fl]");
-                config.setlv(parseItemFromList(lvEs, 0, Element::text));
+                config.setLv(parseItemFromList(lvEs, 0, Element::text));
 
                 Elements desEs = document.select("p[class=info]");
                 config.setDescription(parseItemFromList(desEs, 0, Element::text));

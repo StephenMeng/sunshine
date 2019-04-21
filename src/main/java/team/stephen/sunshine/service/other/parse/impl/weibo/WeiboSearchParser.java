@@ -38,9 +38,9 @@ public class WeiboSearchParser extends BaseParser {
             parseFrom(element, weibo);
             parseStatistics(element, weibo);
             weibo.setCreateDate(new Date());
-            weibo.setwOuid(parseOid(weibo.getwUserUrl()));
+            weibo.setWOuid(parseOid(weibo.getWUserUrl()));
 
-            if (weibo.getwUrl() != null) {
+            if (weibo.getWUrl() != null) {
                 weiboList.add(weibo);
             }
         }
@@ -50,10 +50,10 @@ public class WeiboSearchParser extends BaseParser {
     private void parseStatistics(Element element, Weibo weibo) {
         Elements interactData = element.select("div[class=card-act]").first().select("li");
         try {
-            weibo.setwCollectCount(parseItem(interactData.get(0), Element::text));
-            weibo.setwShareCount(parseItem(interactData.get(1), Element::text));
-            weibo.setwCommentCount(parseItem(interactData.get(2), Element::text));
-            weibo.setwThumbCount(parseItem(interactData.get(3), Element::text));
+            weibo.setWCollectCount(parseItem(interactData.get(0), Element::text));
+            weibo.setWShareCount(parseItem(interactData.get(1), Element::text));
+            weibo.setWCommentCount(parseItem(interactData.get(2), Element::text));
+            weibo.setWThumbCount(parseItem(interactData.get(3), Element::text));
         } catch (Exception e) {
             LogRecord.warn("empty item for statistics:%s", e);
         }
@@ -63,9 +63,9 @@ public class WeiboSearchParser extends BaseParser {
         //存在分享自的情况，判断一下，选择第二个，比较挫。
         Elements pubDates = element.select("p[class=from]");
         Element pubDate = pubDates.size() >= 2 ? pubDates.get(1) : pubDates.first();
-        weibo.setwDate(parseItem(pubDate, e -> e.select("a").first().text()));
-        weibo.setwUrl(parseItem(pubDate, e -> e.select("a").first().attr("href")));
-        weibo.setwFrom(parseItem(pubDate, e -> {
+        weibo.setWDate(parseItem(pubDate, e -> e.select("a").first().text()));
+        weibo.setWUrl(parseItem(pubDate, e -> e.select("a").first().attr("href")));
+        weibo.setWFrom(parseItem(pubDate, e -> {
             Element source = e.select("a").get(1);
             return StringUtils.filterEmoji(source.text());
         }));
@@ -94,15 +94,15 @@ public class WeiboSearchParser extends BaseParser {
 
     private void parseContent(Element element, Weibo weibo) {
         Element wTxt = element.select("p[class=txt]").first();
-        weibo.setwContent(parseItem(wTxt, Element::text));
+        weibo.setWContent(parseItem(wTxt, Element::text));
 
         Element wFullTxt = element.select("p[node-type=feed_list_content_full]").first();
         weibo.setFullContentParam(parseItem(wFullTxt, Element::text));
 
         Element wPic = element.select("div[node-type=feed_list_media_prev]").first();
 
-        weibo.setwPics(parseItem(wPic, this::parsePics));
-        weibo.setwMid(parseItem(wPic, this::parseMid));
+        weibo.setWPics(parseItem(wPic, this::parsePics));
+        weibo.setWMid(parseItem(wPic, this::parseMid));
     }
 
     private String parseMid(Element e) {
@@ -120,8 +120,8 @@ public class WeiboSearchParser extends BaseParser {
 
     private void parseUserInfo(Element element, Weibo weibo) {
         Element user = element.select("div[class=info]").first();
-        weibo.setwUserName(parseItem(user, e -> e.select("a[^nick-]").first().text()));
-        weibo.setwUserUrl(parseItem(user, e -> e.select("a[^nick-]").first().attr("href")));
+        weibo.setWUserName(parseItem(user, e -> e.select("a[^nick-]").first().text()));
+        weibo.setWUserUrl(parseItem(user, e -> e.select("a[^nick-]").first().attr("href")));
     }
 
     private String parseOid(String userUrl) {

@@ -254,8 +254,7 @@ public class WeiboServiceImpl implements WeiboService {
         result.addAll(crawlWeiboPageBar(pageBarUrl1, headers));
         String pageBarUrl2 = UrlHandler.getWeiboPageBarUrl(config, page, 1);
         result.addAll(crawlWeiboPageBar(pageBarUrl2, headers));
-        result.forEach(w -> w.setwUserName(config.getName()));
-//        result.forEach(w -> w.setFullContentParam(config.getName()));
+        result.forEach(w -> w.setWUserName(config.getName()));
 
         return result;
     }
@@ -369,8 +368,8 @@ public class WeiboServiceImpl implements WeiboService {
         }
         List<WeiboComment> result = parseComment(html);
         result.forEach(comment -> {
-            comment.setwMid(mid);
-            comment.setcContent(comment.getcContent().replaceAll("[\\x{10000}-\\x{10FFFF}]", ""));
+            comment.setWMid(mid);
+            comment.setCContent(comment.getCContent().replaceAll("[\\x{10000}-\\x{10FFFF}]", ""));
         });
         return result;
     }
@@ -396,7 +395,7 @@ public class WeiboServiceImpl implements WeiboService {
         Elements elements = document.select("div[comment_id]");
         for (Element element : elements) {
             WeiboComment weiboComment = new WeiboComment();
-            weiboComment.setcCrawlDate(new Date());
+            weiboComment.setCCrawlDate(new Date());
             Element author = element.select("div[class=WB_text]").first();
             String authorLink = author.select("a").first().attr("href");
             String authorName = author.select("a").first().text();
@@ -410,12 +409,12 @@ public class WeiboServiceImpl implements WeiboService {
                 reply = handle.get(3).text();
                 thumb = handle.get(4).text();
             }
-            weiboComment.setcUserName(authorName);
-            weiboComment.setcReply(reply.replace("回复", "0"));
-            weiboComment.setcThumb(thumb.replace("ñ", "").replace("赞", "0"));
-            weiboComment.setcDate(date);
-            weiboComment.setcContent(content);
-            weiboComment.setcUserUrl(authorLink);
+            weiboComment.setCUserName(authorName);
+            weiboComment.setCReply(reply.replace("回复", "0"));
+            weiboComment.setCThumb(thumb.replace("ñ", "").replace("赞", "0"));
+            weiboComment.setCDate(date);
+            weiboComment.setCContent(content);
+            weiboComment.setCUserUrl(authorLink);
             result.add(weiboComment);
         }
         return result;
@@ -475,7 +474,7 @@ public class WeiboServiceImpl implements WeiboService {
         }
         try {
             WeiboUserConfig userConfig = new WeiboUserConfig();
-            String ouId = weibo.getwOuid();
+            String ouId = weibo.getWOuid();
             String uri = "/u/" + ouId;
             userConfig.setOid(ouId);
             userConfig.setUri(uri);
@@ -569,15 +568,15 @@ public class WeiboServiceImpl implements WeiboService {
                 ouIdStr = ouIdStr.substring(ouIdStr.indexOf("=") + 1, ouIdStr.indexOf("&"));
                 String mid = idInfo.attr("suda-uatrack");
                 mid = mid.substring(mid.lastIndexOf(":") + 1, mid.length());
-                weibo.setwDate(date);
-                weibo.setwCommentCount(commentCount);
-                weibo.setwContent(contentE.text());
-                weibo.setwFrom(from);
-                weibo.setwMid(mid);
-                weibo.setwOuid(ouIdStr);
-                weibo.setwUrl(url);
-                weibo.setwShareCount(shareCount);
-                weibo.setwThumbCount(thumbCount);
+                weibo.setWDate(date);
+                weibo.setWCommentCount(commentCount);
+                weibo.setWContent(contentE.text());
+                weibo.setWFrom(from);
+                weibo.setWMid(mid);
+                weibo.setWOuid(ouIdStr);
+                weibo.setWUrl(url);
+                weibo.setWShareCount(shareCount);
+                weibo.setWThumbCount(thumbCount);
                 result.add(weibo);
             } catch (Exception e) {
                 LogRecord.error("解析微博失败，原因：" + e.getMessage());
@@ -647,16 +646,16 @@ public class WeiboServiceImpl implements WeiboService {
                 String thumbCount = handles.get(3).text().replace("ñ", "0").replace("赞", "");
 
 
-                weibo.setwDate(date);
-                weibo.setwCommentCount(commentCount);
-                weibo.setwContent(contentE.text());
-                weibo.setwFrom(from);
-                weibo.setwUserName(name);
-                weibo.setwMid(mid);
-                weibo.setwOuid(ouIdStr);
-                weibo.setwUrl("");
-                weibo.setwShareCount(shareCount);
-                weibo.setwThumbCount(thumbCount);
+                weibo.setWDate(date);
+                weibo.setWCommentCount(commentCount);
+                weibo.setWContent(contentE.text());
+                weibo.setWFrom(from);
+                weibo.setWUserName(name);
+                weibo.setWMid(mid);
+                weibo.setWOuid(ouIdStr);
+                weibo.setWUrl("");
+                weibo.setWShareCount(shareCount);
+                weibo.setWThumbCount(thumbCount);
                 result.add(weibo);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -673,7 +672,7 @@ public class WeiboServiceImpl implements WeiboService {
             for (Element picE : picEs) {
                 pics.append(picE.attr("src")).append(";");
             }
-            weibo.setwPics(pics.toString());
+            weibo.setWPics(pics.toString());
         } catch (Exception e) {
         }
     }
@@ -690,10 +689,10 @@ public class WeiboServiceImpl implements WeiboService {
 
     @Override
     public void completeExtraInfo(Map<String, String> headers, Weibo weibo) {
-        if (weibo.getwContent().contains("展开全文")) {
-            String fullContent = getFullContent(weibo.getwMid(), headers);
+        if (weibo.getWContent().contains("展开全文")) {
+            String fullContent = getFullContent(weibo.getWMid(), headers);
             if (fullContent != null) {
-                weibo.setwContent(fullContent);
+                weibo.setWContent(fullContent);
             }
         }
     }

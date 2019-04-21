@@ -1,5 +1,7 @@
 package team.stephen.sunshine.model.other.bean.cssci;
 
+import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,6 +13,7 @@ import javax.persistence.Table;
  * @author stephen
  * @date 2018/5/26
  */
+@Data
 @Entity
 @Table(name = "cssci_journal")
 public class CssciJournal {
@@ -53,181 +56,4 @@ public class CssciJournal {
     private String titleC;
     @Column(name = "title_e")
     private String titleE;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getCompany() {
-        return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
-    }
-
-    public String getCreatPubdate() {
-        return creatPubdate;
-    }
-
-    public void setCreatPubdate(String creatPubdate) {
-        this.creatPubdate = creatPubdate;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getGg() {
-        return gg;
-    }
-
-    public void setGg(String gg) {
-        this.gg = gg;
-    }
-
-    public String getHx() {
-        return hx;
-    }
-
-    public void setHx(String hx) {
-        this.hx = hx;
-    }
-
-    public String getIssn() {
-        return issn;
-    }
-
-    public void setIssn(String issn) {
-        this.issn = issn;
-    }
-
-    public String getKb() {
-        return kb;
-    }
-
-    public void setKb(String kb) {
-        this.kb = kb;
-    }
-
-    public String getLan() {
-        return lan;
-    }
-
-    public void setLan(String lan) {
-        this.lan = lan;
-    }
-
-    public String getOldName() {
-        return oldName;
-    }
-
-    public void setOldName(String oldName) {
-        this.oldName = oldName;
-    }
-
-    public String getPost() {
-        return post;
-    }
-
-    public void setPost(String post) {
-        this.post = post;
-    }
-
-    public String getPress() {
-        return press;
-    }
-
-    public void setPress(String press) {
-        this.press = press;
-    }
-
-    public String getQkType() {
-        return qkType;
-    }
-
-    public void setQkType(String qkType) {
-        this.qkType = qkType;
-    }
-
-    public String getQkImg() {
-        return qkImg;
-    }
-
-    public void setQkImg(String qkImg) {
-        this.qkImg = qkImg;
-    }
-
-    public String getTag() {
-        return tag;
-    }
-
-    public void setTag(String tag) {
-        this.tag = tag;
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel;
-    }
-
-    public String getTitleC() {
-        return titleC;
-    }
-
-    public void setTitleC(String titleC) {
-        this.titleC = titleC;
-    }
-
-    public String getTitleE() {
-        return titleE;
-    }
-
-    public void setTitleE(String titleE) {
-        this.titleE = titleE;
-    }
-
-    @Override
-    public String toString() {
-        return "CssciJournal{" +
-                "id='" + id + '\'' +
-                ", address='" + address + '\'' +
-                ", company='" + company + '\'' +
-                ", creatPubdate='" + creatPubdate + '\'' +
-                ", email='" + email + '\'' +
-                ", gg='" + gg + '\'' +
-                ", hx='" + hx + '\'' +
-                ", issn='" + issn + '\'' +
-                ", kb='" + kb + '\'' +
-                ", lan='" + lan + '\'' +
-                ", oldName='" + oldName + '\'' +
-                ", post='" + post + '\'' +
-                ", press='" + press + '\'' +
-                ", qkType='" + qkType + '\'' +
-                ", qkImg='" + qkImg + '\'' +
-                ", tag='" + tag + '\'' +
-                ", tel='" + tel + '\'' +
-                ", titleC='" + titleC + '\'' +
-                ", titleE='" + titleE + '\'' +
-                '}';
-    }
 }

@@ -26,7 +26,7 @@ public class WeiboParser implements Parser {
             Weibo weibo = new Weibo();
             try {
                 Element user = element.select("div[class=WB_info]").first();
-                weibo.setwUserUrl(user.select("a").first().attr("href"));
+                weibo.setWUserUrl(user.select("a").first().attr("href"));
             } catch (Exception e) {
             }
             try {
@@ -78,7 +78,7 @@ public class WeiboParser implements Parser {
             }
             weibo.setCreateDate(new Date());
 //            LogRecod.print(weibo);
-            if (weibo.getwUserUrl() != null) {
+            if (weibo.getWUserUrl() != null) {
                 weiboList.add(weibo);
             }
         }

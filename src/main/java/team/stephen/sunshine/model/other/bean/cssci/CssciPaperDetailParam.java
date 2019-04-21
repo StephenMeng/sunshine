@@ -1,5 +1,6 @@
 package team.stephen.sunshine.model.other.bean.cssci;
 
+import lombok.Data;
 import org.springframework.beans.BeanUtils;
 import team.stephen.sunshine.model.other.bean.BaseCrawlParam;
 import team.stephen.sunshine.util.common.LogRecord;
@@ -9,6 +10,7 @@ import team.stephen.sunshine.util.element.StringUtils;
  * @author Stephen
  * @date 2019/03/18 23:46
  */
+@Data
 public class CssciPaperDetailParam extends BaseCrawlParam implements Cloneable {
     public static final String PREFIX = "http://cssci.nju.edu.cn/control/controllers.php?control=search&action=source_id&id=";
     String sno;
@@ -29,14 +31,6 @@ public class CssciPaperDetailParam extends BaseCrawlParam implements Cloneable {
         StringBuilder sb = new StringBuilder(PREFIX);
         sb.append(sno);
         return sb.toString();
-    }
-
-    public String getSno() {
-        return sno;
-    }
-
-    public void setSno(String sno) {
-        this.sno = sno;
     }
 
     @Override

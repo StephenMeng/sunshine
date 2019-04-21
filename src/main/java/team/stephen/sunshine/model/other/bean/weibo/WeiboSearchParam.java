@@ -1,5 +1,7 @@
 package team.stephen.sunshine.model.other.bean.weibo;
 
+import lombok.Builder;
+import lombok.Data;
 import org.springframework.beans.BeanUtils;
 import team.stephen.sunshine.exception.CrawlException;
 import team.stephen.sunshine.model.other.bean.BaseCrawlParam;
@@ -13,6 +15,7 @@ import java.util.Date;
  * @author Stephen
  * @date 2019/03/18 23:46
  */
+@Data
 public class WeiboSearchParam extends BaseCrawlParam implements Cloneable {
     private static final String PREFIX = "http://s.weibo.com/weibo";
     private static final String AND = "&";
@@ -87,22 +90,7 @@ public class WeiboSearchParam extends BaseCrawlParam implements Cloneable {
         //todo parse Url
     }
 
-    public String getKeyword() {
-        return keyword;
-    }
-
-    public AdvanceType getType() {
-        return type;
-    }
-
-    public String getStartDate() {
-        return startDate;
-    }
-
-    public String getEndDate() {
-        return endDate;
-    }
-
+    @Override
     public String getEncode() {
         return encode;
     }

@@ -46,7 +46,6 @@ public class CssciServiceImpl implements CssciService {
         try {
             return cssciPaperDao.insert(paper);
         } catch (Exception e) {
-            LogRecord.error(e);
             return -1;
         }
     }

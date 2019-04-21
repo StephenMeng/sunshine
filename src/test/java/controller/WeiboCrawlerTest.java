@@ -64,8 +64,8 @@ public class WeiboCrawlerTest {
         Pattern pattern = Pattern.compile("\\/([0-9]*?)\\?");
         Matcher matcher;
         for (Weibo weibo : weiboUrls) {
-            matcher = pattern.matcher(weibo.getwUserUrl());
-            LogRecord.print(weibo.getwUserUrl());
+            matcher = pattern.matcher(weibo.getWUserUrl());
+            LogRecord.print(weibo.getWUserUrl());
             if (matcher.find()) {
                 String uid = matcher.group();
                 uid = uid.replace("/", "").replace("?", "");
@@ -77,9 +77,9 @@ public class WeiboCrawlerTest {
                     LogRecord.print(e.getMessage());
                 }
                 Weibo w = new Weibo();
-                LogRecord.print(uid + "\t" + weibo.getwUserUrl());
-                w.setwUrl(weibo.getwUrl());
-                w.setwOuid(uid);
+                LogRecord.print(uid + "\t" + weibo.getWUserUrl());
+                w.setWUrl(weibo.getWUrl());
+                w.setWOuid(uid);
                 try {
                     weiboService.updateSelective(w);
                 } catch (Exception e) {
@@ -95,17 +95,17 @@ public class WeiboCrawlerTest {
         Pattern pattern = Pattern.compile("\\/([0-9]*?)\\?");
         Matcher matcher;
         for (Weibo weibo : weiboUrls) {
-            if (weibo.getwOuid() != null && !weibo.getwOuid().startsWith("u")) {
+            if (weibo.getWOuid() != null && !weibo.getWOuid().startsWith("u")) {
                 continue;
             }
-            matcher = pattern.matcher(weibo.getwUserUrl());
+            matcher = pattern.matcher(weibo.getWUserUrl());
             if (matcher.find()) {
                 String uid = matcher.group();
                 uid = uid.replace("/", "").replace("?", "");
                 Weibo w = new Weibo();
-                LogRecord.print(uid + "\t" + weibo.getwUserUrl());
-                w.setwUrl(weibo.getwUrl());
-                w.setwOuid(uid);
+                LogRecord.print(uid + "\t" + weibo.getWUserUrl());
+                w.setWUrl(weibo.getWUrl());
+                w.setWOuid(uid);
                 try {
                     weiboService.updateSelective(w);
                 } catch (Exception e) {
@@ -139,7 +139,7 @@ public class WeiboCrawlerTest {
     @Test
     public void insertUserId() {
         List<Weibo> weibos = weiboService.selectWeibo(null, 1, 0);
-        List<String> ouIds = weibos.stream().map(Weibo::getwOuid).collect(Collectors.toList());
+        List<String> ouIds = weibos.stream().map(Weibo::getWOuid).collect(Collectors.toList());
         removeDuplicate(ouIds);
         for (String ouId : ouIds) {
             try {
@@ -309,7 +309,7 @@ public class WeiboCrawlerTest {
                     e.printStackTrace();
                 }
                 for (Weibo weibo : weibos) {
-                    weibo.setwUrl(url);
+                    weibo.setWUrl(url);
                     weiboService.completeExtraInfo(headers, weibo);
                     weibo.setQid(keyword + ";");
                     boolean succcess = true;
@@ -323,13 +323,13 @@ public class WeiboCrawlerTest {
                         continue;
                     }
                     try {
-                        Weibo uw = weiboService.selectByPrimary(weibo.getwMid());
+                        Weibo uw = weiboService.selectByPrimary(weibo.getWMid());
                         if (uw == null) {
                             continue;
                         }
                         if (uw.getQid() == null || !uw.getQid().contains(weibo.getQid())) {
                             Weibo tu = new Weibo();
-                            tu.setwMid(uw.getwMid());
+                            tu.setWMid(uw.getWMid());
                             tu.setQid(uw.getQid() + ";" + keyword);
                             weiboService.updateSelective(tu);
                         }
@@ -354,7 +354,7 @@ public class WeiboCrawlerTest {
             LogRecord.print(url + "\t" + keyword);
             List<Weibo> weibos = getWeibos(url);
             for (Weibo weibo : weibos) {
-                weibo.setwUrl(url);
+                weibo.setWUrl(url);
                 weiboService.completeExtraInfo(headers, weibo);
                 weibo.setQid(keyword + ";");
                 boolean succcess = true;
@@ -368,13 +368,13 @@ public class WeiboCrawlerTest {
                     continue;
                 }
                 try {
-                    Weibo uw = weiboService.selectByPrimary(weibo.getwMid());
+                    Weibo uw = weiboService.selectByPrimary(weibo.getWMid());
                     if (uw == null) {
                         continue;
                     }
                     if (uw.getQid() == null || !uw.getQid().contains(weibo.getQid())) {
                         Weibo tu = new Weibo();
-                        tu.setwMid(uw.getwMid());
+                        tu.setWMid(uw.getWMid());
                         tu.setQid(uw.getQid() + ";" + keyword);
                         weiboService.updateSelective(tu);
                     }
@@ -399,7 +399,7 @@ public class WeiboCrawlerTest {
             String url = pageUrl + page + "&pageNum=" + pageNum;
             List<Weibo> weibos = getWeibos(url);
             weibos.forEach(weibo -> {
-                weibo.setwUrl(url);
+                weibo.setWUrl(url);
                 weiboService.completeExtraInfo(headers, weibo);
                 weibo.setQid(keyword + ";");
                 boolean succcess = true;
@@ -413,13 +413,13 @@ public class WeiboCrawlerTest {
                     return;
                 }
                 try {
-                    Weibo uw = weiboService.selectByPrimary(weibo.getwMid());
+                    Weibo uw = weiboService.selectByPrimary(weibo.getWMid());
                     if (uw == null) {
                         return;
                     }
                     if (uw.getQid() == null || !uw.getQid().contains(weibo.getQid())) {
                         Weibo tu = new Weibo();
-                        tu.setwMid(uw.getwMid());
+                        tu.setWMid(uw.getWMid());
                         tu.setQid(uw.getQid() + ";" + keyword);
                         weiboService.updateSelective(tu);
                     }
@@ -515,7 +515,7 @@ public class WeiboCrawlerTest {
         Page<Weibo> weiboPage = weiboService.selectWeibo(condition, 1, 4);
         headers.put("X-Requested-With", "XMLHttpRequest");
         for (Weibo weibo : weiboPage) {
-            List<WeiboComment> comments = weiboService.crawlWeiboComment(weibo.getwMid(), 1, headers);
+            List<WeiboComment> comments = weiboService.crawlWeiboComment(weibo.getWMid(), 1, headers);
             comments.forEach(comment -> {
                 try {
                     weiboService.addWeiboComment(comment);
