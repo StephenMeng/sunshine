@@ -78,7 +78,7 @@ public class ArticleManagementController extends BaseController {
         Article condition = new Article();
         condition.setChannelId(channelId);
         condition.setColumnId(columnId);
-        condition.setPrivate(isPrivate);
+        condition.setIsPrivate(isPrivate);
         condition.setDeleted(deleted);
         Page<Article> articlePage = articleService.select(condition, pageNum, pageSize);
         Page<BaseArticleDto> standardArticleDtoPage = PageUtil.transformPage(articlePage, article -> {

@@ -110,7 +110,7 @@ public class SolrServiceImpl implements SolrService {
         document.addField(ARTICLE_ID.getFieldName(), article.getArticleId());
         document.addField(ARTICLE_CONTENT.getFieldName(), article.getArticleContent());
         document.addField(ARTICLE_TAG.getFieldName(), article.getArticleTag());
-        document.addField(ARTICLE_PRIVATE.getFieldName(), article.getPrivate());
+        document.addField(ARTICLE_PRIVATE.getFieldName(), article.getIsPrivate());
         document.addField(ARTICLE_DELETED.getFieldName(), article.getDeleted());
         //获得一个solr服务端的请求，去提交
         try {

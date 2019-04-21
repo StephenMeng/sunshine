@@ -23,6 +23,7 @@ public class ArticleAttachRelation {
     private String attachUri;
     @Column(name = "attach_name")
     private String attachName;
+
     public Long getArticleId() {
         return articleId;
     }

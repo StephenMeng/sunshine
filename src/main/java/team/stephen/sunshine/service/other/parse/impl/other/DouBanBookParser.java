@@ -1,9 +1,9 @@
-package team.stephen.sunshine.model.crawler.impl;
+package team.stephen.sunshine.service.other.parse.impl.other;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import team.stephen.sunshine.service.other.parse.Parser;
 import team.stephen.sunshine.web.dto.book.BookDto;
-import team.stephen.sunshine.model.crawler.Parser;
 
 import java.util.List;
 

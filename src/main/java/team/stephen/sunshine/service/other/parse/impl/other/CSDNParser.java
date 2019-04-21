@@ -1,4 +1,4 @@
-package team.stephen.sunshine.model.crawler.impl;
+package team.stephen.sunshine.service.other.parse.impl.other;
 
 import com.google.common.base.Joiner;
 import com.hankcs.hanlp.HanLP;
@@ -6,7 +6,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import team.stephen.sunshine.model.article.Article;
-import team.stephen.sunshine.model.crawler.Parser;
+import team.stephen.sunshine.service.other.parse.Parser;
 import team.stephen.sunshine.util.common.LogRecord;
 
 import java.util.ArrayList;

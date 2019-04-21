@@ -1,5 +1,6 @@
 package team.stephen.sunshine.model.article;
 
+import lombok.Data;
 import org.apache.solr.client.solrj.beans.Field;
 import team.stephen.sunshine.util.common.RandomIDUtil;
 
@@ -13,6 +14,7 @@ import java.util.Date;
  * @author stephen meng
  * @date 2018/5/19
  */
+@Data
 @Entity
 @Table(name = "sunshine_article")
 public class Article {
@@ -72,167 +74,7 @@ public class Article {
         article.setArticleViewCount(0);
         article.setArticlePutTop(false);
         article.setDeleted(false);
-        article.setPrivate(false);
+        article.setIsPrivate(false);
         return article;
-    }
-
-    public Long getArticleId() {
-        return articleId;
-    }
-
-    public void setArticleId(Long articleId) {
-        this.articleId = articleId;
-    }
-
-    public String getArticleLinkId() {
-        return articleLinkId;
-    }
-
-    public void setArticleLinkId(String articleLinkId) {
-        this.articleLinkId = articleLinkId;
-    }
-
-    public Integer getChannelId() {
-        return channelId;
-    }
-
-    public void setChannelId(Integer channelId) {
-        this.channelId = channelId;
-    }
-
-    public Integer getColumnId() {
-        return columnId;
-    }
-
-    public void setColumnId(Integer columnId) {
-        this.columnId = columnId;
-    }
-
-    public String getArticleTitle() {
-        return articleTitle;
-    }
-
-    public void setArticleTitle(String articleTitle) {
-        this.articleTitle = articleTitle;
-    }
-
-    public String getArticleAbstract() {
-        return articleAbstract;
-    }
-
-    public void setArticleAbstract(String articleAbstract) {
-        this.articleAbstract = articleAbstract;
-    }
-
-    public String getArticleTag() {
-        return articleTag;
-    }
-
-    public void setArticleTag(String articleTag) {
-        this.articleTag = articleTag;
-    }
-
-    public Integer getArticleAuthorId() {
-        return articleAuthorId;
-    }
-
-    public void setArticleAuthorId(Integer articleAuthorId) {
-        this.articleAuthorId = articleAuthorId;
-    }
-
-    public Integer getArticleCommentCount() {
-        return articleCommentCount;
-    }
-
-    public void setArticleCommentCount(Integer articleCommentCount) {
-        this.articleCommentCount = articleCommentCount;
-    }
-
-    public Integer getArticleViewCount() {
-        return articleViewCount;
-    }
-
-    public void setArticleViewCount(Integer articleViewCount) {
-        this.articleViewCount = articleViewCount;
-    }
-
-    public String getArticleContent() {
-        return articleContent;
-    }
-
-    public void setArticleContent(String articleContent) {
-        this.articleContent = articleContent;
-    }
-
-    public String getArticleLink() {
-        return articleLink;
-    }
-
-    public void setArticleLink(String articleLink) {
-        this.articleLink = articleLink;
-    }
-
-    public Boolean getArticleHadBeenPublished() {
-        return articleHadBeenPublished;
-    }
-
-    public void setArticleHadBeenPublished(Boolean articleHadBeenPublished) {
-        this.articleHadBeenPublished = articleHadBeenPublished;
-    }
-
-    public Boolean getArticleIsPublished() {
-        return articleIsPublished;
-    }
-
-    public void setArticleIsPublished(Boolean articleIsPublished) {
-        this.articleIsPublished = articleIsPublished;
-    }
-
-    public Boolean getArticlePutTop() {
-        return articlePutTop;
-    }
-
-    public void setArticlePutTop(Boolean articlePutTop) {
-        this.articlePutTop = articlePutTop;
-    }
-
-    public Date getArticleCreateDate() {
-        return articleCreateDate;
-    }
-
-    public void setArticleCreateDate(Date articleCreateDate) {
-        this.articleCreateDate = articleCreateDate;
-    }
-
-    public Date getArticleUpdateDate() {
-        return articleUpdateDate;
-    }
-
-    public void setArticleUpdateDate(Date articleUpdateDate) {
-        this.articleUpdateDate = articleUpdateDate;
-    }
-
-    public String getArticleViewPwd() {
-        return articleViewPwd;
-    }
-
-    public void setArticleViewPwd(String articleViewPwd) {
-        this.articleViewPwd = articleViewPwd;
-    }
-
-    public Boolean getDeleted() {
-        return deleted;
-    }
-
-    public void setPrivate(Boolean aPrivate) {
-        isPrivate = aPrivate;
-    }
-
-    public Boolean getPrivate() {
-        return isPrivate;
-    }
-
-    public void setDeleted(Boolean deleted) {
-        this.deleted = deleted;
     }
 }
