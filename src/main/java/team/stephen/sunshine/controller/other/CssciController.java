@@ -8,17 +8,18 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import sun.rmi.runtime.Log;
 import team.stephen.sunshine.constant.enu.ResultEnum;
 import team.stephen.sunshine.controller.BaseController;
 import team.stephen.sunshine.exception.CrawlException;
 import team.stephen.sunshine.model.other.CrawlError;
-import team.stephen.sunshine.model.other.bean.cssci.*;
 import team.stephen.sunshine.model.other.bean.Pagination;
+import team.stephen.sunshine.model.other.bean.cssci.*;
 import team.stephen.sunshine.service.other.CrawlErrorService;
 import team.stephen.sunshine.service.other.CssciService;
 import team.stephen.sunshine.service.other.parse.Parser;
@@ -28,7 +29,6 @@ import team.stephen.sunshine.service.other.parse.impl.cssci.CssciArticleAuthorPa
 import team.stephen.sunshine.service.other.parse.impl.cssci.CssciArticleCitationParser;
 import team.stephen.sunshine.service.other.parse.impl.cssci.CssciArticleDetailParser;
 import team.stephen.sunshine.util.common.HttpUtils;
-import team.stephen.sunshine.util.common.LogRecord;
 import team.stephen.sunshine.util.common.Response;
 import team.stephen.sunshine.util.element.StringUtils;
 
@@ -39,7 +39,6 @@ import java.net.URLDecoder;
 import java.util.*;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 
 import static team.stephen.sunshine.util.constant.CrawError.ERROR_DETAIL;
@@ -52,6 +51,7 @@ import static team.stephen.sunshine.util.constant.CrawError.ERROR_PAGE;
 @RestController
 @RequestMapping("other/cssci")
 public class CssciController extends BaseController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(CssciController.class);
     private static final Integer PAGE_SIZE = 50;
     @Autowired
     private CssciService cssciService;
@@ -60,7 +60,6 @@ public class CssciController extends BaseController {
     @Autowired
     private CssciCrawlResource resource;
 
-    private static final List<String> XKFL = getXkfl();
     private Parser pageParser = ParserFactory.INSTANCE.getParser(ParserType.CSSCI_PAGE).get();
     private Parser artOvParser = ParserFactory.INSTANCE.getParser(ParserType.CSSCI_ARTICLE_OVERVIEW).get();
 
@@ -89,7 +88,7 @@ public class CssciController extends BaseController {
 
         int startYear = getYear(tmp[1], true);
         int endYear = getYear(tmp[1], false);
-        LogRecord.print(journal + "\t" + startYear + "\t" + endYear + "\n");
+        LOGGER.info(journal + "\t" + startYear + "\t" + endYear + "\n");
         crawlArticleBaseInfo(journal, startYear, endYear);
 
         String saveFile = dir + "crawled.txt";
@@ -125,7 +124,7 @@ public class CssciController extends BaseController {
         if (StringUtils.isBlank(qkname) || startYear == null || endYear == null) {
             return Response.error(ResultEnum.NULL_PARAMETER);
         }
-        LogRecord.print("start 2 crawl ,param: qkname is " + qkname + " \t startYear is : " + startYear + "\t endYear is " + endYear);
+        LOGGER.info("start 2 crawl ,param: qkname is " + qkname + " \t startYear is : " + startYear + "\t endYear is " + endYear);
 
         CssciPaperParam param = new CssciPaperParam(resource);
         param.setTitle(qkname);
@@ -133,11 +132,11 @@ public class CssciController extends BaseController {
         param.setStartYear(String.valueOf(startYear));
         param.setEndYear(String.valueOf(endYear));
         param.setPageSize(50);
-        LogRecord.print(param.getUrl());
+        LOGGER.info(param.getUrl());
         try {
             crawlPage(qkname, param);
         } catch (Exception e) {
-            LogRecord.error(e);
+            LOGGER.error("error:", e);
         }
         return Response.success(null);
     }
@@ -151,14 +150,14 @@ public class CssciController extends BaseController {
 
         Pagination pagination = (Pagination) pageParser.parse(html).get(0);
         if (pagination.getTotal() == null) {
-            LogRecord.error("query pagination info error : " + param.getUrl());
+            LOGGER.error("query pagination info error : " + param.getUrl());
             addError(param, ERROR_PAGE);
             return false;
         }
         if (Objects.equal(param.getStartYear(), param.getEndYear()) && pagination.getTotal() > 1000) {
-            LogRecord.print("startYear equals endYear,size more than 1000. journal:" + param.getTitle() + "\t year: " + param.getStartYear() + "\t , ,size: " + pagination.getTotal());
+            LOGGER.info("startYear equals endYear,size more than 1000. journal:" + param.getTitle() + "\t year: " + param.getStartYear() + "\t , ,size: " + pagination.getTotal());
             if (pagination.getTotal() <= 2000) {
-                LogRecord.print(" size less than 2000,crawl by sort !");
+                LOGGER.info(" size less than 2000,crawl by sort !");
                 for (int i = 1; i <= 50; i++) {
                     param.setPagenow(i);
                     crawlSinglePage(param);
@@ -166,18 +165,18 @@ public class CssciController extends BaseController {
                     crawlSinglePage(param);
                 }
             } else {
-                LogRecord.error("too much result : " + param.getUrl());
+                LOGGER.error("too much result : " + param.getUrl());
                 addError(param, "too much result:" + param.getTitle());
             }
         } else if (Objects.equal(param.getStartYear(), param.getEndYear()) || pagination.getTotal() < 1000) {
-            LogRecord.print("size less than 1000. journal:" + param.getTitle() + "\tstart year: "
+            LOGGER.info("size less than 1000. journal:" + param.getTitle() + "\tstart year: "
                     + param.getStartYear() + "\tend year: " + param.getEndYear() + "\tsize: " + pagination.getTotal());
             for (int i = 1; i <= (pagination.getTotal() / PAGE_SIZE) + 1; i++) {
                 param.setPagenow(i);
                 crawlSinglePage(param);
             }
         } else {
-            LogRecord.print("split year");
+            LOGGER.info("split year");
             int mid = (startYear + endYear) >> 1;
             crawlArticleBaseInfo(qkname, startYear, mid);
             crawlArticleBaseInfo(qkname, mid >= endYear ? endYear : (mid + 1), endYear);
@@ -199,7 +198,7 @@ public class CssciController extends BaseController {
             papers.forEach(cssciService::addPaper);
         } catch (Exception e) {
             addError(param, ERROR_DETAIL);
-            LogRecord.error(e.getMessage());
+            LOGGER.error(e.getMessage());
         }
 
     }
@@ -226,9 +225,9 @@ public class CssciController extends BaseController {
         pagination.setPageIndex(1);
         pagination.setPageSize(Integer.MAX_VALUE);
         List<String> papers = cssciService.selectToCrawl(pagination);
-        LogRecord.print("start crawl ,size:" + papers.size());
+        LOGGER.info("start crawl ,size:" + papers.size());
         papers.forEach(p -> executor.execute(() -> crawlPaperSingleTask(p)));
-        LogRecord.print(papers);
+        LOGGER.info("papers:{}", papers);
         return Response.success(null);
     }
 
@@ -273,11 +272,11 @@ public class CssciController extends BaseController {
         for (CrawlError error : errorList) {
             CssciPaperParam paperParam = new CssciPaperParam(resource);
             paperParam.parseUrl(error.getUrl());
-            LogRecord.print(paperParam.getUrl());
+            LOGGER.info(paperParam.getUrl());
 
             if (error.getType().equals(ERROR_DETAIL)) {
-                LogRecord.print("start 2 crawl detail page");
-                LogRecord.print(paperParam.getUrl());
+                LOGGER.info("start 2 crawl detail page");
+                LOGGER.info(paperParam.getUrl());
                 crawlSinglePage(paperParam);
                 crawlErrorService.completed(error.getId());
                 continue;
@@ -285,14 +284,14 @@ public class CssciController extends BaseController {
             if (!error.getType().equals(cur)) {
                 cur = error.getType();
             }
-            LogRecord.print("start 2 crawl page");
+            LOGGER.info("start 2 crawl page");
             try {
                 String prefUrl = normalizePreUrl(paperParam.getUrl());
                 HttpUtils.okrHttpGet(prefUrl, paperParam.getHeaders());
                 crawlErrorService.completed(error.getId());
                 crawlPage(paperParam.getTitle(), paperParam);
             } catch (Exception e) {
-                LogRecord.error(e);
+                LOGGER.error("error:", e);
             }
         }
         return Response.success(null);
@@ -319,12 +318,12 @@ public class CssciController extends BaseController {
             if (!error.getType().equals(cur)) {
                 cur = error.getType();
             }
-            LogRecord.print(paperParam.getUrl());
+            LOGGER.info(paperParam.getUrl());
             try {
                 crawlErrorService.completed(error.getId());
                 crawlPage(paperParam.getTitle(), paperParam);
             } catch (Exception e) {
-                LogRecord.error(e);
+                LOGGER.error("error:{}", e);
             }
         }
         return Response.success(null);
@@ -335,68 +334,5 @@ public class CssciController extends BaseController {
         prefUrl = prefUrl.replaceAll("qkname(.*?)&", "");
         prefUrl = prefUrl.replace("pagesize", "pagenum");
         return URLDecoder.decode(prefUrl);
-    }
-
-    private static List<String> getXkfl() {
-        List<String> res = new ArrayList<>();
-        res.add("110");
-        res.add("120");
-        res.add("130");
-        res.add("140");
-        res.add("150");
-        res.add("160");
-        res.add("170");
-        res.add("180");
-        res.add("210");
-        res.add("220");
-        res.add("230");
-        res.add("240");
-        res.add("310");
-        res.add("320");
-        res.add("330");
-        res.add("340");
-        res.add("350");
-        res.add("360");
-        res.add("410");
-        res.add("420");
-        res.add("430");
-        res.add("440");
-        res.add("450");
-        res.add("460");
-        res.add("470");
-        res.add("480");
-        res.add("490");
-        res.add("510");
-        res.add("520");
-        res.add("530");
-        res.add("540");
-        res.add("550");
-        res.add("560");
-        res.add("570");
-        res.add("580");
-        res.add("590");
-        res.add("610");
-        res.add("620");
-        res.add("630");
-        res.add("710");
-        res.add("720");
-        res.add("730");
-        res.add("740");
-        res.add("750");
-        res.add("760");
-        res.add("770");
-        res.add("780");
-        res.add("790");
-        res.add("810");
-        res.add("820");
-        res.add("830");
-        res.add("840");
-        res.add("850");
-        res.add("860");
-        res.add("870");
-        res.add("880");
-        res.add("890");
-        res.add("910");
-        return res;
     }
 }
