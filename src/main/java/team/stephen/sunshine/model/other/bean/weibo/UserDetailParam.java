@@ -1,6 +1,7 @@
 package team.stephen.sunshine.model.other.bean.weibo;
 
 import lombok.Data;
+import lombok.ToString;
 import team.stephen.sunshine.exception.CrawlException;
 import team.stephen.sunshine.model.other.bean.BaseCrawlParam;
 import team.stephen.sunshine.util.element.StringUtils;
@@ -10,8 +11,9 @@ import team.stephen.sunshine.util.element.StringUtils;
  * @date 2019/03/18 23:46
  */
 @Data
+@ToString
 public class UserDetailParam extends BaseCrawlParam {
-    public static final String PREFIX = "https://weibo.com/u/";
+    public static final String PREFIX = "https://weibo.com/";
     private String oid;
 
     public UserDetailParam(WeiboCrawlResource resource) {

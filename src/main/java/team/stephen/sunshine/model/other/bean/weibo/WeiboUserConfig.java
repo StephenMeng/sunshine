@@ -1,6 +1,7 @@
 package team.stephen.sunshine.model.other.bean.weibo;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +14,7 @@ import java.util.Date;
  * @date 2018/06/02 23:01
  */
 @Data
+@ToString
 @Entity
 @Table(name = "weibo_user_config")
 public class WeiboUserConfig {

@@ -2,6 +2,7 @@ package team.stephen.sunshine.service.other.parse.impl.weibo;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
+import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -23,6 +24,7 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
  * @author stephen
  * @date 2017/10/29
  */
+@Slf4j
 public class WeiboUserDetailParser extends BaseParser {
     private static final Pattern PID_PATTER = Pattern.compile("Pl_Official_MyProfileFeed__(.*?)\"");
     private static final Pattern DOMAIN_PATTERN = Pattern.compile("domain'\\]='(.*?)'");
@@ -118,7 +120,7 @@ public class WeiboUserDetailParser extends BaseParser {
                 LogRecord.error(e);
             }
         }
-
+        log.info("useinfo:{}",config);
         if (StringUtils.isNull(config.getName())) {
             return Collections.emptyList();
         }

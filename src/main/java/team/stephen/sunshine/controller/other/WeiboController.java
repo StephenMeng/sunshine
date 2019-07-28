@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
@@ -41,6 +42,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -53,6 +55,7 @@ import static team.stephen.sunshine.util.constant.CrawError.ERROR_PAGE;
  */
 @RestController
 @RequestMapping("other/weibo")
+@Slf4j
 public class WeiboController extends BaseController {
 
 
@@ -251,9 +254,7 @@ public class WeiboController extends BaseController {
             crawl(builder, page);
         } else if (startDate.equals(endDate)) {
             searchByKeywordByHour(keyword, startDate, startDate);
-        } else
-
-        {
+        } else {
             Date sd = TimeFormateUtil.parseStringToDate(startDate);
             Date ed = TimeFormateUtil.parseStringToDate(endDate);
             Date md = getMiddleDate(sd, ed);
@@ -349,6 +350,7 @@ public class WeiboController extends BaseController {
     }
 
     private Integer getTotalPage(WeiboSearchParam param) throws CrawlException {
+        log.info("page:{}",param.getUrl());
         List<Integer> list = (List<Integer>) CrawlUtils.getHttpResultWithFunction(param, (html) -> new WeiboSearchPageNumParserImpl().parse(html));
         return list.get(0);
     }
@@ -390,17 +392,21 @@ public class WeiboController extends BaseController {
             executor.execute(() -> {
                 UserDetailParam detailParam = new UserDetailParam(resource);
                 detailParam.setOid(oid);
+                log.info("detail param:{}", detailParam);
                 try {
 
                     List<WeiboUserConfig> userInfo = (List<WeiboUserConfig>) CrawlUtils.getHttpResultWithFunction(detailParam, (html) -> new WeiboUserDetailParser().parse(html));
                     if (!CollectionUtils.isEmpty(userInfo)) {
                         userInfo.forEach(weiboService::updateSelective);
+                    }else {
+                        TimeUnit.SECONDS.sleep(10);
                     }
                 } catch (Exception e) {
+                    log.error("crawl error:{}", e);
                     try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e1) {
-                        e1.printStackTrace();
+                        TimeUnit.SECONDS.sleep(5);
+                    } catch (InterruptedException ex) {
+                        ex.printStackTrace();
                     }
                 }
             });

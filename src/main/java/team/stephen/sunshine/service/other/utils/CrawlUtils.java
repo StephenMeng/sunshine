@@ -1,10 +1,12 @@
 package team.stephen.sunshine.service.other.utils;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import team.stephen.sunshine.exception.CrawlException;
 import team.stephen.sunshine.model.other.bean.CrawlParam;
 import team.stephen.sunshine.util.common.HttpUtils;
+import team.stephen.sunshine.util.common.LogRecord;
 
 import java.io.IOException;
 import java.util.function.Function;
@@ -40,8 +42,7 @@ public class CrawlUtils {
      */
     public static Object getHttpResultWithFunction(CrawlParam param, Function<String, Object> f) throws CrawlException {
         try {
-            HttpResponse response = HttpUtils.httpGet(param.getUrl(), param.getHeaders());
-            String html = IOUtils.toString(response.getEntity().getContent(), param.getEncode());
+            String html = HttpUtils.okrHttpGet(param.getUrl(), param.getHeaders());
             return f.apply(html);
         } catch (IOException e) {
             throw new CrawlException(e);
